@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import './global.css'
 import './null.css'
 import LoginPage from "@/Pages/LoginPage";
@@ -17,6 +17,7 @@ function App () {
         <Switch>
             <Route path="/login" component={LoginPage} />
             <Route path="/dashboard" component={DashboardPage} />
+            <Redirect to="/login" />
         </Switch>
         </div>
     )

@@ -1,20 +1,10 @@
 import React from "react";
-// import { I18n } from "aws-amplify";
-import { Authenticator, SignUp, Greetings } from "aws-amplify-react";
-import { Card } from "antd";
-// import Theme from "./theme";
 import {Logo} from "@/Components/Logo";
 import styled from "styled-components";
 import LogoIcon from "@/Components/assets/icons/LogoIcon";
 import useWindowDimensions from "@/Components/utils/hooks/useWindowDimensions";
-// import ConfirmSignIn from './ConfirmSignIn'
-// import ConfirmSignUp from './ConfirmSignUp'
-// import ForgotPassword from './ForgotPassword'
-// import RequireNewPassword from './RequireNewPassword'
-// import SignIn from './SignIn'
-// import SignUp from './SignUp'
-// import SignedIn from "./SignedIn";
-// import VerifyContact from './VerifyContact'
+import {useHistory} from "react-router-dom";
+
 
 const authScreenLabels = {
     en: {
@@ -29,7 +19,14 @@ const authScreenLabels = {
 
 
 
+
+
 export default () => {
+    let history = useHistory();
+    const goToDashboard = () => {
+        history.push("/dashboard");
+    }
+
     const { height, width } = useWindowDimensions();
     return (
         <Wrapper>
@@ -56,7 +53,7 @@ export default () => {
                 </ResetPassword>
                 </Utils>
                 <SignInWrapper>
-                    <SignIn>
+                    <SignIn onClick={goToDashboard}>
                         Sign in
                     </SignIn>
                 </SignInWrapper>

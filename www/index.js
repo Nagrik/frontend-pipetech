@@ -25343,6 +25343,12 @@
     };
   }
   var useContext = import_react2.default.useContext;
+  function useHistory() {
+    if (true) {
+      !(typeof useContext === "function") ? true ? invariant(false, "You must use React >= 16.8 in order to use useHistory()") : invariant(false) : void 0;
+    }
+    return useContext(historyContext);
+  }
   if (true) {
     if (typeof window !== "undefined") {
       global2 = window;
@@ -34829,6 +34835,10 @@
 
   // src/Components/Auth.tsx
   var Auth_default = () => {
+    let history = useHistory();
+    const goToDashboard = () => {
+      history.push("/dashboard");
+    };
     const { height, width } = useWindowDimensions();
     return /* @__PURE__ */ import_react21.default.createElement(Wrapper, null, /* @__PURE__ */ import_react21.default.createElement(WhiteWrapper, null, width > 1280 ? /* @__PURE__ */ import_react21.default.createElement(Logo, null) : /* @__PURE__ */ import_react21.default.createElement(LogoWrapper2, null, /* @__PURE__ */ import_react21.default.createElement(LogoIcon_default, {
       width: "450",
@@ -34839,7 +34849,9 @@
     }), /* @__PURE__ */ import_react21.default.createElement(Input, {
       type: "text",
       placeholder: "Password"
-    })), /* @__PURE__ */ import_react21.default.createElement(Utils, null, /* @__PURE__ */ import_react21.default.createElement(ForgotPassword, null, "Forgot your password?"), /* @__PURE__ */ import_react21.default.createElement(ResetPassword, null, "Reset password")), /* @__PURE__ */ import_react21.default.createElement(SignInWrapper, null, /* @__PURE__ */ import_react21.default.createElement(SignIn, null, "Sign in"))));
+    })), /* @__PURE__ */ import_react21.default.createElement(Utils, null, /* @__PURE__ */ import_react21.default.createElement(ForgotPassword, null, "Forgot your password?"), /* @__PURE__ */ import_react21.default.createElement(ResetPassword, null, "Reset password")), /* @__PURE__ */ import_react21.default.createElement(SignInWrapper, null, /* @__PURE__ */ import_react21.default.createElement(SignIn, {
+      onClick: goToDashboard
+    }, "Sign in"))));
   };
   var Wrapper = styled_components_browser_esm_default.div`
   height: 100vh;
@@ -36007,6 +36019,8 @@ cursor: pointer;
     }), /* @__PURE__ */ import_react57.default.createElement(Route, {
       path: "/dashboard",
       component: DashboardPage_default
+    }), /* @__PURE__ */ import_react57.default.createElement(Redirect, {
+      to: "/login"
     })));
   }
   var App_default = App;
