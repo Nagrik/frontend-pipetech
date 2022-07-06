@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import EmailBoxIcon from "@/Components/assets/icons/EmailBoxIcon";
+import EmailBoxIcon from "@/Components/common/icons/EmailBoxIcon";
 import styled from "styled-components";
 
 const Inspection = () => {

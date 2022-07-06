@@ -2,7 +2,7 @@ import React from "react";
 // import logoDark from "./logo_dark.svg";
 // import iconImg from "./icon.svg";
 import styled from "styled-components";
-import LogoDark from "@/Components/assets/icons/logoDark";
+import LogoDark from "@/Components/common/icons/logoDark";
 
 export const Logo = () => {
     return (

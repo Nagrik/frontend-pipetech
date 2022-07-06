@@ -2,10 +2,27 @@
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
+  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key2, value) => key2 in obj ? __defProp(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
+  var __spreadValues = (a2, b2) => {
+    for (var prop in b2 || (b2 = {}))
+      if (__hasOwnProp.call(b2, prop))
+        __defNormalProp(a2, prop, b2[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b2)) {
+        if (__propIsEnum.call(b2, prop))
+          __defNormalProp(a2, prop, b2[prop]);
+      }
+    return a2;
+  };
+  var __spreadProps = (a2, b2) => __defProps(a2, __getOwnPropDescs(b2));
   var __commonJS = (cb, mod) => function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
@@ -995,7 +1012,7 @@
             }
             return dispatcher.useContext(Context2);
           }
-          function useState13(initialState) {
+          function useState15(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1003,11 +1020,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef18(initialValue) {
+          function useRef19(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect16(create, deps) {
+          function useEffect17(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1019,7 +1036,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback4(callback, deps) {
+          function useCallback5(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1783,19 +1800,19 @@
           exports.memo = memo;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback4;
+          exports.useCallback = useCallback5;
           exports.useContext = useContext14;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect16;
+          exports.useEffect = useEffect17;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle2;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect2;
           exports.useMemo = useMemo9;
           exports.useReducer = useReducer;
-          exports.useRef = useRef18;
-          exports.useState = useState13;
+          exports.useRef = useRef19;
+          exports.useState = useState15;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -3382,9 +3399,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React91 = require_react();
+          var React100 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React91.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React100.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4785,7 +4802,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React91.Children.forEach(props.children, function(child) {
+                  React100.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12911,7 +12928,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React91.Component().refs;
+          var emptyRefsObject = new React100.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23819,7 +23836,7 @@
   });
 
   // src/index.tsx
-  var import_react58 = __toESM(require_react(), 1);
+  var import_react67 = __toESM(require_react(), 1);
 
   // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
   function _setPrototypeOf(o2, p) {
@@ -25589,7 +25606,7 @@
   var import_client = __toESM(require_client(), 1);
 
   // src/App.tsx
-  var import_react57 = __toESM(require_react(), 1);
+  var import_react66 = __toESM(require_react(), 1);
 
   // src/Pages/LoginPage.tsx
   var import_react23 = __toESM(require_react(), 1);
@@ -26381,20 +26398,20 @@
       if (typeof _cache !== "undefined") {
         if (_cache.has(Class2))
           return _cache.get(Class2);
-        _cache.set(Class2, Wrapper8);
+        _cache.set(Class2, Wrapper9);
       }
-      function Wrapper8() {
+      function Wrapper9() {
         return _construct(Class2, arguments, _getPrototypeOf2(this).constructor);
       }
-      Wrapper8.prototype = Object.create(Class2.prototype, {
+      Wrapper9.prototype = Object.create(Class2.prototype, {
         constructor: {
-          value: Wrapper8,
+          value: Wrapper9,
           enumerable: false,
           writable: true,
           configurable: true
         }
       });
-      return _setPrototypeOf2(Wrapper8, Class2);
+      return _setPrototypeOf2(Wrapper9, Class2);
     };
     return _wrapNativeSuper(Class);
   }
@@ -34720,7 +34737,7 @@
   typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), typeof window != "undefined" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, window["__styled-components-init__"] === 1 && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
   var styled_components_browser_esm_default = He;
 
-  // src/Components/assets/icons/logoDark.tsx
+  // src/Components/common/icons/logoDark.tsx
   var import_react17 = __toESM(require_react(), 1);
   var LogoDark = () => {
     return /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("svg", {
@@ -34784,7 +34801,7 @@
   margin: 0 auto;
 `;
 
-  // src/Components/assets/icons/LogoIcon.tsx
+  // src/Components/common/icons/LogoIcon.tsx
   var import_react19 = __toESM(require_react(), 1);
   var LogoIcon = ({ width, height }) => {
     return /* @__PURE__ */ import_react19.default.createElement("svg", {
@@ -34916,7 +34933,7 @@
   padding-top: 25px;
 `;
 
-  // src/Components/assets/icons/LoginFooter.tsx
+  // src/Components/common/icons/LoginFooter.tsx
   var import_react22 = __toESM(require_react(), 1);
   var LoginFooter = () => {
     return /* @__PURE__ */ import_react22.default.createElement("svg", {
@@ -34959,7 +34976,7 @@
   // src/Components/Header.tsx
   var import_react40 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/LogoWhite.tsx
+  // src/Components/common/icons/LogoWhite.tsx
   var import_react24 = __toESM(require_react(), 1);
   var LogoWhite = ({ width, height }) => {
     return /* @__PURE__ */ import_react24.default.createElement("svg", {
@@ -35014,7 +35031,7 @@
   };
   var LogoWhite_default = LogoWhite;
 
-  // src/Components/assets/icons/UploadIcon.tsx
+  // src/Components/common/icons/UploadIcon.tsx
   var import_react25 = __toESM(require_react(), 1);
   var UploadIcon = () => {
     return /* @__PURE__ */ import_react25.default.createElement("svg", {
@@ -35033,16 +35050,16 @@
   };
   var UploadIcon_default = UploadIcon;
 
-  // src/Components/assets/icons/SettingsIcon.tsx
+  // src/Components/common/icons/SettingsIcon.tsx
   var import_react26 = __toESM(require_react(), 1);
-  var SettingsIcon = () => {
+  var SettingsIcon = ({ color, height, width }) => {
     return /* @__PURE__ */ import_react26.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "setting",
-      width: "21",
-      height: "21",
-      fill: "#fff",
+      width,
+      height,
+      fill: color,
       "aria-hidden": "true"
     }, /* @__PURE__ */ import_react26.default.createElement("path", {
       d: "M924.8 625.7l-65.5-56c3.1-19 4.7-38.4 4.7-57.8s-1.6-38.8-4.7-57.8l65.5-56a32.03 32.03 0 009.3-35.2l-.9-2.6a443.74 443.74 0 00-79.7-137.9l-1.8-2.1a32.12 32.12 0 00-35.1-9.5l-81.3 28.9c-30-24.6-63.5-44-99.7-57.6l-15.7-85a32.05 32.05 0 00-25.8-25.7l-2.7-.5c-52.1-9.4-106.9-9.4-159 0l-2.7.5a32.05 32.05 0 00-25.8 25.7l-15.8 85.4a351.86 351.86 0 00-99 57.4l-81.9-29.1a32 32 0 00-35.1 9.5l-1.8 2.1a446.02 446.02 0 00-79.7 137.9l-.9 2.6c-4.5 12.5-.8 26.5 9.3 35.2l66.3 56.6c-3.1 18.8-4.6 38-4.6 57.1 0 19.2 1.5 38.4 4.6 57.1L99 625.5a32.03 32.03 0 00-9.3 35.2l.9 2.6c18.1 50.4 44.9 96.9 79.7 137.9l1.8 2.1a32.12 32.12 0 0035.1 9.5l81.9-29.1c29.8 24.5 63.1 43.9 99 57.4l15.8 85.4a32.05 32.05 0 0025.8 25.7l2.7.5a449.4 449.4 0 00159 0l2.7-.5a32.05 32.05 0 0025.8-25.7l15.7-85a350 350 0 0099.7-57.6l81.3 28.9a32 32 0 0035.1-9.5l1.8-2.1c34.8-41.1 61.6-87.5 79.7-137.9l.9-2.6c4.5-12.3.8-26.3-9.3-35zM788.3 465.9c2.5 15.1 3.8 30.6 3.8 46.1s-1.3 31-3.8 46.1l-6.6 40.1 74.7 63.9a370.03 370.03 0 01-42.6 73.6L721 702.8l-31.4 25.8c-23.9 19.6-50.5 35-79.3 45.8l-38.1 14.3-17.9 97a377.5 377.5 0 01-85 0l-17.9-97.2-37.8-14.5c-28.5-10.8-55-26.2-78.7-45.7l-31.4-25.9-93.4 33.2c-17-22.9-31.2-47.6-42.6-73.6l75.5-64.5-6.5-40c-2.4-14.9-3.7-30.3-3.7-45.5 0-15.3 1.2-30.6 3.7-45.5l6.5-40-75.5-64.5c11.3-26.1 25.6-50.7 42.6-73.6l93.4 33.2 31.4-25.9c23.7-19.5 50.2-34.9 78.7-45.7l37.9-14.3 17.9-97.2c28.1-3.2 56.8-3.2 85 0l17.9 97 38.1 14.3c28.7 10.8 55.4 26.2 79.3 45.8l31.4 25.8 92.8-32.9c17 22.9 31.2 47.6 42.6 73.6L781.8 426l6.5 39.9zM512 326c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 614c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 502c0-29.9 11.7-58 32.8-79.2C454 401.6 482.1 390 512 390c29.9 0 58 11.6 79.2 32.8A111.6 111.6 0 01624 502c0 29.9-11.7 58-32.8 79.2z"
@@ -35050,7 +35067,7 @@
   };
   var SettingsIcon_default = SettingsIcon;
 
-  // src/Components/assets/icons/DashboardIcon.tsx
+  // src/Components/common/icons/DashboardIcon.tsx
   var import_react27 = __toESM(require_react(), 1);
   var DashboardIcon = () => {
     return /* @__PURE__ */ import_react27.default.createElement("svg", {
@@ -35067,7 +35084,7 @@
   };
   var DashboardIcon_default = DashboardIcon;
 
-  // src/Components/assets/icons/AssetsIcon.tsx
+  // src/Components/common/icons/AssetsIcon.tsx
   var import_react28 = __toESM(require_react(), 1);
   var AssetsIcon = () => {
     return /* @__PURE__ */ import_react28.default.createElement("span", {
@@ -35088,7 +35105,7 @@
   };
   var AssetsIcon_default = AssetsIcon;
 
-  // src/Components/assets/icons/InspectionIcon.tsx
+  // src/Components/common/icons/InspectionIcon.tsx
   var import_react29 = __toESM(require_react(), 1);
   var InspectionIcon = () => {
     return /* @__PURE__ */ import_react29.default.createElement("svg", {
@@ -35105,7 +35122,7 @@
   };
   var InspectionIcon_default = InspectionIcon;
 
-  // src/Components/assets/icons/ProjectsIcon.tsx
+  // src/Components/common/icons/ProjectsIcon.tsx
   var import_react30 = __toESM(require_react(), 1);
   var ProjectsIcon = () => {
     return /* @__PURE__ */ import_react30.default.createElement("svg", {
@@ -35122,7 +35139,7 @@
   };
   var ProjectsIcon_default = ProjectsIcon;
 
-  // src/Components/assets/icons/DeliverablesIcon.tsx
+  // src/Components/common/icons/DeliverablesIcon.tsx
   var import_react31 = __toESM(require_react(), 1);
   var DeliverablesIcon = () => {
     return /* @__PURE__ */ import_react31.default.createElement("svg", {
@@ -35160,7 +35177,7 @@
     return [ref, value];
   }
 
-  // src/Components/assets/icons/SettingsIcons/OrganizationIcon.tsx
+  // src/Components/common/icons/SettingsIcons/OrganizationIcon.tsx
   var import_react33 = __toESM(require_react(), 1);
   var OrganizationIcon = () => {
     return /* @__PURE__ */ import_react33.default.createElement("svg", {
@@ -35177,7 +35194,7 @@
   };
   var OrganizationIcon_default = OrganizationIcon;
 
-  // src/Components/assets/icons/SettingsIcons/SystemsIcon.tsx
+  // src/Components/common/icons/SettingsIcons/SystemsIcon.tsx
   var import_react34 = __toESM(require_react(), 1);
   var SystemsIcon = () => {
     return /* @__PURE__ */ import_react34.default.createElement("svg", {
@@ -35194,7 +35211,7 @@
   };
   var SystemsIcon_default = SystemsIcon;
 
-  // src/Components/assets/icons/SettingsIcons/TemplatesIcon.tsx
+  // src/Components/common/icons/SettingsIcons/TemplatesIcon.tsx
   var import_react35 = __toESM(require_react(), 1);
   var TemplatesIcon = () => {
     return /* @__PURE__ */ import_react35.default.createElement("svg", {
@@ -35211,7 +35228,7 @@
   };
   var TemplatesIcon_default = TemplatesIcon;
 
-  // src/Components/assets/icons/SettingsIcons/UsersIcon.tsx
+  // src/Components/common/icons/SettingsIcons/UsersIcon.tsx
   var import_react36 = __toESM(require_react(), 1);
   var UsersIcon = () => {
     return /* @__PURE__ */ import_react36.default.createElement("svg", {
@@ -35228,7 +35245,7 @@
   };
   var UsersIcon_default = UsersIcon;
 
-  // src/Components/assets/icons/SettingsIcons/EquipmentIcon.tsx
+  // src/Components/common/icons/SettingsIcons/EquipmentIcon.tsx
   var import_react37 = __toESM(require_react(), 1);
   var EquipmentIcon = () => {
     return /* @__PURE__ */ import_react37.default.createElement("svg", {
@@ -35247,7 +35264,7 @@
   };
   var EquipmentIcon_default = EquipmentIcon;
 
-  // src/Components/assets/icons/SettingsIcons/integrations.tsx
+  // src/Components/common/icons/SettingsIcons/integrations.tsx
   var import_react38 = __toESM(require_react(), 1);
   var Integrations = () => {
     return /* @__PURE__ */ import_react38.default.createElement("svg", {
@@ -35264,7 +35281,7 @@
   };
   var integrations_default = Integrations;
 
-  // src/Components/assets/icons/ProfileIcons/LogoutIcon.tsx
+  // src/Components/common/icons/ProfileIcons/LogoutIcon.tsx
   var import_react39 = __toESM(require_react(), 1);
   var LogoutIcon = () => {
     return /* @__PURE__ */ import_react39.default.createElement("svg", {
@@ -35285,14 +35302,13 @@
   var Header = () => {
     const [hoverRef, isHovered] = useHover();
     const [hoverRefProfile, isHoveredProfile] = useHover();
-    console.log(isHoveredProfile);
     return /* @__PURE__ */ import_react40.default.createElement(Wrapper2, null, /* @__PURE__ */ import_react40.default.createElement(LeftSideMenu, null, /* @__PURE__ */ import_react40.default.createElement(LogoWrapper3, null, /* @__PURE__ */ import_react40.default.createElement(LogoWhite_default, {
       height: "40",
       width: "148"
     })), /* @__PURE__ */ import_react40.default.createElement(MenuItem, {
       active: window.location.pathname === "/dashboard"
     }, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(DashboardIcon_default, null)), "Dashboard"), /* @__PURE__ */ import_react40.default.createElement(MenuItem, {
-      active: window.location.pathname === "/assets"
+      active: window.location.pathname === "/common"
     }, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(AssetsIcon_default, null)), "Assets"), /* @__PURE__ */ import_react40.default.createElement(MenuItem, {
       active: window.location.pathname === "/inspections"
     }, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(InspectionIcon_default, null)), "Inspections"), /* @__PURE__ */ import_react40.default.createElement(MenuItem, {
@@ -35303,7 +35319,11 @@
       placeholder: "Search"
     }), /* @__PURE__ */ import_react40.default.createElement(UploadIconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(UploadIcon_default, null)), /* @__PURE__ */ import_react40.default.createElement(SettingsIconWrapper, {
       ref: hoverRef
-    }, /* @__PURE__ */ import_react40.default.createElement(SettingsIcon_default, null), isHovered && /* @__PURE__ */ import_react40.default.createElement(SettingsMenu, null, /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(SystemsIcon_default, null)), "System"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(integrations_default, null)), "Integrations"))), /* @__PURE__ */ import_react40.default.createElement(Circle, {
+    }, /* @__PURE__ */ import_react40.default.createElement(SettingsIcon_default, {
+      color: "#fff",
+      width: 21,
+      height: 21
+    }), isHovered && /* @__PURE__ */ import_react40.default.createElement(SettingsMenu, null, /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(SystemsIcon_default, null)), "System"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react40.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(integrations_default, null)), "Integrations"))), /* @__PURE__ */ import_react40.default.createElement(Circle, {
       ref: hoverRefProfile
     }, /* @__PURE__ */ import_react40.default.createElement(CircleWrapper, null, "RN", isHoveredProfile && /* @__PURE__ */ import_react40.default.createElement(ProfileMenu, null, /* @__PURE__ */ import_react40.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(ProjectsIcon_default, null)), "My Profile"), /* @__PURE__ */ import_react40.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react40.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react40.default.createElement(LogoutIcon_default, null)), "Logout"))))));
   };
@@ -35431,7 +35451,7 @@
   // src/Components/Dashboard/Inspection.tsx
   var import_react42 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/EmailBoxIcon.tsx
+  // src/Components/common/icons/EmailBoxIcon.tsx
   var import_react41 = __toESM(require_react(), 1);
   var EmailBoxIcon = () => {
     return /* @__PURE__ */ import_react41.default.createElement("svg", {
@@ -35533,7 +35553,7 @@
   // src/Components/Dashboard/Discrepancies.tsx
   var import_react46 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/DiscrepanciesIcon.tsx
+  // src/Components/common/icons/DiscrepanciesIcon.tsx
   var import_react43 = __toESM(require_react(), 1);
   var DiscrepanciesIcon = () => {
     return /* @__PURE__ */ import_react43.default.createElement("svg", {
@@ -35550,7 +35570,7 @@
   };
   var DiscrepanciesIcon_default = DiscrepanciesIcon;
 
-  // src/Components/assets/icons/Cubes.tsx
+  // src/Components/common/icons/Cubes.tsx
   var import_react44 = __toESM(require_react(), 1);
   var Cubes = () => {
     return /* @__PURE__ */ import_react44.default.createElement("svg", {
@@ -35567,7 +35587,7 @@
   };
   var Cubes_default = Cubes;
 
-  // src/Components/assets/icons/SearchBookIcon.tsx
+  // src/Components/common/icons/SearchBookIcon.tsx
   var import_react45 = __toESM(require_react(), 1);
   var SearchBookIcon = () => {
     return /* @__PURE__ */ import_react45.default.createElement("svg", {
@@ -35703,7 +35723,7 @@ cursor: pointer;
   // src/Components/Dashboard/UpdatedProjects.tsx
   var import_react48 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/NoInspection.tsx
+  // src/Components/common/icons/NoInspection.tsx
   var import_react47 = __toESM(require_react(), 1);
   var NoInspection = () => {
     return /* @__PURE__ */ import_react47.default.createElement("svg", {
@@ -35809,16 +35829,16 @@ cursor: pointer;
   // src/Components/Dashboard/Assets.tsx
   var import_react51 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/Folder.tsx
+  // src/Components/common/icons/Folder.tsx
   var import_react49 = __toESM(require_react(), 1);
-  var Folder = () => {
+  var Folder = ({ color }) => {
     return /* @__PURE__ */ import_react49.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "folder-open",
       width: "1em",
       height: "1em",
-      fill: "#1890ff",
+      fill: color,
       "aria-hidden": "true"
     }, /* @__PURE__ */ import_react49.default.createElement("path", {
       d: "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z"
@@ -35826,7 +35846,7 @@ cursor: pointer;
   };
   var Folder_default = Folder;
 
-  // src/Components/assets/icons/TreeIcon.tsx
+  // src/Components/common/icons/TreeIcon.tsx
   var import_react50 = __toESM(require_react(), 1);
   var TreeIcon = () => {
     return /* @__PURE__ */ import_react50.default.createElement("svg", {
@@ -35845,7 +35865,9 @@ cursor: pointer;
 
   // src/Components/Dashboard/Assets.tsx
   var Assets2 = () => {
-    return /* @__PURE__ */ import_react51.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react51.default.createElement(AssetsHeader, null, /* @__PURE__ */ import_react51.default.createElement(AssetsHeaderTitle, null, /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(Cubes_default, null)), "Assets")), /* @__PURE__ */ import_react51.default.createElement(AssetsBody, null, /* @__PURE__ */ import_react51.default.createElement(AssetsItem, null, /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(Folder_default, null)), /* @__PURE__ */ import_react51.default.createElement(AssetsBodyTitle, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(TreeIcon_default, null)))));
+    return /* @__PURE__ */ import_react51.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react51.default.createElement(AssetsHeader, null, /* @__PURE__ */ import_react51.default.createElement(AssetsHeaderTitle, null, /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(Cubes_default, null)), "Assets")), /* @__PURE__ */ import_react51.default.createElement(AssetsBody, null, /* @__PURE__ */ import_react51.default.createElement(AssetsItem, null, /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(Folder_default, {
+      color: "#1890ff"
+    })), /* @__PURE__ */ import_react51.default.createElement(AssetsBodyTitle, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react51.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react51.default.createElement(TreeIcon_default, null)))));
   };
   var Assets_default = Assets2;
   var Wrapper4 = styled_components_browser_esm_default.div`
@@ -35883,7 +35905,7 @@ cursor: pointer;
   // src/Components/Dashboard/Inspections.tsx
   var import_react53 = __toESM(require_react(), 1);
 
-  // src/Components/assets/icons/SearchIcon.tsx
+  // src/Components/common/icons/SearchIcon.tsx
   var import_react52 = __toESM(require_react(), 1);
   var SearchIcon = () => {
     return /* @__PURE__ */ import_react52.default.createElement("svg", {
@@ -35902,7 +35924,13 @@ cursor: pointer;
 
   // src/Components/Dashboard/Inspections.tsx
   var Inspection2 = () => {
-    return /* @__PURE__ */ import_react53.default.createElement(Wrapper5, null, /* @__PURE__ */ import_react53.default.createElement(AssetsHeader2, null, /* @__PURE__ */ import_react53.default.createElement(AssetsHeaderTitle2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(SearchIcon_default, null)), "Inspections")), /* @__PURE__ */ import_react53.default.createElement(AssetsBody2, null, /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, null)), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, null)), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, null)), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null)))));
+    return /* @__PURE__ */ import_react53.default.createElement(Wrapper5, null, /* @__PURE__ */ import_react53.default.createElement(AssetsHeader2, null, /* @__PURE__ */ import_react53.default.createElement(AssetsHeaderTitle2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(SearchIcon_default, null)), "Inspections")), /* @__PURE__ */ import_react53.default.createElement(AssetsBody2, null, /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, {
+      color: "#1890ff"
+    })), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, {
+      color: "#1890ff"
+    })), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react53.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(Folder_default, {
+      color: "#1890ff"
+    })), /* @__PURE__ */ import_react53.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react53.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react53.default.createElement(TreeIcon_default, null)))));
   };
   var Inspections_default = Inspection2;
   var Wrapper5 = styled_components_browser_esm_default.div`
@@ -36011,15 +36039,487 @@ cursor: pointer;
   };
   var DashboardPage_default = DashboardPage;
 
+  // src/Pages/AssetsPage.tsx
+  var import_react65 = __toESM(require_react(), 1);
+
+  // src/Components/AssetsPage/Table.tsx
+  var import_react62 = __toESM(require_react(), 1);
+
+  // src/Components/AssetsPage/TableBody.tsx
+  var import_react57 = __toESM(require_react(), 1);
+  var TableBody = () => {
+    return /* @__PURE__ */ import_react57.default.createElement("tbody", null, /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, /* @__PURE__ */ import_react57.default.createElement("input", {
+      type: "checkbox"
+    }))), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Large Detroit Style Pizza")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "3213456785")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "$31.43")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Pending")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Dave"))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, /* @__PURE__ */ import_react57.default.createElement("input", {
+      type: "checkbox"
+    }))), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Double Decker Club With Fries. Pickles, extra side avacado")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "9874563245")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "$12.99")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Delivered")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Cathy"))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, /* @__PURE__ */ import_react57.default.createElement("input", {
+      type: "checkbox"
+    }))), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Family Sized Lobster Dinner")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "3456781234")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "$320.00")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "In Progress")), /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, "Alexander"))));
+  };
+  var TableBody_default = TableBody;
+  var Checkboxs = styled_components_browser_esm_default.tr`
+  position: absolute;
+  top: 8px;
+  left: 23px;
+`;
+
+  // src/Components/AssetsPage/TableContent.tsx
+  var import_react58 = __toESM(require_react(), 1);
+  var createHeaders = (headers) => {
+    return headers.map((item) => ({
+      text: item,
+      ref: (0, import_react58.useRef)()
+    }));
+  };
+  var TableContent = ({ headers, minCellWidth, tableContent }) => {
+    const tableData = [
+      {
+        id: 1,
+        checkbox: false,
+        AssetsId: "assetsId",
+        Projects: "Large Detroit Style Pizza",
+        inspection: "3213456785"
+      },
+      {
+        id: 2,
+        checkbox: false,
+        AssetsId: "assetsId",
+        Projects: "Large Detroit Style Pizza",
+        inspection: "3213456785"
+      },
+      {
+        id: 3,
+        checkbox: false,
+        AssetsId: "assetsId",
+        Projects: "Large Detroit Style Pizza",
+        inspection: "3213456785"
+      },
+      {
+        id: 4,
+        checkbox: false,
+        AssetsId: "assetsId",
+        Projects: "Large Detroit Style Pizza",
+        inspection: "3213456785"
+      },
+      {
+        id: 5,
+        checkbox: false,
+        AssetsId: "assetsId",
+        Projects: "Large Detroit Style Pizza",
+        inspection: "3213456785"
+      }
+    ];
+    const [tableHeight, setTableHeight] = (0, import_react58.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react58.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react58.useState)(tableData);
+    console.log(tableData);
+    const tableElement = (0, import_react58.useRef)(null);
+    const columns = createHeaders(headers);
+    (0, import_react58.useEffect)(() => {
+      setTableHeight(tableElement.current.offsetHeight);
+    }, []);
+    const mouseDown = (index2) => {
+      setActiveIndex(index2);
+    };
+    const mouseMove = (0, import_react58.useCallback)((e2) => {
+      const gridColumns = columns.map((col, i2) => {
+        if (i2 === activeIndex) {
+          const width = e2.clientX - col.ref.current.offsetLeft;
+          if (width >= minCellWidth) {
+            return `${width}px`;
+          }
+        }
+        return `${col.ref.current.offsetWidth}px`;
+      });
+      tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
+    }, [activeIndex, columns, minCellWidth]);
+    const removeListeners = (0, import_react58.useCallback)(() => {
+      window.removeEventListener("mousemove", mouseMove);
+      window.removeEventListener("mouseup", removeListeners);
+    }, [mouseMove]);
+    const mouseUp = (0, import_react58.useCallback)(() => {
+      setActiveIndex(null);
+      removeListeners();
+    }, [setActiveIndex, removeListeners]);
+    (0, import_react58.useEffect)(() => {
+      if (activeIndex !== null) {
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("mouseup", mouseUp);
+      }
+      return () => {
+        removeListeners();
+      };
+    }, [activeIndex, mouseMove, mouseUp, removeListeners]);
+    const handleCheckCheckboxes = (e2) => {
+      const target = e2.target.checked;
+      const arr = tableDataState.map((item) => {
+        return __spreadProps(__spreadValues({}, item), { checkbox: target });
+      });
+      setTableDataState(arr);
+      console.log(arr, "arr");
+    };
+    const handleCheckCheckbox = (e2, id) => {
+      const arr = tableDataState.map((item) => {
+        if (item.id === id) {
+          return __spreadProps(__spreadValues({}, item), { checkbox: e2.target.checked });
+        } else {
+          return item;
+        }
+      });
+      console.log("arr", arr);
+      setTableDataState(arr);
+    };
+    return /* @__PURE__ */ import_react58.default.createElement("div", {
+      style: { position: "relative" }
+    }, /* @__PURE__ */ import_react58.default.createElement("div", {
+      className: "container"
+    }, /* @__PURE__ */ import_react58.default.createElement("div", {
+      className: "table-wrapper"
+    }, /* @__PURE__ */ import_react58.default.createElement("table", {
+      className: "resizeable-table",
+      ref: tableElement
+    }, /* @__PURE__ */ import_react58.default.createElement("thead", null, /* @__PURE__ */ import_react58.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react58.default.createElement(import_react58.default.Fragment, null, /* @__PURE__ */ import_react58.default.createElement("th", {
+      ref,
+      key: text,
+      className: "checkbox"
+    }, /* @__PURE__ */ import_react58.default.createElement("span", null, /* @__PURE__ */ import_react58.default.createElement("input", {
+      type: "checkbox",
+      onClick: (e2) => handleCheckCheckboxes(e2)
+    })))) : /* @__PURE__ */ import_react58.default.createElement(import_react58.default.Fragment, null, /* @__PURE__ */ import_react58.default.createElement("th", {
+      ref,
+      key: text
+    }, /* @__PURE__ */ import_react58.default.createElement("span", null, text), /* @__PURE__ */ import_react58.default.createElement("div", {
+      style: { height: tableHeight },
+      onMouseDown: () => mouseDown(i2),
+      className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
+    })))))), /* @__PURE__ */ import_react58.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react58.default.createElement(import_react58.default.Fragment, null, /* @__PURE__ */ import_react58.default.createElement("tr", null, /* @__PURE__ */ import_react58.default.createElement("td", {
+        className: "checkbox"
+      }, /* @__PURE__ */ import_react58.default.createElement("input", {
+        type: "checkbox",
+        checked: item.checkbox,
+        onClick: (e2) => handleCheckCheckbox(e2, item.id)
+      }))), /* @__PURE__ */ import_react58.default.createElement("tr", null, /* @__PURE__ */ import_react58.default.createElement("td", null, /* @__PURE__ */ import_react58.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react58.default.createElement("tr", null, /* @__PURE__ */ import_react58.default.createElement("td", null, /* @__PURE__ */ import_react58.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react58.default.createElement("tr", null, /* @__PURE__ */ import_react58.default.createElement("td", null, /* @__PURE__ */ import_react58.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react58.default.createElement("tr", null, /* @__PURE__ */ import_react58.default.createElement("td", null, /* @__PURE__ */ import_react58.default.createElement("span", null, item.inspection))));
+    }))))));
+  };
+  var TableContent_default = TableContent;
+  var Checkboxs2 = styled_components_browser_esm_default.div`
+  position: absolute;
+  top: 8px;
+  left: 23px;
+`;
+
+  // src/Components/common/icons/AssetsPageIcons/FolderPlus.tsx
+  var import_react59 = __toESM(require_react(), 1);
+  var FolderPlus = () => {
+    return /* @__PURE__ */ import_react59.default.createElement("svg", {
+      width: "18",
+      height: "18",
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, /* @__PURE__ */ import_react59.default.createElement("path", {
+      fillRule: "evenodd",
+      clipRule: "evenodd",
+      d: "M19.2188 10.4062H21.75C22.1648 10.4062 22.5 10.7414 22.5 11.1562C22.5 11.2523 22.4813 11.3484 22.4461 11.4375L21.8154 13H20.0969L20.5008 12H6.14766L3.72656 18H13V19.6875H2.25C1.83516 19.6875 1.5 19.3523 1.5 18.9375V5.0625C1.5 4.64766 1.83516 4.3125 2.25 4.3125H8.20781C8.25573 4.31291 8.30174 4.33132 8.33672 4.36406L11.0859 6.99375H18.4688C18.8836 6.99375 19.2188 7.32891 19.2188 7.74375V10.4062ZM7.60547 6H3.1875V15.075L4.88203 10.875C4.99688 10.5914 5.27344 10.4062 5.57812 10.4062H17.5312V8.68125H10.4086L7.60547 6Z",
+      fill: "currentColor"
+    }), /* @__PURE__ */ import_react59.default.createElement("path", {
+      d: "M22.125 16.9688H19.4062V14.25C19.4062 14.1469 19.3219 14.0625 19.2188 14.0625H18.0938C17.9906 14.0625 17.9062 14.1469 17.9062 14.25V16.9688H15.1875C15.0844 16.9688 15 17.0531 15 17.1562V18.2812C15 18.3844 15.0844 18.4688 15.1875 18.4688H17.9062V21.1875C17.9062 21.2906 17.9906 21.375 18.0938 21.375H19.2188C19.3219 21.375 19.4062 21.2906 19.4062 21.1875V18.4688H22.125C22.2281 18.4688 22.3125 18.3844 22.3125 18.2812V17.1562C22.3125 17.0531 22.2281 16.9688 22.125 16.9688Z",
+      fill: "currentColor"
+    }));
+  };
+  var FolderPlus_default = FolderPlus;
+
+  // src/Components/common/icons/AssetsPageIcons/Filter.tsx
+  var import_react60 = __toESM(require_react(), 1);
+  var Filter = () => {
+    return /* @__PURE__ */ import_react60.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "filter",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react60.default.createElement("path", {
+      d: "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+    }));
+  };
+  var Filter_default = Filter;
+
+  // src/Components/common/icons/AssetsPageIcons/EyeIcon.tsx
+  var import_react61 = __toESM(require_react(), 1);
+  var EyeIcon = () => {
+    return /* @__PURE__ */ import_react61.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "eye",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react61.default.createElement("path", {
+      d: "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+    }));
+  };
+  var EyeIcon_default = EyeIcon;
+
+  // src/Components/AssetsPage/Table.tsx
+  var Table = () => {
+    const tableHeaders = [
+      "checkbox",
+      "Items",
+      "Order #",
+      "Amount",
+      "Status"
+    ];
+    return /* @__PURE__ */ import_react62.default.createElement("div", null, /* @__PURE__ */ import_react62.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react62.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react62.default.createElement(TableUtils, null, /* @__PURE__ */ import_react62.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react62.default.createElement(Collection, null, /* @__PURE__ */ import_react62.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react62.default.createElement(Folder_default, {
+      color: "#000"
+    })), "Collection"), /* @__PURE__ */ import_react62.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react62.default.createElement(RightSide2, null, /* @__PURE__ */ import_react62.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react62.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react62.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react62.default.createElement(FilterWrapper, null, /* @__PURE__ */ import_react62.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react62.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react62.default.createElement(FilterTitle, null, "Filter"), /* @__PURE__ */ import_react62.default.createElement(Number2, null, "0")), /* @__PURE__ */ import_react62.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react62.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react62.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react62.default.createElement(View, null, "View")), /* @__PURE__ */ import_react62.default.createElement(Settings, null, /* @__PURE__ */ import_react62.default.createElement(SettingsIcon_default, {
+      color: "#000",
+      width: 14,
+      height: 14
+    })))), /* @__PURE__ */ import_react62.default.createElement(TableContent_default, {
+      headers: tableHeaders,
+      minCellWidth: 120,
+      tableContent: /* @__PURE__ */ import_react62.default.createElement(TableBody_default, null)
+    })));
+  };
+  var Table_default = Table;
+  var Title2 = styled_components_browser_esm_default.div`
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0 24px 24px 24px;
+`;
+  var Settings = styled_components_browser_esm_default.div`
+    background-color: white;
+  padding: 5px 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+`;
+  var ViewWrapper = styled_components_browser_esm_default.div`
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 4px 5px;
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+`;
+  var View = styled_components_browser_esm_default.div`
+    font-size: 14px;
+  display: flex;
+  align-items: center;
+`;
+  var FilterTitle = styled_components_browser_esm_default.div`
+  padding: 0 5px;
+`;
+  var Number2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #ccc;
+  padding: 5px 7px;
+`;
+  var FilterWrapper = styled_components_browser_esm_default.div`
+    display: flex;
+    align-items: center;
+  background-color: white;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  padding-left: 5px;
+  cursor: pointer;
+`;
+  var AddToCollection = styled_components_browser_esm_default.div`
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+`;
+  var LeftSide2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+`;
+  var RightSide2 = styled_components_browser_esm_default.div`
+    display: flex;
+    align-items: center;
+  justify-content: space-between;
+  width: 365px;
+`;
+  var Assets3 = styled_components_browser_esm_default.div`
+  font-size: 14px;
+  padding: 0px 5px;
+`;
+  var IconWrapper2 = styled_components_browser_esm_default.div`
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+`;
+  var Collection = styled_components_browser_esm_default.div`
+    display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 3px 10px;
+  font-size: 14px;
+`;
+  var TableUtils = styled_components_browser_esm_default.div`
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+  var TableWrapper = styled_components_browser_esm_default.div`
+  height: calc(100vh - 64px - 118px);
+  background-color: whitesmoke;
+`;
+
+  // src/Components/AssetsPage/AssetsSelects.tsx
+  var import_react64 = __toESM(require_react(), 1);
+
+  // src/Components/common/icons/AssetsPageIcons/ArrowDownIcon.tsx
+  var import_react63 = __toESM(require_react(), 1);
+  var ArrowDownIcon = () => {
+    return /* @__PURE__ */ import_react63.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "down",
+      width: "12",
+      height: "12",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react63.default.createElement("path", {
+      d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+    }));
+  };
+  var ArrowDownIcon_default = ArrowDownIcon;
+
+  // src/Components/AssetsPage/AssetsSelects.tsx
+  var AssetsSelects = () => {
+    const [select1, setSelect1] = (0, import_react64.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react64.useState)("Mainlines");
+    const [hoverRef, isHovered] = useHover();
+    const [hoverRef2, isHovered2] = useHover();
+    return /* @__PURE__ */ import_react64.default.createElement(Wrapper8, null, /* @__PURE__ */ import_react64.default.createElement(Select1, {
+      ref: hoverRef
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItem, null, select1), /* @__PURE__ */ import_react64.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react64.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react64.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react64.default.createElement(HoverItem, {
+      onClick: () => setSelect1("All systems")
+    }, "All systems"), /* @__PURE__ */ import_react64.default.createElement(HoverItem, {
+      onClick: () => setSelect1("Springfield Storm")
+    }, "Springfield Storm"), /* @__PURE__ */ import_react64.default.createElement(HoverItem, {
+      onClick: () => setSelect1("Springfield Sanitary")
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react64.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react64.default.createElement(Select2, {
+      ref: hoverRef2
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItem, null, select2), /* @__PURE__ */ import_react64.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react64.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react64.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react64.default.createElement(HoverItem, {
+      onClick: () => setSelect2("All assets types")
+    }, "All assets types"), /* @__PURE__ */ import_react64.default.createElement(HoverItem, {
+      onClick: () => setSelect2("Mainlines")
+    }, "Mainlines"))));
+  };
+  var AssetsSelects_default = AssetsSelects;
+  var Wrapper8 = styled_components_browser_esm_default.div`
+    display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding: 16px 24px 0px 24px;
+`;
+  var HoverItem = styled_components_browser_esm_default.div`
+  padding: 7px 12px;
+  font-size: 16px;
+  &:hover {
+    background-color: whitesmoke;
+  }
+`;
+  var HoverItemWrapper = styled_components_browser_esm_default.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  top: 55px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+&::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 18px 9px 0;
+  border-color: transparent #fff transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: absolute;
+  top: -10px;
+  left: 62px;
+  transform: rotate(-27deg);
+},
+`;
+  var HoverItemWrapper2 = styled_components_browser_esm_default.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  top: 55px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+&::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 18px 9px 0;
+  border-color: transparent #fff transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: absolute;
+  top: -10px;
+  left: 52px;
+  transform: rotate(-27deg);
+},
+`;
+  var Select1 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+
+`;
+  var Select2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+
+`;
+  var Slash = styled_components_browser_esm_default.div`
+  padding: 0 5px;
+`;
+  var IconWrapp5 = styled_components_browser_esm_default.div`
+    padding: 0 5px;
+`;
+  var SelectItem = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  display: flex;
+  align-items: flex-start;
+    height: 42px;
+`;
+
+  // src/Pages/AssetsPage.tsx
+  var AssetsPage = () => {
+    return /* @__PURE__ */ import_react65.default.createElement("div", null, /* @__PURE__ */ import_react65.default.createElement(Header_default, null), /* @__PURE__ */ import_react65.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react65.default.createElement(Table_default, null));
+  };
+  var AssetsPage_default = AssetsPage;
+
   // src/App.tsx
   function App() {
-    return /* @__PURE__ */ import_react57.default.createElement("div", null, /* @__PURE__ */ import_react57.default.createElement(Switch, null, /* @__PURE__ */ import_react57.default.createElement(Route, {
+    return /* @__PURE__ */ import_react66.default.createElement("div", null, /* @__PURE__ */ import_react66.default.createElement(Switch, null, /* @__PURE__ */ import_react66.default.createElement(Route, {
       path: "/login",
       component: LoginPage_default
-    }), /* @__PURE__ */ import_react57.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react66.default.createElement(Route, {
       path: "/dashboard",
       component: DashboardPage_default
-    }), /* @__PURE__ */ import_react57.default.createElement(Redirect, {
+    }), /* @__PURE__ */ import_react66.default.createElement(Route, {
+      path: "/assets",
+      component: AssetsPage_default
+    }), /* @__PURE__ */ import_react66.default.createElement(Redirect, {
       to: "/login"
     })));
   }
@@ -36028,7 +36528,7 @@ cursor: pointer;
   // src/index.tsx
   var container = document.getElementById("root");
   var root = (0, import_client.createRoot)(container);
-  root.render(/* @__PURE__ */ import_react58.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react58.default.createElement(App_default, null)));
+  root.render(/* @__PURE__ */ import_react67.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react67.default.createElement(App_default, null)));
 })();
 /*
 object-assign

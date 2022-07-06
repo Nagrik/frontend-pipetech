@@ -205,3 +205,89 @@ h6 {
   font-weight: inherit;
   font-size: inherit;
 }
+
+/* src/Components/AssetsPage/table.css */
+* {
+  box-sizing: border-box;
+}
+button {
+  background: #517ea5;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.table-wrapper {
+  margin-bottom: 25px;
+  border-radius: 6px;
+  background: whitesmoke;
+  overflow: hidden;
+}
+table {
+  display: grid;
+  overflow: auto;
+  background-color: whitesmoke;
+  padding-right: 24px;
+  margin-left: 24px;
+  border-left: 1px solid #ccc;
+  grid-auto-columns: calc(25% - 30px);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr);
+}
+.checkbox {
+  max-width: 60px;
+  min-width: 30px;
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+table thead,
+table tbody,
+table tr {
+  display: contents;
+}
+table th {
+  position: relative;
+  font-size: 18px;
+  border-top: 1px solid #ccc;
+  padding: 10px 20px;
+}
+table th,
+table td {
+  text-align: left;
+  min-width: 100px;
+}
+table th span,
+table td span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+table tr td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background-color: #fafafa;
+  padding: 16px 20px;
+}
+.resize-handle {
+  display: block;
+  position: absolute;
+  cursor: col-resize;
+  width: 7px;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  border-right: 2px solid #ccc;
+}
+.resize-handle:hover {
+  border-color: #ccc;
+}
+.resize-handle.active {
+  border-color: #517ea5;
+}

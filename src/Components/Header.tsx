@@ -1,28 +1,28 @@
 import React, {FC} from 'react';
 
 import styled from "styled-components";
-import LogoWhite from "@/Components/assets/icons/LogoWhite";
-import UploadIcon from "@/Components/assets/icons/UploadIcon";
-import SettingsIcon from "@/Components/assets/icons/SettingsIcon";
-import DashboardIcon from "@/Components/assets/icons/DashboardIcon";
-import AssetsIcon from "@/Components/assets/icons/AssetsIcon";
-import InspectionIcon from "@/Components/assets/icons/InspectionIcon";
-import ProjectsIcon from "@/Components/assets/icons/ProjectsIcon";
-import DeliverablesIcon from "@/Components/assets/icons/DeliverablesIcon";
+import LogoWhite from "@/Components/common/icons/LogoWhite";
+import UploadIcon from "@/Components/common/icons/UploadIcon";
+import SettingsIcon from "@/Components/common/icons/SettingsIcon";
+import DashboardIcon from "@/Components/common/icons/DashboardIcon";
+import AssetsIcon from "@/Components/common/icons/AssetsIcon";
+import InspectionIcon from "@/Components/common/icons/InspectionIcon";
+import ProjectsIcon from "@/Components/common/icons/ProjectsIcon";
+import DeliverablesIcon from "@/Components/common/icons/DeliverablesIcon";
 import {useHover} from "@/Components/utils/hooks/UseHover";
-import OrganizationIcon from "@/Components/assets/icons/SettingsIcons/OrganizationIcon";
-import SystemsIcon from "@/Components/assets/icons/SettingsIcons/SystemsIcon";
-import TemplatesIcon from "@/Components/assets/icons/SettingsIcons/TemplatesIcon";
-import UsersIcon from "@/Components/assets/icons/SettingsIcons/UsersIcon";
-import EquipmentIcon from "@/Components/assets/icons/SettingsIcons/EquipmentIcon";
-import Integrations from "@/Components/assets/icons/SettingsIcons/integrations";
-import LogoutIcon from "@/Components/assets/icons/ProfileIcons/LogoutIcon";
+import OrganizationIcon from "@/Components/common/icons/SettingsIcons/OrganizationIcon";
+import SystemsIcon from "@/Components/common/icons/SettingsIcons/SystemsIcon";
+import TemplatesIcon from "@/Components/common/icons/SettingsIcons/TemplatesIcon";
+import UsersIcon from "@/Components/common/icons/SettingsIcons/UsersIcon";
+import EquipmentIcon from "@/Components/common/icons/SettingsIcons/EquipmentIcon";
+import Integrations from "@/Components/common/icons/SettingsIcons/integrations";
+import LogoutIcon from "@/Components/common/icons/ProfileIcons/LogoutIcon";
 
 
 const Header = () => {
     const [hoverRef, isHovered] = useHover<HTMLDivElement>();
     const [hoverRefProfile, isHoveredProfile] = useHover<HTMLDivElement>();
-    console.log(isHoveredProfile)
+
     return (
         <Wrapper>
             <LeftSideMenu>
@@ -35,7 +35,7 @@ const Header = () => {
                     </IconWrapper>
                     Dashboard
                 </MenuItem>
-                <MenuItem active={window.location.pathname === '/assets'}>
+                <MenuItem active={window.location.pathname === '/common'}>
                     <IconWrapper>
                         <AssetsIcon/>
                     </IconWrapper>
@@ -66,7 +66,7 @@ const Header = () => {
                     <UploadIcon/>
                 </UploadIconWrapper>
                 <SettingsIconWrapper ref={hoverRef}>
-                    <SettingsIcon/>
+                    <SettingsIcon color='#fff' width={21} height={21}/>
                     {
                         isHovered && (
                             <SettingsMenu>

@@ -1,7 +1,7 @@
 import React from "react";
 import {Logo} from "@/Components/Logo";
 import styled from "styled-components";
-import LogoIcon from "@/Components/assets/icons/LogoIcon";
+import LogoIcon from "@/Components/common/icons/LogoIcon";
 import useWindowDimensions from "@/Components/utils/hooks/useWindowDimensions";
 import {useHistory} from "react-router-dom";
 

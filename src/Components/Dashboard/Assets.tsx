@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Cubes from "@/Components/assets/icons/Cubes";
-import Folder from "@/Components/assets/icons/Folder";
-import TreeIcon from "@/Components/assets/icons/TreeIcon";
+import Cubes from "@/Components/common/icons/Cubes";
+import Folder from "@/Components/common/icons/Folder";
+import TreeIcon from "@/Components/common/icons/TreeIcon";
 
 const Assets = () => {
     return (
@@ -18,7 +18,7 @@ const Assets = () => {
             <AssetsBody>
                 <AssetsItem>
             <IconWrapp>
-                <Folder/>
+                <Folder color='#1890ff'/>
             </IconWrapp>
                 <AssetsBodyTitle>
                     12-19-O0+32-23-F0

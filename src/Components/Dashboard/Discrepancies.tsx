@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import EmailBoxIcon from "@/Components/assets/icons/EmailBoxIcon";
+import EmailBoxIcon from "@/Components/common/icons/EmailBoxIcon";
 import styled from "styled-components";
-import DiscrepanciesIcon from "@/Components/assets/icons/DiscrepanciesIcon";
-import Cubes from "@/Components/assets/icons/Cubes";
-import SearchBookIcon from "@/Components/assets/icons/SearchBookIcon";
+import DiscrepanciesIcon from "@/Components/common/icons/DiscrepanciesIcon";
+import Cubes from "@/Components/common/icons/Cubes";
+import SearchBookIcon from "@/Components/common/icons/SearchBookIcon";
 
 const Discrepancies = () => {
     const [showMore, setShowMore] = useState<boolean>(false)

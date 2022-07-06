@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import EmailBoxIcon from "@/Components/assets/icons/EmailBoxIcon";
+import EmailBoxIcon from "@/Components/common/icons/EmailBoxIcon";
 import Inspection from "@/Components/Dashboard/Inspection";
 import Discrepancies from "@/Components/Dashboard/Discrepancies";
 import UpdatedProjects from "@/Components/Dashboard/UpdatedProjects";

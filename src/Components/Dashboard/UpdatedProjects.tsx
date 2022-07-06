@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import NoInspection from "@/Components/assets/icons/NoInspection";
+import NoInspection from "@/Components/common/icons/NoInspection";
 
 const UpdatedProjects = () => {
     return (

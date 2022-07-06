@@ -3,7 +3,7 @@ import { Row, Col, Layout } from "antd";
 import { blue } from "@ant-design/colors";
 import Auth from "@/Components/Auth";
 import {Logo} from "@/Components/Logo";
-import LoginFooter from "@/Components/assets/icons/LoginFooter";
+import LoginFooter from "@/Components/common/icons/LoginFooter";
 const LoginPage = () => {
     return (
         <>
