@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 
 import styled from "styled-components";
 import LogoWhite from "@/Components/common/icons/LogoWhite";
@@ -17,11 +17,37 @@ import UsersIcon from "@/Components/common/icons/SettingsIcons/UsersIcon";
 import EquipmentIcon from "@/Components/common/icons/SettingsIcons/EquipmentIcon";
 import Integrations from "@/Components/common/icons/SettingsIcons/integrations";
 import LogoutIcon from "@/Components/common/icons/ProfileIcons/LogoutIcon";
+import {useHistory} from "react-router-dom";
+import './header.css'
 
 
 const Header = () => {
     const [hoverRef, isHovered] = useHover<HTMLDivElement>();
     const [hoverRefProfile, isHoveredProfile] = useHover<HTMLDivElement>();
+    const [hover_1, setHover_1] = useState<boolean>(false)
+    const [hover_2, setHover_2] = useState<boolean>(false)
+
+    const history = useHistory();
+
+    const handleMouseEnter_1 = () => {
+        // setHover_1(true)
+    }
+
+    const handleMouseLeave_1 = () => {
+        //@TODO
+        // setHover_1(false)
+        // console.log('123')
+    }
+
+    const handleMouseEnter_2 = () => {
+        setHover_2(true)
+    }
+
+    const handleMouseLeave_2 = () => {
+        //@TODO
+        setHover_2(false)
+        // console.log('123')
+    }
 
     return (
         <Wrapper>
@@ -29,31 +55,45 @@ const Header = () => {
                 <LogoWrapper>
                     <LogoWhite height={'40'} width={'148'}/>
                 </LogoWrapper>
-                <MenuItem active={window.location.pathname === '/dashboard'}>
+                <MenuItem
+                    active={window.location.pathname === '/dashboard'}
+                    onClick={() => history.push('/dashboard')}>
                     <IconWrapper>
                         <DashboardIcon/>
                     </IconWrapper>
                     Dashboard
                 </MenuItem>
-                <MenuItem active={window.location.pathname === '/common'}>
+                <MenuItem
+                    active={window.location.pathname === '/assets'}
+                    onClick={() => history.push('/assets')}
+                >
                     <IconWrapper>
                         <AssetsIcon/>
                     </IconWrapper>
                     Assets
                 </MenuItem>
-                <MenuItem active={window.location.pathname === '/inspections'}>
+                <MenuItem
+                    active={window.location.pathname === '/inspections'}
+                    onClick={() => history.push('/inspections')}
+                >
                     <IconWrapper>
                         <InspectionIcon/>
                     </IconWrapper>
                     Inspections
                 </MenuItem>
-                <MenuItem active={window.location.pathname === '/projects'}>
+                <MenuItem
+                    active={window.location.pathname === '/projects-card' || window.location.pathname === '/projects-list' || window.location.pathname === '/projects-calendar'}
+                    onClick={() => history.push('/projects-card')}
+                >
                     <IconWrapper>
                         <ProjectsIcon/>
                     </IconWrapper>
                     Projects
                 </MenuItem>
-                <MenuItem active={window.location.pathname === '/deliverables'}>
+                <MenuItem
+                    active={window.location.pathname === '/deliverables'}
+                    onClick={() => history.push('/deliverables')}
+                >
                     <IconWrapper>
                         <DeliverablesIcon/>
                     </IconWrapper>
@@ -65,62 +105,59 @@ const Header = () => {
                 <UploadIconWrapper>
                     <UploadIcon/>
                 </UploadIconWrapper>
-                <SettingsIconWrapper ref={hoverRef}>
-                    <SettingsIcon color='#fff' width={21} height={21}/>
-                    {
-                        isHovered && (
-                            <SettingsMenu>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <OrganizationIcon/>
-                                    </IconWrapper>
-                                    Organization
-                                </SettingsMenuItem>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <SystemsIcon/>
-                                    </IconWrapper>
-                                    System
-                                </SettingsMenuItem>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <TemplatesIcon/>
-                                    </IconWrapper>
-                                    Templates
-                                </SettingsMenuItem>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <UsersIcon/>
-                                    </IconWrapper>
-                                    Users
-                                </SettingsMenuItem>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <EquipmentIcon/>
-                                    </IconWrapper>
-                                    Equipment
-                                </SettingsMenuItem>
-                                <SettingsMenuItem>
-                                    <IconWrapper>
-                                        <Integrations/>
-                                    </IconWrapper>
-                                    Integrations
-                                </SettingsMenuItem>
-                            </SettingsMenu>
-                        )
-                    }
-                </SettingsIconWrapper>
-                <Circle ref={hoverRefProfile} >
-                <CircleWrapper >
-                    RN
-                    {
-                        isHoveredProfile && (
-                            <ProfileMenu>
+                <Setting>
+                    <div className='SettingsIconWrapper'>
+                        <SettingsIcon color='#fff' width={21} height={21}/>
+                        <div className='SettingsMenu'>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <OrganizationIcon/>
+                                </IconWrapper>
+                                Organization
+                            </SettingsMenuItem>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <SystemsIcon/>
+                                </IconWrapper>
+                                System
+                            </SettingsMenuItem>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <TemplatesIcon/>
+                                </IconWrapper>
+                                Templates
+                            </SettingsMenuItem>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <UsersIcon/>
+                                </IconWrapper>
+                                Users
+                            </SettingsMenuItem>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <EquipmentIcon/>
+                                </IconWrapper>
+                                Equipment
+                            </SettingsMenuItem>
+                            <SettingsMenuItem>
+                                <IconWrapper>
+                                    <Integrations/>
+                                </IconWrapper>
+                                Integrations
+                            </SettingsMenuItem>
+                        </div>
+                    </div>
+                </Setting>
+                <div className="CircleWrapper">
+                    <Circle >
+                        <CircleWrapper>
+                            RN
+                            <div className='ProfileMenu'>
                                 <ProfileMenuItem>
-                                        <IconWrapper>
-                                            <ProjectsIcon/>
-                                        </IconWrapper>
-                                        My Profile
+                                    <IconWrapper>
+                                        <ProjectsIcon/>
+                                    </IconWrapper>
+                                    My Profile
                                 </ProfileMenuItem>
                                 <ProfileMenuItem>
                                     <IconWrapper>
@@ -128,12 +165,10 @@ const Header = () => {
                                     </IconWrapper>
                                     Logout
                                 </ProfileMenuItem>
-                            </ProfileMenu>
-                        )
-                    }
-                </CircleWrapper>
-                </Circle>
-
+                            </div>
+                        </CircleWrapper>
+                    </Circle>
+                </div>
             </RightSideMenu>
         </Wrapper>
     );
@@ -142,10 +177,9 @@ const Header = () => {
 export default Header;
 
 
-
-const MenuItem = styled.div<{active:boolean}>`
+const MenuItem = styled.div<{ active: boolean }>`
   color: rgba(255, 255, 255, 0.65);
-  color:  ${({ active }) => (active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.65)')};
+  color: ${({active}) => (active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.65)')};
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
@@ -153,6 +187,7 @@ const MenuItem = styled.div<{active:boolean}>`
   opacity: 0.8;
   display: flex;
   align-items: center;
+
   &:hover {
     color: rgba(255, 255, 255, 1)
   }
@@ -160,18 +195,15 @@ const MenuItem = styled.div<{active:boolean}>`
 
 const Circle = styled.div`
   display: flex;
-  height: 60px;
-  width: 47px;
-  position: absolute;
-  right: 20px;
-  justify-content: center;
-  top: 16px;
+  align-items: center;
+  height: 64px;
 `
 
 const ProfileMenu = styled.div`
   right: -6px;
   top: 50px;
   position: absolute;
+  z-index: 2;
   background-color: #1C5180;
 `
 
@@ -181,16 +213,29 @@ const ProfileMenuItem = styled.div`
   display: flex;
   align-items: center;
   white-space: nowrap;
+
   &:hover {
     background-color: #276FB2;
   }
 `
 
 const SettingsMenu = styled.div`
-  left: -130px;
-  top: 45px;
-  position: absolute;
   background-color: #1C5180;
+  z-index: 2;
+
+
+  position: absolute;
+  right: 41px;
+  top: 65px;
+  width: 200px;
+  //cursor: pointer;
+  //position: absolute;
+  //right: 70px;
+  //top: 21px;
+  //width: 55px;
+  //display: flex;
+  //justify-content: center;
+
 `
 
 const SettingsMenuItem = styled.div`
@@ -198,11 +243,11 @@ const SettingsMenuItem = styled.div`
   color: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
+
   &:hover {
     background-color: #276FB2;
   }
 `
-
 
 
 const IconWrapper = styled.div`
@@ -215,17 +260,15 @@ const LogoWrapper = styled.div`
 
 const SettingsIconWrapper = styled.div`
   cursor: pointer;
-  position: absolute;
-  height: 50px;
-  right: 70px;
-  top: 21px;
-  width: 55px;
-  display: flex;
-  justify-content: center;
+  padding: 0 20px 0 10px;
+`
+
+const Setting = styled.div`
+
 `
 
 const UploadIconWrapper = styled.div`
-  padding: 0 65px 0 15px;
+  padding: 0 15px 0 20px;
   cursor: pointer;
   position: relative;
 `
@@ -237,7 +280,7 @@ const CircleWrapper = styled.div`
   background: #ccc;
   border-radius: 50%;
   color: #ffffff;
-  border: 2px solid rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,7 +290,7 @@ const CircleWrapper = styled.div`
 const RightSideMenu = styled.div`
   display: flex;
   align-items: center;
-  padding-right: 50px;
+  padding-right: 30px;
 `
 
 const Input = styled.input`
@@ -257,13 +300,14 @@ const Input = styled.input`
   outline: 0px;
   border: 1px solid rgb(217, 217, 217);
   color: rgb(140, 140, 140);
-  &::placeholder{
+
+  &::placeholder {
     color: rgb(140, 140, 140);
   }
 `
 
 const LeftSideMenu = styled.div`
-    display: flex;
+  display: flex;
   align-items: center;
 `
 

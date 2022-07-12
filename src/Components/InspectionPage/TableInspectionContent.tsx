@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import './table.css'
+import '../AssetsPage/table.css'
 import styled from "styled-components";
 import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArrowBottom";
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
@@ -14,7 +14,7 @@ const createHeaders = (headers: any) => {
 };
 
 
-const TableContent = ({headers, minCellWidth}: any) => {
+const TableInspectionContent = ({headers, minCellWidth}: any) => {
 
 
 
@@ -304,7 +304,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
     );
 };
 
-export default TableContent;
+export default TableInspectionContent;
 
 
 const Checkboxs = styled.div`

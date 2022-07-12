@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import TableContent from "@/Components/AssetsPage/TableContent";
 import Folder from "@/Components/common/icons/Folder";
@@ -6,8 +6,12 @@ import FolderPlus from "@/Components/common/icons/AssetsPageIcons/FolderPlus";
 import Filter from "@/Components/common/icons/AssetsPageIcons/Filter";
 import EyeIcon from "@/Components/common/icons/AssetsPageIcons/EyeIcon";
 import SettingsIcon from "@/Components/common/icons/SettingsIcon";
+import TableInspectionContent from "@/Components/InspectionPage/TableInspectionContent";
+import CreateProjectModal from "@/Components/ProjectsPage/CreateProjectModal";
+import CreateInspectionModal from "@/Components/InspectionPage/CreateInspectionModal";
 
-const Table = () => {
+const TableInspection = () => {
+    const [modal, setModal] = useState(false)
     const tableHeaders = [
         "checkbox",
         "Items",
@@ -21,7 +25,19 @@ const Table = () => {
 
     return (
         <div>
-            <Title>Assets</Title>
+            <TitleWrapperContent>
+
+            <Title>Inspections</Title>
+            <Button onClick={() => {
+                setTimeout(() => {
+                    setModal(!modal)
+
+                }, 0.1)
+            }}>
+                        <span
+                            style={{fontSize: '20px', paddingBottom: '3px', paddingRight: '10px'}}>+</span> {' '} Add Inspection
+            </Button>
+            </TitleWrapperContent>
             <TableWrapper>
                 <TableUtils>
                     <LeftSide>
@@ -32,7 +48,7 @@ const Table = () => {
                             Collection
                         </Collection>
                         <Assets>
-                            651 Assets
+                            651 Inspections
                         </Assets>
                     </LeftSide>
                     <RightSide>
@@ -47,7 +63,7 @@ const Table = () => {
                                 <Filter/>
                             </IconWrapper>
                             <FilterTitle>
-                            Filter
+                                Filter
                             </FilterTitle>
                             <Number>
                                 0
@@ -66,25 +82,58 @@ const Table = () => {
                         </Settings>
                     </RightSide>
                 </TableUtils>
-                <TableContent
+                <TableInspectionContent
                     headers={tableHeaders}
                     minCellWidth={120}
                 />
             </TableWrapper>
+            {
+                modal && (
+                    <div >
+                        <CreateInspectionModal
+                            setModal={setModal}
+                            modal={modal}
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };
 
-export default Table;
+export default TableInspection;
 
 
 const Title = styled.div`
   font-size: 24px;
   font-weight: 500;
-  padding: 0 24px 24px 24px;
+  padding: 0 24px 24px 0px;
   background-color: white;
   border-bottom: 1px solid rgb(217,217,217);
 `
+
+
+const Button = styled.div`
+  background-color: #1890ff;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 27px;
+  margin-right: 20px;
+  cursor: pointer;
+  height: 33px;
+`
+
+const TitleWrapperContent = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0px 24px 0 24px;
+  justify-content: space-between;
+  background-color: white;
+`
+
 
 const Settings = styled.div`
     background-color: white;

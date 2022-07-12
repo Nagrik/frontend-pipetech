@@ -5,17 +5,19 @@ import ReactDOM from 'react-dom'
 import { createRoot } from 'react-dom/client';
 import { ConnectedRouter } from 'connected-react-router'
 
-import App from './App'
+import store, { history } from '@/store';
 
-// import { Auth0ProviderComponent } from './Components/common/Auth0Provider'
+import App from './App';
 
-
-const container = document.getElementById('root');
-const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-root.render
-
-(
-    <BrowserRouter>
-        <App/>
-    </BrowserRouter>
+ReactDOM.render(
+    <StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
+            </Provider>
+        </BrowserRouter>
+    </StrictMode>,
+    document.getElementById('root'),
 );

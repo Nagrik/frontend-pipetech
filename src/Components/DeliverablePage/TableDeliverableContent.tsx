@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import './table.css'
 import styled from "styled-components";
 import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArrowBottom";
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
+import '../ProjectsPage/table.css'
 
 
 const createHeaders = (headers: any) => {
@@ -14,7 +14,7 @@ const createHeaders = (headers: any) => {
 };
 
 
-const TableContent = ({headers, minCellWidth}: any) => {
+const TableDeliverableContent = ({headers, minCellWidth}: any) => {
 
 
 
@@ -25,6 +25,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
             AssetsId: 'assetsId',
             Projects: 'Large Detroit Style Pizza',
             inspection: 32134,
+
         },
         {
             id: 2,
@@ -133,7 +134,6 @@ const TableContent = ({headers, minCellWidth}: any) => {
             )
         });
         setTableDataState(arr)
-        console.log(arr, 'arr')
     }
 
 
@@ -304,7 +304,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
     );
 };
 
-export default TableContent;
+export default TableDeliverableContent;
 
 
 const Checkboxs = styled.div`

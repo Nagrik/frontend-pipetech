@@ -1,0 +1,38 @@
+.SettingsIconWrapper{
+    cursor: pointer;
+    padding: 0 20px 0 10px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.SettingsIconWrapper:hover .SettingsMenu{
+    display: block;
+}
+
+.SettingsMenu{
+    background-color: #1C5180;
+    z-index: 2;
+    position: absolute;
+    right: 41px;
+    display: none;
+    top: 65px;
+    width: 200px;
+}
+
+.CircleWrapper{
+
+}
+
+.CircleWrapper:hover .ProfileMenu{
+    display: block;
+}
+
+.ProfileMenu{
+    right: 1px;
+    top: 65px;
+    position: absolute;
+    display: none;
+    z-index: 2;
+    background-color: #1C5180;
+}

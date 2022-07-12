@@ -64,6 +64,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   position: relative;
   padding: 16px 24px 0px 24px;
+  background-color: white;
 `
 
 const HoverItem = styled.div`

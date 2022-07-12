@@ -6,6 +6,10 @@
 
 /* Demo Only */
 
+.rdrCalendarWrapper .rdrDateRangeWrapper{
+    width: 582px !important;
+}
+
 .table-wrapper {
     margin-bottom: 25px;
     border-radius: 6px;
@@ -13,7 +17,7 @@
     overflow: hidden; /* Clip any scrollbars that appear */
 }
 
-.resizeable-table {
+.resizeable-table-project {
     display: grid;
     overflow: auto;
     background-color: whitesmoke;
@@ -27,9 +31,6 @@
     minmax(150px, 1fr)
     minmax(150px, 1fr)
     minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr);
 }
 
 .checkbox{
@@ -49,48 +50,7 @@
     z-index: 2;
 }
 
-table thead,
-table tbody,
-table tr {
-    display: contents;
-}
 
-table th {
-    position: relative;
-    font-size: 18px;
-    border-top: 1px solid #ccc;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-}
-
-table th,
-table td {
-    text-align: left;
-    min-width: 100px;
-}
-
-table td {
-    background-color: rgba(251, 250, 250);
-
-}
-
-table th span,
-table td span {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-table tr td {
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    padding: 16px 20px;
-}
 
 .resize-handle {
     display: block;
