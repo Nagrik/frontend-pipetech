@@ -17,7 +17,7 @@ abstract class HttpClient {
       headers: {
         'Content-Type': 'application/json',
       },
-      paramsSerializer: (args) => `${Object.entries(args).map(([key, value]) => `${key}=${value}`).join('&')}`,
+      paramsSerializer: (args):any => `${Object.entries(args).map(([key, value]) => `${key}=${value}`).join('&')}`,
     });
 
     this.initializeResponseInterceptor();

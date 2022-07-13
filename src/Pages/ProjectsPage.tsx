@@ -17,11 +17,6 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
-import {DateRange, DateRangePicker} from 'react-date-range';
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
-import {addDays} from 'date-fns';
 import CreateProjectModal from "@/Components/ProjectsPage/CreateProjectModal";
 
 
@@ -77,13 +72,7 @@ const ProjectsPage = () => {
 
 
 
-    const [state, setState] = useState<any>([
-        {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 7),
-            key: 'selection'
-        }
-    ]);
+
 
     const [modal, setModal] = useState(false)
 
