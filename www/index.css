@@ -253,13 +253,14 @@ h6 {
 }
 .resizeable-table {
   display: grid;
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
   background-color: whitesmoke;
   padding-right: 24px;
   margin-left: 24px;
   border-left: 1px solid #ccc;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: minmax(55px, 0.1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
 }
 .checkbox {
   max-width: 60px;
@@ -289,11 +290,12 @@ table th {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  background-color: whitesmoke;
 }
 table th,
 table td {
   text-align: left;
-  min-width: 100px;
+  width: 100%;
 }
 table td {
   background-color: rgba(251, 250, 250);
@@ -304,8 +306,8 @@ table td span {
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
 table tr td {
   border-bottom: 1px solid #ccc;
@@ -360,7 +362,17 @@ table tr td {
   margin-left: 24px;
   border-left: 1px solid #ccc;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: minmax(55px, 0.1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(150px, 1fr);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
+}
+.deliverables-table {
+  display: grid;
+  overflow: auto;
+  background-color: whitesmoke;
+  padding-right: 24px;
+  margin-left: 24px;
+  border-left: 1px solid #ccc;
+  grid-auto-columns: calc(25% - 30px);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 2fr);
 }
 .checkbox {
   max-width: 60px;
@@ -392,6 +404,16 @@ table tr td {
 }
 .resize-handle.active {
   border-color: #517ea5;
+}
+.Many-Items {
+  display: flex;
+  justify-content: space-between;
+}
+.Many-Items span {
+  color: #1890FF;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* node_modules/react-big-calendar/lib/css/react-big-calendar.css */

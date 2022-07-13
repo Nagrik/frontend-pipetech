@@ -171,7 +171,8 @@ const TableContent = ({headers, minCellWidth}: any) => {
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table" ref={tableElement}>
+                    {/*@ts-ignore*/}
+                    <table className="resizeable-table" ref={tableElement} style={{'grid-template-columns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (

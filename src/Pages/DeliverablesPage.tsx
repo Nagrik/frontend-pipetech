@@ -2,6 +2,7 @@ import Header from '@/Components/Header';
 import React, {useState} from 'react';
 import styled from "styled-components";
 import DeliverableTable from "@/Components/DeliverablePage/DeliverableTable";
+import CreateDeliverableModal from "@/Components/DeliverablePage/CreateDeliverableModal";
 
 const DeliverablesPage = () => {
     const [modal, setModal] = useState<boolean>(false)
@@ -18,10 +19,16 @@ const DeliverablesPage = () => {
                     }, 0.1)
                 }}>
                         <span
-                            style={{fontSize: '20px', paddingBottom: '3px', paddingRight: '10px'}}>+</span> {' '} Create Deliverables
+                            style={{fontSize: '20px', paddingBottom: '3px', paddingRight: '10px'}}>
+                            +
+                        </span>
+                    {' '} Create Deliverables
                 </Button>
             </TitleWrapperContent>
             <DeliverableTable/>
+            {
+                modal && <CreateDeliverableModal modal={modal} setModal={setModal}/>
+            }
         </div>
     );
 };

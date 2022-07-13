@@ -19,6 +19,7 @@ import Integrations from "@/Components/common/icons/SettingsIcons/integrations";
 import LogoutIcon from "@/Components/common/icons/ProfileIcons/LogoutIcon";
 import {useHistory} from "react-router-dom";
 import './header.css'
+import SearchIcon from "@/Components/common/icons/SearchIcon";
 
 
 const Header = () => {
@@ -101,7 +102,12 @@ const Header = () => {
                 </MenuItem>
             </LeftSideMenu>
             <RightSideMenu>
-                <Input placeholder='Search'/>
+                <InputWrapper>
+                    <Input placeholder='Search'/>
+                    <IconWrapper>
+                        <SearchIcon color='#ccc'/>
+                    </IconWrapper>
+                </InputWrapper>
                 <UploadIconWrapper>
                     <UploadIcon/>
                 </UploadIconWrapper>
@@ -149,7 +155,7 @@ const Header = () => {
                     </div>
                 </Setting>
                 <div className="CircleWrapper">
-                    <Circle >
+                    <Circle>
                         <CircleWrapper>
                             RN
                             <div className='ProfileMenu'>
@@ -178,7 +184,6 @@ export default Header;
 
 
 const MenuItem = styled.div<{ active: boolean }>`
-  color: rgba(255, 255, 255, 0.65);
   color: ${({active}) => (active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.65)')};
   cursor: pointer;
   font-size: 18px;
@@ -191,6 +196,14 @@ const MenuItem = styled.div<{ active: boolean }>`
   &:hover {
     color: rgba(255, 255, 255, 1)
   }
+`
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgb(217, 217, 217);
 `
 
 const Circle = styled.div`
@@ -296,9 +309,8 @@ const RightSideMenu = styled.div`
 const Input = styled.input`
   padding: 3px 50px 3px 10px;
   background: rgb(255, 255, 255);
-  border-radius: 4px;
+
   outline: 0px;
-  border: 1px solid rgb(217, 217, 217);
   color: rgb(140, 140, 140);
 
   &::placeholder {

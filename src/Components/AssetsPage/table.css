@@ -15,7 +15,8 @@
 
 .resizeable-table {
     display: grid;
-    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
     background-color: whitesmoke;
     padding-right: 24px;
     margin-left: 24px;
@@ -23,13 +24,13 @@
     grid-auto-columns: calc(25% - 30px);
     grid-template-columns:
     minmax(55px, 0.1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr);
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr);
 }
 
 .checkbox{
@@ -63,12 +64,13 @@ table th {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    background-color: whitesmoke;
 }
 
 table th,
 table td {
     text-align: left;
-    min-width: 100px;
+    width: 100%;
 }
 
 table td {
@@ -82,8 +84,8 @@ table td span {
     text-overflow: ellipsis;
     overflow: hidden;
     display: block;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 table tr td {

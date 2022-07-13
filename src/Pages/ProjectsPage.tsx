@@ -584,6 +584,7 @@ const Tabs = styled.div`
 const Tab = styled.div`
   font-size: 16px;
   padding: 0 15px;
+cursor: pointer;
 
   &:hover {
     color: #1890ff;

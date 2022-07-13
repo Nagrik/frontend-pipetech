@@ -185,6 +185,7 @@ const AddToCollection = styled.div`
   display: flex;
   align-items: center;
   padding-right: 15px;
+  cursor: pointer;
 `
 
 const LeftSide = styled.div`
@@ -228,6 +229,6 @@ const TableUtils = styled.div`
 `
 
 const TableWrapper = styled.div`
-  height: calc(100vh - 45px - 118px);
+  height: calc(100vh - 70px - 118px);
   background-color: whitesmoke;
 `

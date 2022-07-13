@@ -4,6 +4,10 @@ import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArr
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
 import '../ProjectsPage/table.css'
+import CopyIcon from "@/Components/common/icons/DeliverableIcons/CopyIcon";
+import RegenerateIcon from "@/Components/common/icons/DeliverableIcons/RegenerateIcon";
+import DownloadIcon from "@/Components/common/icons/DeliverableIcons/DownloadIcon";
+import ArchiveIcon from "@/Components/common/icons/DeliverableIcons/ArchiveIcon";
 
 
 const createHeaders = (headers: any) => {
@@ -13,61 +17,85 @@ const createHeaders = (headers: any) => {
     }));
 };
 
+export type TableDataType = {
+    id: number;
+    checkbox: boolean;
+    name: {
+        value: string;
+        width: string;
+    };
+    project: {
+        value: string;
+        width: string;
+    };
+    inspection: {
+        value: string;
+        width: string;
+    };
+    create_on: {
+        value: string;
+        width: string;
+    };
+    share: {
+        value: string;
+        width: string;
+    };
+    downloads: {
+        value: string;
+        width: string;
+    };
+    actions: {
+        value: string;
+        width: string;
+    };
+}
+
 
 const TableDeliverableContent = ({headers, minCellWidth}: any) => {
-
 
 
     const tableData = [
         {
             id: 1,
             checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
+            name: 'SpringField',
+            project: ' ',
             inspection: 32134,
-
+            create_on: '10-10-2001',
+            share: 'Copy Link',
+            downloads: {
+                value: 2,
+                width: '30px'
+            },
+            actions: {
+                generate: 'Re-generage',
+                download: 'Download',
+                archive: 'Archive'
+            },
         },
         {
-            id: 2,
+            id: 1,
             checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345,
-        },
-        {
-            id: 3,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 32134567,
-        },
-        {
-            id: 4,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345675,
-        },
-        {
-            id: 5,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
-        },
-        {
-            id: 6,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
+            name: '66Q41 · 66N41',
+            project: ' ',
+            inspection: 32134,
+            create_on: '10-10-2001',
+            share: 'Copy Link',
+            downloads: {
+                value: 2,
+                width: '30px'
+            },
+            actions: {
+                generate: 'Re-generage',
+                download: 'Download',
+                archive: 'Archive'
+            },
         },
     ]
 
 
-
     const [tableHeight, setTableHeight] = useState("auto");
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [tableDataState, setTableDataState] = useState(tableData);
     const [activeFilter, setActiveFilter] = useState(false)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
@@ -79,52 +107,28 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
         setTableHeight(tableElement.current.offsetHeight);
     }, []);
 
-    const mouseDown = (index: any) => {
+    const mouseDown = (index: number) => {
         setActiveIndex(index);
     };
 
-    const mouseMove = useCallback(
-        (e: any) => {
-            const gridColumns = columns.map((col: any, i: any) => {
-                if (i === activeIndex) {
-                    const width = e.clientX - col.ref.current.offsetLeft;
 
-                    if (width >= minCellWidth) {
-                        return `${width}px`;
-                    }
-                }
-                return `${col.ref.current.offsetWidth}px`;
-            });
+    // useEffect(() => {
+    //     const gridColumns = columns.map((col: TableDataType, i: any) => {
+    //             // @ts-ignore
+    //         const width =  col.ref.current.offsetLeft;
+    //
+    //             if (i >= 1) {
+    //                 return '100px'
+    //             }
+    //         return `60px`;
+    //     });
+    //
+    //     // @ts-ignore
+    //     tableElement.current.style.gridTemplateColumns = `${gridColumns.join(
+    //         " "
+    //     )}`;
+    // }, [])
 
-            // @ts-ignore
-            tableElement.current.style.gridTemplateColumns = `${gridColumns.join(
-                " "
-            )}`;
-        },
-        [activeIndex, columns, minCellWidth]
-    );
-
-    const removeListeners = useCallback(() => {
-        window.removeEventListener("mousemove", mouseMove);
-        window.removeEventListener("mouseup", removeListeners);
-    }, [mouseMove]);
-
-    const mouseUp = useCallback(() => {
-        setActiveIndex(null);
-        removeListeners();
-    }, [setActiveIndex, removeListeners]);
-
-
-    useEffect(() => {
-        if (activeIndex !== null) {
-            window.addEventListener("mousemove", mouseMove);
-            window.addEventListener("mouseup", mouseUp);
-        }
-
-        return () => {
-            removeListeners();
-        };
-    }, [activeIndex, mouseMove, mouseUp, removeListeners]);
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
@@ -135,8 +139,6 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
         });
         setTableDataState(arr)
     }
-
-
 
 
     const handleCheckCheckbox = (e: any, id: number) => {
@@ -161,17 +163,15 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
         // @ts-ignore
         const sorted = sortUtil(withoutNone!, ((item) => item.inspection), SortOrder.DESCENDING, SortType.Number);
         setActiveFilter(!activeFilter)
-        console.log(sorted, 'sorted')
 
     }
-
 
 
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table" ref={tableElement}>
+                    <table className="deliverables-table" ref={tableElement}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (
@@ -243,17 +243,17 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
                                             </td>
                                         </tr>
                                     }
-                                    <tr >
+                                    <tr>
                                         <td className='Items'>
                                         <span>
-                                            {item.AssetsId}
+                                            {item.name}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <span>
-                                                {item.Projects}
+                                                {item.project}
                                             </span>
                                         </td>
                                     </tr>
@@ -267,28 +267,46 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                            {item.create_on}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span style={{color: '#1890FF', display: 'flex', alignItems: 'center', cursor: 'pointer'}}>
+                                            <div style={{padding: '0px 7px'}}>
+                                                <CopyIcon/>
+                                            </div>
+                                            {item.share}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                            {item.downloads.value}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td className='Many-Items'>
                                         <span>
-                                            {item.inspection}
+                                            <div style={{padding: '0px 7px'}}>
+                                                <RegenerateIcon/>
+                                            </div>
+                                            {item.actions.generate}
                                         </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
+                                            <span>
+                                                <div style={{padding: '0px 7px'}}>
+                                                    <DownloadIcon/>
+                                                </div>
+                                                {item.actions.download}
+                                        </span>
+                                            <span>
+                                                <div style={{padding: '0px 7px'}}>
+                                                    <ArchiveIcon/>
+                                                </div>
+                                                {item.actions.archive}
                                         </span>
                                         </td>
                                     </tr>
@@ -317,7 +335,7 @@ const IconWrapper = styled.div`
   padding: 0 5px;
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 `
 
 const FilterWrapper = styled.div`

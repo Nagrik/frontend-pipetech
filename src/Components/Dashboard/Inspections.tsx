@@ -10,9 +10,9 @@ const Inspection = () => {
         <Wrapper>
             <AssetsHeader>
                 <AssetsHeaderTitle>
-                    <IconWrapp>
-                        <SearchIcon/>
-                    </IconWrapp>
+                    <IconSearchWrapp>
+                        <SearchIcon color='#000'/>
+                    </IconSearchWrapp>
                     Inspections
                 </AssetsHeaderTitle>
             </AssetsHeader>
@@ -82,6 +82,10 @@ const AssetsBodyTitle = styled.div`
 
 const IconWrapp = styled.div`
   padding: 0 10px;
+`
+
+const IconSearchWrapp = styled.div`
+  padding: 2px 10px 0px 10px;
 `
 
 const AssetsHeader = styled.div`

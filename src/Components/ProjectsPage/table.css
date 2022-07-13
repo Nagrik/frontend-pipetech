@@ -27,10 +27,29 @@
     grid-auto-columns: calc(25% - 30px);
     grid-template-columns:
     minmax(55px, 0.1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+}
+
+.deliverables-table {
+    display: grid;
+    overflow: auto;
+    background-color: whitesmoke;
+    padding-right: 24px;
+    margin-left: 24px;
+    border-left: 1px solid #ccc;
+    grid-auto-columns: calc(25% - 30px);
+    grid-template-columns:
+    minmax(55px, 0.1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 2fr)
 }
 
 .checkbox{
@@ -70,4 +89,16 @@
 
 .resize-handle.active {
     border-color: #517ea5;
+}
+
+.Many-Items{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Many-Items span{
+   color: #1890FF;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }

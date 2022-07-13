@@ -30,6 +30,17 @@ const Table = () => {
                                 <Folder color='#000'/>
                             </IconWrapper>
                             Collection
+                            <HoverWrapper>
+                                <TextHover>
+                                    Collections are like folders that store assets or inspections.
+                                </TextHover>
+                                <HoverItem>
+                                    12-19-O0+32-23-F0
+                                </HoverItem>
+                                <HoverItem>
+                                    12-19-O0+32-23-F0
+                                </HoverItem>
+                            </HoverWrapper>
                         </Collection>
                         <Assets>
                             651 Assets
@@ -78,6 +89,8 @@ const Table = () => {
 export default Table;
 
 
+
+
 const Title = styled.div`
   font-size: 24px;
   font-weight: 500;
@@ -85,6 +98,51 @@ const Title = styled.div`
   background-color: white;
   border-bottom: 1px solid rgb(217,217,217);
 `
+
+const HoverItem = styled.div`
+  padding: 10px 7px;
+  color: black;
+    font-size: 14px;
+  &:hover {
+    background-color: rgb(217,217,217);
+  }
+  
+  
+`
+const Collection = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 3px 10px;
+  font-size: 14px;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`
+const TextHover = styled.div`
+    font-size: 14px;
+  padding: 10px 7px;
+  cursor: not-allowed;
+`
+
+const HoverWrapper = styled.div`
+    position: absolute;
+  top: 205px;
+  z-index: 3;
+  left: 24px;
+  display: none;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+  ${Collection}:hover & {
+    display: block;
+  }
+`
+
 
 const Settings = styled.div`
     background-color: white;
@@ -136,6 +194,7 @@ const AddToCollection = styled.div`
   display: flex;
   align-items: center;
   padding-right: 15px;
+  cursor: pointer;
 `
 
 const LeftSide = styled.div`
@@ -161,15 +220,6 @@ const IconWrapper = styled.div`
   align-items: center;
 `
 
-const Collection = styled.div`
-    display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 3px 10px;
-  font-size: 14px;
-`
 
 const TableUtils = styled.div`
   padding: 10px 24px;
@@ -179,6 +229,6 @@ const TableUtils = styled.div`
 `
 
 const TableWrapper = styled.div`
-  height: calc(100vh - 45px - 118px);
+  height: calc(100vh - 70px - 118px);
   background-color: whitesmoke;
 `
