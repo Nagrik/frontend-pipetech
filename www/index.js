@@ -1032,7 +1032,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState26(initialState3) {
+          function useState30(initialState3) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState3);
           }
@@ -1040,7 +1040,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef14(initialValue) {
+          function useRef15(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
@@ -1831,8 +1831,8 @@
           exports2.useLayoutEffect = useLayoutEffect3;
           exports2.useMemo = useMemo6;
           exports2.useReducer = useReducer;
-          exports2.useRef = useRef14;
-          exports2.useState = useState26;
+          exports2.useRef = useRef15;
+          exports2.useState = useState30;
           exports2.useSyncExternalStore = useSyncExternalStore3;
           exports2.useTransition = useTransition;
           exports2.version = ReactVersion;
@@ -2957,8 +2957,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React79 = require_react();
-          var ReactSharedInternals = React79.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React85 = require_react();
+          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format3) {
             {
               {
@@ -2988,13 +2988,13 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState26 = React79.useState, useEffect18 = React79.useEffect, useLayoutEffect3 = React79.useLayoutEffect, useDebugValue2 = React79.useDebugValue;
+          var useState30 = React85.useState, useEffect18 = React85.useEffect, useLayoutEffect3 = React85.useLayoutEffect, useDebugValue2 = React85.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React79.startTransition !== void 0) {
+                if (React85.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -3010,7 +3010,7 @@
                 }
               }
             }
-            var _useState = useState26({
+            var _useState = useState30({
               inst: {
                 value,
                 getSnapshot
@@ -3059,7 +3059,7 @@
           var canUseDOM3 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM3;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React79.useSyncExternalStore !== void 0 ? React79.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React85.useSyncExternalStore !== void 0 ? React85.useSyncExternalStore : shim;
           exports2.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -3091,16 +3091,16 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React79 = require_react();
+          var React85 = require_react();
           var shim = require_shim();
           function is2(x2, y2) {
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef14 = React79.useRef, useEffect18 = React79.useEffect, useMemo6 = React79.useMemo, useDebugValue2 = React79.useDebugValue;
+          var useRef15 = React85.useRef, useEffect18 = React85.useEffect, useMemo6 = React85.useMemo, useDebugValue2 = React85.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
-            var instRef = useRef14(null);
+            var instRef = useRef15(null);
             var inst;
             if (instRef.current === null) {
               inst = {
@@ -3655,9 +3655,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React79 = require_react();
+          var React85 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React79.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -5058,7 +5058,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React79.Children.forEach(props.children, function(child) {
+                  React85.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13184,7 +13184,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React79.Component().refs;
+          var emptyRefsObject = new React85.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27961,7 +27961,7 @@
   });
 
   // src/index.tsx
-  var import_react95 = __toESM(require_react(), 1);
+  var import_react101 = __toESM(require_react(), 1);
 
   // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
   function _setPrototypeOf(o2, p) {
@@ -31692,7 +31692,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var store_default = createStore(rootReducer, enhancer);
 
   // src/App.tsx
-  var import_react94 = __toESM(require_react(), 1);
+  var import_react100 = __toESM(require_react(), 1);
 
   // src/Pages/LoginPage.tsx
   var import_react19 = __toESM(require_react(), 1);
@@ -33520,7 +33520,9 @@ ${latestSubscriptionCallbackError.current.stack}
       className: "CircleWrapper"
     }, /* @__PURE__ */ import_react37.default.createElement(Circle, null, /* @__PURE__ */ import_react37.default.createElement(CircleWrapper, null, "RN", /* @__PURE__ */ import_react37.default.createElement("div", {
       className: "ProfileMenu"
-    }, /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(ProjectsIcon_default, null)), "My Profile"), /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(LogoutIcon_default, null)), "Logout")))))));
+    }, /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, {
+      onClick: () => history2.push("/profile")
+    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(ProjectsIcon_default, null)), "My Profile"), /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(LogoutIcon_default, null)), "Logout")))))));
   };
   var Header_default = Header;
   var MenuItem = styled_components_browser_esm_default.div`
@@ -34236,10 +34238,10 @@ cursor: pointer;
   var DashboardPage_default = DashboardPage;
 
   // src/Pages/AssetsPage.tsx
-  var import_react62 = __toESM(require_react(), 1);
+  var import_react68 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/Table.tsx
-  var import_react59 = __toESM(require_react(), 1);
+  var import_react66 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/TableContent.tsx
   var import_react55 = __toESM(require_react(), 1);
@@ -34545,8 +34547,565 @@ cursor: pointer;
   };
   var EyeIcon_default = EyeIcon;
 
+  // src/Components/utils/hooks/useOnClickOutside.ts
+  var import_react59 = __toESM(require_react(), 1);
+  var useOnClickOutside_default = (callback2) => {
+    const containerRef = import_react59.default.useRef(null);
+    (0, import_react59.useEffect)(() => {
+      const listener = (e2) => {
+        if (containerRef.current && !containerRef.current.contains(e2.target)) {
+          callback2();
+        }
+        return null;
+      };
+      document.body.addEventListener("click", listener);
+      return () => {
+        document.body.addEventListener("click", listener);
+      };
+    }, [callback2]);
+    return containerRef;
+  };
+
+  // src/Components/TableUtils/Filter.tsx
+  var import_react61 = __toESM(require_react(), 1);
+
+  // src/Components/common/icons/AssetsPageIcons/ArrowDownIcon.tsx
+  var import_react60 = __toESM(require_react(), 1);
+  var ArrowDownIcon = () => {
+    return /* @__PURE__ */ import_react60.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "down",
+      width: "12",
+      height: "12",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react60.default.createElement("path", {
+      d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+    }));
+  };
+  var ArrowDownIcon_default = ArrowDownIcon;
+
+  // src/Components/TableUtils/Filter.tsx
+  var TableFilter = () => {
+    const [filters, setFilters2] = (0, import_react61.useState)([]);
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const handleCheckboxs = (e2, item) => {
+      if (e2.target.checked) {
+        setFilters2([...filters, item]);
+      } else {
+        setFilters2(filters.filter((i2) => i2 !== item));
+      }
+    };
+    const handleDeleteFilter = (item) => {
+      setFilters2((filter) => filter.filter((filter2) => filter2 !== item));
+    };
+    const handleClear = (e2) => {
+      setFilters2([]);
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+    };
+    return /* @__PURE__ */ import_react61.default.createElement(import_react61.default.Fragment, null, /* @__PURE__ */ import_react61.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Clear, {
+      onClick: handleClear,
+      active: Boolean(filters.length >= 1)
+    }, "Clear")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Apply, {
+      active: Boolean(filters.length >= 1)
+    }, "Apply"))), /* @__PURE__ */ import_react61.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react61.default.createElement(FilterInput, null), /* @__PURE__ */ import_react61.default.createElement(Cross, {
+      onClick: () => handleDeleteFilter(item)
+    }, "\u0425")))), /* @__PURE__ */ import_react61.default.createElement(BodyItem, null, /* @__PURE__ */ import_react61.default.createElement(Left2, null, /* @__PURE__ */ import_react61.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react61.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react61.default.createElement(Rigth, null, /* @__PURE__ */ import_react61.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react61.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(HoverFilter, {
+      key: index2
+    }, /* @__PURE__ */ import_react61.default.createElement(HoverFilterItem, {
+      onClick: (e2) => handleCheckboxs(e2, item)
+    }, /* @__PURE__ */ import_react61.default.createElement(Checkbox, null, /* @__PURE__ */ import_react61.default.createElement("input", {
+      type: "checkbox",
+      id: `checkbox${item}`
+    })), /* @__PURE__ */ import_react61.default.createElement(Label, {
+      htmlFor: `checkbox${item}`
+    }, item)))))))));
+  };
+  var Filter_default2 = TableFilter;
+  var Cross = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  color: #000;
+  padding: 0px 15px;
+`;
+  var FilterTitle = styled_components_browser_esm_default.div`
+  padding: 0 5px;
+`;
+  var FilterInput = styled_components_browser_esm_default.input`
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 1px 10px;
+  width: 300px;
+  font-size: 14px;
+  color: #000;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #40a9ff;
+  }
+
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`;
+  var FilterInputTitle = styled_components_browser_esm_default.div`
+  padding: 0px 10px;
+  color: #000;
+`;
+  var FilterInputs = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+`;
+  var FilterInputsWrapper = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px 0px 5px 10px;
+  border-bottom: 1px solid #f0f0f0;
+`;
+  var Label = styled_components_browser_esm_default.label`
+  width: 100%;
+  cursor: pointer;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  color: #000;
+`;
+  var HoverFilterItem = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+  var HoverFilter = styled_components_browser_esm_default.div`
+  
+`;
+  var Checkbox = styled_components_browser_esm_default.div`
+  padding: 5px 10px;
+  cursor: pointer;
+  ${HoverFilter}:hover & {
+    //outline: 1px solid  #3b99fc;
+  }
+`;
+  var FilterBody = styled_components_browser_esm_default.div`
+
+`;
+  var BodyItem = styled_components_browser_esm_default.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  &:hover {
+    background-color: rgb(217, 217, 217);
+  }
+`;
+  var HoverFilterWrapper = styled_components_browser_esm_default.div`
+  position: absolute;
+  top: 0;
+  left: -201px;
+  width: 200px;
+  max-height: 510px;
+  overflow-y: scroll;
+  padding: 5px;
+  background-color: #fff;
+  display: none;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+
+  ${BodyItem}:hover & {
+    display: block;
+  }
+`;
+  var Rigth = styled_components_browser_esm_default.div`
+  transform: rotate(270deg);
+  color: #000;
+`;
+  var BodyTitle = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  color: #000;
+
+`;
+  var Plus = styled_components_browser_esm_default.div`
+  padding: 0px 5px 2px 5px;
+  font-size: 16px;
+  color: #000;
+`;
+  var Left2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+`;
+  var FilterHeader = styled_components_browser_esm_default.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  border-bottom: 1px solid #f0f0f0;
+`;
+  var HeaderItem = styled_components_browser_esm_default.div`
+  font-size: 16px;
+`;
+  var Clear = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+  border-radius: 2px;
+  color: ${({ active }) => active ? "#000" : "rgba(0, 0, 0, 0.25)"};
+  background: ${({ active }) => active ? "#fff" : "#f5f5f5"};
+
+`;
+  var Apply = styled_components_browser_esm_default.div`
+  border: 1px solid #d9d9d9;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 2px;
+  color: ${({ active }) => active ? "#000" : "rgba(0, 0, 0, 0.25)"};
+  background: ${({ active }) => active ? "#fff" : "#f5f5f5"};
+`;
+  var HoverFilterTitle = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+`;
+  var ClickFilterWrapper = styled_components_browser_esm_default.div`
+  position: absolute;
+  top: 25px;
+  z-index: 3;
+  right: -2px;
+  display: block;
+  width: 500px;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+`;
+
+  // src/Components/TableUtils/SettingsModal.tsx
+  var import_react65 = __toESM(require_react(), 1);
+
+  // src/Components/common/icons/CloseEyeIcon.tsx
+  var import_react62 = __toESM(require_react(), 1);
+  var CloseEyeIcon = () => {
+    return /* @__PURE__ */ import_react62.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "eye-invisible",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react62.default.createElement("path", {
+      d: "M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z"
+    }), /* @__PURE__ */ import_react62.default.createElement("path", {
+      d: "M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z"
+    }));
+  };
+  var CloseEyeIcon_default = CloseEyeIcon;
+
+  // src/Components/common/icons/PinIcon.tsx
+  var import_react63 = __toESM(require_react(), 1);
+  var PinIcon = () => {
+    return /* @__PURE__ */ import_react63.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "pushpin",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react63.default.createElement("path", {
+      d: "M878.3 392.1L631.9 145.7c-6.5-6.5-15-9.7-23.5-9.7s-17 3.2-23.5 9.7L423.8 306.9c-12.2-1.4-24.5-2-36.8-2-73.2 0-146.4 24.1-206.5 72.3a33.23 33.23 0 00-2.7 49.4l181.7 181.7-215.4 215.2a15.8 15.8 0 00-4.6 9.8l-3.4 37.2c-.9 9.4 6.6 17.4 15.9 17.4.5 0 1 0 1.5-.1l37.2-3.4c3.7-.3 7.2-2 9.8-4.6l215.4-215.4 181.7 181.7c6.5 6.5 15 9.7 23.5 9.7 9.7 0 19.3-4.2 25.9-12.4 56.3-70.3 79.7-158.3 70.2-243.4l161.1-161.1c12.9-12.8 12.9-33.8 0-46.8zM666.2 549.3l-24.5 24.5 3.8 34.4a259.92 259.92 0 01-30.4 153.9L262 408.8c12.9-7.1 26.3-13.1 40.3-17.9 27.2-9.4 55.7-14.1 84.7-14.1 9.6 0 19.3.5 28.9 1.6l34.4 3.8 24.5-24.5L608.5 224 800 415.5 666.2 549.3z"
+    }));
+  };
+  var PinIcon_default = PinIcon;
+
+  // src/Components/common/icons/SaveIcon.tsx
+  var import_react64 = __toESM(require_react(), 1);
+  var SaveIcon = () => {
+    return /* @__PURE__ */ import_react64.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "save",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react64.default.createElement("path", {
+      d: "M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184zm456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840zM512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"
+    }));
+  };
+  var SaveIcon_default = SaveIcon;
+
+  // src/Components/TableUtils/SettingsModal.tsx
+  var SettingsModal = ({ setIsOpenSettings, settingsRef }) => {
+    const arr = [
+      {
+        id: 1,
+        name: "Last Inspected",
+        isChecked: false,
+        isPinned: false
+      },
+      {
+        id: 2,
+        name: "Projects",
+        isChecked: false,
+        isPinned: false,
+        filter: {
+          checked: false,
+          value: null
+        }
+      },
+      {
+        id: 3,
+        name: "City",
+        isChecked: false,
+        isPinned: false
+      }
+    ];
+    const [newArr, setNewArr] = (0, import_react65.useState)(arr);
+    const handlePinAction = (id) => {
+      setNewArr(newArr.map((item) => {
+        if (item.id === id) {
+          item.isPinned = !item.isPinned;
+        }
+        return item;
+      }));
+    };
+    const handleSeeAction = (id) => {
+      setNewArr(newArr.map((item) => {
+        if (item.id === id) {
+          item.isChecked = !item.isChecked;
+        }
+        return item;
+      }));
+    };
+    const handleOpenSelect = (id) => {
+      setNewArr(newArr.map((item) => {
+        if (item.id === id) {
+          item.filter.checked = !item.filter.checked;
+        }
+        return item;
+      }));
+    };
+    const handleChangeSelectValue = (id, value) => {
+      setNewArr(newArr.map((item) => {
+        if (item.id === id) {
+          item.filter.value = value;
+        }
+        return item;
+      }));
+    };
+    console.log(newArr);
+    return /* @__PURE__ */ import_react65.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react65.default.createElement(Wrapper9, {
+      ref: settingsRef
+    }, /* @__PURE__ */ import_react65.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react65.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react65.default.createElement(ModalClose, null, "\u2613")), /* @__PURE__ */ import_react65.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react65.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react65.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
+      style: { width: "50%" }
+    }, "Name"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
+      style: { borderLeft: "1px solid #f0f0f0", borderRight: "1px solid #f0f0f0", width: "25%" }
+    }, "Action"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react65.default.createElement(Columns, null, newArr.map((item, index2) => /* @__PURE__ */ import_react65.default.createElement(Column, {
+      key: index2
+    }, /* @__PURE__ */ import_react65.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react65.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react65.default.createElement(IconWrappPin, {
+      onClick: () => handlePinAction(item.id),
+      active: item.isPinned
+    }, /* @__PURE__ */ import_react65.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(IconWrappEye, {
+      onClick: () => handleSeeAction(item.id),
+      active: item.isChecked,
+      style: { marginLeft: "10px" }
+    }, item.isChecked ? /* @__PURE__ */ import_react65.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react65.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react65.default.createElement(SelectItem, {
+      onClick: () => handleOpenSelect(item.id)
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemText, {
+      active: item.filter.value
+    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react65.default.createElement("div", {
+      style: { padding: "0px 7px", display: "flex", alignItems: "center" }
+    }, /* @__PURE__ */ import_react65.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react65.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+      onClick: () => handleChangeSelectValue(item.id, "Sum")
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+      onClick: () => handleChangeSelectValue(item.id, "Min")
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+      onClick: () => handleChangeSelectValue(item.id, "Max")
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+      onClick: () => handleChangeSelectValue(item.id, "Average")
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react65.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react65.default.createElement(ModalButton, {
+      onClick: () => setIsOpenSettings(false)
+    }, /* @__PURE__ */ import_react65.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react65.default.createElement(SaveIcon_default, null)), "Save"))));
+  };
+  var SettingsModal_default = SettingsModal;
+  var SelectItemList = styled_components_browser_esm_default.div`
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background-color: #fff;
+  z-index: 2;
+  width: 120px;
+  border: 1px solid;
+`;
+  var SaveIconWrapp = styled_components_browser_esm_default.div`
+  padding: 2px 7px 0px 7px;
+`;
+  var ModalButton = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #1890ff;
+  padding: 10px 15px 10px 10px;
+  font-size: 18px;
+  cursor: pointer;
+`;
+  var ModalFooter = styled_components_browser_esm_default.div`
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fafafa;
+  padding: 7px 10px;
+
+`;
+  var SelectItemListItem = styled_components_browser_esm_default.div`
+  padding: 10px 10px;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+`;
+  var SelectItemListItemText = styled_components_browser_esm_default.div`
+  color: black;
+  font-size: 14px;
+`;
+  var SelectItem = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  border: 1px solid #f0f0f0;
+  padding: 7px 10px;
+  cursor: pointer;
+  position: relative;
+
+  &:focus {
+    border: 1px solid #40a9ff;
+  }
+
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`;
+  var SelectItemText = styled_components_browser_esm_default.div`
+  color: ${(props) => props.active ? "#000" : "#ccc"};
+`;
+  var Columns = styled_components_browser_esm_default.div`
+  display: flex;
+  flex-direction: column;
+`;
+  var IconWrappPin = styled_components_browser_esm_default.div`
+  border: 1px solid #ccc;
+  padding: 7px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: ${({ active }) => active ? "#fff" : "#000"};
+  background: ${({ active }) => active ? "#40a9ff" : "#fff"};
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #40a9ff;
+    color: ${({ active }) => active ? "#fff" : "#40a9ff"};
+  }
+`;
+  var IconWrappEye = styled_components_browser_esm_default.div`
+  border: 1px solid #ccc;
+  padding: 7px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: ${({ active }) => active ? "#fff" : "#000"};
+  background: ${({ active }) => active ? "#40a9ff" : "#fff"};
+
+  &:hover {
+    border: 1px solid #40a9ff;
+    color: ${({ active }) => active ? "#fff" : "#40a9ff"};
+  }
+`;
+  var Column = styled_components_browser_esm_default.div`
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+
+`;
+  var ColumnTitle = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  width: 50%;
+
+`;
+  var ColumnActions = styled_components_browser_esm_default.div`
+  display: flex;
+  padding: 10px 15px;
+  width: 25%;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+`;
+  var ColumnFunction = styled_components_browser_esm_default.div`
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+
+`;
+  var ColumnsHeader = styled_components_browser_esm_default.div`
+  display: flex;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fafafa;
+`;
+  var Subtitle = styled_components_browser_esm_default.div`
+  font-size: 14px;
+  padding: 5px 10px;
+`;
+  var ColumnHeaderTitle = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 15px;
+`;
+  var Wrapper9 = styled_components_browser_esm_default.div`
+  background-color: #fff;
+  width: 640px;
+  position: relative;
+`;
+  var SecondaryHeader = styled_components_browser_esm_default.div`
+  padding: 8px;
+  font-size: 14px;
+`;
+  var ModalTitle = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  font-weight: 500;
+`;
+  var ModalClose = styled_components_browser_esm_default.div`
+  cursor: pointer;
+`;
+  var ModalHeader = styled_components_browser_esm_default.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #f0f0f0;
+`;
+  var ContainerModal = styled_components_browser_esm_default.div`
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
   // src/Components/AssetsPage/Table.tsx
   var Table = () => {
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react66.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react66.useState)(false);
     const tableHeaders = [
       "checkbox",
       "Items",
@@ -34557,34 +35116,67 @@ cursor: pointer;
       "tes2",
       "tes3"
     ];
-    return /* @__PURE__ */ import_react59.default.createElement("div", null, /* @__PURE__ */ import_react59.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react59.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react59.default.createElement(TableUtils, null, /* @__PURE__ */ import_react59.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react59.default.createElement(Collection, null, /* @__PURE__ */ import_react59.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react59.default.createElement(Folder_default, {
+    const filterRef = useOnClickOutside_default(() => {
+      setIsOpenFilter(false);
+    });
+    const settingsRef = useOnClickOutside_default(() => {
+      setIsOpenSettings(false);
+    });
+    return /* @__PURE__ */ import_react66.default.createElement("div", null, /* @__PURE__ */ import_react66.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react66.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react66.default.createElement(TableUtils, null, /* @__PURE__ */ import_react66.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react66.default.createElement(Collection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react59.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react59.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react59.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react59.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react59.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react59.default.createElement(RightSide2, null, /* @__PURE__ */ import_react59.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react59.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react59.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react59.default.createElement(FilterWrapper2, null, /* @__PURE__ */ import_react59.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react59.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react59.default.createElement(FilterTitle, null, "Filter"), /* @__PURE__ */ import_react59.default.createElement(Number2, null, "0")), /* @__PURE__ */ import_react59.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react59.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react59.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react59.default.createElement(View, null, "View")), /* @__PURE__ */ import_react59.default.createElement(Settings, null, /* @__PURE__ */ import_react59.default.createElement(SettingsIcon_default, {
+    })), "Collection", /* @__PURE__ */ import_react66.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react66.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react66.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react66.default.createElement(RightSide2, null, /* @__PURE__ */ import_react66.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react66.default.createElement(FilterWrapper2, {
+      onClick: () => setIsOpenFilter(true),
+      ref: filterRef
+    }, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react66.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react66.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react66.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react66.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(View, null, "View")), /* @__PURE__ */ import_react66.default.createElement(Settings, {
+      onClick: () => {
+        setTimeout(() => {
+          setIsOpenSettings(!isOpenSettings);
+        }, 0.1);
+      }
+    }, /* @__PURE__ */ import_react66.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })))), /* @__PURE__ */ import_react59.default.createElement(TableContent_default, {
+    }), isOpenSettings && /* @__PURE__ */ import_react66.default.createElement(SettingsModal_default, {
+      settingsRef,
+      setIsOpenSettings
+    })))), /* @__PURE__ */ import_react66.default.createElement(TableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
   };
   var Table_default = Table;
+  var FilterWrapper2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  padding-left: 5px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`;
   var Title2 = styled_components_browser_esm_default.div`
   font-size: 24px;
   font-weight: 500;
   padding: 0 24px 24px 24px;
   background-color: white;
-  border-bottom: 1px solid rgb(217,217,217);
+  border-bottom: 1px solid rgb(217, 217, 217);
 `;
   var HoverItem = styled_components_browser_esm_default.div`
   padding: 10px 7px;
   color: black;
-    font-size: 14px;
+  font-size: 14px;
+
   &:hover {
-    background-color: rgb(217,217,217);
+    background-color: rgb(217, 217, 217);
   }
-  
-  
+
+
 `;
   var Collection = styled_components_browser_esm_default.div`
   display: flex;
@@ -34594,17 +35186,18 @@ cursor: pointer;
   border: 1px solid #ccc;
   padding: 3px 10px;
   font-size: 14px;
+
   &:hover {
     border: 1px solid #40a9ff;
   }
 `;
   var TextHover = styled_components_browser_esm_default.div`
-    font-size: 14px;
+  font-size: 14px;
   padding: 10px 7px;
   cursor: not-allowed;
 `;
   var HoverWrapper = styled_components_browser_esm_default.div`
-    position: absolute;
+  position: absolute;
   top: 205px;
   z-index: 3;
   left: 24px;
@@ -34614,16 +35207,21 @@ cursor: pointer;
   border: 1px solid #ccc;
   color: rgba(0, 0, 0, 0.25);
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+
   ${Collection}:hover & {
     display: block;
   }
 `;
   var Settings = styled_components_browser_esm_default.div`
-    background-color: white;
+  background-color: white;
   padding: 5px 5px;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `;
   var ViewWrapper = styled_components_browser_esm_default.div`
   display: flex;
@@ -34632,13 +35230,16 @@ cursor: pointer;
   align-items: center;
   background-color: #fff;
   cursor: pointer;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `;
   var View = styled_components_browser_esm_default.div`
-    font-size: 14px;
+  font-size: 14px;
   display: flex;
   align-items: center;
 `;
-  var FilterTitle = styled_components_browser_esm_default.div`
+  var FilterTitle2 = styled_components_browser_esm_default.div`
   padding: 0 5px;
 `;
   var Number2 = styled_components_browser_esm_default.div`
@@ -34647,15 +35248,6 @@ cursor: pointer;
   justify-content: center;
   border-left: 1px solid #ccc;
   padding: 5px 7px;
-`;
-  var FilterWrapper2 = styled_components_browser_esm_default.div`
-    display: flex;
-    align-items: center;
-  background-color: white;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  padding-left: 5px;
-  cursor: pointer;
 `;
   var AddToCollection = styled_components_browser_esm_default.div`
   font-size: 14px;
@@ -34669,8 +35261,8 @@ cursor: pointer;
   align-items: center;
 `;
   var RightSide2 = styled_components_browser_esm_default.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 365px;
 `;
@@ -34695,49 +35287,30 @@ cursor: pointer;
 `;
 
   // src/Components/AssetsPage/AssetsSelects.tsx
-  var import_react61 = __toESM(require_react(), 1);
-
-  // src/Components/common/icons/AssetsPageIcons/ArrowDownIcon.tsx
-  var import_react60 = __toESM(require_react(), 1);
-  var ArrowDownIcon = () => {
-    return /* @__PURE__ */ import_react60.default.createElement("svg", {
-      viewBox: "64 64 896 896",
-      focusable: "false",
-      "data-icon": "down",
-      width: "12",
-      height: "12",
-      fill: "currentColor",
-      "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react60.default.createElement("path", {
-      d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-    }));
-  };
-  var ArrowDownIcon_default = ArrowDownIcon;
-
-  // src/Components/AssetsPage/AssetsSelects.tsx
+  var import_react67 = __toESM(require_react(), 1);
   var AssetsSelects = () => {
-    const [select1, setSelect1] = (0, import_react61.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react61.useState)("Mainlines");
+    const [select1, setSelect1] = (0, import_react67.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react67.useState)("Mainlines");
     const [hoverRef, isHovered] = useHover();
     const [hoverRef2, isHovered2] = useHover();
-    return /* @__PURE__ */ import_react61.default.createElement(Wrapper9, null, /* @__PURE__ */ import_react61.default.createElement(Select1, {
+    return /* @__PURE__ */ import_react67.default.createElement(Wrapper10, null, /* @__PURE__ */ import_react67.default.createElement(Select1, {
       ref: hoverRef
-    }, /* @__PURE__ */ import_react61.default.createElement(SelectItem, null, select1), /* @__PURE__ */ import_react61.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react61.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react61.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react61.default.createElement(HoverItem2, {
+    }, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react61.default.createElement(HoverItem2, {
+    }, "All systems"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react61.default.createElement(HoverItem2, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react61.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react61.default.createElement(Select2, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react67.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react67.default.createElement(Select2, {
       ref: hoverRef2
-    }, /* @__PURE__ */ import_react61.default.createElement(SelectItem, null, select2), /* @__PURE__ */ import_react61.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react61.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react61.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react61.default.createElement(HoverItem2, {
+    }, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react61.default.createElement(HoverItem2, {
+    }, "All assets types"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect2("Mainlines")
     }, "Mainlines"))));
   };
   var AssetsSelects_default = AssetsSelects;
-  var Wrapper9 = styled_components_browser_esm_default.div`
+  var Wrapper10 = styled_components_browser_esm_default.div`
     display: flex;
   align-items: flex-start;
   position: relative;
@@ -34815,7 +35388,7 @@ cursor: pointer;
   var IconWrapp5 = styled_components_browser_esm_default.div`
     padding: 0 5px;
 `;
-  var SelectItem = styled_components_browser_esm_default.div`
+  var SelectItem2 = styled_components_browser_esm_default.div`
   font-size: 16px;
   display: flex;
   align-items: flex-start;
@@ -34824,48 +35397,48 @@ cursor: pointer;
 
   // src/Pages/AssetsPage.tsx
   var AssetsPage = () => {
-    return /* @__PURE__ */ import_react62.default.createElement("div", null, /* @__PURE__ */ import_react62.default.createElement(Header_default, null), /* @__PURE__ */ import_react62.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react62.default.createElement(Table_default, null));
+    return /* @__PURE__ */ import_react68.default.createElement("div", null, /* @__PURE__ */ import_react68.default.createElement(Header_default, null), /* @__PURE__ */ import_react68.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react68.default.createElement(Table_default, null));
   };
   var AssetsPage_default = AssetsPage;
 
   // src/Pages/ProjectsPage.tsx
-  var import_react80 = __toESM(require_react(), 1);
+  var import_react85 = __toESM(require_react(), 1);
 
   // src/Components/ProjectsPage/ProjectsSelects.tsx
-  var import_react63 = __toESM(require_react(), 1);
+  var import_react69 = __toESM(require_react(), 1);
   var AssetsSelects2 = () => {
-    const [select1, setSelect1] = (0, import_react63.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react63.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react63.useState)("All Templates");
+    const [select1, setSelect1] = (0, import_react69.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react69.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react69.useState)("All Templates");
     const [hoverRef, isHovered] = useHover();
     const [hoverRef2, isHovered2] = useHover();
     const [hoverRef3, isHovered3] = useHover();
-    return /* @__PURE__ */ import_react63.default.createElement(Wrapper10, null, /* @__PURE__ */ import_react63.default.createElement(Select12, {
+    return /* @__PURE__ */ import_react69.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react69.default.createElement(Select12, {
       ref: hoverRef
-    }, /* @__PURE__ */ import_react63.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react63.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react63.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react63.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, "All systems"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react63.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react63.default.createElement(Select22, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select22, {
       ref: hoverRef2
-    }, /* @__PURE__ */ import_react63.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react63.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react63.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react63.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, "All assets types"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react63.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react63.default.createElement(Select22, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select22, {
       ref: hoverRef3
-    }, /* @__PURE__ */ import_react63.default.createElement(SelectItem2, {
+    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, {
       style: { color: "black" }
-    }, select3), /* @__PURE__ */ import_react63.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react63.default.createElement(ArrowDownIcon_default, null)), isHovered3 && /* @__PURE__ */ import_react63.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, select3), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered3 && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All Templates")
-    }, "All Templates"), /* @__PURE__ */ import_react63.default.createElement(HoverItem3, {
+    }, "All Templates"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("NASSCO v6 Springfield")
     }, "NASSCO v6 Springfield"))));
   };
   var ProjectsSelects_default = AssetsSelects2;
-  var Wrapper10 = styled_components_browser_esm_default.div`
+  var Wrapper11 = styled_components_browser_esm_default.div`
     display: flex;
   align-items: flex-start;
   position: relative;
@@ -34944,7 +35517,7 @@ cursor: pointer;
     padding: 0 5px;
   padding-top: 1px;
 `;
-  var SelectItem2 = styled_components_browser_esm_default.div`
+  var SelectItem3 = styled_components_browser_esm_default.div`
   font-size: 16px;
   display: flex;
   color: rgba(0, 0, 0, 0.45);
@@ -34953,7 +35526,7 @@ cursor: pointer;
 `;
 
   // node_modules/react-chartjs-2/dist/index.js
-  var import_react64 = __toESM(require_react());
+  var import_react70 = __toESM(require_react());
 
   // node_modules/chart.js/dist/chunks/helpers.segment.js
   var requestAnimFrame = function() {
@@ -47015,8 +47588,8 @@ cursor: pointer;
   }
   function ChartComponent(param, ref) {
     let { height: height2 = 150, width = 300, redraw = false, datasetIdKey, type, data, options, plugins = [], fallbackContent, updateMode, ...props } = param;
-    const canvasRef = (0, import_react64.useRef)(null);
-    const chartRef = (0, import_react64.useRef)();
+    const canvasRef = (0, import_react70.useRef)(null);
+    const chartRef = (0, import_react70.useRef)();
     const renderChart = () => {
       if (!canvasRef.current)
         return;
@@ -47035,7 +47608,7 @@ cursor: pointer;
         chartRef.current = null;
       }
     };
-    (0, import_react64.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current && options) {
         setOptions(chartRef.current, options);
       }
@@ -47043,7 +47616,7 @@ cursor: pointer;
       redraw,
       options
     ]);
-    (0, import_react64.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current) {
         setLabels(chartRef.current.config.data, data.labels);
       }
@@ -47051,7 +47624,7 @@ cursor: pointer;
       redraw,
       data.labels
     ]);
-    (0, import_react64.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current && data.datasets) {
         setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
       }
@@ -47059,7 +47632,7 @@ cursor: pointer;
       redraw,
       data.datasets
     ]);
-    (0, import_react64.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!chartRef.current)
         return;
       if (redraw) {
@@ -47075,21 +47648,21 @@ cursor: pointer;
       data.datasets,
       updateMode
     ]);
-    (0, import_react64.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       renderChart();
       return () => destroyChart();
     }, []);
-    return /* @__PURE__ */ import_react64.default.createElement("canvas", Object.assign({
+    return /* @__PURE__ */ import_react70.default.createElement("canvas", Object.assign({
       ref: canvasRef,
       role: "img",
       height: height2,
       width
     }, props), fallbackContent);
   }
-  var Chart2 = /* @__PURE__ */ (0, import_react64.forwardRef)(ChartComponent);
+  var Chart2 = /* @__PURE__ */ (0, import_react70.forwardRef)(ChartComponent);
   function createTypedChart(type, registerables) {
     Chart.register(registerables);
-    return /* @__PURE__ */ (0, import_react64.forwardRef)((props, ref) => /* @__PURE__ */ import_react64.default.createElement(Chart2, Object.assign({}, props, {
+    return /* @__PURE__ */ (0, import_react70.forwardRef)((props, ref) => /* @__PURE__ */ import_react70.default.createElement(Chart2, Object.assign({}, props, {
       ref,
       type
     })));
@@ -47233,10 +47806,10 @@ cursor: pointer;
   }
 
   // node_modules/react-big-calendar/dist/react-big-calendar.esm.js
-  var import_react77 = __toESM(require_react());
+  var import_react83 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/hook.js
-  var import_react65 = __toESM(require_react());
+  var import_react71 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/utils.js
   var import_invariant = __toESM(require_browser());
@@ -47274,7 +47847,7 @@ cursor: pointer;
   }
 
   // node_modules/uncontrollable/lib/esm/uncontrollable.js
-  var import_react66 = __toESM(require_react());
+  var import_react72 = __toESM(require_react());
 
   // node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js
   function componentWillMount() {
@@ -47445,12 +48018,12 @@ cursor: pointer;
           var propValue = _this2.props[propName];
           newProps[propName] = propValue !== void 0 ? propValue : _this2.state.values[propName];
         });
-        return import_react66.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
+        return import_react72.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
           ref: innerRef || this.attachRef
         }));
       };
       return UncontrolledComponent2;
-    }(import_react66.default.Component);
+    }(import_react72.default.Component);
     polyfill(UncontrolledComponent);
     UncontrolledComponent.displayName = "Uncontrolled(" + displayName + ")";
     UncontrolledComponent.propTypes = _extends({
@@ -47464,9 +48037,9 @@ cursor: pointer;
       };
     });
     var WrappedComponent = UncontrolledComponent;
-    if (import_react66.default.forwardRef) {
-      WrappedComponent = import_react66.default.forwardRef(function(props, ref) {
-        return import_react66.default.createElement(UncontrolledComponent, _extends({}, props, {
+    if (import_react72.default.forwardRef) {
+      WrappedComponent = import_react72.default.forwardRef(function(props, ref) {
+        return import_react72.default.createElement(UncontrolledComponent, _extends({}, props, {
           innerRef: ref,
           __source: {
             fileName: _jsxFileName,
@@ -48253,13 +48826,13 @@ cursor: pointer;
   var addEventListener_default = addEventListener;
 
   // node_modules/@restart/hooks/esm/useEventCallback.js
-  var import_react68 = __toESM(require_react());
+  var import_react74 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useCommittedRef.js
-  var import_react67 = __toESM(require_react());
+  var import_react73 = __toESM(require_react());
   function useCommittedRef(value) {
-    var ref = (0, import_react67.useRef)(value);
-    (0, import_react67.useEffect)(function() {
+    var ref = (0, import_react73.useRef)(value);
+    (0, import_react73.useEffect)(function() {
       ref.current = value;
     }, [value]);
     return ref;
@@ -48269,31 +48842,31 @@ cursor: pointer;
   // node_modules/@restart/hooks/esm/useEventCallback.js
   function useEventCallback(fn3) {
     var ref = useCommittedRef_default(fn3);
-    return (0, import_react68.useCallback)(function() {
+    return (0, import_react74.useCallback)(function() {
       return ref.current && ref.current.apply(ref, arguments);
     }, [ref]);
   }
 
   // node_modules/@restart/hooks/esm/useCallbackRef.js
-  var import_react69 = __toESM(require_react());
+  var import_react75 = __toESM(require_react());
   function useCallbackRef() {
-    return (0, import_react69.useState)(null);
+    return (0, import_react75.useState)(null);
   }
 
   // node_modules/react-overlays/esm/usePopper.js
-  var import_react72 = __toESM(require_react());
+  var import_react78 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useSafeState.js
-  var import_react71 = __toESM(require_react());
+  var import_react77 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useMounted.js
-  var import_react70 = __toESM(require_react());
+  var import_react76 = __toESM(require_react());
   function useMounted() {
-    var mounted = (0, import_react70.useRef)(true);
-    var isMounted = (0, import_react70.useRef)(function() {
+    var mounted = (0, import_react76.useRef)(true);
+    var isMounted = (0, import_react76.useRef)(function() {
       return mounted.current;
     });
-    (0, import_react70.useEffect)(function() {
+    (0, import_react76.useEffect)(function() {
       mounted.current = true;
       return function() {
         mounted.current = false;
@@ -48305,7 +48878,7 @@ cursor: pointer;
   // node_modules/@restart/hooks/esm/useSafeState.js
   function useSafeState(state) {
     var isMounted = useMounted();
-    return [state[0], (0, import_react71.useCallback)(function(nextState) {
+    return [state[0], (0, import_react77.useCallback)(function(nextState) {
       if (!isMounted())
         return;
       return state[1](nextState);
@@ -49846,16 +50419,16 @@ cursor: pointer;
   var EMPTY_MODIFIERS = [];
   function usePopper(referenceElement, popperElement, _temp) {
     var _ref3 = _temp === void 0 ? {} : _temp, _ref3$enabled = _ref3.enabled, enabled = _ref3$enabled === void 0 ? true : _ref3$enabled, _ref3$placement = _ref3.placement, placement = _ref3$placement === void 0 ? "bottom" : _ref3$placement, _ref3$strategy = _ref3.strategy, strategy = _ref3$strategy === void 0 ? "absolute" : _ref3$strategy, _ref3$modifiers = _ref3.modifiers, modifiers = _ref3$modifiers === void 0 ? EMPTY_MODIFIERS : _ref3$modifiers, config = _objectWithoutPropertiesLoose(_ref3, ["enabled", "placement", "strategy", "modifiers"]);
-    var popperInstanceRef = (0, import_react72.useRef)();
-    var update = (0, import_react72.useCallback)(function() {
+    var popperInstanceRef = (0, import_react78.useRef)();
+    var update = (0, import_react78.useCallback)(function() {
       var _popperInstanceRef$cu;
       (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
     }, []);
-    var forceUpdate = (0, import_react72.useCallback)(function() {
+    var forceUpdate = (0, import_react78.useCallback)(function() {
       var _popperInstanceRef$cu2;
       (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
     }, []);
-    var _useSafeState = useSafeState_default((0, import_react72.useState)({
+    var _useSafeState = useSafeState_default((0, import_react78.useState)({
       placement,
       update,
       forceUpdate,
@@ -49865,7 +50438,7 @@ cursor: pointer;
         arrow: {}
       }
     })), popperState = _useSafeState[0], setState = _useSafeState[1];
-    var updateModifier = (0, import_react72.useMemo)(function() {
+    var updateModifier = (0, import_react78.useMemo)(function() {
       return {
         name: "updateStateModifier",
         enabled: true,
@@ -49890,7 +50463,7 @@ cursor: pointer;
         }
       };
     }, [update, forceUpdate, setState]);
-    (0, import_react72.useEffect)(function() {
+    (0, import_react78.useEffect)(function() {
       if (!popperInstanceRef.current || !enabled)
         return;
       popperInstanceRef.current.setOptions({
@@ -49899,7 +50472,7 @@ cursor: pointer;
         modifiers: [].concat(modifiers, [updateModifier, disabledApplyStylesModifier])
       });
     }, [strategy, placement, updateModifier, enabled]);
-    (0, import_react72.useEffect)(function() {
+    (0, import_react78.useEffect)(function() {
       if (!enabled || referenceElement == null || popperElement == null) {
         return void 0;
       }
@@ -49947,7 +50520,7 @@ cursor: pointer;
   var listen_default = listen;
 
   // node_modules/react-overlays/esm/useRootClose.js
-  var import_react73 = __toESM(require_react());
+  var import_react79 = __toESM(require_react());
   var import_warning4 = __toESM(require_warning());
 
   // node_modules/react-overlays/esm/safeFindDOMNode.js
@@ -49979,9 +50552,9 @@ cursor: pointer;
   };
   function useRootClose(ref, onRootClose, _temp) {
     var _ref = _temp === void 0 ? {} : _temp, disabled = _ref.disabled, _ref$clickTrigger = _ref.clickTrigger, clickTrigger = _ref$clickTrigger === void 0 ? "click" : _ref$clickTrigger;
-    var preventMouseRootCloseRef = (0, import_react73.useRef)(false);
+    var preventMouseRootCloseRef = (0, import_react79.useRef)(false);
     var onClose = onRootClose || noop5;
-    var handleMouseCapture = (0, import_react73.useCallback)(function(e2) {
+    var handleMouseCapture = (0, import_react79.useCallback)(function(e2) {
       var _e$composedPath$;
       var currentTarget = getRefTarget(ref);
       (0, import_warning4.default)(!!currentTarget, "RootClose captured a close event but does not have a ref to compare it to. useRootClose(), should be passed a ref that resolves to a DOM node");
@@ -49997,7 +50570,7 @@ cursor: pointer;
         onClose(e2);
       }
     });
-    (0, import_react73.useEffect)(function() {
+    (0, import_react79.useEffect)(function() {
       if (disabled || ref == null)
         return void 0;
       var currentEvent = window.event;
@@ -50144,7 +50717,7 @@ cursor: pointer;
   }
 
   // node_modules/react-overlays/esm/useWaitForDOMRef.js
-  var import_react74 = __toESM(require_react());
+  var import_react80 = __toESM(require_react());
   var resolveContainerRef = function resolveContainerRef2(ref) {
     var _ref;
     if (typeof document === "undefined")
@@ -50160,7 +50733,7 @@ cursor: pointer;
     return null;
   };
   function useWaitForDOMRef(ref, onResolved) {
-    var _useState = (0, import_react74.useState)(function() {
+    var _useState = (0, import_react80.useState)(function() {
       return resolveContainerRef(ref);
     }), resolvedRef = _useState[0], setRef = _useState[1];
     if (!resolvedRef) {
@@ -50168,12 +50741,12 @@ cursor: pointer;
       if (earlyRef)
         setRef(earlyRef);
     }
-    (0, import_react74.useEffect)(function() {
+    (0, import_react80.useEffect)(function() {
       if (onResolved && resolvedRef) {
         onResolved(resolvedRef);
       }
     }, [onResolved, resolvedRef]);
-    (0, import_react74.useEffect)(function() {
+    (0, import_react80.useEffect)(function() {
       var nextRef = resolveContainerRef(ref);
       if (nextRef !== resolvedRef) {
         setRef(nextRef);
@@ -50184,11 +50757,11 @@ cursor: pointer;
 
   // node_modules/react-overlays/esm/Overlay.js
   var import_prop_types5 = __toESM(require_prop_types());
-  var import_react76 = __toESM(require_react());
+  var import_react82 = __toESM(require_react());
   var import_react_dom3 = __toESM(require_react_dom());
 
   // node_modules/@restart/hooks/esm/useMergedRefs.js
-  var import_react75 = __toESM(require_react());
+  var import_react81 = __toESM(require_react());
   var toFnRef = function toFnRef2(ref) {
     return !ref || typeof ref === "function" ? ref : function(value) {
       ref.current = value;
@@ -50205,21 +50778,21 @@ cursor: pointer;
     };
   }
   function useMergedRefs(refA, refB) {
-    return (0, import_react75.useMemo)(function() {
+    return (0, import_react81.useMemo)(function() {
       return mergeRefs(refA, refB);
     }, [refA, refB]);
   }
   var useMergedRefs_default = useMergedRefs;
 
   // node_modules/react-overlays/esm/Overlay.js
-  var Overlay = /* @__PURE__ */ import_react76.default.forwardRef(function(props, outerRef) {
+  var Overlay = /* @__PURE__ */ import_react82.default.forwardRef(function(props, outerRef) {
     var flip2 = props.flip, offset3 = props.offset, placement = props.placement, _props$containerPaddi = props.containerPadding, containerPadding = _props$containerPaddi === void 0 ? 5 : _props$containerPaddi, _props$popperConfig = props.popperConfig, popperConfig = _props$popperConfig === void 0 ? {} : _props$popperConfig, Transition = props.transition;
     var _useCallbackRef = useCallbackRef(), rootElement = _useCallbackRef[0], attachRef = _useCallbackRef[1];
     var _useCallbackRef2 = useCallbackRef(), arrowElement = _useCallbackRef2[0], attachArrowRef = _useCallbackRef2[1];
     var mergedRef = useMergedRefs_default(attachRef, outerRef);
     var container = useWaitForDOMRef(props.container);
     var target = useWaitForDOMRef(props.target);
-    var _useState = (0, import_react76.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
+    var _useState = (0, import_react82.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
     var _usePopper = usePopper_default(target, rootElement, mergeOptionsWithPopperConfig({
       placement,
       enableEvents: !!props.show,
@@ -50262,7 +50835,7 @@ cursor: pointer;
     }));
     if (Transition) {
       var onExit = props.onExit, onExiting = props.onExiting, onEnter = props.onEnter, onEntering = props.onEntering, onEntered = props.onEntered;
-      child = /* @__PURE__ */ import_react76.default.createElement(Transition, {
+      child = /* @__PURE__ */ import_react82.default.createElement(Transition, {
         "in": props.show,
         appear: true,
         onExit,
@@ -52767,7 +53340,7 @@ cursor: pointer;
   }
   function useClickOutside(_ref) {
     var ref = _ref.ref, callback2 = _ref.callback;
-    (0, import_react77.useEffect)(function() {
+    (0, import_react83.useEffect)(function() {
       var handleClickOutside = function handleClickOutside2(e2) {
         if (ref.current && !ref.current.contains(e2.target)) {
           callback2();
@@ -52799,10 +53372,10 @@ cursor: pointer;
         var allDay = accessors.allDay(event);
         var showAsAllDay = isAllDay || allDay || localizer.diff(start2, localizer.ceil(end2, "day"), "day") > 1;
         var userProps = getters.eventProp(event, start2, end2, selected);
-        var content = /* @__PURE__ */ import_react77.default.createElement("div", {
+        var content = /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-event-content",
           title: tooltip || void 0
-        }, Event2 ? /* @__PURE__ */ import_react77.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
           event,
           continuesPrior: continuesPrior2,
           continuesAfter: continuesAfter2,
@@ -52812,9 +53385,9 @@ cursor: pointer;
           slotStart,
           slotEnd
         }) : title);
-        return /* @__PURE__ */ import_react77.default.createElement(EventWrapper, Object.assign({}, this.props, {
+        return /* @__PURE__ */ import_react83.default.createElement(EventWrapper, Object.assign({}, this.props, {
           type: "date"
-        }), /* @__PURE__ */ import_react77.default.createElement("div", Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, props, {
           tabIndex: 0,
           style: _objectSpread22(_objectSpread22({}, userProps.style), style2),
           className: clsx_m_default("rbc-event", className, userProps.className, {
@@ -52836,7 +53409,7 @@ cursor: pointer;
       }
     }]);
     return EventCell2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   function isSelected(event, selected) {
     if (!event || selected == null)
       return false;
@@ -52920,7 +53493,7 @@ cursor: pointer;
       ref: popperRef,
       callback: show
     });
-    (0, import_react77.useLayoutEffect)(function() {
+    (0, import_react83.useLayoutEffect)(function() {
       var _getPosition = getPosition({
         target,
         offset: offset3,
@@ -52934,14 +53507,14 @@ cursor: pointer;
     var style2 = {
       minWidth: width + width / 2
     };
-    return /* @__PURE__ */ import_react77.default.createElement("div", {
+    return /* @__PURE__ */ import_react83.default.createElement("div", {
       style: style2,
       className: "rbc-overlay",
       ref: popperRef
-    }, /* @__PURE__ */ import_react77.default.createElement("div", {
+    }, /* @__PURE__ */ import_react83.default.createElement("div", {
       className: "rbc-overlay-header"
     }, localizer.format(slotStart, "dayHeaderFormat")), events.map(function(event, idx) {
-      return /* @__PURE__ */ import_react77.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react83.default.createElement(EventCell, {
         key: idx,
         type: "popup",
         localizer,
@@ -52967,8 +53540,8 @@ cursor: pointer;
       });
     }));
   }
-  var Popup = /* @__PURE__ */ import_react77.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react77.default.createElement(Pop, Object.assign({}, props, {
+  var Popup = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react83.default.createElement(Pop, Object.assign({}, props, {
       popperRef: ref
     }));
   });
@@ -52995,7 +53568,7 @@ cursor: pointer;
   };
   function CalOverlay(_ref) {
     var containerRef = _ref.containerRef, _ref$popupOffset = _ref.popupOffset, popupOffset = _ref$popupOffset === void 0 ? 5 : _ref$popupOffset, overlay = _ref.overlay, accessors = _ref.accessors, localizer = _ref.localizer, components = _ref.components, getters = _ref.getters, selected = _ref.selected, handleSelectEvent = _ref.handleSelectEvent, handleDoubleClickEvent = _ref.handleDoubleClickEvent, handleKeyPressEvent = _ref.handleKeyPressEvent, handleDragStart = _ref.handleDragStart, onHide2 = _ref.onHide, overlayDisplay = _ref.overlayDisplay;
-    var popperRef = (0, import_react77.useRef)(null);
+    var popperRef = (0, import_react83.useRef)(null);
     if (!overlay.position)
       return null;
     var offset3 = popupOffset;
@@ -53006,7 +53579,7 @@ cursor: pointer;
       };
     }
     var position2 = overlay.position, events = overlay.events, date2 = overlay.date, end2 = overlay.end;
-    return /* @__PURE__ */ import_react77.default.createElement(Overlay_default, {
+    return /* @__PURE__ */ import_react83.default.createElement(Overlay_default, {
       rootClose: true,
       flip: true,
       show: true,
@@ -53015,7 +53588,7 @@ cursor: pointer;
       target: overlay.target
     }, function(_ref2) {
       var props = _ref2.props;
-      return /* @__PURE__ */ import_react77.default.createElement(Popup, Object.assign({}, props, {
+      return /* @__PURE__ */ import_react83.default.createElement(Popup, Object.assign({}, props, {
         containerRef,
         ref: popperRef,
         target: overlay.target,
@@ -53037,8 +53610,8 @@ cursor: pointer;
       }));
     });
   }
-  var PopOverlay = /* @__PURE__ */ import_react77.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react77.default.createElement(CalOverlay, Object.assign({}, props, {
+  var PopOverlay = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react83.default.createElement(CalOverlay, Object.assign({}, props, {
       containerRef: ref
     }));
   });
@@ -53457,7 +54030,7 @@ cursor: pointer;
       _this.state = {
         selecting: false
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react77.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
       return _this;
     }
     _createClass2(BackgroundCells2, [{
@@ -53481,20 +54054,20 @@ cursor: pointer;
     }, {
       key: "render",
       value: function render() {
-        var _this$props = this.props, range3 = _this$props.range, getNow2 = _this$props.getNow, getters = _this$props.getters, currentDate = _this$props.date, Wrapper12 = _this$props.components.dateCellWrapper, localizer = _this$props.localizer;
+        var _this$props = this.props, range3 = _this$props.range, getNow2 = _this$props.getNow, getters = _this$props.getters, currentDate = _this$props.date, Wrapper13 = _this$props.components.dateCellWrapper, localizer = _this$props.localizer;
         var _this$state = this.state, selecting = _this$state.selecting, startIdx = _this$state.startIdx, endIdx = _this$state.endIdx;
         var current = getNow2();
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row-bg",
           ref: this.containerRef
         }, range3.map(function(date2, index2) {
           var selected = selecting && index2 >= startIdx && index2 <= endIdx;
           var _getters$dayProp = getters.dayProp(date2), className = _getters$dayProp.className, style2 = _getters$dayProp.style;
-          return /* @__PURE__ */ import_react77.default.createElement(Wrapper12, {
+          return /* @__PURE__ */ import_react83.default.createElement(Wrapper13, {
             key: index2,
             value: date2,
             range: range3
-          }, /* @__PURE__ */ import_react77.default.createElement("div", {
+          }, /* @__PURE__ */ import_react83.default.createElement("div", {
             style: style2,
             className: clsx_m_default("rbc-day-bg", className, selected && "rbc-selected-cell", localizer.isSameDate(date2, current) && "rbc-today", currentDate && localizer.neq(currentDate, date2, "month") && "rbc-off-range-bg")
           }));
@@ -53597,7 +54170,7 @@ cursor: pointer;
       }
     }]);
     return BackgroundCells2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   var EventRowMixin = {
     propTypes: {
       slotMetrics: import_prop_types6.default.object.isRequired,
@@ -53621,7 +54194,7 @@ cursor: pointer;
       var accessors = props.accessors, getters = props.getters, onSelect = props.onSelect, onDoubleClick = props.onDoubleClick, onKeyPress = props.onKeyPress, localizer = props.localizer, slotMetrics = props.slotMetrics, components = props.components, resizable = props.resizable;
       var continuesPrior2 = slotMetrics.continuesPrior(event);
       var continuesAfter2 = slotMetrics.continuesAfter(event);
-      return /* @__PURE__ */ import_react77.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react83.default.createElement(EventCell, {
         event,
         getters,
         localizer,
@@ -53641,7 +54214,7 @@ cursor: pointer;
     renderSpan: function renderSpan(slots, len, key) {
       var content = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : " ";
       var per = Math.abs(len) / slots * 100 + "%";
-      return /* @__PURE__ */ import_react77.default.createElement("div", {
+      return /* @__PURE__ */ import_react83.default.createElement("div", {
         key,
         className: "rbc-row-segment",
         style: {
@@ -53665,7 +54238,7 @@ cursor: pointer;
         var _this = this;
         var _this$props = this.props, segments = _this$props.segments, slots = _this$props.slotMetrics.slots, className = _this$props.className;
         var lastEnd = 1;
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default(className, "rbc-row")
         }, segments.reduce(function(row, _ref, li) {
           var event = _ref.event, left2 = _ref.left, right2 = _ref.right, span = _ref.span;
@@ -53681,7 +54254,7 @@ cursor: pointer;
       }
     }]);
     return EventRow2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   EventRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   function endOfRange(_ref) {
     var dateRange = _ref.dateRange, _ref$unit = _ref.unit, unit = _ref$unit === void 0 ? "day" : _ref$unit, localizer = _ref.localizer;
@@ -53817,7 +54390,7 @@ cursor: pointer;
             lastEnd = current = current + 1;
           }
         }
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row"
         }, row);
       }
@@ -53836,7 +54409,7 @@ cursor: pointer;
         var _this = this;
         var localizer = this.props.localizer;
         var count = eventsInSlot(segments, slot);
-        return count ? /* @__PURE__ */ import_react77.default.createElement("button", {
+        return count ? /* @__PURE__ */ import_react83.default.createElement("button", {
           type: "button",
           key: "sm_" + slot,
           className: clsx_m_default("rbc-button-link", "rbc-show-more"),
@@ -53854,11 +54427,11 @@ cursor: pointer;
       }
     }]);
     return EventEndingRow2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   EventEndingRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   var ScrollableWeekWrapper = function ScrollableWeekWrapper2(_ref) {
     var children = _ref.children;
-    return /* @__PURE__ */ import_react77.default.createElement("div", {
+    return /* @__PURE__ */ import_react83.default.createElement("div", {
       className: "rbc-row-content-scroll-container"
     }, children);
   };
@@ -53957,28 +54530,28 @@ cursor: pointer;
       };
       _this.renderDummy = function() {
         var _this$props4 = _this.props, className = _this$props4.className, range3 = _this$props4.range, renderHeader = _this$props4.renderHeader, showAllEvents = _this$props4.showAllEvents;
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className,
           ref: _this.containerRef
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable")
-        }, renderHeader && /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row",
           ref: _this.headingRowRef
-        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row",
           ref: _this.eventRowRef
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row-segment"
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-event"
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-event-content"
         }, "\xA0"))))));
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react77.createRef)();
-      _this.headingRowRef = /* @__PURE__ */ (0, import_react77.createRef)();
-      _this.eventRowRef = /* @__PURE__ */ (0, import_react77.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.headingRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.eventRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
       _this.slotMetrics = getSlotMetrics$1();
       return _this;
     }
@@ -54014,11 +54587,11 @@ cursor: pointer;
           slotMetrics: metrics,
           resizable
         };
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className,
           role: "rowgroup",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react77.default.createElement(BackgroundCells, {
+        }, /* @__PURE__ */ import_react83.default.createElement(BackgroundCells, {
           localizer,
           date: date2,
           getNow: getNow2,
@@ -54033,34 +54606,34 @@ cursor: pointer;
           components,
           longPressThreshold,
           resourceId
-        }), /* @__PURE__ */ import_react77.default.createElement("div", {
+        }), /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable"),
           role: "row"
-        }, renderHeader && /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row ",
           ref: this.headingRowRef
-        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react77.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react77.default.createElement(WeekWrapper, Object.assign({
+        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react83.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react83.default.createElement(WeekWrapper, Object.assign({
           isAllDay
         }, eventRowProps), levels.map(function(segs, idx) {
-          return /* @__PURE__ */ import_react77.default.createElement(EventRow, Object.assign({
+          return /* @__PURE__ */ import_react83.default.createElement(EventRow, Object.assign({
             key: idx,
             segments: segs
           }, eventRowProps));
-        }), !!extra.length && /* @__PURE__ */ import_react77.default.createElement(EventEndingRow, Object.assign({
+        }), !!extra.length && /* @__PURE__ */ import_react83.default.createElement(EventEndingRow, Object.assign({
           segments: extra,
           onShowMore: this.handleShowMore
         }, eventRowProps))))));
       }
     }]);
     return DateContentRow2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   DateContentRow.defaultProps = {
     minRows: 0,
     maxRows: Infinity
   };
   var Header2 = function Header3(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react77.default.createElement("span", {
+    return /* @__PURE__ */ import_react83.default.createElement("span", {
       role: "columnheader",
       "aria-sort": "none"
     }, label);
@@ -54068,9 +54641,9 @@ cursor: pointer;
   var DateHeader = function DateHeader2(_ref) {
     var label = _ref.label, drilldownView = _ref.drilldownView, onDrillDown = _ref.onDrillDown;
     if (!drilldownView) {
-      return /* @__PURE__ */ import_react77.default.createElement("span", null, label);
+      return /* @__PURE__ */ import_react83.default.createElement("span", null, label);
     }
-    return /* @__PURE__ */ import_react77.default.createElement("button", {
+    return /* @__PURE__ */ import_react83.default.createElement("button", {
       type: "button",
       className: "rbc-button-link",
       onClick: onDrillDown,
@@ -54103,7 +54676,7 @@ cursor: pointer;
         weeksEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react77.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
           key: weekIdx,
           ref: weekIdx === 0 ? _this.slotRowRef : void 0,
           container: _this.getContainer,
@@ -54140,10 +54713,10 @@ cursor: pointer;
         var drilldownView = getDrilldownView(date2);
         var label = localizer.format(date2, "dateFormat");
         var DateHeaderComponent = _this.props.components.dateHeader || DateHeader;
-        return /* @__PURE__ */ import_react77.default.createElement("div", Object.assign({}, props, {
+        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, props, {
           className: clsx_m_default(className, isOffRange && "rbc-off-range", isCurrent && "rbc-current"),
           role: "cell"
-        }), /* @__PURE__ */ import_react77.default.createElement(DateHeaderComponent, {
+        }), /* @__PURE__ */ import_react83.default.createElement(DateHeaderComponent, {
           label,
           date: date2,
           drilldownView,
@@ -54214,8 +54787,8 @@ cursor: pointer;
         needLimitMeasure: true,
         date: null
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react77.createRef)();
-      _this.slotRowRef = /* @__PURE__ */ (0, import_react77.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.slotRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
       _this._bgRows = [];
       _this._pendingSelection = [];
       return _this;
@@ -54254,12 +54827,12 @@ cursor: pointer;
       value: function render() {
         var _this$props4 = this.props, date2 = _this$props4.date, localizer = _this$props4.localizer, className = _this$props4.className, month2 = localizer.visibleDays(date2, localizer), weeks = chunk_default(month2, 7);
         this._weekCount = weeks.length;
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default("rbc-month-view", className),
           role: "table",
           "aria-label": "Month View",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-row rbc-month-header",
           role: "row"
         }, this.renderHeaders(weeks[0])), weeks.map(this.renderWeek), this.props.popup && this.renderOverlay());
@@ -54272,10 +54845,10 @@ cursor: pointer;
         var last2 = row[row.length - 1];
         var HeaderComponent = components.header || Header2;
         return localizer.range(first, last2, "day").map(function(day2, idx) {
-          return /* @__PURE__ */ import_react77.default.createElement("div", {
+          return /* @__PURE__ */ import_react83.default.createElement("div", {
             key: "header_" + idx,
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react77.default.createElement(HeaderComponent, {
+          }, /* @__PURE__ */ import_react83.default.createElement(HeaderComponent, {
             date: day2,
             localizer,
             label: localizer.format(day2, "weekdayFormat")
@@ -54293,7 +54866,7 @@ cursor: pointer;
             overlay: null
           });
         };
-        return /* @__PURE__ */ import_react77.default.createElement(PopOverlay, {
+        return /* @__PURE__ */ import_react83.default.createElement(PopOverlay, {
           overlay,
           accessors,
           localizer,
@@ -54356,7 +54929,7 @@ cursor: pointer;
       }
     }]);
     return MonthView2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   MonthView.range = function(date2, _ref3) {
     var localizer = _ref3.localizer;
     var start2 = localizer.firstVisibleDay(date2, localizer);
@@ -54739,24 +55312,24 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, renderSlot = _this$props.renderSlot, resource = _this$props.resource, group = _this$props.group, getters = _this$props.getters, _this$props$component = _this$props.components;
         _this$props$component = _this$props$component === void 0 ? {} : _this$props$component;
-        var _this$props$component2 = _this$props$component.timeSlotWrapper, Wrapper12 = _this$props$component2 === void 0 ? NoopWrapper : _this$props$component2;
+        var _this$props$component2 = _this$props$component.timeSlotWrapper, Wrapper13 = _this$props$component2 === void 0 ? NoopWrapper : _this$props$component2;
         var groupProps = getters ? getters.slotGroupProp() : {};
-        return /* @__PURE__ */ import_react77.default.createElement("div", Object.assign({
+        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({
           className: "rbc-timeslot-group"
         }, groupProps), group.map(function(value, idx) {
           var slotProps = getters ? getters.slotProp(value, resource) : {};
-          return /* @__PURE__ */ import_react77.default.createElement(Wrapper12, {
+          return /* @__PURE__ */ import_react83.default.createElement(Wrapper13, {
             key: idx,
             value,
             resource
-          }, /* @__PURE__ */ import_react77.default.createElement("div", Object.assign({}, slotProps, {
+          }, /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, slotProps, {
             className: clsx_m_default("rbc-time-slot", slotProps.className)
           }), renderSlot && renderSlot(value, idx)));
         }));
       }
     }]);
     return TimeSlotGroup2;
-  }(import_react77.Component);
+  }(import_react83.Component);
   function stringifyPercent(v2) {
     return typeof v2 === "string" ? v2 : v2 + "%";
   }
@@ -54768,13 +55341,13 @@ cursor: pointer;
     var start2 = accessors.start(event);
     var userProps = getters.eventProp(event, start2, end2, selected);
     var height2 = style2.height, top2 = style2.top, width = style2.width, xOffset = style2.xOffset;
-    var inner = [/* @__PURE__ */ import_react77.default.createElement("div", {
+    var inner = [/* @__PURE__ */ import_react83.default.createElement("div", {
       key: "1",
       className: "rbc-event-label"
-    }, label), /* @__PURE__ */ import_react77.default.createElement("div", {
+    }, label), /* @__PURE__ */ import_react83.default.createElement("div", {
       key: "2",
       className: "rbc-event-content"
-    }, Event2 ? /* @__PURE__ */ import_react77.default.createElement(Event2, {
+    }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
       event,
       title
     }) : title)];
@@ -54787,9 +55360,9 @@ cursor: pointer;
       width: stringifyPercent(width),
       height: stringifyPercent(height2)
     }, rtl ? "right" : "left", stringifyPercent(xOffset)));
-    return /* @__PURE__ */ import_react77.default.createElement(EventWrapper, Object.assign({
+    return /* @__PURE__ */ import_react83.default.createElement(EventWrapper, Object.assign({
       type: "time"
-    }, props), /* @__PURE__ */ import_react77.default.createElement("div", {
+    }, props), /* @__PURE__ */ import_react83.default.createElement("div", {
       onClick,
       onDoubleClick,
       style: eventStyle,
@@ -54804,14 +55377,14 @@ cursor: pointer;
   }
   var DayColumnWrapper = function DayColumnWrapper2(_ref) {
     var children = _ref.children, className = _ref.className, style2 = _ref.style, innerRef = _ref.innerRef;
-    return /* @__PURE__ */ import_react77.default.createElement("div", {
+    return /* @__PURE__ */ import_react83.default.createElement("div", {
       className,
       style: style2,
       ref: innerRef
     }, children);
   };
-  var DayColumnWrapper$1 = /* @__PURE__ */ import_react77.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react77.default.createElement(DayColumnWrapper, Object.assign({}, props, {
+  var DayColumnWrapper$1 = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react83.default.createElement(DayColumnWrapper, Object.assign({}, props, {
       innerRef: ref
     }));
   });
@@ -54865,7 +55438,7 @@ cursor: pointer;
             }, format3);
           var continuesPrior2 = startsBeforeDay || slotMetrics.startsBefore(start2);
           var continuesAfter2 = startsAfterDay || slotMetrics.startsAfter(end2);
-          return /* @__PURE__ */ import_react77.default.createElement(TimeGridEvent, {
+          return /* @__PURE__ */ import_react83.default.createElement(TimeGridEvent, {
             style: style2,
             event,
             label,
@@ -55022,7 +55595,7 @@ cursor: pointer;
         notify(_this.props.onKeyPressEvent, args);
       };
       _this.slotMetrics = getSlotMetrics(_this.props);
-      _this.containerRef = /* @__PURE__ */ (0, import_react77.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
       return _this;
     }
     _createClass2(DayColumn2, [{
@@ -55110,41 +55683,41 @@ cursor: pointer;
         };
         var _dayProp = dayProp(max3), className = _dayProp.className, style2 = _dayProp.style;
         var DayColumnWrapperComponent = components.dayColumnWrapper || DayColumnWrapper$1;
-        return /* @__PURE__ */ import_react77.default.createElement(DayColumnWrapperComponent, {
+        return /* @__PURE__ */ import_react83.default.createElement(DayColumnWrapperComponent, {
           ref: this.containerRef,
           date: date2,
           style: style2,
           className: clsx_m_default(className, "rbc-day-slot", "rbc-time-column", isNow && "rbc-now", isNow && "rbc-today", selecting && "rbc-slot-selecting"),
           slotMetrics
         }, slotMetrics.groups.map(function(grp, idx) {
-          return /* @__PURE__ */ import_react77.default.createElement(TimeSlotGroup, {
+          return /* @__PURE__ */ import_react83.default.createElement(TimeSlotGroup, {
             key: idx,
             group: grp,
             resource,
             getters,
             components
           });
-        }), /* @__PURE__ */ import_react77.default.createElement(EventContainer, {
+        }), /* @__PURE__ */ import_react83.default.createElement(EventContainer, {
           localizer,
           resource,
           accessors,
           getters,
           components,
           slotMetrics
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default("rbc-events-container", rtl && "rtl")
         }, this.renderEvents({
           events: this.props.backgroundEvents,
           isBackgroundEvent: true
         }), this.renderEvents({
           events: this.props.events
-        }))), selecting && /* @__PURE__ */ import_react77.default.createElement("div", {
+        }))), selecting && /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-slot-selection",
           style: {
             top: top2,
             height: height2
           }
-        }, /* @__PURE__ */ import_react77.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-current-time-indicator",
           style: {
             top: "".concat(this.state.timeIndicatorPosition, "%")
@@ -55153,7 +55726,7 @@ cursor: pointer;
       }
     }]);
     return DayColumn2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   DayColumn.defaultProps = {
     dragThroughEvents: true,
     timeslots: 2
@@ -55173,21 +55746,21 @@ cursor: pointer;
   }
   var TimeGutter = function TimeGutter2(_ref2) {
     var min3 = _ref2.min, max3 = _ref2.max, timeslots = _ref2.timeslots, step = _ref2.step, localizer = _ref2.localizer, getNow2 = _ref2.getNow, resource = _ref2.resource, components = _ref2.components, getters = _ref2.getters, gutterRef = _ref2.gutterRef;
-    var _useMemo = (0, import_react77.useMemo)(function() {
+    var _useMemo = (0, import_react83.useMemo)(function() {
       return adjustForDST({
         min: min3,
         max: max3,
         localizer
       });
     }, [min3 === null || min3 === void 0 ? void 0 : min3.toISOString(), max3 === null || max3 === void 0 ? void 0 : max3.toISOString(), localizer]), start2 = _useMemo.start, end2 = _useMemo.end;
-    var _useState = (0, import_react77.useState)(getSlotMetrics({
+    var _useState = (0, import_react83.useState)(getSlotMetrics({
       min: start2,
       max: end2,
       timeslots,
       step,
       localizer
     })), _useState2 = _slicedToArray2(_useState, 2), slotMetrics = _useState2[0], setSlotMetrics = _useState2[1];
-    (0, import_react77.useEffect)(function() {
+    (0, import_react83.useEffect)(function() {
       if (slotMetrics) {
         setSlotMetrics(slotMetrics.update({
           min: start2,
@@ -55198,19 +55771,19 @@ cursor: pointer;
         }));
       }
     }, [start2 === null || start2 === void 0 ? void 0 : start2.toISOString(), end2 === null || end2 === void 0 ? void 0 : end2.toISOString(), timeslots, step]);
-    var renderSlot = (0, import_react77.useCallback)(function(value, idx) {
+    var renderSlot = (0, import_react83.useCallback)(function(value, idx) {
       if (idx)
         return null;
       var isNow = slotMetrics.dateIsInGroup(getNow2(), idx);
-      return /* @__PURE__ */ import_react77.default.createElement("span", {
+      return /* @__PURE__ */ import_react83.default.createElement("span", {
         className: clsx_m_default("rbc-label", isNow && "rbc-now")
       }, localizer.format(value, "timeGutterFormat"));
     }, [slotMetrics, localizer, getNow2]);
-    return /* @__PURE__ */ import_react77.default.createElement("div", {
+    return /* @__PURE__ */ import_react83.default.createElement("div", {
       className: "rbc-time-gutter rbc-time-column",
       ref: gutterRef
     }, slotMetrics.groups.map(function(grp, idx) {
-      return /* @__PURE__ */ import_react77.default.createElement(TimeSlotGroup, {
+      return /* @__PURE__ */ import_react83.default.createElement(TimeSlotGroup, {
         key: idx,
         group: grp,
         resource,
@@ -55220,14 +55793,14 @@ cursor: pointer;
       });
     }));
   };
-  var TimeGutter$1 = /* @__PURE__ */ import_react77.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react77.default.createElement(TimeGutter, Object.assign({
+  var TimeGutter$1 = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react83.default.createElement(TimeGutter, Object.assign({
       gutterRef: ref
     }, props));
   });
   var ResourceHeader = function ResourceHeader2(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react77.default.createElement(import_react77.default.Fragment, null, label);
+    return /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, label);
   };
   var TimeGridHeader = /* @__PURE__ */ function(_React$Component) {
     _inherits2(TimeGridHeader2, _React$Component);
@@ -55249,7 +55822,7 @@ cursor: pointer;
         var eventsToDisplay = resource ? events.filter(function(event) {
           return accessors.resource(event) === resourceId;
         }) : events;
-        return /* @__PURE__ */ import_react77.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
           isAllDay: true,
           rtl,
           getNow: getNow2,
@@ -55284,22 +55857,22 @@ cursor: pointer;
           var drilldownView = getDrilldownView(date2);
           var label = localizer.format(date2, "dayFormat");
           var _dayProp = dayProp(date2), className = _dayProp.className, style2 = _dayProp.style;
-          var header = /* @__PURE__ */ import_react77.default.createElement(HeaderComponent, {
+          var header = /* @__PURE__ */ import_react83.default.createElement(HeaderComponent, {
             date: date2,
             label,
             localizer
           });
-          return /* @__PURE__ */ import_react77.default.createElement("div", {
+          return /* @__PURE__ */ import_react83.default.createElement("div", {
             key: i2,
             style: style2,
             className: clsx_m_default("rbc-header", className, localizer.isSameDate(date2, today) && "rbc-today")
-          }, drilldownView ? /* @__PURE__ */ import_react77.default.createElement("button", {
+          }, drilldownView ? /* @__PURE__ */ import_react83.default.createElement("button", {
             type: "button",
             className: "rbc-button-link",
             onClick: function onClick(e2) {
               return _this2.handleHeaderClick(date2, drilldownView, e2);
             }
-          }, header) : /* @__PURE__ */ import_react77.default.createElement("span", null, header));
+          }, header) : /* @__PURE__ */ import_react83.default.createElement("span", null, header));
         });
       }
     }, {
@@ -55312,34 +55885,34 @@ cursor: pointer;
           style2[rtl ? "marginLeft" : "marginRight"] = "".concat(scrollbarSize(), "px");
         }
         var groupedEvents = resources.groupEvents(events);
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           style: style2,
           ref: scrollRef,
           className: clsx_m_default("rbc-time-header", isOverflowing && "rbc-overflowing")
-        }, /* @__PURE__ */ import_react77.default.createElement("div", {
+        }, /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-label rbc-time-header-gutter",
           style: {
             width,
             minWidth: width,
             maxWidth: width
           }
-        }, TimeGutterHeader && /* @__PURE__ */ import_react77.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
+        }, TimeGutterHeader && /* @__PURE__ */ import_react83.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
           var _ref2 = _slicedToArray2(_ref, 2), id = _ref2[0], resource = _ref2[1];
-          return /* @__PURE__ */ import_react77.default.createElement("div", {
+          return /* @__PURE__ */ import_react83.default.createElement("div", {
             className: "rbc-time-header-content",
             key: id || idx
-          }, resource && /* @__PURE__ */ import_react77.default.createElement("div", {
+          }, resource && /* @__PURE__ */ import_react83.default.createElement("div", {
             className: "rbc-row rbc-row-resource",
             key: "resource_".concat(idx)
-          }, /* @__PURE__ */ import_react77.default.createElement("div", {
+          }, /* @__PURE__ */ import_react83.default.createElement("div", {
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react77.default.createElement(ResourceHeaderComponent, {
+          }, /* @__PURE__ */ import_react83.default.createElement(ResourceHeaderComponent, {
             index: idx,
             label: accessors.resourceTitle(resource),
             resource
-          }))), /* @__PURE__ */ import_react77.default.createElement("div", {
+          }))), /* @__PURE__ */ import_react83.default.createElement("div", {
             className: "rbc-row rbc-time-header-cell".concat(range3.length <= 1 ? " rbc-time-header-cell-single-day" : "")
-          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react77.default.createElement(DateContentRow, {
+          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
             isAllDay: true,
             rtl,
             getNow: getNow2,
@@ -55365,7 +55938,7 @@ cursor: pointer;
       }
     }]);
     return TimeGridHeader2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   var NONE = {};
   function Resources(resources, accessors) {
     return {
@@ -55449,10 +56022,10 @@ cursor: pointer;
         gutterWidth: void 0,
         isOverflowing: null
       };
-      _this.scrollRef = /* @__PURE__ */ import_react77.default.createRef();
-      _this.contentRef = /* @__PURE__ */ import_react77.default.createRef();
+      _this.scrollRef = /* @__PURE__ */ import_react83.default.createRef();
+      _this.contentRef = /* @__PURE__ */ import_react83.default.createRef();
       _this._scrollRatio = null;
-      _this.gutterRef = /* @__PURE__ */ (0, import_react77.createRef)();
+      _this.gutterRef = /* @__PURE__ */ (0, import_react83.createRef)();
       return _this;
     }
     _createClass2(TimeGrid2, [{
@@ -55502,7 +56075,7 @@ cursor: pointer;
             var daysBackgroundEvents = (groupedBackgroundEvents.get(id) || []).filter(function(event) {
               return localizer.inRange(date2, accessors.start(event), accessors.end(event), "day");
             });
-            return /* @__PURE__ */ import_react77.default.createElement(DayColumn, Object.assign({}, _this2.props, {
+            return /* @__PURE__ */ import_react83.default.createElement(DayColumn, Object.assign({}, _this2.props, {
               localizer,
               min: localizer.merge(date2, min3),
               max: localizer.merge(date2, max3),
@@ -55544,9 +56117,9 @@ cursor: pointer;
         allDayEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: clsx_m_default("rbc-time-view", resources && "rbc-time-view-resources")
-        }, /* @__PURE__ */ import_react77.default.createElement(TimeGridHeader, {
+        }, /* @__PURE__ */ import_react83.default.createElement(TimeGridHeader, {
           range: range3,
           events: allDayEvents,
           width,
@@ -55569,11 +56142,11 @@ cursor: pointer;
           onDrillDown: this.props.onDrillDown,
           getDrilldownView: this.props.getDrilldownView,
           resizable
-        }), /* @__PURE__ */ import_react77.default.createElement("div", {
+        }), /* @__PURE__ */ import_react83.default.createElement("div", {
           ref: this.contentRef,
           className: "rbc-time-content",
           onScroll: this.handleScroll
-        }, /* @__PURE__ */ import_react77.default.createElement(TimeGutter$1, {
+        }, /* @__PURE__ */ import_react83.default.createElement(TimeGutter$1, {
           date: start2,
           ref: this.gutterRef,
           localizer,
@@ -55630,7 +56203,7 @@ cursor: pointer;
       }
     }]);
     return TimeGrid2;
-  }(import_react77.Component);
+  }(import_react83.Component);
   TimeGrid.defaultProps = {
     step: 30,
     timeslots: 2
@@ -55650,7 +56223,7 @@ cursor: pointer;
         var range3 = Day2.range(date2, {
           localizer
         });
-        return /* @__PURE__ */ import_react77.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 10,
           localizer,
@@ -55662,7 +56235,7 @@ cursor: pointer;
       }
     }]);
     return Day2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   Day.range = function(date2, _ref) {
     var localizer = _ref.localizer;
     return [localizer.startOf(date2, "day")];
@@ -55695,7 +56268,7 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$3);
         var range3 = Week2.range(date2, this.props);
-        return /* @__PURE__ */ import_react77.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -55707,7 +56280,7 @@ cursor: pointer;
       }
     }]);
     return Week2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   Week.defaultProps = TimeGrid.defaultProps;
   Week.navigate = function(date2, action, _ref) {
     var localizer = _ref.localizer;
@@ -55755,7 +56328,7 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$2);
         var range3 = workWeekRange(date2, this.props);
-        return /* @__PURE__ */ import_react77.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -55767,7 +56340,7 @@ cursor: pointer;
       }
     }]);
     return WorkWeek2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   WorkWeek.defaultProps = TimeGrid.defaultProps;
   WorkWeek.range = workWeekRange;
   WorkWeek.navigate = Week.navigate;
@@ -55783,12 +56356,12 @@ cursor: pointer;
   };
   function Agenda(_ref) {
     var accessors = _ref.accessors, components = _ref.components, date2 = _ref.date, events = _ref.events, getters = _ref.getters, length = _ref.length, localizer = _ref.localizer, onDoubleClickEvent = _ref.onDoubleClickEvent, onSelectEvent = _ref.onSelectEvent, selected = _ref.selected;
-    var headerRef = (0, import_react77.useRef)(null);
-    var dateColRef = (0, import_react77.useRef)(null);
-    var timeColRef = (0, import_react77.useRef)(null);
-    var contentRef = (0, import_react77.useRef)(null);
-    var tbodyRef = (0, import_react77.useRef)(null);
-    (0, import_react77.useEffect)(function() {
+    var headerRef = (0, import_react83.useRef)(null);
+    var dateColRef = (0, import_react83.useRef)(null);
+    var timeColRef = (0, import_react83.useRef)(null);
+    var contentRef = (0, import_react83.useRef)(null);
+    var tbodyRef = (0, import_react83.useRef)(null);
+    (0, import_react83.useEffect)(function() {
       _adjustHeader();
     });
     var renderDay = function renderDay2(day2, events2, dayKey) {
@@ -55802,20 +56375,20 @@ cursor: pointer;
         var start2 = accessors.start(event);
         var userProps = getters.eventProp(event, start2, end3, isSelected(event, selected));
         var dateLabel = idx === 0 && localizer.format(day2, "agendaDateFormat");
-        var first = idx === 0 ? /* @__PURE__ */ import_react77.default.createElement("td", {
+        var first = idx === 0 ? /* @__PURE__ */ import_react83.default.createElement("td", {
           rowSpan: events2.length,
           className: "rbc-agenda-date-cell"
-        }, AgendaDate ? /* @__PURE__ */ import_react77.default.createElement(AgendaDate, {
+        }, AgendaDate ? /* @__PURE__ */ import_react83.default.createElement(AgendaDate, {
           day: day2,
           label: dateLabel
         }) : dateLabel) : false;
-        return /* @__PURE__ */ import_react77.default.createElement("tr", {
+        return /* @__PURE__ */ import_react83.default.createElement("tr", {
           key: dayKey + "_" + idx,
           className: userProps.className,
           style: userProps.style
-        }, first, /* @__PURE__ */ import_react77.default.createElement("td", {
+        }, first, /* @__PURE__ */ import_react83.default.createElement("td", {
           className: "rbc-agenda-time-cell"
-        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react77.default.createElement("td", {
+        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react83.default.createElement("td", {
           className: "rbc-agenda-event-cell",
           onClick: function onClick(e2) {
             return onSelectEvent && onSelectEvent(event, e2);
@@ -55823,7 +56396,7 @@ cursor: pointer;
           onDoubleClick: function onDoubleClick(e2) {
             return onDoubleClickEvent && onDoubleClickEvent(event, e2);
           }
-        }, Event2 ? /* @__PURE__ */ import_react77.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
           event,
           title
         }) : title));
@@ -55851,9 +56424,9 @@ cursor: pointer;
         labelClass = "rbc-continues-prior";
       if (localizer.lt(day2, end3, "day"))
         labelClass += " rbc-continues-after";
-      return /* @__PURE__ */ import_react77.default.createElement("span", {
+      return /* @__PURE__ */ import_react83.default.createElement("span", {
         className: labelClass.trim()
-      }, TimeComponent ? /* @__PURE__ */ import_react77.default.createElement(TimeComponent, {
+      }, TimeComponent ? /* @__PURE__ */ import_react83.default.createElement(TimeComponent, {
         event,
         day: day2,
         label
@@ -55890,29 +56463,29 @@ cursor: pointer;
     events.sort(function(a2, b2) {
       return +accessors.start(a2) - +accessors.start(b2);
     });
-    return /* @__PURE__ */ import_react77.default.createElement("div", {
+    return /* @__PURE__ */ import_react83.default.createElement("div", {
       className: "rbc-agenda-view"
-    }, events.length !== 0 ? /* @__PURE__ */ import_react77.default.createElement(import_react77.default.Fragment, null, /* @__PURE__ */ import_react77.default.createElement("table", {
+    }, events.length !== 0 ? /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, /* @__PURE__ */ import_react83.default.createElement("table", {
       ref: headerRef,
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react77.default.createElement("thead", null, /* @__PURE__ */ import_react77.default.createElement("tr", null, /* @__PURE__ */ import_react77.default.createElement("th", {
+    }, /* @__PURE__ */ import_react83.default.createElement("thead", null, /* @__PURE__ */ import_react83.default.createElement("tr", null, /* @__PURE__ */ import_react83.default.createElement("th", {
       className: "rbc-header",
       ref: dateColRef
-    }, messages2.date), /* @__PURE__ */ import_react77.default.createElement("th", {
+    }, messages2.date), /* @__PURE__ */ import_react83.default.createElement("th", {
       className: "rbc-header",
       ref: timeColRef
-    }, messages2.time), /* @__PURE__ */ import_react77.default.createElement("th", {
+    }, messages2.time), /* @__PURE__ */ import_react83.default.createElement("th", {
       className: "rbc-header"
-    }, messages2.event)))), /* @__PURE__ */ import_react77.default.createElement("div", {
+    }, messages2.event)))), /* @__PURE__ */ import_react83.default.createElement("div", {
       className: "rbc-agenda-content",
       ref: contentRef
-    }, /* @__PURE__ */ import_react77.default.createElement("table", {
+    }, /* @__PURE__ */ import_react83.default.createElement("table", {
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react77.default.createElement("tbody", {
+    }, /* @__PURE__ */ import_react83.default.createElement("tbody", {
       ref: tbodyRef
     }, range3.map(function(day2, idx) {
       return renderDay(day2, events, idx);
-    }))))) : /* @__PURE__ */ import_react77.default.createElement("span", {
+    }))))) : /* @__PURE__ */ import_react83.default.createElement("span", {
       className: "rbc-agenda-empty"
     }, messages2.noEventsInRange));
   }
@@ -55986,22 +56559,22 @@ cursor: pointer;
       key: "render",
       value: function render() {
         var _this$props = this.props, messages2 = _this$props.localizer.messages, label = _this$props.label;
-        return /* @__PURE__ */ import_react77.default.createElement("div", {
+        return /* @__PURE__ */ import_react83.default.createElement("div", {
           className: "rbc-toolbar"
-        }, /* @__PURE__ */ import_react77.default.createElement("span", {
+        }, /* @__PURE__ */ import_react83.default.createElement("span", {
           className: "rbc-btn-group"
-        }, /* @__PURE__ */ import_react77.default.createElement("button", {
+        }, /* @__PURE__ */ import_react83.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.TODAY)
-        }, messages2.today), /* @__PURE__ */ import_react77.default.createElement("button", {
+        }, messages2.today), /* @__PURE__ */ import_react83.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.PREVIOUS)
-        }, messages2.previous), /* @__PURE__ */ import_react77.default.createElement("button", {
+        }, messages2.previous), /* @__PURE__ */ import_react83.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.NEXT)
-        }, messages2.next)), /* @__PURE__ */ import_react77.default.createElement("span", {
+        }, messages2.next)), /* @__PURE__ */ import_react83.default.createElement("span", {
           className: "rbc-toolbar-label"
-        }, label), /* @__PURE__ */ import_react77.default.createElement("span", {
+        }, label), /* @__PURE__ */ import_react83.default.createElement("span", {
           className: "rbc-btn-group"
         }, this.viewNamesGroup(messages2)));
       }
@@ -56013,7 +56586,7 @@ cursor: pointer;
         var view = this.props.view;
         if (viewNames2.length > 1) {
           return viewNames2.map(function(name) {
-            return /* @__PURE__ */ import_react77.default.createElement("button", {
+            return /* @__PURE__ */ import_react83.default.createElement("button", {
               type: "button",
               key: name,
               className: clsx_m_default({
@@ -56026,7 +56599,7 @@ cursor: pointer;
       }
     }]);
     return Toolbar2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   function accessor(data, field) {
     var value = null;
     if (typeof field === "function")
@@ -56173,10 +56746,10 @@ cursor: pointer;
           localizer,
           length
         });
-        return /* @__PURE__ */ import_react77.default.createElement("div", Object.assign({}, elementProps, {
+        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, elementProps, {
           className: clsx_m_default(className, "rbc-calendar", props.rtl && "rbc-rtl"),
           style: style2
-        }), toolbar && /* @__PURE__ */ import_react77.default.createElement(CalToolbar, {
+        }), toolbar && /* @__PURE__ */ import_react83.default.createElement(CalToolbar, {
           date: current,
           view,
           views: viewNames2,
@@ -56184,7 +56757,7 @@ cursor: pointer;
           onView: this.handleViewChange,
           onNavigate: this.handleNavigate,
           localizer
-        }), /* @__PURE__ */ import_react77.default.createElement(View4, Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react83.default.createElement(View4, Object.assign({}, props, {
           events,
           backgroundEvents,
           date: current,
@@ -56261,7 +56834,7 @@ cursor: pointer;
       }
     }]);
     return Calendar2;
-  }(import_react77.default.Component);
+  }(import_react83.default.Component);
   Calendar.defaultProps = {
     events: [],
     backgroundEvents: [],
@@ -59356,78 +59929,57 @@ cursor: pointer;
   }
 
   // src/Components/ProjectsPage/CreateProjectModal.tsx
-  var import_react79 = __toESM(require_react(), 1);
-
-  // src/Components/utils/hooks/useOnClickOutside.ts
-  var import_react78 = __toESM(require_react(), 1);
-  var useOnClickOutside_default = (callback2) => {
-    const containerRef = import_react78.default.useRef(null);
-    (0, import_react78.useEffect)(() => {
-      const listener = (e2) => {
-        if (containerRef.current && !containerRef.current.contains(e2.target)) {
-          callback2();
-        }
-        return null;
-      };
-      document.body.addEventListener("click", listener);
-      return () => {
-        document.body.addEventListener("click", listener);
-      };
-    }, [callback2]);
-    return containerRef;
-  };
-
-  // src/Components/ProjectsPage/CreateProjectModal.tsx
+  var import_react84 = __toESM(require_react(), 1);
   var CreateProjectModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react79.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react79.useState)();
-    const [secondColumn, setSecondColumn] = (0, import_react79.useState)();
-    const [thirdColumn, setThirdColumn] = (0, import_react79.useState)();
+    const [activeModalTab, setActiveModalTab] = (0, import_react84.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react84.useState)();
+    const [secondColumn, setSecondColumn] = (0, import_react84.useState)();
+    const [thirdColumn, setThirdColumn] = (0, import_react84.useState)();
     const modalTabsRef = useOnClickOutside_default(() => {
       setActiveModalTab(false);
     });
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react79.default.createElement(import_react79.default.Fragment, null, /* @__PURE__ */ import_react79.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react79.default.createElement(ModalWrapp, {
+    return /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react84.default.createElement(ModalWrapp, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react79.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react79.default.createElement(ModalTitle, null, "Create Project"), /* @__PURE__ */ import_react79.default.createElement(ModalClose, {
+    }, /* @__PURE__ */ import_react84.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react84.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react84.default.createElement(ModalClose2, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react79.default.createElement(ModalBody, null, /* @__PURE__ */ import_react79.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react79.default.createElement(ModalRow, null, /* @__PURE__ */ import_react79.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react79.default.createElement(ModalInput, null, /* @__PURE__ */ import_react79.default.createElement(Input3, {
+    }, "\u2613")), /* @__PURE__ */ import_react84.default.createElement(ModalBody, null, /* @__PURE__ */ import_react84.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(Input3, {
       type: "text",
       placeholder: "Add Project Name"
-    }))), /* @__PURE__ */ import_react79.default.createElement(ModalRow, null, /* @__PURE__ */ import_react79.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react79.default.createElement(ModalInput, null, /* @__PURE__ */ import_react79.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react79.default.createElement(InputDate, {
+    }))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react84.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "Start Date",
       onBlur: (e2) => e2.target.type = "text"
-    }), /* @__PURE__ */ import_react79.default.createElement(InputDate, {
+    }), /* @__PURE__ */ import_react84.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "End Date",
       onBlur: (e2) => e2.target.type = "text"
-    })))), /* @__PURE__ */ import_react79.default.createElement(ModalRow, null, /* @__PURE__ */ import_react79.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react79.default.createElement(ModalTabs, {
+    })))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalTabs, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react79.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react79.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react79.default.createElement(ArctiveModalColumnTitle, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react84.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => setFirstColumn("Springfield Storm1")
-    }, "Springfield Storm1"), /* @__PURE__ */ import_react79.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm1"), /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm2"),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2"), /* @__PURE__ */ import_react79.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm2"), /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm3"),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3")), /* @__PURE__ */ import_react79.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react79.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm3")), /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setSecondColumn("Mainline"),
       active: secondColumn === "Mainline"
-    }, "Mainline")), /* @__PURE__ */ import_react79.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react79.default.createElement(ArctiveModalColumnTitle, {
+    }, "Mainline")), /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setThirdColumn("NASSCO"),
       active: thirdColumn === "NASSCO"
-    }, "NASSCO"))))), /* @__PURE__ */ import_react79.default.createElement(ModalRow, null, /* @__PURE__ */ import_react79.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react79.default.createElement(ModalInput, null, /* @__PURE__ */ import_react79.default.createElement(Input3, {
+    }, "NASSCO"))))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(Input3, {
       type: "text"
-    })))), /* @__PURE__ */ import_react79.default.createElement(Buttons, null, /* @__PURE__ */ import_react79.default.createElement(ButtonSave, null, "Save"), /* @__PURE__ */ import_react79.default.createElement(ButtonCreate, null, "Create Project"))))));
+    })))), /* @__PURE__ */ import_react84.default.createElement(Buttons, null, /* @__PURE__ */ import_react84.default.createElement(ButtonSave, null, "Cancel"), /* @__PURE__ */ import_react84.default.createElement(ButtonCreate, null, "Create Project"))))));
   };
   var CreateProjectModal_default = CreateProjectModal;
   var ArctiveModalColumnTitle = styled_components_browser_esm_default.div`
@@ -59470,7 +60022,7 @@ cursor: pointer;
   padding: 8px 0 16px 0;
   position: relative;
 `;
-  var ContainerModal = styled_components_browser_esm_default.div`
+  var ContainerModal2 = styled_components_browser_esm_default.div`
   min-height: 100%;
   min-width: 100%;
   left: 0;
@@ -59579,15 +60131,15 @@ cursor: pointer;
   var ModalBodyContent = styled_components_browser_esm_default.div`
 
 `;
-  var ModalClose = styled_components_browser_esm_default.div`
+  var ModalClose2 = styled_components_browser_esm_default.div`
   font-size: 20px;
   cursor: pointer;
 `;
-  var ModalTitle = styled_components_browser_esm_default.div`
+  var ModalTitle2 = styled_components_browser_esm_default.div`
   font-size: 16px;
   font-weight: 500;
 `;
-  var ModalHeader = styled_components_browser_esm_default.div`
+  var ModalHeader2 = styled_components_browser_esm_default.div`
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -59637,18 +60189,18 @@ cursor: pointer;
         inspection: 32134
       }
     ];
-    const [activeTab, setActiveTab] = (0, import_react80.useState)(window.location.pathname.split("-")[1]);
-    const [tableHeight, setTableHeight] = (0, import_react80.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react80.useState)(null);
-    const [modal, setModal] = (0, import_react80.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react85.useState)(window.location.pathname.split("-")[1]);
+    const [tableHeight, setTableHeight] = (0, import_react85.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react85.useState)(null);
+    const [modal, setModal] = (0, import_react85.useState)(false);
     const history2 = useHistory();
-    const tableElement = (0, import_react80.useRef)(null);
-    const [tableDataState, setTableDataState] = (0, import_react80.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react80.useState)(false);
+    const tableElement = (0, import_react85.useRef)(null);
+    const [tableDataState, setTableDataState] = (0, import_react85.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react85.useState)(false);
     const createHeaders4 = (headers) => {
       return headers.map((item) => ({
         text: item,
-        ref: (0, import_react80.useRef)()
+        ref: (0, import_react85.useRef)()
       }));
     };
     const tableHeaders = [
@@ -59769,103 +60321,103 @@ cursor: pointer;
         up_down_ind: "Y"
       }
     ];
-    return /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("div", null, /* @__PURE__ */ import_react80.default.createElement(Header_default, null), /* @__PURE__ */ import_react80.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react80.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react80.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react80.default.createElement(Button, {
+    return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement(Header_default, null), /* @__PURE__ */ import_react85.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react85.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react85.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react85.default.createElement(Button, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react80.default.createElement("span", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react80.default.createElement(Tabs, null, /* @__PURE__ */ import_react80.default.createElement(Tab, {
+    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react85.default.createElement(Tabs, null, /* @__PURE__ */ import_react85.default.createElement(Tab, {
       onClick: () => {
         setActiveTab("card");
         history2.push("/projects-card");
       }
-    }, /* @__PURE__ */ import_react80.default.createElement("span", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", {
       className: activeTab === "card" ? "Active" : "UnActive"
-    }, "Cards")), /* @__PURE__ */ import_react80.default.createElement(Tab, {
+    }, "Cards")), /* @__PURE__ */ import_react85.default.createElement(Tab, {
       onClick: () => {
         setActiveTab("list");
         history2.push("/projects-list");
       }
-    }, /* @__PURE__ */ import_react80.default.createElement("span", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", {
       className: activeTab === "list" ? "Active" : "UnActive"
-    }, "List")), /* @__PURE__ */ import_react80.default.createElement(Tab, {
+    }, "List")), /* @__PURE__ */ import_react85.default.createElement(Tab, {
       onClick: () => {
         setActiveTab("calendar");
         history2.push("/projects-calendar");
       }
-    }, /* @__PURE__ */ import_react80.default.createElement("span", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", {
       className: activeTab === "calendar" ? "Active" : "UnActive"
-    }, "Calendar"))), /* @__PURE__ */ import_react80.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react80.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react80.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react80.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react80.default.createElement(Donut, null, /* @__PURE__ */ import_react80.default.createElement(Doughnut, {
+    }, "Calendar"))), /* @__PURE__ */ import_react85.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react85.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react85.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react85.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react85.default.createElement(Donut, null, /* @__PURE__ */ import_react85.default.createElement(Doughnut, {
       data
-    })), /* @__PURE__ */ import_react80.default.createElement(Wrap, null, /* @__PURE__ */ import_react80.default.createElement(Test, null, /* @__PURE__ */ import_react80.default.createElement(Assets4, null, /* @__PURE__ */ import_react80.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react80.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react80.default.createElement(Assigned, null, /* @__PURE__ */ import_react80.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react80.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react80.default.createElement(Distanse, null, /* @__PURE__ */ import_react80.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react80.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react80.default.createElement("div", null, /* @__PURE__ */ import_react80.default.createElement("div", {
+    })), /* @__PURE__ */ import_react85.default.createElement(Wrap, null, /* @__PURE__ */ import_react85.default.createElement(Test, null, /* @__PURE__ */ import_react85.default.createElement(Assets4, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react85.default.createElement(Assigned, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react85.default.createElement(Distanse, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react80.default.createElement("div", {
+    }, /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react80.default.createElement("div", {
+    }, /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react80.default.createElement("table", {
+    }, /* @__PURE__ */ import_react85.default.createElement("table", {
       className: "resizeable-table-project",
       ref: tableElement
-    }, /* @__PURE__ */ import_react80.default.createElement("thead", null, /* @__PURE__ */ import_react80.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("th", {
+    }, /* @__PURE__ */ import_react85.default.createElement("thead", null, /* @__PURE__ */ import_react85.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react80.default.createElement("span", null, /* @__PURE__ */ import_react80.default.createElement("input", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", null, /* @__PURE__ */ import_react85.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react80.default.createElement(FilterWrapper3, {
+    }, /* @__PURE__ */ import_react85.default.createElement(FilterWrapper3, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react80.default.createElement("span", null, text), /* @__PURE__ */ import_react80.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react80.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react85.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react80.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react85.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react80.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react85.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react80.default.createElement("span", null, text), /* @__PURE__ */ import_react80.default.createElement("div", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react80.default.createElement("span", null, text), /* @__PURE__ */ import_react80.default.createElement("div", {
+    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react80.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react80.default.createElement(import_react80.default.Fragment, null, /* @__PURE__ */ import_react80.default.createElement("tr", null, /* @__PURE__ */ import_react80.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react85.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react80.default.createElement("input", {
+      }, /* @__PURE__ */ import_react85.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react80.default.createElement("tr", null, /* @__PURE__ */ import_react80.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react80.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react80.default.createElement("tr", null, /* @__PURE__ */ import_react80.default.createElement("td", {
+      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react80.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react80.default.createElement("tr", null, /* @__PURE__ */ import_react80.default.createElement("td", {
+      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react80.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react80.default.createElement("tr", null, /* @__PURE__ */ import_react80.default.createElement("td", {
+      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react80.default.createElement("span", null, item.AssetsId))));
-    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react80.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react80.default.createElement(Calendar$1, {
+      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))));
+    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react85.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react85.default.createElement(Calendar$1, {
       localizer,
       events,
       views: ["month"],
       defaultDate: new Date(2022, 7, 8)
-    })), modal && /* @__PURE__ */ import_react80.default.createElement("div", null, /* @__PURE__ */ import_react80.default.createElement(CreateProjectModal_default, {
+    })), modal && /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement(CreateProjectModal_default, {
       setModal,
       modal
     }))));
@@ -59989,20 +60541,20 @@ cursor: pointer;
 `;
 
   // src/Pages/InspectionPage.tsx
-  var import_react85 = __toESM(require_react(), 1);
+  var import_react90 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/InspectionSelects.tsx
-  var import_react81 = __toESM(require_react(), 1);
+  var import_react86 = __toESM(require_react(), 1);
   var InspectionSelects = () => {
-    const [select1, setSelect1] = (0, import_react81.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react81.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react81.useState)("NASSCO v6 Springfield");
+    const [select1, setSelect1] = (0, import_react86.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react86.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react86.useState)("NASSCO v6 Springfield");
     const [hoverRef, isHovered] = useHover();
     const [hoverRef2, isHovered2] = useHover();
     const [hoverRef3, isHovered3] = useHover();
-    const [hover_1, setHover_1] = (0, import_react81.useState)(false);
-    const [hover_2, setHover_2] = (0, import_react81.useState)(false);
-    const [hover_3, setHover_3] = (0, import_react81.useState)(false);
+    const [hover_1, setHover_1] = (0, import_react86.useState)(false);
+    const [hover_2, setHover_2] = (0, import_react86.useState)(false);
+    const [hover_3, setHover_3] = (0, import_react86.useState)(false);
     const HandleMouseEnter_1 = () => {
       setHover_1(true);
     };
@@ -60021,33 +60573,33 @@ cursor: pointer;
     const HandleMouseLeave_3 = () => {
       setHover_3(false);
     };
-    return /* @__PURE__ */ import_react81.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react81.default.createElement(Select13, {
+    return /* @__PURE__ */ import_react86.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react86.default.createElement(Select13, {
       onMouseEnter: HandleMouseEnter_1,
       onMouseLeave: HandleMouseLeave_1
-    }, /* @__PURE__ */ import_react81.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react81.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react81.default.createElement(ArrowDownIcon_default, null)), hover_1 && /* @__PURE__ */ import_react81.default.createElement(HoverItemWrapper4, null, /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react86.default.createElement(SelectItem4, null, select1), /* @__PURE__ */ import_react86.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react86.default.createElement(ArrowDownIcon_default, null)), hover_1 && /* @__PURE__ */ import_react86.default.createElement(HoverItemWrapper4, null, /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, "All systems"), /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react81.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react81.default.createElement(Select23, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react86.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react86.default.createElement(Select23, {
       onMouseEnter: HandleMouseEnter_2,
       onMouseLeave: HandleMouseLeave_2
-    }, /* @__PURE__ */ import_react81.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react81.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react81.default.createElement(ArrowDownIcon_default, null)), hover_2 && /* @__PURE__ */ import_react81.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react86.default.createElement(SelectItem4, null, select2), /* @__PURE__ */ import_react86.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react86.default.createElement(ArrowDownIcon_default, null)), hover_2 && /* @__PURE__ */ import_react86.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, "All assets types"), /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react81.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react81.default.createElement(Select3, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react86.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react86.default.createElement(Select3, {
       onMouseEnter: HandleMouseEnter_3,
       onMouseLeave: HandleMouseLeave_3
-    }, /* @__PURE__ */ import_react81.default.createElement(SelectItem3, null, select3), /* @__PURE__ */ import_react81.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react81.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react81.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react86.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react86.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react86.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react86.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect3("All templates")
-    }, "All templates"), /* @__PURE__ */ import_react81.default.createElement(HoverItem4, {
+    }, "All templates"), /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect3("NASSCO v6 Springfield")
     }, "NASSCO v6 Springfield"))));
   };
   var InspectionSelects_default = InspectionSelects;
-  var Wrapper11 = styled_components_browser_esm_default.div`
+  var Wrapper12 = styled_components_browser_esm_default.div`
     display: flex;
   align-items: flex-start;
   position: relative;
@@ -60139,21 +60691,21 @@ padding-bottom: 25px;
   var IconWrapp7 = styled_components_browser_esm_default.div`
     padding: 0 5px;
 `;
-  var SelectItem3 = styled_components_browser_esm_default.div`
+  var SelectItem4 = styled_components_browser_esm_default.div`
   font-size: 16px;
   display: flex;
   align-items: flex-start;
 `;
 
   // src/Components/InspectionPage/TableInspection.tsx
-  var import_react84 = __toESM(require_react(), 1);
+  var import_react89 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/TableInspectionContent.tsx
-  var import_react82 = __toESM(require_react(), 1);
+  var import_react87 = __toESM(require_react(), 1);
   var createHeaders2 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react82.useRef)()
+      ref: (0, import_react87.useRef)()
     }));
   };
   var TableInspectionContent = ({ headers, minCellWidth }) => {
@@ -60201,20 +60753,20 @@ padding-bottom: 25px;
         inspection: 3213456785
       }
     ];
-    const [tableHeight, setTableHeight] = (0, import_react82.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react82.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react82.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react82.useState)(false);
-    const [activeFilterN, setActiveFilterN] = (0, import_react82.useState)([]);
-    const tableElement = (0, import_react82.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react87.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react87.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react87.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react87.useState)(false);
+    const [activeFilterN, setActiveFilterN] = (0, import_react87.useState)([]);
+    const tableElement = (0, import_react87.useRef)(null);
     const columns = createHeaders2(headers);
-    (0, import_react82.useEffect)(() => {
+    (0, import_react87.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react82.useCallback)((e2) => {
+    const mouseMove = (0, import_react87.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -60226,15 +60778,15 @@ padding-bottom: 25px;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react82.useCallback)(() => {
+    const removeListeners = (0, import_react87.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react82.useCallback)(() => {
+    const mouseUp = (0, import_react87.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react82.useEffect)(() => {
+    (0, import_react87.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -60272,60 +60824,60 @@ padding-bottom: 25px;
       setActiveFilter(!activeFilter);
       console.log(sorted, "sorted");
     };
-    return /* @__PURE__ */ import_react82.default.createElement("div", {
+    return /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react82.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react82.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react82.default.createElement("table", {
+    }, /* @__PURE__ */ import_react87.default.createElement("table", {
       className: "resizeable-table",
       ref: tableElement
-    }, /* @__PURE__ */ import_react82.default.createElement("thead", null, /* @__PURE__ */ import_react82.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("th", {
+    }, /* @__PURE__ */ import_react87.default.createElement("thead", null, /* @__PURE__ */ import_react87.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react82.default.createElement("span", null, /* @__PURE__ */ import_react82.default.createElement("input", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, /* @__PURE__ */ import_react87.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react82.default.createElement(FilterWrapper4, {
+    }, /* @__PURE__ */ import_react87.default.createElement(FilterWrapper4, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react82.default.createElement("span", null, text), /* @__PURE__ */ import_react82.default.createElement(IconWrapper5, null, /* @__PURE__ */ import_react82.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement(IconWrapper5, null, /* @__PURE__ */ import_react87.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react82.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react87.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react82.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react82.default.createElement("span", null, text), /* @__PURE__ */ import_react82.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react82.default.createElement("span", null, text), /* @__PURE__ */ import_react82.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react82.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react87.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react82.default.createElement("input", {
+      }, /* @__PURE__ */ import_react87.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react82.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("td", null, /* @__PURE__ */ import_react82.default.createElement("span", null, item.inspection))));
+      }, /* @__PURE__ */ import_react87.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", null, /* @__PURE__ */ import_react87.default.createElement("span", null, item.inspection))));
     }))))));
   };
   var TableInspectionContent_default = TableInspectionContent;
@@ -60350,7 +60902,7 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/CreateInspectionModal.tsx
-  var import_react83 = __toESM(require_react(), 1);
+  var import_react88 = __toESM(require_react(), 1);
 
   // node_modules/reselect/es/defaultMemoize.js
   var NOT_FOUND = "NOT_FOUND";
@@ -60555,10 +61107,10 @@ padding-bottom: 25px;
 
   // src/Components/InspectionPage/CreateInspectionModal.tsx
   var CreateInspectionModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react83.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react83.useState)("Springfield Storm1");
-    const [secondColumn, setSecondColumn] = (0, import_react83.useState)("Mainline");
-    const [thirdColumn, setThirdColumn] = (0, import_react83.useState)("NASSCO v6 Springfield");
+    const [activeModalTab, setActiveModalTab] = (0, import_react88.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react88.useState)("Springfield Storm1");
+    const [secondColumn, setSecondColumn] = (0, import_react88.useState)("Mainline");
+    const [thirdColumn, setThirdColumn] = (0, import_react88.useState)("NASSCO v6 Springfield");
     const dispatch = useDispatch();
     const filter_1 = useSelector(selectHeaderFilters_1);
     const modalTabsRef = useOnClickOutside_default(() => {
@@ -60567,7 +61119,7 @@ padding-bottom: 25px;
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    (0, import_react83.useEffect)(() => {
+    (0, import_react88.useEffect)(() => {
       dispatch(setFilters(firstColumn, secondColumn, thirdColumn));
     }, [filter_1]);
     const chooseTab = (firstColumn2, secondColumn2, thirdColumn2) => {
@@ -60576,30 +61128,30 @@ padding-bottom: 25px;
       setThirdColumn(thirdColumn2);
       dispatch(setFilters(firstColumn2, secondColumn2, thirdColumn2));
     };
-    return /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, /* @__PURE__ */ import_react83.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react83.default.createElement(ModalWrapp2, {
+    return /* @__PURE__ */ import_react88.default.createElement(import_react88.default.Fragment, null, /* @__PURE__ */ import_react88.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react88.default.createElement(ModalWrapp2, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react83.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react83.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react83.default.createElement(ModalClose2, {
+    }, /* @__PURE__ */ import_react88.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react88.default.createElement(ModalTitle3, null, "Create Project"), /* @__PURE__ */ import_react88.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react83.default.createElement(ModalBody2, null, /* @__PURE__ */ import_react83.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react83.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react83.default.createElement(ModalTabs2, {
+    }, "\u2613")), /* @__PURE__ */ import_react88.default.createElement(ModalBody2, null, /* @__PURE__ */ import_react88.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react88.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react88.default.createElement(ModalTabs2, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", activeModalTab && /* @__PURE__ */ import_react83.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle2, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", activeModalTab && /* @__PURE__ */ import_react88.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react88.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react88.default.createElement(ArctiveModalColumnTitle2, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => chooseTab("Springfield Storm1", secondColumn, thirdColumn)
-    }, "Springfield Storm1"), /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm1"), /* @__PURE__ */ import_react88.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm2", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2"), /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm2"), /* @__PURE__ */ import_react88.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm3", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3")), /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm3")), /* @__PURE__ */ import_react88.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react88.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, "Mainline", thirdColumn),
       active: secondColumn === "Mainline"
-    }, "Mainline")), secondColumn !== "" && /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Mainline")), secondColumn !== "" && /* @__PURE__ */ import_react88.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react88.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, secondColumn, "NASSCO v6 Springfield"),
       active: thirdColumn === "NASSCO v6 Springfield"
-    }, "NASSCO")))))), /* @__PURE__ */ import_react83.default.createElement(Buttons2, null, /* @__PURE__ */ import_react83.default.createElement(ButtonSave2, null, "Cancel"), /* @__PURE__ */ import_react83.default.createElement(ButtonCreate2, null, "Next"))))));
+    }, "NASSCO")))))), /* @__PURE__ */ import_react88.default.createElement(Buttons2, null, /* @__PURE__ */ import_react88.default.createElement(ButtonSave2, null, "Cancel"), /* @__PURE__ */ import_react88.default.createElement(ButtonCreate2, null, "Next"))))));
   };
   var CreateInspectionModal_default = CreateInspectionModal;
   var ArctiveModalColumnTitle2 = styled_components_browser_esm_default.div`
@@ -60643,7 +61195,7 @@ padding-bottom: 25px;
   padding: 8px 0 16px 0;
   position: relative;
 `;
-  var ContainerModal2 = styled_components_browser_esm_default.div`
+  var ContainerModal3 = styled_components_browser_esm_default.div`
   min-height: 100%;
   min-width: 100%;
   left: 0;
@@ -60752,15 +61304,15 @@ padding-bottom: 25px;
   var ModalBodyContent2 = styled_components_browser_esm_default.div`
 
 `;
-  var ModalClose2 = styled_components_browser_esm_default.div`
+  var ModalClose3 = styled_components_browser_esm_default.div`
   font-size: 20px;
   cursor: pointer;
 `;
-  var ModalTitle2 = styled_components_browser_esm_default.div`
+  var ModalTitle3 = styled_components_browser_esm_default.div`
   font-size: 16px;
   font-weight: 500;
 `;
-  var ModalHeader2 = styled_components_browser_esm_default.div`
+  var ModalHeader3 = styled_components_browser_esm_default.div`
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -60770,7 +61322,8 @@ padding-bottom: 25px;
 
   // src/Components/InspectionPage/TableInspection.tsx
   var TableInspection = () => {
-    const [modal, setModal] = (0, import_react84.useState)(false);
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react89.useState)(false);
+    const [modal, setModal] = (0, import_react89.useState)(false);
     const tableHeaders = [
       "checkbox",
       "Items",
@@ -60781,29 +61334,80 @@ padding-bottom: 25px;
       "tes2",
       "tes3"
     ];
-    return /* @__PURE__ */ import_react84.default.createElement("div", null, /* @__PURE__ */ import_react84.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react84.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react84.default.createElement(Button2, {
+    const filterRef = useOnClickOutside_default(() => {
+      setIsOpenFilter(false);
+    });
+    return /* @__PURE__ */ import_react89.default.createElement("div", null, /* @__PURE__ */ import_react89.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react89.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react89.default.createElement(Button2, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react84.default.createElement("span", {
+    }, /* @__PURE__ */ import_react89.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react84.default.createElement(TableWrapper2, null, /* @__PURE__ */ import_react84.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react84.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react84.default.createElement(Collection2, null, /* @__PURE__ */ import_react84.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react84.default.createElement(Folder_default, {
+    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react89.default.createElement(TableWrapper2, null, /* @__PURE__ */ import_react89.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react89.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react89.default.createElement(Collection2, null, /* @__PURE__ */ import_react89.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react89.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection"), /* @__PURE__ */ import_react84.default.createElement(Assets5, null, "651 Inspections")), /* @__PURE__ */ import_react84.default.createElement(RightSide3, null, /* @__PURE__ */ import_react84.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react84.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react84.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react84.default.createElement(FilterWrapper5, null, /* @__PURE__ */ import_react84.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react84.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react84.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react84.default.createElement(Number4, null, "0")), /* @__PURE__ */ import_react84.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react84.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react84.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react84.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react84.default.createElement(Settings2, null, /* @__PURE__ */ import_react84.default.createElement(SettingsIcon_default, {
+    })), "Collection", /* @__PURE__ */ import_react89.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react89.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react89.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react89.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react89.default.createElement(Assets5, null, "651 Inspections")), /* @__PURE__ */ import_react89.default.createElement(RightSide3, null, /* @__PURE__ */ import_react89.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react89.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react89.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react89.default.createElement(FilterWrapper5, {
+      onClick: () => setIsOpenFilter(true),
+      ref: filterRef
+    }, /* @__PURE__ */ import_react89.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react89.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react89.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react89.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react89.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react89.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react89.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react89.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react89.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react89.default.createElement(Settings2, null, /* @__PURE__ */ import_react89.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })))), /* @__PURE__ */ import_react84.default.createElement(TableInspectionContent_default, {
+    })))), /* @__PURE__ */ import_react89.default.createElement(TableInspectionContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
-    })), modal && /* @__PURE__ */ import_react84.default.createElement("div", null, /* @__PURE__ */ import_react84.default.createElement(CreateInspectionModal_default, {
+    })), modal && /* @__PURE__ */ import_react89.default.createElement("div", null, /* @__PURE__ */ import_react89.default.createElement(CreateInspectionModal_default, {
       setModal,
       modal
     })));
   };
   var TableInspection_default = TableInspection;
+  var HoverItem5 = styled_components_browser_esm_default.div`
+  padding: 10px 7px;
+  color: black;
+  font-size: 14px;
+
+  &:hover {
+    background-color: rgb(217, 217, 217);
+  }
+
+
+`;
+  var Collection2 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 3px 10px;
+  font-size: 14px;
+
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`;
+  var TextHover2 = styled_components_browser_esm_default.div`
+  font-size: 14px;
+  padding: 10px 7px;
+  cursor: not-allowed;
+`;
+  var HoverWrapper2 = styled_components_browser_esm_default.div`
+  position: absolute;
+  top: 205px;
+  z-index: 3;
+  left: 24px;
+  display: none;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+
+  ${Collection2}:hover & {
+    display: block;
+  }
+`;
   var Title4 = styled_components_browser_esm_default.div`
   font-size: 24px;
   font-weight: 500;
@@ -60850,7 +61454,7 @@ padding-bottom: 25px;
   display: flex;
   align-items: center;
 `;
-  var FilterTitle2 = styled_components_browser_esm_default.div`
+  var FilterTitle3 = styled_components_browser_esm_default.div`
   padding: 0 5px;
 `;
   var Number4 = styled_components_browser_esm_default.div`
@@ -60868,6 +61472,10 @@ padding-bottom: 25px;
   border: 1px solid #ccc;
   padding-left: 5px;
   cursor: pointer;
+  position: relative;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `;
   var AddToCollection2 = styled_components_browser_esm_default.div`
   font-size: 14px;
@@ -60895,15 +61503,6 @@ padding-bottom: 25px;
   display: flex;
   align-items: center;
 `;
-  var Collection2 = styled_components_browser_esm_default.div`
-    display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 3px 10px;
-  font-size: 14px;
-`;
   var TableUtils2 = styled_components_browser_esm_default.div`
   padding: 10px 24px;
   display: flex;
@@ -60917,23 +61516,23 @@ padding-bottom: 25px;
 
   // src/Pages/InspectionPage.tsx
   var InspectionPage = () => {
-    return /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement(Header_default, null), /* @__PURE__ */ import_react85.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react85.default.createElement(TableInspection_default, null));
+    return /* @__PURE__ */ import_react90.default.createElement("div", null, /* @__PURE__ */ import_react90.default.createElement(Header_default, null), /* @__PURE__ */ import_react90.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react90.default.createElement(TableInspection_default, null));
   };
   var InspectionPage_default = InspectionPage;
 
   // src/Pages/DeliverablesPage.tsx
-  var import_react93 = __toESM(require_react(), 1);
+  var import_react98 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/DeliverableTable.tsx
-  var import_react91 = __toESM(require_react(), 1);
+  var import_react96 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/TableDeliverableContent.tsx
-  var import_react90 = __toESM(require_react(), 1);
+  var import_react95 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/DeliverableIcons/CopyIcon.tsx
-  var import_react86 = __toESM(require_react(), 1);
+  var import_react91 = __toESM(require_react(), 1);
   var CopyIcon = () => {
-    return /* @__PURE__ */ import_react86.default.createElement("svg", {
+    return /* @__PURE__ */ import_react91.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "copy",
@@ -60941,16 +61540,16 @@ padding-bottom: 25px;
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react86.default.createElement("path", {
+    }, /* @__PURE__ */ import_react91.default.createElement("path", {
       d: "M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
     }));
   };
   var CopyIcon_default = CopyIcon;
 
   // src/Components/common/icons/DeliverableIcons/RegenerateIcon.tsx
-  var import_react87 = __toESM(require_react(), 1);
+  var import_react92 = __toESM(require_react(), 1);
   var RegenerateIcon = () => {
-    return /* @__PURE__ */ import_react87.default.createElement("svg", {
+    return /* @__PURE__ */ import_react92.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "redo",
@@ -60958,16 +61557,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react87.default.createElement("path", {
+    }, /* @__PURE__ */ import_react92.default.createElement("path", {
       d: "M758.2 839.1C851.8 765.9 912 651.9 912 523.9 912 303 733.5 124.3 512.6 124 291.4 123.7 112 302.8 112 523.9c0 125.2 57.5 236.9 147.6 310.2 3.5 2.8 8.6 2.2 11.4-1.3l39.4-50.5c2.7-3.4 2.1-8.3-1.2-11.1-8.1-6.6-15.9-13.7-23.4-21.2a318.64 318.64 0 01-68.6-101.7C200.4 609 192 567.1 192 523.9s8.4-85.1 25.1-124.5c16.1-38.1 39.2-72.3 68.6-101.7 29.4-29.4 63.6-52.5 101.7-68.6C426.9 212.4 468.8 204 512 204s85.1 8.4 124.5 25.1c38.1 16.1 72.3 39.2 101.7 68.6 29.4 29.4 52.5 63.6 68.6 101.7 16.7 39.4 25.1 81.3 25.1 124.5s-8.4 85.1-25.1 124.5a318.64 318.64 0 01-68.6 101.7c-9.3 9.3-19.1 18-29.3 26L668.2 724a8 8 0 00-14.1 3l-39.6 162.2c-1.2 5 2.6 9.9 7.7 9.9l167 .8c6.7 0 10.5-7.7 6.3-12.9l-37.3-47.9z"
     }));
   };
   var RegenerateIcon_default = RegenerateIcon;
 
   // src/Components/common/icons/DeliverableIcons/DownloadIcon.tsx
-  var import_react88 = __toESM(require_react(), 1);
+  var import_react93 = __toESM(require_react(), 1);
   var DownloadIcon = () => {
-    return /* @__PURE__ */ import_react88.default.createElement("svg", {
+    return /* @__PURE__ */ import_react93.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "download",
@@ -60975,16 +61574,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react88.default.createElement("path", {
+    }, /* @__PURE__ */ import_react93.default.createElement("path", {
       d: "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
     }));
   };
   var DownloadIcon_default = DownloadIcon;
 
   // src/Components/common/icons/DeliverableIcons/ArchiveIcon.tsx
-  var import_react89 = __toESM(require_react(), 1);
+  var import_react94 = __toESM(require_react(), 1);
   var ArchiveIcon = () => {
-    return /* @__PURE__ */ import_react89.default.createElement("svg", {
+    return /* @__PURE__ */ import_react94.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "delete",
@@ -60992,7 +61591,7 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react89.default.createElement("path", {
+    }, /* @__PURE__ */ import_react94.default.createElement("path", {
       d: "M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
     }));
   };
@@ -61002,7 +61601,7 @@ padding-bottom: 25px;
   var createHeaders3 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react90.useRef)()
+      ref: (0, import_react95.useRef)()
     }));
   };
   var TableDeliverableContent = ({ headers, minCellWidth }) => {
@@ -61044,14 +61643,14 @@ padding-bottom: 25px;
         }
       }
     ];
-    const [tableHeight, setTableHeight] = (0, import_react90.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react90.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react90.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react90.useState)(false);
-    const [activeFilterN, setActiveFilterN] = (0, import_react90.useState)([]);
-    const tableElement = (0, import_react90.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react95.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react95.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react95.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react95.useState)(false);
+    const [activeFilterN, setActiveFilterN] = (0, import_react95.useState)([]);
+    const tableElement = (0, import_react95.useRef)(null);
     const columns = createHeaders3(headers);
-    (0, import_react90.useEffect)(() => {
+    (0, import_react95.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const mouseDown = (index2) => {
@@ -61084,72 +61683,72 @@ padding-bottom: 25px;
       const sorted = sortUtil(withoutNone, (item) => item.inspection, "desc" /* DESCENDING */, "number" /* Number */);
       setActiveFilter(!activeFilter);
     };
-    return /* @__PURE__ */ import_react90.default.createElement("div", {
+    return /* @__PURE__ */ import_react95.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react95.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react95.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react90.default.createElement("table", {
+    }, /* @__PURE__ */ import_react95.default.createElement("table", {
       className: "deliverables-table",
       ref: tableElement
-    }, /* @__PURE__ */ import_react90.default.createElement("thead", null, /* @__PURE__ */ import_react90.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+    }, /* @__PURE__ */ import_react95.default.createElement("thead", null, /* @__PURE__ */ import_react95.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react95.default.createElement(import_react95.default.Fragment, null, /* @__PURE__ */ import_react95.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
+    }, /* @__PURE__ */ import_react95.default.createElement("span", null, /* @__PURE__ */ import_react95.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react95.default.createElement(import_react95.default.Fragment, null, /* @__PURE__ */ import_react95.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react90.default.createElement(FilterWrapper6, {
+    }, /* @__PURE__ */ import_react95.default.createElement(FilterWrapper6, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, text), /* @__PURE__ */ import_react90.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react90.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react95.default.createElement("span", null, text), /* @__PURE__ */ import_react95.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react95.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react90.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react95.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react90.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react95.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react95.default.createElement(import_react95.default.Fragment, null, /* @__PURE__ */ import_react95.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, text), /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react95.default.createElement("span", null, text), /* @__PURE__ */ import_react95.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react95.default.createElement(import_react95.default.Fragment, null, /* @__PURE__ */ import_react95.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, text), /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react95.default.createElement("span", null, text), /* @__PURE__ */ import_react95.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react90.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react95.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react95.default.createElement(import_react95.default.Fragment, null, /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react90.default.createElement("input", {
+      }, /* @__PURE__ */ import_react95.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react90.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", null, /* @__PURE__ */ import_react90.default.createElement("span", {
+      }, /* @__PURE__ */ import_react95.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", null, /* @__PURE__ */ import_react95.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", null, /* @__PURE__ */ import_react95.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", null, /* @__PURE__ */ import_react95.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", null, /* @__PURE__ */ import_react95.default.createElement("span", {
         style: { color: "#1890FF", display: "flex", alignItems: "center", cursor: "pointer" }
-      }, /* @__PURE__ */ import_react90.default.createElement("div", {
+      }, /* @__PURE__ */ import_react95.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react90.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement("td", {
+      }, /* @__PURE__ */ import_react95.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", null, /* @__PURE__ */ import_react95.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react95.default.createElement("tr", null, /* @__PURE__ */ import_react95.default.createElement("td", {
         className: "Many-Items"
-      }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("div", {
+      }, /* @__PURE__ */ import_react95.default.createElement("span", null, /* @__PURE__ */ import_react95.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react90.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("div", {
+      }, /* @__PURE__ */ import_react95.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react95.default.createElement("span", null, /* @__PURE__ */ import_react95.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react90.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("div", {
+      }, /* @__PURE__ */ import_react95.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react95.default.createElement("span", null, /* @__PURE__ */ import_react95.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react90.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
+      }, /* @__PURE__ */ import_react95.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
     }))))));
   };
   var TableDeliverableContent_default = TableDeliverableContent;
@@ -61185,7 +61784,7 @@ padding-bottom: 25px;
       "Downloads #",
       "Actions"
     ];
-    return /* @__PURE__ */ import_react91.default.createElement("div", null, /* @__PURE__ */ import_react91.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react91.default.createElement(TableDeliverableContent_default, {
+    return /* @__PURE__ */ import_react96.default.createElement("div", null, /* @__PURE__ */ import_react96.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react96.default.createElement(TableDeliverableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -61218,7 +61817,7 @@ padding-bottom: 25px;
   display: flex;
   align-items: center;
 `;
-  var FilterTitle3 = styled_components_browser_esm_default.div`
+  var FilterTitle4 = styled_components_browser_esm_default.div`
   padding: 0 5px;
 `;
   var Number5 = styled_components_browser_esm_default.div`
@@ -61283,21 +61882,21 @@ padding-bottom: 25px;
 `;
 
   // src/Components/DeliverablePage/CreateDeliverableModal.tsx
-  var import_react92 = __toESM(require_react(), 1);
+  var import_react97 = __toESM(require_react(), 1);
   var CreateDeliverableModal = ({ setModal, modal }) => {
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react92.default.createElement(import_react92.default.Fragment, null, /* @__PURE__ */ import_react92.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react92.default.createElement(ModalWrapp3, {
+    return /* @__PURE__ */ import_react97.default.createElement(import_react97.default.Fragment, null, /* @__PURE__ */ import_react97.default.createElement(ContainerModal4, null, /* @__PURE__ */ import_react97.default.createElement(ModalWrapp3, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react92.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react92.default.createElement(ModalTitle3, null, "Create Project"), /* @__PURE__ */ import_react92.default.createElement(ModalClose3, {
+    }, /* @__PURE__ */ import_react97.default.createElement(ModalHeader4, null, /* @__PURE__ */ import_react97.default.createElement(ModalTitle4, null, "Create Project"), /* @__PURE__ */ import_react97.default.createElement(ModalClose4, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react92.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react92.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react92.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react92.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react92.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react92.default.createElement(Input5, {
+    }, "\u2613")), /* @__PURE__ */ import_react97.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react97.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react97.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react97.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react97.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react97.default.createElement(Input5, {
       type: "text",
       placeholder: "Deliverable name"
-    }))), /* @__PURE__ */ import_react92.default.createElement(Subtitle, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react92.default.createElement(Buttons3, null, /* @__PURE__ */ import_react92.default.createElement(ButtonSave3, {
+    }))), /* @__PURE__ */ import_react97.default.createElement(Subtitle2, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react97.default.createElement(Buttons3, null, /* @__PURE__ */ import_react97.default.createElement(ButtonSave3, {
       onClick: () => setModal(false)
-    }, "Cancel"), /* @__PURE__ */ import_react92.default.createElement(ButtonCreate3, {
+    }, "Cancel"), /* @__PURE__ */ import_react97.default.createElement(ButtonCreate3, {
       disabled: true
     }, "Next"))))));
   };
@@ -61313,7 +61912,7 @@ padding-bottom: 25px;
     background-color: ${({ active }) => active ? "rgba(125,194,251,0.74)" : "#f5f5f5"};
   }
 `;
-  var Subtitle = styled_components_browser_esm_default.div`
+  var Subtitle2 = styled_components_browser_esm_default.div`
     font-size: 14px;
   font-weight: 400;
 `;
@@ -61348,7 +61947,7 @@ padding-bottom: 25px;
   padding: 8px 0 0 0;
   position: relative;
 `;
-  var ContainerModal3 = styled_components_browser_esm_default.div`
+  var ContainerModal4 = styled_components_browser_esm_default.div`
   min-height: 100%;
   min-width: 100%;
   left: 0;
@@ -61457,15 +62056,15 @@ padding-bottom: 25px;
   var ModalBodyContent3 = styled_components_browser_esm_default.div`
   padding: 0px 24px 24px 24px;
 `;
-  var ModalClose3 = styled_components_browser_esm_default.div`
+  var ModalClose4 = styled_components_browser_esm_default.div`
   font-size: 20px;
   cursor: pointer;
 `;
-  var ModalTitle3 = styled_components_browser_esm_default.div`
+  var ModalTitle4 = styled_components_browser_esm_default.div`
   font-size: 16px;
   font-weight: 500;
 `;
-  var ModalHeader3 = styled_components_browser_esm_default.div`
+  var ModalHeader4 = styled_components_browser_esm_default.div`
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -61475,16 +62074,16 @@ padding-bottom: 25px;
 
   // src/Pages/DeliverablesPage.tsx
   var DeliverablesPage = () => {
-    const [modal, setModal] = (0, import_react93.useState)(false);
-    return /* @__PURE__ */ import_react93.default.createElement("div", null, /* @__PURE__ */ import_react93.default.createElement(Header_default, null), /* @__PURE__ */ import_react93.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react93.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react93.default.createElement(Button3, {
+    const [modal, setModal] = (0, import_react98.useState)(false);
+    return /* @__PURE__ */ import_react98.default.createElement("div", null, /* @__PURE__ */ import_react98.default.createElement(Header_default, null), /* @__PURE__ */ import_react98.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react98.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react98.default.createElement(Button3, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react93.default.createElement("span", {
+    }, /* @__PURE__ */ import_react98.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react93.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react93.default.createElement(CreateDeliverableModal_default, {
+    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react98.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react98.default.createElement(CreateDeliverableModal_default, {
       modal,
       setModal
     }));
@@ -61515,49 +62114,228 @@ padding-bottom: 25px;
   //background-color: white;
 `;
 
+  // src/Pages/ProfilePage.tsx
+  var import_react99 = __toESM(require_react(), 1);
+  var ProfilePage = () => {
+    const [preferences, setPreferences] = (0, import_react99.useState)(null);
+    const [preferencesOpen, setPreferencesOpen] = (0, import_react99.useState)(false);
+    const hiddenFileInput = (0, import_react99.useRef)(null);
+    const onUploadChange = (e2) => __async(void 0, null, function* () {
+      const file = e2.target.files[0];
+      const fileUrl = URL.createObjectURL(file);
+    });
+    const onAddClick = () => {
+      hiddenFileInput.current.click();
+    };
+    const preferencesRef = useOnClickOutside_default(() => {
+      setPreferencesOpen(false);
+    });
+    return /* @__PURE__ */ import_react99.default.createElement("div", null, /* @__PURE__ */ import_react99.default.createElement(Header_default, null), /* @__PURE__ */ import_react99.default.createElement(ProfileHeader, null, /* @__PURE__ */ import_react99.default.createElement(ProfileHeaderTitle, null, "My Profile"), /* @__PURE__ */ import_react99.default.createElement(SaveButton, null, "Save Profile")), /* @__PURE__ */ import_react99.default.createElement(ProfileContent, null, /* @__PURE__ */ import_react99.default.createElement(ProfileContentBody, null, /* @__PURE__ */ import_react99.default.createElement(ChoosePhoto, null, /* @__PURE__ */ import_react99.default.createElement(Input6, {
+      type: "file",
+      ref: hiddenFileInput,
+      onChange: onUploadChange,
+      id: "file",
+      name: "file",
+      accept: "image/*"
+    })), /* @__PURE__ */ import_react99.default.createElement(Photo, {
+      onClick: onAddClick
+    }, /* @__PURE__ */ import_react99.default.createElement(PhotoInitial, null, "RN")), /* @__PURE__ */ import_react99.default.createElement(Right2, null, /* @__PURE__ */ import_react99.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react99.default.createElement(ContactTitle, null, "Contact Information")), /* @__PURE__ */ import_react99.default.createElement(InputRow, null, /* @__PURE__ */ import_react99.default.createElement(InputTitle, null, "First Name: \xA0"), /* @__PURE__ */ import_react99.default.createElement(InputForm, null)), /* @__PURE__ */ import_react99.default.createElement(InputRow, null, /* @__PURE__ */ import_react99.default.createElement(InputTitle, null, "Last Name: \xA0"), /* @__PURE__ */ import_react99.default.createElement(InputForm, null)), /* @__PURE__ */ import_react99.default.createElement(ContactInfo, {
+      style: { paddingTop: "40px" }
+    }, /* @__PURE__ */ import_react99.default.createElement(ContactTitle, null, "Preferences")), /* @__PURE__ */ import_react99.default.createElement(InputRow, null, /* @__PURE__ */ import_react99.default.createElement(InputTitle, null, "Unit Preferences: \xA0"), /* @__PURE__ */ import_react99.default.createElement(Preferenses, null, /* @__PURE__ */ import_react99.default.createElement(Preview, {
+      active: preferencesOpen,
+      onClick: () => {
+        setTimeout(() => {
+          setPreferencesOpen(true);
+        }, 0.1);
+      }
+    }, preferences ? preferences : "Select", /* @__PURE__ */ import_react99.default.createElement(IconWrapp8, null, /* @__PURE__ */ import_react99.default.createElement(ArrowDownIcon_default, null))), preferencesOpen && /* @__PURE__ */ import_react99.default.createElement(MenuOpen, {
+      ref: preferencesRef
+    }, /* @__PURE__ */ import_react99.default.createElement(MenuItem2, {
+      onClick: () => {
+        setPreferencesOpen(false);
+        setPreferences("Imperial");
+      }
+    }, "Imperial"), /* @__PURE__ */ import_react99.default.createElement(MenuItem2, {
+      onClick: () => {
+        setPreferencesOpen(false);
+        setPreferences("Metric");
+      }
+    }, "Metric"))))))));
+  };
+  var ProfilePage_default = ProfilePage;
+  var Preview = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: ${(props) => props.active ? "#ccc" : "#000"};
+`;
+  var IconWrapp8 = styled_components_browser_esm_default.div`
+    margin-top: 2px;
+`;
+  var ProfileContent = styled_components_browser_esm_default.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+  var MenuOpen = styled_components_browser_esm_default.div`
+    position: absolute;
+  top: 35px;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%)
+`;
+  var MenuItem2 = styled_components_browser_esm_default.div`
+  padding: 10px;
+  &:hover {
+    background-color: #e6f7ff;
+  }
+`;
+  var Preferenses = styled_components_browser_esm_default.div`
+  border: 1px solid #d9d9d9;
+  padding: 5px 10px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  &:focus {
+    border: 1px solid #1890ff;
+  }
+  &:hover {
+    border: 1px solid #1890ff;
+  }
+`;
+  var InputForm = styled_components_browser_esm_default.input`
+  border: 1px solid #d9d9d9;
+  padding: 3px 10px;
+  width: 100%;
+  &:focus {
+    border: 1px solid #1890ff;
+  }
+  &:hover {
+    border: 1px solid #1890ff;
+  }
+`;
+  var Right2 = styled_components_browser_esm_default.div`
+    display: flex;
+  flex-direction: column;
+  width: 335px;
+`;
+  var InputRow = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  padding: 20px 0px 0px 20px;
+`;
+  var InputTitle = styled_components_browser_esm_default.div`
+  font-size: 16px;
+  width: 130px;
+  white-space: nowrap;
+`;
+  var ContactTitle = styled_components_browser_esm_default.div`
+    font-size: 18px;
+  color: rgba(0, 0, 0, 0.45);
+
+`;
+  var PhotoInitial = styled_components_browser_esm_default.div`
+  width: 32px;
+  height: 32px;
+  color: white;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+  var Photo = styled_components_browser_esm_default.div`
+  width: 100px;
+  height: 100px;
+  background-color: #f5f5f5;
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+  var Input6 = styled_components_browser_esm_default.input`
+  display: none;
+`;
+  var ProfileContentBody = styled_components_browser_esm_default.div`
+  background-color: #fff;
+  padding: 24px;
+  display: flex;
+`;
+  var ChoosePhoto = styled_components_browser_esm_default.div`
+`;
+  var ContactInfo = styled_components_browser_esm_default.div`
+  border-bottom: 1px solid #ccc;
+  padding: 5px 24px 5px 0px;
+  margin-left: 20px;
+
+`;
+  var ProfileHeader = styled_components_browser_esm_default.div`
+  display: flex;
+  padding: 24px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+`;
+  var ProfileHeaderTitle = styled_components_browser_esm_default.div`
+  font-size: 21px;
+  font-weight: 500;
+`;
+  var SaveButton = styled_components_browser_esm_default.div`
+  font-size: 18px;
+  color: white;
+  background-color: #1890ff;
+  padding: 12px;
+  cursor: pointer;
+`;
+
   // src/App.tsx
   function App() {
-    return /* @__PURE__ */ import_react94.default.createElement("div", null, /* @__PURE__ */ import_react94.default.createElement(Switch, null, /* @__PURE__ */ import_react94.default.createElement(Route, {
+    return /* @__PURE__ */ import_react100.default.createElement("div", null, /* @__PURE__ */ import_react100.default.createElement(Switch, null, /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/login",
       component: LoginPage_default
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/dashboard",
       component: DashboardPage_default
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
+      path: "/profile",
+      component: ProfilePage_default
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/assets",
       component: AssetsPage_default
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/projects-card",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/projects-list",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/projects-calendar",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/inspections",
       component: InspectionPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react94.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Route, {
       path: "/deliverables",
       component: DeliverablesPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react94.default.createElement(Redirect, {
+    }), /* @__PURE__ */ import_react100.default.createElement(Redirect, {
       to: "/login"
     })));
   }
   var App_default = App;
 
   // src/index.tsx
-  import_react_dom4.default.render(/* @__PURE__ */ import_react95.default.createElement(import_react95.StrictMode, null, /* @__PURE__ */ import_react95.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react95.default.createElement(Provider_default, {
+  import_react_dom4.default.render(/* @__PURE__ */ import_react101.default.createElement(import_react101.StrictMode, null, /* @__PURE__ */ import_react101.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react101.default.createElement(Provider_default, {
     store: store_default
-  }, /* @__PURE__ */ import_react95.default.createElement(ConnectedRouter, {
+  }, /* @__PURE__ */ import_react101.default.createElement(ConnectedRouter, {
     history
-  }, /* @__PURE__ */ import_react95.default.createElement(App_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react101.default.createElement(App_default, null))))), document.getElementById("root"));
 })();
 /*
 object-assign
