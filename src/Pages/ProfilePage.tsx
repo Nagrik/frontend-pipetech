@@ -124,8 +124,10 @@ const IconWrapp = styled.div`
 `
 
 const ProfileContent = styled.div`
-  padding: 0px 270px;
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MenuOpen = styled.div`

@@ -159,7 +159,7 @@ const Header = () => {
                         <CircleWrapper>
                             RN
                             <div className='ProfileMenu'>
-                                <ProfileMenuItem>
+                                <ProfileMenuItem onClick={() => history.push('/profile')}>
                                     <IconWrapper>
                                         <ProjectsIcon/>
                                     </IconWrapper>
