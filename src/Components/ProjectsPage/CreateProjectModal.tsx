@@ -136,10 +136,10 @@ const CreateProjectModal = ({setModal, modal}: any) => {
                         </ModalBodyContent>
                         <Buttons>
                             <ButtonSave>
-                                Save
+                                Cancel
                             </ButtonSave>
                             <ButtonCreate>
-                                Create Project
+                                Create Pr
                             </ButtonCreate>
                         </Buttons>
                     </ModalBody>
