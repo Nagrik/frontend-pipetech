@@ -8,6 +8,7 @@ import AssetsPage from "@/Pages/AssetsPage";
 import ProjectsPage from "@/Pages/ProjectsPage";
 import InspectionPage from "@/Pages/InspectionPage";
 import DeliverablesPage from "@/Pages/DeliverablesPage";
+import ProfilePage from './Pages/ProfilePage';
 
 function App () {
     return (
@@ -15,6 +16,7 @@ function App () {
         <Switch>
             <Route path="/login" component={LoginPage} />
             <Route path="/dashboard" component={DashboardPage} />
+            <Route path="/profile" component={ProfilePage} />
             <Route path="/assets" component={AssetsPage} />
             <Route path="/projects-card" component={ProjectsPage} exact />
             <Route path="/projects-list"  component={ProjectsPage} exact />

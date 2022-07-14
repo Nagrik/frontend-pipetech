@@ -9,8 +9,11 @@ import SettingsIcon from "@/Components/common/icons/SettingsIcon";
 import TableInspectionContent from "@/Components/InspectionPage/TableInspectionContent";
 import CreateProjectModal from "@/Components/ProjectsPage/CreateProjectModal";
 import CreateInspectionModal from "@/Components/InspectionPage/CreateInspectionModal";
+import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
+import TableFilter from "@/Components/TableUtils/Filter";
 
 const TableInspection = () => {
+    const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false)
     const [modal, setModal] = useState(false)
     const tableHeaders = [
         "checkbox",
@@ -22,6 +25,10 @@ const TableInspection = () => {
         "tes2",
         "tes3",
     ];
+
+    const filterRef = useOnClickOutside(() => {
+        setIsOpenFilter(false);
+    });
 
     return (
         <div>
@@ -46,6 +53,17 @@ const TableInspection = () => {
                                 <Folder color='#000'/>
                             </IconWrapper>
                             Collection
+                            <HoverWrapper>
+                                <TextHover>
+                                    Collections are like folders that store assets or inspections.
+                                </TextHover>
+                                <HoverItem>
+                                    12-19-O0+32-23-F0
+                                </HoverItem>
+                                <HoverItem>
+                                    12-19-O0+32-23-F0
+                                </HoverItem>
+                            </HoverWrapper>
                         </Collection>
                         <Assets>
                             651 Inspections
@@ -58,7 +76,7 @@ const TableInspection = () => {
                             </IconWrapper>
                             Add to collection
                         </AddToCollection>
-                        <FilterWrapper>
+                        <FilterWrapper onClick={() => setIsOpenFilter(true)} ref={filterRef}>
                             <IconWrapper>
                                 <Filter/>
                             </IconWrapper>
@@ -68,6 +86,11 @@ const TableInspection = () => {
                             <Number>
                                 0
                             </Number>
+                            {
+                                isOpenFilter && (
+                                    <TableFilter/>
+                                )
+                            }
                         </FilterWrapper>
                         <ViewWrapper>
                             <IconWrapper>
@@ -103,6 +126,55 @@ const TableInspection = () => {
 
 export default TableInspection;
 
+
+
+
+const HoverItem = styled.div`
+  padding: 10px 7px;
+  color: black;
+  font-size: 14px;
+
+  &:hover {
+    background-color: rgb(217, 217, 217);
+  }
+
+
+`
+const Collection = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 3px 10px;
+  font-size: 14px;
+
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
+`
+const TextHover = styled.div`
+  font-size: 14px;
+  padding: 10px 7px;
+  cursor: not-allowed;
+`
+
+const HoverWrapper = styled.div`
+  position: absolute;
+  top: 205px;
+  z-index: 3;
+  left: 24px;
+  display: none;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+
+  ${Collection}:hover & {
+    display: block;
+  }
+`
 
 const Title = styled.div`
   font-size: 24px;
@@ -178,6 +250,10 @@ const FilterWrapper = styled.div`
   border: 1px solid #ccc;
   padding-left: 5px;
   cursor: pointer;
+  position: relative;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `
 
 const AddToCollection = styled.div`
@@ -211,15 +287,6 @@ const IconWrapper = styled.div`
   align-items: center;
 `
 
-const Collection = styled.div`
-    display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 3px 10px;
-  font-size: 14px;
-`
 
 const TableUtils = styled.div`
   padding: 10px 24px;
