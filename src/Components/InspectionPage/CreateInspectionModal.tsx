@@ -4,13 +4,18 @@ import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import {useDispatch, useSelector} from "react-redux";
 import {selectHeaderFilters_1} from "@/store/selectors/inspection";
 import {setFilters} from "@/store/actions/inspection";
+import CreateFileIcon from "@/Components/common/icons/CreateFileIcon";
+import UploadIcon from "@/Components/common/icons/UploadIcon";
+import UploadFileIcon from "@/Components/common/icons/UploadFileIcon";
 
 const CreateInspectionModal = ({setModal, modal}: any) => {
     const [activeModalTab, setActiveModalTab] = useState<boolean>(false)
 
-    const [firstColumn, setFirstColumn] = useState<string >('Springfield Storm1');
+    const [firstColumn, setFirstColumn] = useState<string>('Springfield Storm1');
     const [secondColumn, setSecondColumn] = useState<string>('Mainline')
     const [thirdColumn, setThirdColumn] = useState<string>('NASSCO v6 Springfield')
+    const [step, setStep] = useState<number>(2)
+    const [choose, setChoose] = useState<string | null>(null)
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -29,8 +34,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     }, [filter_1])
 
 
-
-    const chooseTab = (firstColumn: string, secondColumn:string, thirdColumn:string) => {
+    const chooseTab = (firstColumn: string, secondColumn: string, thirdColumn: string) => {
         setFirstColumn(firstColumn)
         setSecondColumn(secondColumn)
         setThirdColumn(thirdColumn)
@@ -50,70 +54,118 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                         </ModalClose>
                     </ModalHeader>
                     <ModalBody>
-                        <ModalBodyContent>
-                            <ModalRow>
-                                <ModalTabs ref={modalTabsRef} active={activeModalTab}
-                                           onClick={() => setActiveModalTab(true)}>
-                                    {firstColumn || 'Springfield Storm1'} / {secondColumn || 'Mainline'} / {thirdColumn || 'NASSCO v6 Springfield'}
-                                    {
-                                        activeModalTab && (
-                                            <ActiveModalWrapper>
+                        {
+                            step === 1 && (<ModalBodyContent>
+                                <ModalRow>
+                                    <ModalTabs ref={modalTabsRef} active={activeModalTab}
+                                               onClick={() => setActiveModalTab(true)}>
+                                        {firstColumn || 'Springfield Storm1'} / {secondColumn || 'Mainline'} / {thirdColumn || 'NASSCO v6 Springfield'}
+                                        {
+                                            activeModalTab && (
+                                                <ActiveModalWrapper>
 
-                                                <ActiveModalColumn>
-                                                    <ArctiveModalColumnTitle
-                                                        active={firstColumn === 'Springfield Storm1'}
-                                                        onClick={() => chooseTab('Springfield Storm1', secondColumn, thirdColumn)}
-                                                    >
-                                                        Springfield Storm1
-                                                    </ArctiveModalColumnTitle>
-                                                    <ArctiveModalColumnTitle
-                                                        onClick={() => chooseTab('Springfield Storm2', secondColumn, thirdColumn)}
-                                                        active={firstColumn === 'Springfield Storm2'}
-                                                    >
-                                                        Springfield Storm2
-                                                    </ArctiveModalColumnTitle>
-                                                    <ArctiveModalColumnTitle
-                                                        onClick={() => chooseTab('Springfield Storm3', secondColumn, thirdColumn)}
-                                                        active={firstColumn === 'Springfield Storm3'}
-                                                    >
-                                                        Springfield Storm3
-                                                    </ArctiveModalColumnTitle>
-                                                </ActiveModalColumn>
+                                                    <ActiveModalColumn>
+                                                        <ArctiveModalColumnTitle
+                                                            active={firstColumn === 'Springfield Storm1'}
+                                                            onClick={() => chooseTab('Springfield Storm1', secondColumn, thirdColumn)}
+                                                        >
+                                                            Springfield Storm1
+                                                        </ArctiveModalColumnTitle>
+                                                        <ArctiveModalColumnTitle
+                                                            onClick={() => chooseTab('Springfield Storm2', secondColumn, thirdColumn)}
+                                                            active={firstColumn === 'Springfield Storm2'}
+                                                        >
+                                                            Springfield Storm2
+                                                        </ArctiveModalColumnTitle>
+                                                        <ArctiveModalColumnTitle
+                                                            onClick={() => chooseTab('Springfield Storm3', secondColumn, thirdColumn)}
+                                                            active={firstColumn === 'Springfield Storm3'}
+                                                        >
+                                                            Springfield Storm3
+                                                        </ArctiveModalColumnTitle>
+                                                    </ActiveModalColumn>
 
 
-                                                <ActiveModalColumn>
-                                                    <ArctiveModalColumnTitle
-                                                        onClick={() => chooseTab(firstColumn,'Mainline', thirdColumn)}
-                                                        active={secondColumn === 'Mainline'}
-                                                    >
-                                                        Mainline
-                                                    </ArctiveModalColumnTitle>
-                                                </ActiveModalColumn>
-                                                {
-                                                    secondColumn !== '' && (
-                                                        <ActiveModalColumn>
-                                                            <ArctiveModalColumnTitle
-                                                                onClick={() => chooseTab(firstColumn,secondColumn,'NASSCO v6 Springfield')}
-                                                                active={thirdColumn === 'NASSCO v6 Springfield'}
-                                                            >
-                                                                NASSCO
-                                                            </ArctiveModalColumnTitle>
-                                                        </ActiveModalColumn>
-                                                    )
+                                                    <ActiveModalColumn>
+                                                        <ArctiveModalColumnTitle
+                                                            onClick={() => chooseTab(firstColumn, 'Mainline', thirdColumn)}
+                                                            active={secondColumn === 'Mainline'}
+                                                        >
+                                                            Mainline
+                                                        </ArctiveModalColumnTitle>
+                                                    </ActiveModalColumn>
+                                                    {
+                                                        secondColumn !== '' && (
+                                                            <ActiveModalColumn>
+                                                                <ArctiveModalColumnTitle
+                                                                    onClick={() => chooseTab(firstColumn, secondColumn, 'NASSCO v6 Springfield')}
+                                                                    active={thirdColumn === 'NASSCO v6 Springfield'}
+                                                                >
+                                                                    NASSCO
+                                                                </ArctiveModalColumnTitle>
+                                                            </ActiveModalColumn>
+                                                        )
 
-                                                }
+                                                    }
 
-                                            </ActiveModalWrapper>
-                                        )
-                                    }
-                                </ModalTabs>
-                            </ModalRow>
-                        </ModalBodyContent>
+                                                </ActiveModalWrapper>
+                                            )
+                                        }
+                                    </ModalTabs>
+                                </ModalRow>
+                            </ModalBodyContent>)
+                        }
+                        {
+                            step === 2 && (
+                                <ModalBodyContent>
+                                    <ModalBodyHeader>
+                                        <ModalBodyHeaderTitle>
+                                            Do you want to upload inspection data (and/or media)?
+                                        </ModalBodyHeaderTitle>
+                                        <ModalBodyContent2>
+
+                                            <UploadMedia
+                                                active={choose === 'Upload'}
+                                                onClick={() => setChoose('Upload')}
+                                            >
+                                                <CreateIcon>
+                                                    <UploadFileIcon/>
+                                                </CreateIcon>
+                                                <CreateTitle>
+                                                    I want to upload data/media
+                                                </CreateTitle>
+                                                <CreateSubtitle>
+                                                    Create inspections from your uploaded data
+                                                    and/or media
+                                                </CreateSubtitle>
+                                            </UploadMedia>
+
+                                            <JustCreate
+                                                active={choose === 'Create'}
+                                                onClick={() => setChoose('Create')}
+                                            >
+                                                <CreateIcon>
+                                                    <CreateFileIcon/>
+                                                </CreateIcon>
+                                                <CreateTitle>
+                                                    I don't want to upload anything, just
+                                                    create inspections
+                                                </CreateTitle>
+                                                <CreateSubtitle>
+                                                    Create inspections by selecting assets
+                                                </CreateSubtitle>
+                                            </JustCreate>
+
+                                        </ModalBodyContent2>
+                                    </ModalBodyHeader>
+                                </ModalBodyContent>
+                            )
+                        }
                         <Buttons>
                             <ButtonSave>
                                 Cancel
                             </ButtonSave>
-                            <ButtonCreate>
+                            <ButtonCreate onClick={() => setStep(step + 1)}>
                                 Next
                             </ButtonCreate>
                         </Buttons>
@@ -125,6 +177,62 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
 };
 
 export default CreateInspectionModal;
+
+const CreateIcon = styled.div`
+  padding: 20px 0;
+`
+
+const CreateTitle = styled.div`
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+  line-height: 30px;
+`
+
+const CreateSubtitle = styled.div`
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  padding-top: 10px;
+  text-align: center;
+  line-height: 30px;
+
+`
+
+const UploadMedia = styled.div<{active:boolean}>`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 20px 10px 20px;
+  cursor: pointer;
+  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc' };
+`
+
+const JustCreate = styled.div<{active:boolean}>`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 20px 10px 20px;
+  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc' };
+  cursor: pointer;
+
+`
+
+const ModalBodyHeader = styled.div`
+
+`
+
+const ModalBodyContent2 = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`
+
+const ModalBodyHeaderTitle = styled.div`
+  font-size: 14px;
+`
 
 const ArctiveModalColumnTitle = styled.div<{ active: boolean }>`
   font-size: 16px;
@@ -152,6 +260,7 @@ const ButtonSave = styled.div`
   border: 1px solid #ccc;
   cursor: pointer;
   margin-right: 10px;
+
   &:hover {
     border: 1px solid #00a8ff;
     color: #00a8ff;
@@ -163,7 +272,7 @@ const ButtonCreate = styled.div`
   border: 1px solid #ccc;
   cursor: pointer;
   color: #fff;
-    background-color: #1890ff;
+  background-color: #1890ff;
 `
 
 const ModalWrapp = styled.div`

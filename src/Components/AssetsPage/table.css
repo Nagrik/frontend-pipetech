@@ -113,3 +113,13 @@ table tr td {
 .resize-handle.active {
     border-color: #517ea5;
 }
+
+
+.Items:hover .Details{
+    display:block;
+}
+
+.Details{
+    display: none;
+    cursor: pointer;
+}

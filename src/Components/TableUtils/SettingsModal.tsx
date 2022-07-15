@@ -68,15 +68,14 @@ const SettingsModal = ({setIsOpenSettings, settingsRef}:any) => {
             return item
         }))
     }
-    console.log(newArr)
     return (
         <ContainerModal>
-            <Wrapper ref={settingsRef}>
+            <Wrapper >
                 <ModalHeader>
                     <ModalTitle>
                         Column Settings
                     </ModalTitle>
-                    <ModalClose>
+                    <ModalClose onClick={() => setIsOpenSettings(false)}>
                         ☓
                     </ModalClose>
                 </ModalHeader>
@@ -99,7 +98,7 @@ const SettingsModal = ({setIsOpenSettings, settingsRef}:any) => {
                 </ColumnsHeader>
                 <Columns>
                     {
-                        newArr.map((item: any, index: number) => (
+                        newArr && newArr.map((item: any, index: number) => (
                             <Column key={index}>
                                 <ColumnTitle>
                                     {item.name}
@@ -199,7 +198,7 @@ const SelectItemList = styled.div`
   top: 35px;
   left: 0;
   background-color: #fff;
-  z-index: 2;
+  z-index: 1000;
   width: 120px;
   border: 1px solid;
 `
@@ -259,6 +258,7 @@ const SelectItem = styled.div`
 
 const SelectItemText = styled.div<{ active: boolean }>`
   color: ${props => props.active ? '#000' : '#ccc'};
+  width: ${({active}) => active ? '75px' : 'unset'};
 `
 
 const Columns = styled.div`
@@ -289,6 +289,7 @@ const IconWrappEye = styled.div<{ active: boolean }>`
   height: 32px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   color: ${({active}) => active ? '#fff' : '#000'};
   background: ${({active}) => active ? '#40a9ff' : '#fff'};
 

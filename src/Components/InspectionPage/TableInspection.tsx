@@ -11,10 +11,13 @@ import CreateProjectModal from "@/Components/ProjectsPage/CreateProjectModal";
 import CreateInspectionModal from "@/Components/InspectionPage/CreateInspectionModal";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import TableFilter from "@/Components/TableUtils/Filter";
+import SettingsModal from "@/Components/TableUtils/SettingsModal";
 
 const TableInspection = () => {
     const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false)
     const [modal, setModal] = useState(false)
+    const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false)
+
     const tableHeaders = [
         "checkbox",
         "Items",
@@ -28,6 +31,10 @@ const TableInspection = () => {
 
     const filterRef = useOnClickOutside(() => {
         setIsOpenFilter(false);
+    });
+
+    const settingsRef = useOnClickOutside(() => {
+        setIsOpenSettings(false);
     });
 
     return (
@@ -100,9 +107,18 @@ const TableInspection = () => {
                                 View
                             </View>
                         </ViewWrapper>
-                        <Settings>
+                        <Settings onClick={() => {
+                            setTimeout(() => {
+                                setIsOpenSettings(true);
+                            }, 0.1)
+                        }}>
                             <SettingsIcon color='#000' width={14} height={14}/>
                         </Settings>
+                        {
+                            isOpenSettings && (
+                                <SettingsModal settingsRef={settingsRef} setIsOpenSettings={setIsOpenSettings}/>
+                            )
+                        }
                     </RightSide>
                 </TableUtils>
                 <TableInspectionContent
@@ -111,7 +127,7 @@ const TableInspection = () => {
                 />
             </TableWrapper>
             {
-                modal && (
+                !modal && (
                     <div >
                         <CreateInspectionModal
                             setModal={setModal}
@@ -161,7 +177,7 @@ const TextHover = styled.div`
 
 const HoverWrapper = styled.div`
   position: absolute;
-  top: 205px;
+  top: 204px;
   z-index: 3;
   left: 24px;
   display: none;
@@ -213,6 +229,10 @@ const Settings = styled.div`
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `
 
 const ViewWrapper = styled.div`

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArrowBottom";
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
+import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 
 
 const createHeaders = (headers: any) => {
@@ -15,7 +16,6 @@ const createHeaders = (headers: any) => {
 
 
 const TableContent = ({headers, minCellWidth}: any) => {
-
 
 
     const tableData = [
@@ -64,19 +64,24 @@ const TableContent = ({headers, minCellWidth}: any) => {
     ]
 
 
-
     const [tableHeight, setTableHeight] = useState("auto");
     const [activeIndex, setActiveIndex] = useState(null);
     const [tableDataState, setTableDataState] = useState(tableData);
     const [activeFilter, setActiveFilter] = useState(false)
-    const [activeFilterN, setActiveFilterN] = useState<number[]>([])
+    const [activeTab, setActiveTab] = useState<string>('Details')
+    const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
 
     const tableElement = useRef(null);
     const columns = createHeaders(headers);
+
     useEffect(() => {
         // @ts-ignore
         setTableHeight(tableElement.current.offsetHeight);
     }, []);
+
+    const detailsRef = useOnClickOutside(() => {
+        setDetailsOpen(false);
+    });
 
     const mouseDown = (index: any) => {
         setActiveIndex(index);
@@ -137,8 +142,6 @@ const TableContent = ({headers, minCellWidth}: any) => {
     }
 
 
-
-
     const handleCheckCheckbox = (e: any, id: number) => {
         const arr = tableDataState.map((item) => {
             if (item.id === id) {
@@ -166,13 +169,13 @@ const TableContent = ({headers, minCellWidth}: any) => {
     }
 
 
-
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    {/*@ts-ignore*/}
-                    <table className="resizeable-table" ref={tableElement} style={{'grid-template-columns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
+                    <table className="resizeable-table" ref={tableElement}
+                        //@ts-ignore
+                           style={{'grid-template-columns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (
@@ -244,11 +247,18 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                             </td>
                                         </tr>
                                     }
-                                    <tr >
-                                        <td className='Items'>
+                                    <tr>
+                                        <td className='Items'
+                                            style={{display: 'flex', justifyContent: 'space-between'}}>
                                         <span>
                                             {item.AssetsId}
                                         </span>
+                                            <span className='Details' onClick={() => {
+                                                setTimeout(() => {
+                                                    setDetailsOpen(true)
+                                            }, 0.1)}}>
+                                                Details {'>'}
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -299,6 +309,100 @@ const TableContent = ({headers, minCellWidth}: any) => {
                         </tbody>
 
                     </table>
+                    {
+                        detailsOpen && (
+                            <DetailsModal>
+                                <Wrapper ref={detailsRef}>
+                                    <DetailsHeader>
+                                        <Cross onClick={() => setDetailsOpen(false)}>
+                                            X
+                                        </Cross>
+                                        <HeaderName>
+                                            qewrty
+                                        </HeaderName>
+                                    </DetailsHeader>
+                                    <Tabs>
+                                        <Tab>
+                                            <Span
+                                                active={activeTab === 'Details'}
+                                                onClick={() => setActiveTab('Details')}
+                                            >
+                                                Details
+                                            </Span>
+                                        </Tab>
+                                        <Tab>
+                                            <Span
+                                                active={activeTab === 'Inspections'}
+                                                style={{marginLeft: '20px'}}
+                                                onClick={() => setActiveTab('Inspections')}
+                                            >
+                                                Inspections
+                                            </Span>
+                                        </Tab>
+                                    </Tabs>
+                                    <DetailsContent>
+                                        {
+                                            activeTab === 'Details' ? (<DetailsContentWrapper>
+                                                    <Row>
+                                                        <Key>
+                                                            Key
+                                                        </Key>
+                                                        <Value>
+                                                            Value
+                                                        </Value>
+                                                    </Row>
+
+                                                    <Row>
+                                                        <Key>
+                                                            Key
+                                                        </Key>
+                                                        <Value>
+                                                            Value
+                                                        </Value>
+                                                    </Row>
+
+                                                    <Row>
+                                                        <Key>
+                                                            Key
+                                                        </Key>
+                                                        <Value>
+                                                            Value
+                                                        </Value>
+                                                    </Row>
+
+                                                    <Row>
+                                                        <Key>
+                                                            Key
+                                                        </Key>
+                                                        <Value>
+                                                            Value
+                                                        </Value>
+                                                    </Row>
+
+                                                    <Row>
+                                                        <Key>
+                                                            Key
+                                                        </Key>
+                                                        <Value>
+                                                            Value
+                                                        </Value>
+                                                    </Row>
+                                                </DetailsContentWrapper>
+                                            ) : (
+                                                <InspectionTab>
+                                                    <InspectionContent>
+                                                        <InspectionRow>
+                                                            Jan 4, 2018, 5:03 PM
+                                                        </InspectionRow>
+                                                    </InspectionContent>
+                                                </InspectionTab>
+                                            )
+                                        }
+                                    </DetailsContent>
+                                </Wrapper>
+                            </DetailsModal>
+                        )
+                    }
                 </div>
             </div>
         </div>
@@ -307,6 +411,87 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
 export default TableContent;
 
+const InspectionRow = styled.div`
+  color: #1890ff;
+`
+
+const InspectionContent = styled.div`
+
+`
+
+const InspectionTab = styled.div`
+  padding: 15px;
+`
+
+const DetailsContent = styled.div`
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+`
+
+const Row = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px;
+`
+
+const DetailsContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Key = styled.div`
+  width: 50%;
+  display: flex;
+  font-weight: 500;
+  justify-content: flex-start;
+`
+
+const Value = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+`
+
+const Tabs = styled.div`
+  display: flex;
+  padding: 15px 15px 15px 15px;
+  border-bottom: 1px solid #f0f0f0;
+`
+
+const Tab = styled.div`
+
+`
+
+const Span = styled.span<{ active: boolean }>`
+  color: ${({active}) => active ? '#1890ff' : '#000'};
+  cursor: pointer;
+  padding-bottom: 11px;
+  border-bottom: ${({active}) => active ? '1px solid #1890ff' : '1px solid #f0f0f0'};
+`
+
+const HeaderName = styled.div`
+  font-size: 18px;
+  white-space: nowrap;
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  padding: 5px 10px;
+`
+
+const DetailsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+`
+
+const Cross = styled.div`
+  color: #ccc;
+  padding: 0 15px;
+  cursor: pointer;
+`
+
 
 const Checkboxs = styled.div`
   position: absolute;
@@ -314,11 +499,33 @@ const Checkboxs = styled.div`
   left: 23px;
 `
 
+const Wrapper = styled.div`
+  position: absolute;
+  width: 400px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background-color: white;
+`
+
+const DetailsModal = styled.div`
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const IconWrapper = styled.div`
   padding: 0 5px;
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 `
 
 const FilterWrapper = styled.div`

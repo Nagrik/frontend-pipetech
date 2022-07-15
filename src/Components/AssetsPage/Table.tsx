@@ -35,7 +35,6 @@ const Table = () => {
         setIsOpenSettings(false);
     });
 
-
     return (
         <div>
             <Title>Assets</Title>
@@ -97,16 +96,17 @@ const Table = () => {
                         </ViewWrapper>
                         <Settings onClick={() => {
                             setTimeout(() => {
-                                setIsOpenSettings(!isOpenSettings);
+                                setIsOpenSettings(true);
                             }, 0.1)
                         }}>
                             <SettingsIcon color='#000' width={14} height={14}/>
-                            {
-                                isOpenSettings && (
-                                    <SettingsModal settingsRef={settingsRef} setIsOpenSettings={setIsOpenSettings}/>
-                                )
-                            }
+
                         </Settings>
+                        {
+                            isOpenSettings && (
+                                <SettingsModal settingsRef={settingsRef} setIsOpenSettings={setIsOpenSettings}/>
+                            )
+                        }
                     </RightSide>
                 </TableUtils>
                 <TableContent

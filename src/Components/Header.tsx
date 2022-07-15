@@ -30,25 +30,11 @@ const Header = () => {
 
     const history = useHistory();
 
-    const handleMouseEnter_1 = () => {
-        // setHover_1(true)
-    }
-
-    const handleMouseLeave_1 = () => {
-        //@TODO
-        // setHover_1(false)
-        // console.log('123')
-    }
 
     const handleMouseEnter_2 = () => {
         setHover_2(true)
     }
 
-    const handleMouseLeave_2 = () => {
-        //@TODO
-        setHover_2(false)
-        // console.log('123')
-    }
 
     return (
         <Wrapper>
