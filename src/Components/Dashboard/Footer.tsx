@@ -39,7 +39,7 @@ const BottomText = styled.div`
   display: flex;
   align-items: center;
   color: #8C8C8C;
-  font-size: 16px;
+  font-size: 14px;
   justify-content: center;
   padding: 5px 0;
 `
@@ -52,5 +52,5 @@ const TopText = styled.div`
 
 const TopItem = styled.div`
   color: #8C8C8C;
-    font-size: 16px;
+    font-size: 14px;
 `

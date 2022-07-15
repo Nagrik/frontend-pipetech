@@ -14,7 +14,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     const [firstColumn, setFirstColumn] = useState<string>('Springfield Storm1');
     const [secondColumn, setSecondColumn] = useState<string>('Mainline')
     const [thirdColumn, setThirdColumn] = useState<string>('NASSCO v6 Springfield')
-    const [step, setStep] = useState<number>(2)
+    const [step, setStep] = useState<number>(1)
     const [choose, setChoose] = useState<string | null>(null)
 
     const dispatch = useDispatch<AppDispatch>();
@@ -47,7 +47,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                 <ModalWrapp ref={modalRef}>
                     <ModalHeader>
                         <ModalTitle>
-                            Create Project
+                            Add Inspection
                         </ModalTitle>
                         <ModalClose onClick={() => setModal(false)}>
                             ☓
@@ -161,13 +161,62 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                 </ModalBodyContent>
                             )
                         }
+                        {
+                            step === 3 && (
+                                <ModalBodyContent>
+                                    <ModalBodyHeader>
+                                        <ModalBodyHeaderTitle>
+                                            <span> System: </span>
+                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                {firstColumn} / </span>
+                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                {secondColumn} / </span>
+                                            {thirdColumn}
+                                        </ModalBodyHeaderTitle>
+                                        <ModalBodyHeaderTitle style={{paddingTop: '20px'}}>
+                                           Create inspection for the following assets:
+                                        </ModalBodyHeaderTitle>
+                                    </ModalBodyHeader>
+                                </ModalBodyContent>
+                            )
+                        }
+                        {
+                            step === 4 && (
+                                <ModalBodyContent>
+                                    <ModalBodyHeader>
+                                        <ModalBodyHeaderTitle>
+                                            <span> System: </span>
+                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                {firstColumn} / </span>
+                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                {secondColumn} / </span>
+                                            {thirdColumn}
+                                        </ModalBodyHeaderTitle>
+
+                                    </ModalBodyHeader>
+                                </ModalBodyContent>
+                            )
+                        }
                         <Buttons>
                             <ButtonSave>
                                 Cancel
                             </ButtonSave>
-                            <ButtonCreate onClick={() => setStep(step + 1)}>
+                            <div style={{display: 'flex'}}>
+                                {
+                                    step >1 && (
+                                        <ButtonCreate
+                                            style={{marginRight: '5px',backgroundColor: 'white', color: '#000' }}
+                                            onClick={() => setStep(step - 1)}>
+                                            Back
+                                        </ButtonCreate>
+                                    )
+                                }
+
+                                <ButtonCreate onClick={() => setStep(step + 1)}>
                                 Next
                             </ButtonCreate>
+
+                            </div>
                         </Buttons>
                     </ModalBody>
                 </ModalWrapp>
@@ -200,6 +249,7 @@ const CreateSubtitle = styled.div`
 
 const UploadMedia = styled.div<{active:boolean}>`
   width: 50%;
+  min-height: 250px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -210,6 +260,7 @@ const UploadMedia = styled.div<{active:boolean}>`
 
 const JustCreate = styled.div<{active:boolean}>`
   width: 50%;
+  min-height: 250px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -258,6 +309,7 @@ const Buttons = styled.div`
 const ButtonSave = styled.div`
   padding: 7px 22px;
   border: 1px solid #ccc;
+  font-size: 14px;
   cursor: pointer;
   margin-right: 10px;
 
@@ -272,12 +324,13 @@ const ButtonCreate = styled.div`
   border: 1px solid #ccc;
   cursor: pointer;
   color: #fff;
+  font-size: 14px;
   background-color: #1890ff;
 `
 
 const ModalWrapp = styled.div`
   background-color: #fff;
-  width: 640px;
+  width: 70%;
   padding: 8px 0 16px 0;
   position: relative;
 `
@@ -316,6 +369,7 @@ const ModalTabs = styled.div<{ active: boolean }>`
   height: 33px;
   display: flex;
   align-items: center;
+  font-size: 14px;
   cursor: pointer;
   padding: 4px 11px;
   color: ${({active}) => active ? '#ccc' : 'black'};

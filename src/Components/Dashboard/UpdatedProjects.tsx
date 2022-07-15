@@ -51,7 +51,7 @@ const UpdatedProjects = () => {
                                 Total Distance Remaining
                             </AssetsTitle>
                             <AssetsNumber>
-                                0/0
+                                0 / 0
                             </AssetsNumber>
                         </Assets>
 
@@ -87,7 +87,7 @@ const BottomWrapper = styled.div`
 
 const AssetsTitle = styled.div`
   color: rgba(0, 0, 0, 0.45);
-  font-size: 16px;
+  font-size: 14px;
 `
 
 const ContentBody = styled.div`
@@ -151,7 +151,7 @@ const ContentHeaderTitle = styled.div`
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 `
@@ -159,7 +159,7 @@ const ContentHeaderTitle = styled.div`
 const Title = styled.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
   padding: 16px 24px;
 `

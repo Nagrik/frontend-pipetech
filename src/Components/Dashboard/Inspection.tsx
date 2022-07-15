@@ -12,7 +12,7 @@ const Inspection = () => {
                     Unfinished Inspections
                 </InspectionHeaderTitle>
                 <NumberWrapper>
-                    1,2345
+                    2,995
                 </NumberWrapper>
             </InspectionHeader>
 
@@ -55,6 +55,7 @@ const InspectionFooter = styled.div`
   color: #1890ff;
   width: 100%;
   height: 57px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,6 +83,8 @@ const InspectionItem = styled.div`
 const InspectionItemTitle = styled.div`
   background-color: #fafafa;
   width: 181px;
+  display: flex;
+  justify-content: flex-end;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
   padding: 4px 7px;
@@ -91,6 +94,7 @@ const InspectionItemTitle = styled.div`
 
 const InspectionItemDate = styled.div`
     color: #c0c7db;
+  font-size: 14px;
 
 `
 
@@ -98,7 +102,7 @@ const NumberWrapper = styled.div`
   background-color: #c0c7db;
   transform-origin: 50% 50%;
   padding: 3px 8px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 10px;
   color: #fff;
 `
@@ -108,16 +112,15 @@ const InspectionHeader = styled.div`
     align-items: center;
   border-bottom: 1px solid #f0f0f0;
   margin-bottom: 24px;
+  padding: 19.5px 24px;
 
-
-  padding: 16px 24px;
 `
 
 const InspectionHeaderTitle = styled.div`
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 

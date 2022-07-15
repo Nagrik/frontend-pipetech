@@ -65,6 +65,7 @@ const InspectionFooter = styled.div`
   width: 100%;
   height: 57px;
   display: flex;
+  font-size: 14px;
   align-items: center;
   justify-content: center;
   border-top: 1px solid #f0f0f0;
@@ -146,7 +147,7 @@ const NumberWrapper = styled.div`
   justify-content: center;
     align-items: center;
   height: 20px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 50%;
   color: #fff;
 `
@@ -165,7 +166,7 @@ const InspectionHeaderTitle = styled.div`
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 

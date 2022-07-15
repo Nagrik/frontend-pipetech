@@ -128,7 +128,7 @@ const Wrapper = styled.div`
 
 const HoverItem = styled.div`
   padding: 7px 12px;
-  font-size: 16px;
+  font-size: 14px;
   white-space: nowrap;
   &:hover {
     background-color: whitesmoke;
@@ -141,6 +141,7 @@ const HoverItemWrapper = styled.div`
   background-color: white;
   top: 50px;
   left: 0;
+  font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
   content: '';
@@ -164,6 +165,7 @@ const HoverItemWrapper2 = styled.div`
   flex-direction: column;
   position: absolute;
   background-color: white;
+  font-size: 14px;
   top: 37px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
@@ -219,7 +221,7 @@ const IconWrapp = styled.div`
 `
 
 const SelectItem = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: flex-start;
 `

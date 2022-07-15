@@ -127,7 +127,7 @@ const TableInspection = () => {
                 />
             </TableWrapper>
             {
-                !modal && (
+                modal && (
                     <div >
                         <CreateInspectionModal
                             setModal={setModal}

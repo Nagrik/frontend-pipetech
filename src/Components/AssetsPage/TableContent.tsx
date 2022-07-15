@@ -174,8 +174,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
             <div className="container">
                 <div className="table-wrapper">
                     <table className="resizeable-table" ref={tableElement}
-                        //@ts-ignore
-                           style={{'grid-template-columns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
+                           style={{'gridTemplateColumns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (
@@ -236,18 +235,18 @@ const TableContent = ({headers, minCellWidth}: any) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {tableDataState.map((item) => {
+                        {tableDataState.map((item, index) => {
                             return (
                                 <>
                                     {
-                                        <tr>
+                                        <tr key={index}>
                                             <td className='checkbox'>
                                                 <input type='checkbox' checked={item.checkbox}
                                                        onClick={(e) => handleCheckCheckbox(e, item.id)}/>
                                             </td>
                                         </tr>
                                     }
-                                    <tr>
+                                    <tr >
                                         <td className='Items'
                                             style={{display: 'flex', justifyContent: 'space-between'}}>
                                         <span>

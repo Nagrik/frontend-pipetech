@@ -41,9 +41,8 @@ export default Dashboard;
 
 
 const Wrapper = styled.div`
-    padding: 35px 160px;
+    padding: 35px 178px;
     display: flex;
-  justify-content: space-between;
 `
 
 
@@ -54,6 +53,7 @@ const LeftSide = styled.div`
 
 const RightSide = styled.div`
     width: 49%;
+  margin-left: 16px;
 `;
 
 
@@ -64,15 +64,16 @@ const RightSideHeader = styled.div``;
 const LeftSideHeaderTitle = styled.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
-  padding: 16px 24px;
+  padding: 6px 24px 21px 23px;
 `;
 
 const RightSideHeaderTitle = styled.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
-  padding: 16px 24px;
+  padding: 6px 24px 21px 23px;
+
 `;

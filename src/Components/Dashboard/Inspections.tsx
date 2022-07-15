@@ -96,6 +96,6 @@ const AssetsHeader = styled.div`
 const AssetsHeaderTitle = styled.div`
   display: flex;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   padding: 16px 24px;
 `

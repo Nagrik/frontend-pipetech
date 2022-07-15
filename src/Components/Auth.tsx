@@ -5,22 +5,6 @@ import LogoIcon from "@/Components/common/icons/LogoIcon";
 import useWindowDimensions from "@/Components/utils/hooks/useWindowDimensions";
 import {useHistory} from "react-router-dom";
 
-
-const authScreenLabels = {
-    en: {
-        "Enter your username": "Email",
-        "Enter your password": "Password",
-        "Sign in to your account": " ",
-    },
-};
-
-// I18n.setLanguage("en");
-// I18n.putVocabularies(authScreenLabels);
-
-
-
-
-
 export default () => {
     let history = useHistory();
     const goToDashboard = () => {
@@ -79,7 +63,7 @@ const LogoWrapper = styled.div`
 const SignInWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 0 24px;
+  padding: 0 24px 0 24px;
   margin-top: 20px;
 `
 
@@ -88,9 +72,11 @@ const SignIn = styled.div`
   background-color:#1890ff;
   color: white;
   max-width: 75px;
-  padding: 7px 15px;
+  padding: 9px 15px;
   white-space: nowrap;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 12px;
 `
 
 const Utils = styled.div`
@@ -102,28 +88,30 @@ const Utils = styled.div`
  `
 
 const ForgotPassword = styled.div`
-  font-size: 15px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
 `
 
 const ResetPassword = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   color: #1890ff;
   cursor: pointer;
 `
 
 const Input = styled.input`
   border: 1px solid whitesmoke;
-  padding: 5px;
+  padding: 6px;
   border-radius: 4px;
   width: 400px;
   margin-bottom: 15px;
   &::placeholder{
-    font-size: 15px;
+    font-size: 14px;
   }
 `
 
 const WhiteWrapper = styled.div`
     background-color: #fff;
+  box-shadow: rgb(0 0 0 / 25%) 0px 5px 10px;
     border-radius: 7px;
     width: 500px;
     padding: 24px;
@@ -133,5 +121,5 @@ const Inputs = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 25px;
+  padding-top: 28px;
 `

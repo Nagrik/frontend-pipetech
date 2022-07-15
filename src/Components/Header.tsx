@@ -23,23 +23,15 @@ import SearchIcon from "@/Components/common/icons/SearchIcon";
 
 
 const Header = () => {
-    const [hoverRef, isHovered] = useHover<HTMLDivElement>();
-    const [hoverRefProfile, isHoveredProfile] = useHover<HTMLDivElement>();
-    const [hover_1, setHover_1] = useState<boolean>(false)
-    const [hover_2, setHover_2] = useState<boolean>(false)
+
 
     const history = useHistory();
-
-
-    const handleMouseEnter_2 = () => {
-        setHover_2(true)
-    }
 
 
     return (
         <Wrapper>
             <LeftSideMenu>
-                <LogoWrapper>
+                <LogoWrapper onClick={() => history.push('/dashboard')}>
                     <LogoWhite height={'40'} width={'148'}/>
                 </LogoWrapper>
                 <MenuItem
@@ -101,37 +93,37 @@ const Header = () => {
                     <div className='SettingsIconWrapper'>
                         <SettingsIcon color='#fff' width={21} height={21}/>
                         <div className='SettingsMenu'>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-organization')}>
                                 <IconWrapper>
                                     <OrganizationIcon/>
                                 </IconWrapper>
                                 Organization
                             </SettingsMenuItem>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-systems')}>
                                 <IconWrapper>
                                     <SystemsIcon/>
                                 </IconWrapper>
-                                System
+                                Systems
                             </SettingsMenuItem>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-templates')}>
                                 <IconWrapper>
                                     <TemplatesIcon/>
                                 </IconWrapper>
                                 Templates
                             </SettingsMenuItem>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-users')}>
                                 <IconWrapper>
                                     <UsersIcon/>
                                 </IconWrapper>
                                 Users
                             </SettingsMenuItem>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-equipment')}>
                                 <IconWrapper>
                                     <EquipmentIcon/>
                                 </IconWrapper>
                                 Equipment
                             </SettingsMenuItem>
-                            <SettingsMenuItem>
+                            <SettingsMenuItem onClick={() => history.push('/settings-integrations')}>
                                 <IconWrapper>
                                     <Integrations/>
                                 </IconWrapper>
@@ -172,9 +164,9 @@ export default Header;
 const MenuItem = styled.div<{ active: boolean }>`
   color: ${({active}) => (active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.65)')};
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 23px 18px;
+  padding: 21px 18px;
   opacity: 0.8;
   display: flex;
   align-items: center;
@@ -241,6 +233,7 @@ const SettingsMenuItem = styled.div`
   padding: 20px 50px 20px 10px;
   color: rgba(255, 255, 255, 0.65);
   display: flex;
+  font-size: 14px;
   align-items: center;
 
   &:hover {
@@ -250,11 +243,14 @@ const SettingsMenuItem = styled.div`
 
 
 const IconWrapper = styled.div`
-  padding: 0 7px;
+  padding: 0 10px;
+  margin-top: 3px;
 `
 
 const LogoWrapper = styled.div`
   cursor: pointer;
+  margin-top: 3px;
+  margin-left: 5px;
 `
 
 const SettingsIconWrapper = styled.div`
@@ -279,11 +275,12 @@ const CircleWrapper = styled.div`
   background: #ccc;
   border-radius: 50%;
   color: #ffffff;
-  border: 1px solid rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 14px;
 `
 
 const RightSideMenu = styled.div`
@@ -293,14 +290,17 @@ const RightSideMenu = styled.div`
 `
 
 const Input = styled.input`
-  padding: 3px 50px 3px 10px;
+  //padding: 3px 50px 3px 10px;
+  padding: 6px 11px;
   background: rgb(255, 255, 255);
+  max-width: 180px;
 
   outline: 0px;
   color: rgb(140, 140, 140);
 
   &::placeholder {
     color: rgb(140, 140, 140);
+    font-size: 14px;
   }
 `
 

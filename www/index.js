@@ -2957,8 +2957,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React87 = require_react();
-          var ReactSharedInternals = React87.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React89 = require_react();
+          var ReactSharedInternals = React89.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format3) {
             {
               {
@@ -2988,13 +2988,13 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState30 = React87.useState, useEffect18 = React87.useEffect, useLayoutEffect3 = React87.useLayoutEffect, useDebugValue2 = React87.useDebugValue;
+          var useState30 = React89.useState, useEffect18 = React89.useEffect, useLayoutEffect3 = React89.useLayoutEffect, useDebugValue2 = React89.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React87.startTransition !== void 0) {
+                if (React89.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -3059,7 +3059,7 @@
           var canUseDOM3 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM3;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React87.useSyncExternalStore !== void 0 ? React87.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React89.useSyncExternalStore !== void 0 ? React89.useSyncExternalStore : shim;
           exports2.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -3091,14 +3091,14 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React87 = require_react();
+          var React89 = require_react();
           var shim = require_shim();
           function is2(x2, y2) {
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef15 = React87.useRef, useEffect18 = React87.useEffect, useMemo6 = React87.useMemo, useDebugValue2 = React87.useDebugValue;
+          var useRef15 = React89.useRef, useEffect18 = React89.useEffect, useMemo6 = React89.useMemo, useDebugValue2 = React89.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
             var instRef = useRef15(null);
             var inst;
@@ -3655,9 +3655,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React87 = require_react();
+          var React89 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React87.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React89.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -5058,7 +5058,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React87.Children.forEach(props.children, function(child) {
+                  React89.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13184,7 +13184,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React87.Component().refs;
+          var emptyRefsObject = new React89.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27961,7 +27961,7 @@
   });
 
   // src/index.tsx
-  var import_react103 = __toESM(require_react(), 1);
+  var import_react105 = __toESM(require_react(), 1);
 
   // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
   function _setPrototypeOf(o2, p) {
@@ -31692,7 +31692,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var store_default = createStore(rootReducer, enhancer);
 
   // src/App.tsx
-  var import_react102 = __toESM(require_react(), 1);
+  var import_react104 = __toESM(require_react(), 1);
 
   // src/Pages/LoginPage.tsx
   var import_react19 = __toESM(require_react(), 1);
@@ -33043,7 +33043,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var SignInWrapper = styled_components_browser_esm_default.div`
   display: flex;
   justify-content: flex-end;
-  padding: 0 24px;
+  padding: 0 24px 0 24px;
   margin-top: 20px;
 `;
   var SignIn = styled_components_browser_esm_default.div`
@@ -33051,9 +33051,11 @@ ${latestSubscriptionCallbackError.current.stack}
   background-color:#1890ff;
   color: white;
   max-width: 75px;
-  padding: 7px 15px;
+  padding: 9px 15px;
   white-space: nowrap;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 12px;
 `;
   var Utils = styled_components_browser_esm_default.div`
     display: flex;
@@ -33063,25 +33065,27 @@ ${latestSubscriptionCallbackError.current.stack}
   margin: 0 auto;
  `;
   var ForgotPassword = styled_components_browser_esm_default.div`
-  font-size: 15px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
 `;
   var ResetPassword = styled_components_browser_esm_default.div`
-  font-size: 15px;
+  font-size: 14px;
   color: #1890ff;
   cursor: pointer;
 `;
   var Input = styled_components_browser_esm_default.input`
   border: 1px solid whitesmoke;
-  padding: 5px;
+  padding: 6px;
   border-radius: 4px;
   width: 400px;
   margin-bottom: 15px;
   &::placeholder{
-    font-size: 15px;
+    font-size: 14px;
   }
 `;
   var WhiteWrapper = styled_components_browser_esm_default.div`
     background-color: #fff;
+  box-shadow: rgb(0 0 0 / 25%) 0px 5px 10px;
     border-radius: 7px;
     width: 500px;
     padding: 24px;
@@ -33090,7 +33094,7 @@ ${latestSubscriptionCallbackError.current.stack}
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 25px;
+  padding-top: 28px;
 `;
 
   // src/Components/common/icons/LoginFooter.tsx
@@ -33125,10 +33129,10 @@ ${latestSubscriptionCallbackError.current.stack}
 `;
 
   // src/Pages/DashboardPage.tsx
-  var import_react52 = __toESM(require_react(), 1);
+  var import_react51 = __toESM(require_react(), 1);
 
   // src/Components/Header.tsx
-  var import_react37 = __toESM(require_react(), 1);
+  var import_react36 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/LogoWhite.tsx
   var import_react20 = __toESM(require_react(), 1);
@@ -33310,31 +33314,10 @@ ${latestSubscriptionCallbackError.current.stack}
   };
   var DeliverablesIcon_default = DeliverablesIcon;
 
-  // src/Components/utils/hooks/UseHover.tsx
-  var import_react28 = __toESM(require_react(), 1);
-  function useHover() {
-    const [value, setValue] = (0, import_react28.useState)(false);
-    const ref = (0, import_react28.useRef)(null);
-    const handleMouseOver = () => setValue(true);
-    const handleMouseOut = () => setValue(false);
-    (0, import_react28.useEffect)(() => {
-      const node = ref.current;
-      if (node) {
-        node.addEventListener("mouseover", handleMouseOver);
-        node.addEventListener("mouseout", handleMouseOut);
-        return () => {
-          node.removeEventListener("mouseover", handleMouseOver);
-          node.removeEventListener("mouseout", handleMouseOut);
-        };
-      }
-    }, [ref.current]);
-    return [ref, value];
-  }
-
   // src/Components/common/icons/SettingsIcons/OrganizationIcon.tsx
-  var import_react29 = __toESM(require_react(), 1);
+  var import_react28 = __toESM(require_react(), 1);
   var OrganizationIcon = () => {
-    return /* @__PURE__ */ import_react29.default.createElement("svg", {
+    return /* @__PURE__ */ import_react28.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "apartment",
@@ -33342,16 +33325,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react29.default.createElement("path", {
+    }, /* @__PURE__ */ import_react28.default.createElement("path", {
       d: "M908 640H804V488c0-4.4-3.6-8-8-8H548v-96h108c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H368c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h108v96H228c-4.4 0-8 3.6-8 8v152H116c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h288c8.8 0 16-7.2 16-16V656c0-8.8-7.2-16-16-16H292v-88h440v88H620c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h288c8.8 0 16-7.2 16-16V656c0-8.8-7.2-16-16-16zm-564 76v168H176V716h168zm84-408V140h168v168H428zm420 576H680V716h168v168z"
     }));
   };
   var OrganizationIcon_default = OrganizationIcon;
 
   // src/Components/common/icons/SettingsIcons/SystemsIcon.tsx
-  var import_react30 = __toESM(require_react(), 1);
+  var import_react29 = __toESM(require_react(), 1);
   var SystemsIcon = () => {
-    return /* @__PURE__ */ import_react30.default.createElement("svg", {
+    return /* @__PURE__ */ import_react29.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "branches",
@@ -33359,16 +33342,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react30.default.createElement("path", {
+    }, /* @__PURE__ */ import_react29.default.createElement("path", {
       d: "M740 161c-61.8 0-112 50.2-112 112 0 50.1 33.1 92.6 78.5 106.9v95.9L320 602.4V318.1c44.2-15 76-56.9 76-106.1 0-61.8-50.2-112-112-112s-112 50.2-112 112c0 49.2 31.8 91 76 106.1V706c-44.2 15-76 56.9-76 106.1 0 61.8 50.2 112 112 112s112-50.2 112-112c0-49.2-31.8-91-76-106.1v-27.8l423.5-138.7a50.52 50.52 0 0034.9-48.2V378.2c42.9-15.8 73.6-57 73.6-105.2 0-61.8-50.2-112-112-112zm-504 51a48.01 48.01 0 0196 0 48.01 48.01 0 01-96 0zm96 600a48.01 48.01 0 01-96 0 48.01 48.01 0 0196 0zm408-491a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"
     }));
   };
   var SystemsIcon_default = SystemsIcon;
 
   // src/Components/common/icons/SettingsIcons/TemplatesIcon.tsx
-  var import_react31 = __toESM(require_react(), 1);
+  var import_react30 = __toESM(require_react(), 1);
   var TemplatesIcon = () => {
-    return /* @__PURE__ */ import_react31.default.createElement("svg", {
+    return /* @__PURE__ */ import_react30.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "project",
@@ -33376,16 +33359,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react31.default.createElement("path", {
+    }, /* @__PURE__ */ import_react30.default.createElement("path", {
       d: "M280 752h80c4.4 0 8-3.6 8-8V280c0-4.4-3.6-8-8-8h-80c-4.4 0-8 3.6-8 8v464c0 4.4 3.6 8 8 8zm192-280h80c4.4 0 8-3.6 8-8V280c0-4.4-3.6-8-8-8h-80c-4.4 0-8 3.6-8 8v184c0 4.4 3.6 8 8 8zm192 72h80c4.4 0 8-3.6 8-8V280c0-4.4-3.6-8-8-8h-80c-4.4 0-8 3.6-8 8v256c0 4.4 3.6 8 8 8zm216-432H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z"
     }));
   };
   var TemplatesIcon_default = TemplatesIcon;
 
   // src/Components/common/icons/SettingsIcons/UsersIcon.tsx
-  var import_react32 = __toESM(require_react(), 1);
+  var import_react31 = __toESM(require_react(), 1);
   var UsersIcon = () => {
-    return /* @__PURE__ */ import_react32.default.createElement("svg", {
+    return /* @__PURE__ */ import_react31.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "team",
@@ -33393,16 +33376,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react32.default.createElement("path", {
+    }, /* @__PURE__ */ import_react31.default.createElement("path", {
       d: "M824.2 699.9a301.55 301.55 0 00-86.4-60.4C783.1 602.8 812 546.8 812 484c0-110.8-92.4-201.7-203.2-200-109.1 1.7-197 90.6-197 200 0 62.8 29 118.8 74.2 155.5a300.95 300.95 0 00-86.4 60.4C345 754.6 314 826.8 312 903.8a8 8 0 008 8.2h56c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5A226.62 226.62 0 01612 684c60.9 0 118.2 23.7 161.3 66.8C814.5 792 838 846.3 840 904.3c.1 4.3 3.7 7.7 8 7.7h56a8 8 0 008-8.2c-2-77-33-149.2-87.8-203.9zM612 612c-34.2 0-66.4-13.3-90.5-37.5a126.86 126.86 0 01-37.5-91.8c.3-32.8 13.4-64.5 36.3-88 24-24.6 56.1-38.3 90.4-38.7 33.9-.3 66.8 12.9 91 36.6 24.8 24.3 38.4 56.8 38.4 91.4 0 34.2-13.3 66.3-37.5 90.5A127.3 127.3 0 01612 612zM361.5 510.4c-.9-8.7-1.4-17.5-1.4-26.4 0-15.9 1.5-31.4 4.3-46.5.7-3.6-1.2-7.3-4.5-8.8-13.6-6.1-26.1-14.5-36.9-25.1a127.54 127.54 0 01-38.7-95.4c.9-32.1 13.8-62.6 36.3-85.6 24.7-25.3 57.9-39.1 93.2-38.7 31.9.3 62.7 12.6 86 34.4 7.9 7.4 14.7 15.6 20.4 24.4 2 3.1 5.9 4.4 9.3 3.2 17.6-6.1 36.2-10.4 55.3-12.4 5.6-.6 8.8-6.6 6.3-11.6-32.5-64.3-98.9-108.7-175.7-109.9-110.9-1.7-203.3 89.2-203.3 199.9 0 62.8 28.9 118.8 74.2 155.5-31.8 14.7-61.1 35-86.5 60.4-54.8 54.7-85.8 126.9-87.8 204a8 8 0 008 8.2h56.1c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5 29.4-29.4 65.4-49.8 104.7-59.7 3.9-1 6.5-4.7 6-8.7z"
     }));
   };
   var UsersIcon_default = UsersIcon;
 
   // src/Components/common/icons/SettingsIcons/EquipmentIcon.tsx
-  var import_react33 = __toESM(require_react(), 1);
+  var import_react32 = __toESM(require_react(), 1);
   var EquipmentIcon = () => {
-    return /* @__PURE__ */ import_react33.default.createElement("svg", {
+    return /* @__PURE__ */ import_react32.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       transform: "scale(-1,1)",
       viewBox: "0 0 30 20",
@@ -33412,16 +33395,16 @@ ${latestSubscriptionCallbackError.current.stack}
       "aria-hidden": "true",
       focusable: "false",
       className: ""
-    }, /* @__PURE__ */ import_react33.default.createElement("path", {
+    }, /* @__PURE__ */ import_react32.default.createElement("path", {
       d: "M11 0a1 1 0 00-1 1v3H3a1 1 0 00-1 .69l-2 6a.31.31 0 000 .08v.07a.13.13 0 010 .06V17a1 1 0 001 1h3.19a3 3 0 005.62 0h10.37a3 3 0 005.63 0H29a1 1 0 001-1V1a1 1 0 00-1-1zm1 2h16v14h-2.19A3 3 0 0023 14a3 3 0 00-2.82 2H12V2zM3.72 6H6v4H2.39zM8 6h2v10h-.18A3 3 0 007 14a3 3 0 00-2.81 2H2v-4h5a1 1 0 001-1zM7 16a1 1 0 010 2 1 1 0 01-1-1 1 1 0 01.08-.39A1 1 0 017 16zm16 0a1 1 0 11-1 1 1 1 0 011-1z"
     }));
   };
   var EquipmentIcon_default = EquipmentIcon;
 
   // src/Components/common/icons/SettingsIcons/integrations.tsx
-  var import_react34 = __toESM(require_react(), 1);
+  var import_react33 = __toESM(require_react(), 1);
   var Integrations = () => {
-    return /* @__PURE__ */ import_react34.default.createElement("svg", {
+    return /* @__PURE__ */ import_react33.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "node-index",
@@ -33429,16 +33412,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react34.default.createElement("defs", null, /* @__PURE__ */ import_react34.default.createElement("style", null)), /* @__PURE__ */ import_react34.default.createElement("path", {
+    }, /* @__PURE__ */ import_react33.default.createElement("defs", null, /* @__PURE__ */ import_react33.default.createElement("style", null)), /* @__PURE__ */ import_react33.default.createElement("path", {
       d: "M843.5 737.4c-12.4-75.2-79.2-129.1-155.3-125.4S550.9 676 546 752c-153.5-4.8-208-40.7-199.1-113.7 3.3-27.3 19.8-41.9 50.1-49 18.4-4.3 38.8-4.9 57.3-3.2 1.7.2 3.5.3 5.2.5 11.3 2.7 22.8 5 34.3 6.8 34.1 5.6 68.8 8.4 101.8 6.6 92.8-5 156-45.9 159.2-132.7 3.1-84.1-54.7-143.7-147.9-183.6-29.9-12.8-61.6-22.7-93.3-30.2-14.3-3.4-26.3-5.7-35.2-7.2-7.9-75.9-71.5-133.8-147.8-134.4-76.3-.6-140.9 56.1-150.1 131.9s40 146.3 114.2 163.9c74.2 17.6 149.9-23.3 175.7-95.1 9.4 1.7 18.7 3.6 28 5.8 28.2 6.6 56.4 15.4 82.4 26.6 70.7 30.2 109.3 70.1 107.5 119.9-1.6 44.6-33.6 65.2-96.2 68.6-27.5 1.5-57.6-.9-87.3-5.8-8.3-1.4-15.9-2.8-22.6-4.3-3.9-.8-6.6-1.5-7.8-1.8l-3.1-.6c-2.2-.3-5.9-.8-10.7-1.3-25-2.3-52.1-1.5-78.5 4.6-55.2 12.9-93.9 47.2-101.1 105.8-15.7 126.2 78.6 184.7 276 188.9 29.1 70.4 106.4 107.9 179.6 87 73.3-20.9 119.3-93.4 106.9-168.6zM329.1 345.2a83.3 83.3 0 11.01-166.61 83.3 83.3 0 01-.01 166.61zM695.6 845a83.3 83.3 0 11.01-166.61A83.3 83.3 0 01695.6 845z"
     }));
   };
   var integrations_default = Integrations;
 
   // src/Components/common/icons/ProfileIcons/LogoutIcon.tsx
-  var import_react35 = __toESM(require_react(), 1);
+  var import_react34 = __toESM(require_react(), 1);
   var LogoutIcon = () => {
-    return /* @__PURE__ */ import_react35.default.createElement("svg", {
+    return /* @__PURE__ */ import_react34.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "poweroff",
@@ -33446,16 +33429,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react35.default.createElement("path", {
+    }, /* @__PURE__ */ import_react34.default.createElement("path", {
       d: "M705.6 124.9a8 8 0 00-11.6 7.2v64.2c0 5.5 2.9 10.6 7.5 13.6a352.2 352.2 0 0162.2 49.8c32.7 32.8 58.4 70.9 76.3 113.3a355 355 0 0127.9 138.7c0 48.1-9.4 94.8-27.9 138.7a355.92 355.92 0 01-76.3 113.3 353.06 353.06 0 01-113.2 76.4c-43.8 18.6-90.5 28-138.5 28s-94.7-9.4-138.5-28a353.06 353.06 0 01-113.2-76.4A355.92 355.92 0 01184 650.4a355 355 0 01-27.9-138.7c0-48.1 9.4-94.8 27.9-138.7 17.9-42.4 43.6-80.5 76.3-113.3 19-19 39.8-35.6 62.2-49.8 4.7-2.9 7.5-8.1 7.5-13.6V132c0-6-6.3-9.8-11.6-7.2C178.5 195.2 82 339.3 80 506.3 77.2 745.1 272.5 943.5 511.2 944c239 .5 432.8-193.3 432.8-432.4 0-169.2-97-315.7-238.4-386.7zM480 560h64c4.4 0 8-3.6 8-8V88c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v464c0 4.4 3.6 8 8 8z"
     }));
   };
   var LogoutIcon_default = LogoutIcon;
 
   // src/Components/common/icons/SearchIcon.tsx
-  var import_react36 = __toESM(require_react(), 1);
+  var import_react35 = __toESM(require_react(), 1);
   var SearchIcon = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react36.default.createElement("svg", {
+    return /* @__PURE__ */ import_react35.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "search",
@@ -33463,7 +33446,7 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "1em",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react36.default.createElement("path", {
+    }, /* @__PURE__ */ import_react35.default.createElement("path", {
       d: "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
     }));
   };
@@ -33471,59 +33454,66 @@ ${latestSubscriptionCallbackError.current.stack}
 
   // src/Components/Header.tsx
   var Header = () => {
-    const [hoverRef, isHovered] = useHover();
-    const [hoverRefProfile, isHoveredProfile] = useHover();
-    const [hover_1, setHover_1] = (0, import_react37.useState)(false);
-    const [hover_2, setHover_2] = (0, import_react37.useState)(false);
     const history2 = useHistory();
-    const handleMouseEnter_2 = () => {
-      setHover_2(true);
-    };
-    return /* @__PURE__ */ import_react37.default.createElement(Wrapper3, null, /* @__PURE__ */ import_react37.default.createElement(LeftSideMenu, null, /* @__PURE__ */ import_react37.default.createElement(LogoWrapper3, null, /* @__PURE__ */ import_react37.default.createElement(LogoWhite_default, {
+    return /* @__PURE__ */ import_react36.default.createElement(Wrapper3, null, /* @__PURE__ */ import_react36.default.createElement(LeftSideMenu, null, /* @__PURE__ */ import_react36.default.createElement(LogoWrapper3, {
+      onClick: () => history2.push("/dashboard")
+    }, /* @__PURE__ */ import_react36.default.createElement(LogoWhite_default, {
       height: "40",
       width: "148"
-    })), /* @__PURE__ */ import_react37.default.createElement(MenuItem, {
+    })), /* @__PURE__ */ import_react36.default.createElement(MenuItem, {
       active: window.location.pathname === "/dashboard",
       onClick: () => history2.push("/dashboard")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(DashboardIcon_default, null)), "Dashboard"), /* @__PURE__ */ import_react37.default.createElement(MenuItem, {
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(DashboardIcon_default, null)), "Dashboard"), /* @__PURE__ */ import_react36.default.createElement(MenuItem, {
       active: window.location.pathname === "/assets",
       onClick: () => history2.push("/assets")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(AssetsIcon_default, null)), "Assets"), /* @__PURE__ */ import_react37.default.createElement(MenuItem, {
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(AssetsIcon_default, null)), "Assets"), /* @__PURE__ */ import_react36.default.createElement(MenuItem, {
       active: window.location.pathname === "/inspections",
       onClick: () => history2.push("/inspections")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(InspectionIcon_default, null)), "Inspections"), /* @__PURE__ */ import_react37.default.createElement(MenuItem, {
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(InspectionIcon_default, null)), "Inspections"), /* @__PURE__ */ import_react36.default.createElement(MenuItem, {
       active: window.location.pathname === "/projects-card" || window.location.pathname === "/projects-list" || window.location.pathname === "/projects-calendar",
       onClick: () => history2.push("/projects-card")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(ProjectsIcon_default, null)), "Projects"), /* @__PURE__ */ import_react37.default.createElement(MenuItem, {
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(ProjectsIcon_default, null)), "Projects"), /* @__PURE__ */ import_react36.default.createElement(MenuItem, {
       active: window.location.pathname === "/deliverables",
       onClick: () => history2.push("/deliverables")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(DeliverablesIcon_default, null)), "Deliverables")), /* @__PURE__ */ import_react37.default.createElement(RightSideMenu, null, /* @__PURE__ */ import_react37.default.createElement(InputWrapper, null, /* @__PURE__ */ import_react37.default.createElement(Input2, {
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(DeliverablesIcon_default, null)), "Deliverables")), /* @__PURE__ */ import_react36.default.createElement(RightSideMenu, null, /* @__PURE__ */ import_react36.default.createElement(InputWrapper, null, /* @__PURE__ */ import_react36.default.createElement(Input2, {
       placeholder: "Search"
-    }), /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(SearchIcon_default, {
+    }), /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(SearchIcon_default, {
       color: "#ccc"
-    }))), /* @__PURE__ */ import_react37.default.createElement(UploadIconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(UploadIcon_default, null)), /* @__PURE__ */ import_react37.default.createElement(Setting, null, /* @__PURE__ */ import_react37.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react36.default.createElement(UploadIconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(UploadIcon_default, null)), /* @__PURE__ */ import_react36.default.createElement(Setting, null, /* @__PURE__ */ import_react36.default.createElement("div", {
       className: "SettingsIconWrapper"
-    }, /* @__PURE__ */ import_react37.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react36.default.createElement(SettingsIcon_default, {
       color: "#fff",
       width: 21,
       height: 21
-    }), /* @__PURE__ */ import_react37.default.createElement("div", {
+    }), /* @__PURE__ */ import_react36.default.createElement("div", {
       className: "SettingsMenu"
-    }, /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(SystemsIcon_default, null)), "System"), /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react37.default.createElement(SettingsMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(integrations_default, null)), "Integrations")))), /* @__PURE__ */ import_react37.default.createElement("div", {
+    }, /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-organization")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-systems")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-templates")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-users")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-equipment")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react36.default.createElement(SettingsMenuItem, {
+      onClick: () => history2.push("/settings-integrations")
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(integrations_default, null)), "Integrations")))), /* @__PURE__ */ import_react36.default.createElement("div", {
       className: "CircleWrapper"
-    }, /* @__PURE__ */ import_react37.default.createElement(Circle, null, /* @__PURE__ */ import_react37.default.createElement(CircleWrapper, null, "RN", /* @__PURE__ */ import_react37.default.createElement("div", {
+    }, /* @__PURE__ */ import_react36.default.createElement(Circle, null, /* @__PURE__ */ import_react36.default.createElement(CircleWrapper, null, "RN", /* @__PURE__ */ import_react36.default.createElement("div", {
       className: "ProfileMenu"
-    }, /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, {
+    }, /* @__PURE__ */ import_react36.default.createElement(ProfileMenuItem, {
       onClick: () => history2.push("/profile")
-    }, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(ProjectsIcon_default, null)), "My Profile"), /* @__PURE__ */ import_react37.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react37.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react37.default.createElement(LogoutIcon_default, null)), "Logout")))))));
+    }, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(ProjectsIcon_default, null)), "My Profile"), /* @__PURE__ */ import_react36.default.createElement(ProfileMenuItem, null, /* @__PURE__ */ import_react36.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react36.default.createElement(LogoutIcon_default, null)), "Logout")))))));
   };
   var Header_default = Header;
   var MenuItem = styled_components_browser_esm_default.div`
   color: ${({ active }) => active ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.65)"};
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 23px 18px;
+  padding: 21px 18px;
   opacity: 0.8;
   display: flex;
   align-items: center;
@@ -33584,6 +33574,7 @@ ${latestSubscriptionCallbackError.current.stack}
   padding: 20px 50px 20px 10px;
   color: rgba(255, 255, 255, 0.65);
   display: flex;
+  font-size: 14px;
   align-items: center;
 
   &:hover {
@@ -33591,10 +33582,13 @@ ${latestSubscriptionCallbackError.current.stack}
   }
 `;
   var IconWrapper = styled_components_browser_esm_default.div`
-  padding: 0 7px;
+  padding: 0 10px;
+  margin-top: 3px;
 `;
   var LogoWrapper3 = styled_components_browser_esm_default.div`
   cursor: pointer;
+  margin-top: 3px;
+  margin-left: 5px;
 `;
   var SettingsIconWrapper = styled_components_browser_esm_default.div`
   cursor: pointer;
@@ -33615,11 +33609,12 @@ ${latestSubscriptionCallbackError.current.stack}
   background: #ccc;
   border-radius: 50%;
   color: #ffffff;
-  border: 1px solid rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 14px;
 `;
   var RightSideMenu = styled_components_browser_esm_default.div`
   display: flex;
@@ -33627,14 +33622,17 @@ ${latestSubscriptionCallbackError.current.stack}
   padding-right: 30px;
 `;
   var Input2 = styled_components_browser_esm_default.input`
-  padding: 3px 50px 3px 10px;
+  //padding: 3px 50px 3px 10px;
+  padding: 6px 11px;
   background: rgb(255, 255, 255);
+  max-width: 180px;
 
   outline: 0px;
   color: rgb(140, 140, 140);
 
   &::placeholder {
     color: rgb(140, 140, 140);
+    font-size: 14px;
   }
 `;
   var LeftSideMenu = styled_components_browser_esm_default.div`
@@ -33651,15 +33649,15 @@ ${latestSubscriptionCallbackError.current.stack}
 `;
 
   // src/Components/Dashboard/Dashboard.tsx
-  var import_react51 = __toESM(require_react(), 1);
+  var import_react50 = __toESM(require_react(), 1);
 
   // src/Components/Dashboard/Inspection.tsx
-  var import_react39 = __toESM(require_react(), 1);
+  var import_react38 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/EmailBoxIcon.tsx
-  var import_react38 = __toESM(require_react(), 1);
+  var import_react37 = __toESM(require_react(), 1);
   var EmailBoxIcon = () => {
-    return /* @__PURE__ */ import_react38.default.createElement("svg", {
+    return /* @__PURE__ */ import_react37.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "inbox",
@@ -33667,7 +33665,7 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "16",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react38.default.createElement("path", {
+    }, /* @__PURE__ */ import_react37.default.createElement("path", {
       d: "M885.2 446.3l-.2-.8-112.2-285.1c-5-16.1-19.9-27.2-36.8-27.2H281.2c-17 0-32.1 11.3-36.9 27.6L139.4 443l-.3.7-.2.8c-1.3 4.9-1.7 9.9-1 14.8-.1 1.6-.2 3.2-.2 4.8V830a60.9 60.9 0 0060.8 60.8h627.2c33.5 0 60.8-27.3 60.9-60.8V464.1c0-1.3 0-2.6-.1-3.7.4-4.9 0-9.6-1.3-14.1zm-295.8-43l-.3 15.7c-.8 44.9-31.8 75.1-77.1 75.1-22.1 0-41.1-7.1-54.8-20.6S436 441.2 435.6 419l-.3-15.7H229.5L309 210h399.2l81.7 193.3H589.4zm-375 76.8h157.3c24.3 57.1 76 90.8 140.4 90.8 33.7 0 65-9.4 90.3-27.2 22.2-15.6 39.5-37.4 50.7-63.6h156.5V814H214.4V480.1z"
     }));
   };
@@ -33675,8 +33673,8 @@ ${latestSubscriptionCallbackError.current.stack}
 
   // src/Components/Dashboard/Inspection.tsx
   var Inspection = () => {
-    const [showMore2, setShowMore] = (0, import_react39.useState)(false);
-    return /* @__PURE__ */ import_react39.default.createElement(Inspections, null, /* @__PURE__ */ import_react39.default.createElement(InspectionHeader, null, /* @__PURE__ */ import_react39.default.createElement(EmailBoxIcon_default, null), /* @__PURE__ */ import_react39.default.createElement(InspectionHeaderTitle, null, "Unfinished Inspections"), /* @__PURE__ */ import_react39.default.createElement(NumberWrapper, null, "1,2345")), /* @__PURE__ */ import_react39.default.createElement(InspectionItemWrapper, null, /* @__PURE__ */ import_react39.default.createElement(InspectionItem, null, /* @__PURE__ */ import_react39.default.createElement(InspectionItemTitle, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react39.default.createElement(InspectionItemDate, null, "10/10/2001"))), /* @__PURE__ */ import_react39.default.createElement(InspectionItemWrapper, null, /* @__PURE__ */ import_react39.default.createElement(InspectionItem, null, /* @__PURE__ */ import_react39.default.createElement(InspectionItemTitle, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react39.default.createElement(InspectionItemDate, null, "10/10/2001"))), /* @__PURE__ */ import_react39.default.createElement(InspectionFooter, {
+    const [showMore2, setShowMore] = (0, import_react38.useState)(false);
+    return /* @__PURE__ */ import_react38.default.createElement(Inspections, null, /* @__PURE__ */ import_react38.default.createElement(InspectionHeader, null, /* @__PURE__ */ import_react38.default.createElement(EmailBoxIcon_default, null), /* @__PURE__ */ import_react38.default.createElement(InspectionHeaderTitle, null, "Unfinished Inspections"), /* @__PURE__ */ import_react38.default.createElement(NumberWrapper, null, "2,995")), /* @__PURE__ */ import_react38.default.createElement(InspectionItemWrapper, null, /* @__PURE__ */ import_react38.default.createElement(InspectionItem, null, /* @__PURE__ */ import_react38.default.createElement(InspectionItemTitle, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react38.default.createElement(InspectionItemDate, null, "10/10/2001"))), /* @__PURE__ */ import_react38.default.createElement(InspectionItemWrapper, null, /* @__PURE__ */ import_react38.default.createElement(InspectionItem, null, /* @__PURE__ */ import_react38.default.createElement(InspectionItemTitle, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react38.default.createElement(InspectionItemDate, null, "10/10/2001"))), /* @__PURE__ */ import_react38.default.createElement(InspectionFooter, {
       onClick: () => setShowMore(!showMore2)
     }, showMore2 ? "Show Less" : "Show More"));
   };
@@ -33687,6 +33685,7 @@ ${latestSubscriptionCallbackError.current.stack}
   color: #1890ff;
   width: 100%;
   height: 57px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33711,6 +33710,8 @@ ${latestSubscriptionCallbackError.current.stack}
   var InspectionItemTitle = styled_components_browser_esm_default.div`
   background-color: #fafafa;
   width: 181px;
+  display: flex;
+  justify-content: flex-end;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
   padding: 4px 7px;
@@ -33719,13 +33720,14 @@ ${latestSubscriptionCallbackError.current.stack}
 `;
   var InspectionItemDate = styled_components_browser_esm_default.div`
     color: #c0c7db;
+  font-size: 14px;
 
 `;
   var NumberWrapper = styled_components_browser_esm_default.div`
   background-color: #c0c7db;
   transform-origin: 50% 50%;
   padding: 3px 8px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 10px;
   color: #fff;
 `;
@@ -33734,15 +33736,14 @@ ${latestSubscriptionCallbackError.current.stack}
     align-items: center;
   border-bottom: 1px solid #f0f0f0;
   margin-bottom: 24px;
+  padding: 19.5px 24px;
 
-
-  padding: 16px 24px;
 `;
   var InspectionHeaderTitle = styled_components_browser_esm_default.div`
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -33756,12 +33757,12 @@ ${latestSubscriptionCallbackError.current.stack}
 `;
 
   // src/Components/Dashboard/Discrepancies.tsx
-  var import_react43 = __toESM(require_react(), 1);
+  var import_react42 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/DiscrepanciesIcon.tsx
-  var import_react40 = __toESM(require_react(), 1);
+  var import_react39 = __toESM(require_react(), 1);
   var DiscrepanciesIcon = () => {
-    return /* @__PURE__ */ import_react40.default.createElement("svg", {
+    return /* @__PURE__ */ import_react39.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "merge-cells",
@@ -33769,16 +33770,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react40.default.createElement("defs", null, /* @__PURE__ */ import_react40.default.createElement("style", null)), /* @__PURE__ */ import_react40.default.createElement("path", {
+    }, /* @__PURE__ */ import_react39.default.createElement("defs", null, /* @__PURE__ */ import_react39.default.createElement("style", null)), /* @__PURE__ */ import_react39.default.createElement("path", {
       d: "M482.2 508.4L331.3 389c-3-2.4-7.3-.2-7.3 3.6V478H184V184h204v128c0 2.2 1.8 4 4 4h60c2.2 0 4-1.8 4-4V144c0-15.5-12.5-28-28-28H144c-15.5 0-28 12.5-28 28v736c0 15.5 12.5 28 28 28h284c15.5 0 28-12.5 28-28V712c0-2.2-1.8-4-4-4h-60c-2.2 0-4 1.8-4 4v128H184V546h140v85.4c0 3.8 4.4 6 7.3 3.6l150.9-119.4a4.5 4.5 0 000-7.2zM880 116H596c-15.5 0-28 12.5-28 28v168c0 2.2 1.8 4 4 4h60c2.2 0 4-1.8 4-4V184h204v294H700v-85.4c0-3.8-4.3-6-7.3-3.6l-151 119.4a4.52 4.52 0 000 7.1l151 119.5c2.9 2.3 7.3.2 7.3-3.6V546h140v294H636V712c0-2.2-1.8-4-4-4h-60c-2.2 0-4 1.8-4 4v168c0 15.5 12.5 28 28 28h284c15.5 0 28-12.5 28-28V144c0-15.5-12.5-28-28-28z"
     }));
   };
   var DiscrepanciesIcon_default = DiscrepanciesIcon;
 
   // src/Components/common/icons/Cubes.tsx
-  var import_react41 = __toESM(require_react(), 1);
+  var import_react40 = __toESM(require_react(), 1);
   var Cubes = () => {
-    return /* @__PURE__ */ import_react41.default.createElement("svg", {
+    return /* @__PURE__ */ import_react40.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "qrcode",
@@ -33786,16 +33787,16 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react41.default.createElement("path", {
+    }, /* @__PURE__ */ import_react40.default.createElement("path", {
       d: "M468 128H160c-17.7 0-32 14.3-32 32v308c0 4.4 3.6 8 8 8h332c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8zm-56 284H192V192h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm194 210H136c-4.4 0-8 3.6-8 8v308c0 17.7 14.3 32 32 32h308c4.4 0 8-3.6 8-8V556c0-4.4-3.6-8-8-8zm-56 284H192V612h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm590-630H556c-4.4 0-8 3.6-8 8v332c0 4.4 3.6 8 8 8h332c4.4 0 8-3.6 8-8V160c0-17.7-14.3-32-32-32zm-32 284H612V192h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm194 210h-48c-4.4 0-8 3.6-8 8v134h-78V556c0-4.4-3.6-8-8-8H556c-4.4 0-8 3.6-8 8v332c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V644h78v102c0 4.4 3.6 8 8 8h190c4.4 0 8-3.6 8-8V556c0-4.4-3.6-8-8-8zM746 832h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm142 0h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
     }));
   };
   var Cubes_default = Cubes;
 
   // src/Components/common/icons/SearchBookIcon.tsx
-  var import_react42 = __toESM(require_react(), 1);
+  var import_react41 = __toESM(require_react(), 1);
   var SearchBookIcon = () => {
-    return /* @__PURE__ */ import_react42.default.createElement("svg", {
+    return /* @__PURE__ */ import_react41.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "file-search",
@@ -33803,7 +33804,7 @@ ${latestSubscriptionCallbackError.current.stack}
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react42.default.createElement("path", {
+    }, /* @__PURE__ */ import_react41.default.createElement("path", {
       d: "M688 312v-48c0-4.4-3.6-8-8-8H296c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8zm-392 88c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H296zm144 452H208V148h560v344c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V108c0-17.7-14.3-32-32-32H168c-17.7 0-32 14.3-32 32v784c0 17.7 14.3 32 32 32h272c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm445.7 51.5l-93.3-93.3C814.7 780.7 828 743.9 828 704c0-97.2-78.8-176-176-176s-176 78.8-176 176 78.8 176 176 176c35.8 0 69-10.7 96.8-29l94.7 94.7c1.6 1.6 3.6 2.3 5.6 2.3s4.1-.8 5.6-2.3l31-31a7.9 7.9 0 000-11.2zM652 816c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
     }));
   };
@@ -33811,8 +33812,8 @@ ${latestSubscriptionCallbackError.current.stack}
 
   // src/Components/Dashboard/Discrepancies.tsx
   var Discrepancies = () => {
-    const [showMore2, setShowMore] = (0, import_react43.useState)(false);
-    return /* @__PURE__ */ import_react43.default.createElement(Inspections2, null, /* @__PURE__ */ import_react43.default.createElement(InspectionHeader2, null, /* @__PURE__ */ import_react43.default.createElement(DiscrepanciesIcon_default, null), /* @__PURE__ */ import_react43.default.createElement(InspectionHeaderTitle2, null, "Discrepancies"), /* @__PURE__ */ import_react43.default.createElement(NumberWrapper2, null, "2")), /* @__PURE__ */ import_react43.default.createElement(ItemsWrapper, null, /* @__PURE__ */ import_react43.default.createElement(InspectionItem2, null, /* @__PURE__ */ import_react43.default.createElement(Left, null, /* @__PURE__ */ import_react43.default.createElement(InspectionItemTitle2, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react43.default.createElement(IconWrapp, null, /* @__PURE__ */ import_react43.default.createElement(Cubes_default, null)), /* @__PURE__ */ import_react43.default.createElement(Height1, null, "Height: 1.0"), /* @__PURE__ */ import_react43.default.createElement(IconWrapp, null, /* @__PURE__ */ import_react43.default.createElement(SearchBookIcon_default, null)), /* @__PURE__ */ import_react43.default.createElement(Height2, null, "Height: 1.0"), /* @__PURE__ */ import_react43.default.createElement(More, null, "1 more")), /* @__PURE__ */ import_react43.default.createElement(Right, null, "View"))), /* @__PURE__ */ import_react43.default.createElement(InspectionFooter2, {
+    const [showMore2, setShowMore] = (0, import_react42.useState)(false);
+    return /* @__PURE__ */ import_react42.default.createElement(Inspections2, null, /* @__PURE__ */ import_react42.default.createElement(InspectionHeader2, null, /* @__PURE__ */ import_react42.default.createElement(DiscrepanciesIcon_default, null), /* @__PURE__ */ import_react42.default.createElement(InspectionHeaderTitle2, null, "Discrepancies"), /* @__PURE__ */ import_react42.default.createElement(NumberWrapper2, null, "2")), /* @__PURE__ */ import_react42.default.createElement(ItemsWrapper, null, /* @__PURE__ */ import_react42.default.createElement(InspectionItem2, null, /* @__PURE__ */ import_react42.default.createElement(Left, null, /* @__PURE__ */ import_react42.default.createElement(InspectionItemTitle2, null, "43-15-X0 \xB7 43-15-W0"), /* @__PURE__ */ import_react42.default.createElement(IconWrapp, null, /* @__PURE__ */ import_react42.default.createElement(Cubes_default, null)), /* @__PURE__ */ import_react42.default.createElement(Height1, null, "Height: 1.0"), /* @__PURE__ */ import_react42.default.createElement(IconWrapp, null, /* @__PURE__ */ import_react42.default.createElement(SearchBookIcon_default, null)), /* @__PURE__ */ import_react42.default.createElement(Height2, null, "Height: 1.0"), /* @__PURE__ */ import_react42.default.createElement(More, null, "1 more")), /* @__PURE__ */ import_react42.default.createElement(Right, null, "View"))), /* @__PURE__ */ import_react42.default.createElement(InspectionFooter2, {
       onClick: () => setShowMore(!showMore2)
     }, showMore2 ? "Show Less" : "Show More"));
   };
@@ -33824,6 +33825,7 @@ ${latestSubscriptionCallbackError.current.stack}
   width: 100%;
   height: 57px;
   display: flex;
+  font-size: 14px;
   align-items: center;
   justify-content: center;
   border-top: 1px solid #f0f0f0;
@@ -33894,7 +33896,7 @@ cursor: pointer;
   justify-content: center;
     align-items: center;
   height: 20px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 50%;
   color: #fff;
 `;
@@ -33911,7 +33913,7 @@ cursor: pointer;
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -33926,12 +33928,12 @@ cursor: pointer;
 `;
 
   // src/Components/Dashboard/UpdatedProjects.tsx
-  var import_react45 = __toESM(require_react(), 1);
+  var import_react44 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/NoInspection.tsx
-  var import_react44 = __toESM(require_react(), 1);
+  var import_react43 = __toESM(require_react(), 1);
   var NoInspection = () => {
-    return /* @__PURE__ */ import_react44.default.createElement("svg", {
+    return /* @__PURE__ */ import_react43.default.createElement("svg", {
       id: "Layer_1",
       "data-name": "Layer 1",
       xmlns: "http://www.w3.org/2000/svg",
@@ -33939,7 +33941,7 @@ cursor: pointer;
       width: "70",
       height: "70",
       viewBox: "0 0 108.67 122.88"
-    }, /* @__PURE__ */ import_react44.default.createElement("defs", null), /* @__PURE__ */ import_react44.default.createElement("title", null, "no-data"), /* @__PURE__ */ import_react44.default.createElement("path", {
+    }, /* @__PURE__ */ import_react43.default.createElement("defs", null), /* @__PURE__ */ import_react43.default.createElement("title", null, "no-data"), /* @__PURE__ */ import_react43.default.createElement("path", {
       className: "cls-1",
       d: "M25.14,53.37a2.77,2.77,0,0,0,0,5.54H45.25a2.77,2.77,0,0,0,0-5.54Zm60.48-36.9,6.66,6.69-8,8.14,8,8.14L85.61,46.1l-8-8.09-8,8.1L63,39.43l8-8.14-8-8.15,6.67-6.65,8,8.08,8-8.1ZM77.77,0A30.91,30.91,0,0,1,91,58.82v57.69a6.38,6.38,0,0,1-6.37,6.37H6.37A6.38,6.38,0,0,1,0,116.51V22.4A6.38,6.38,0,0,1,6.37,16h44.3A30.89,30.89,0,0,1,77.77,0Zm7.78,60.81A30.92,30.92,0,0,1,48.32,21.52H6.37a.9.9,0,0,0-.63.26.92.92,0,0,0-.26.63V116.5a.89.89,0,0,0,.89.89H84.65a.9.9,0,0,0,.63-.26.92.92,0,0,0,.26-.63V60.81ZM25.14,92.22a2.74,2.74,0,0,0,0,5.48H63.61a2.74,2.74,0,1,0,0-5.48Zm0-19.41a2.74,2.74,0,0,0,0,5.48H63.61a2.74,2.74,0,0,0,0-5.48Z"
     }));
@@ -33948,7 +33950,7 @@ cursor: pointer;
 
   // src/Components/Dashboard/UpdatedProjects.tsx
   var UpdatedProjects = () => {
-    return /* @__PURE__ */ import_react45.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react45.default.createElement(Title, null, "Recently Updated Projects"), /* @__PURE__ */ import_react45.default.createElement(ContentWrapp, null, /* @__PURE__ */ import_react45.default.createElement(ContentHeader, null, /* @__PURE__ */ import_react45.default.createElement(ContentHeaderTitle, null, "Springfield I&I")), /* @__PURE__ */ import_react45.default.createElement(ContentBody, null, /* @__PURE__ */ import_react45.default.createElement(ContentDataLeft, null, /* @__PURE__ */ import_react45.default.createElement(IconWrapp2, null, /* @__PURE__ */ import_react45.default.createElement(NoInspection_default, null)), /* @__PURE__ */ import_react45.default.createElement(EmptyText, null, "No inspections")), /* @__PURE__ */ import_react45.default.createElement(RightSideWrapper, null, /* @__PURE__ */ import_react45.default.createElement(RightWrapper, null, /* @__PURE__ */ import_react45.default.createElement(ContentDataRight, null, /* @__PURE__ */ import_react45.default.createElement(Assets, null, /* @__PURE__ */ import_react45.default.createElement(AssetsTitle, null, "Assets"), /* @__PURE__ */ import_react45.default.createElement(AssetsNumber, null, "0")), /* @__PURE__ */ import_react45.default.createElement(Assets, null, /* @__PURE__ */ import_react45.default.createElement(AssetsTitle, null, "Assigned"), /* @__PURE__ */ import_react45.default.createElement(AssetsNumber, null, "0")))), /* @__PURE__ */ import_react45.default.createElement(BottomWrapper, null, /* @__PURE__ */ import_react45.default.createElement(ContentDataBottom, null, /* @__PURE__ */ import_react45.default.createElement(Assets, null, /* @__PURE__ */ import_react45.default.createElement(AssetsTitle, null, "Total Distance Remaining"), /* @__PURE__ */ import_react45.default.createElement(AssetsNumber, null, "0/0"))))))));
+    return /* @__PURE__ */ import_react44.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react44.default.createElement(Title, null, "Recently Updated Projects"), /* @__PURE__ */ import_react44.default.createElement(ContentWrapp, null, /* @__PURE__ */ import_react44.default.createElement(ContentHeader, null, /* @__PURE__ */ import_react44.default.createElement(ContentHeaderTitle, null, "Springfield I&I")), /* @__PURE__ */ import_react44.default.createElement(ContentBody, null, /* @__PURE__ */ import_react44.default.createElement(ContentDataLeft, null, /* @__PURE__ */ import_react44.default.createElement(IconWrapp2, null, /* @__PURE__ */ import_react44.default.createElement(NoInspection_default, null)), /* @__PURE__ */ import_react44.default.createElement(EmptyText, null, "No inspections")), /* @__PURE__ */ import_react44.default.createElement(RightSideWrapper, null, /* @__PURE__ */ import_react44.default.createElement(RightWrapper, null, /* @__PURE__ */ import_react44.default.createElement(ContentDataRight, null, /* @__PURE__ */ import_react44.default.createElement(Assets, null, /* @__PURE__ */ import_react44.default.createElement(AssetsTitle, null, "Assets"), /* @__PURE__ */ import_react44.default.createElement(AssetsNumber, null, "0")), /* @__PURE__ */ import_react44.default.createElement(Assets, null, /* @__PURE__ */ import_react44.default.createElement(AssetsTitle, null, "Assigned"), /* @__PURE__ */ import_react44.default.createElement(AssetsNumber, null, "0")))), /* @__PURE__ */ import_react44.default.createElement(BottomWrapper, null, /* @__PURE__ */ import_react44.default.createElement(ContentDataBottom, null, /* @__PURE__ */ import_react44.default.createElement(Assets, null, /* @__PURE__ */ import_react44.default.createElement(AssetsTitle, null, "Total Distance Remaining"), /* @__PURE__ */ import_react44.default.createElement(AssetsNumber, null, "0 / 0"))))))));
   };
   var UpdatedProjects_default = UpdatedProjects;
   var Wrapper4 = styled_components_browser_esm_default.div`
@@ -33967,7 +33969,7 @@ cursor: pointer;
 `;
   var AssetsTitle = styled_components_browser_esm_default.div`
   color: rgba(0, 0, 0, 0.45);
-  font-size: 16px;
+  font-size: 14px;
 `;
   var ContentBody = styled_components_browser_esm_default.div`
     display: flex;
@@ -34019,25 +34021,25 @@ cursor: pointer;
   display: flex;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
 `;
   var Title = styled_components_browser_esm_default.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
   padding: 16px 24px;
 `;
 
   // src/Components/Dashboard/Assets.tsx
-  var import_react48 = __toESM(require_react(), 1);
+  var import_react47 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/Folder.tsx
-  var import_react46 = __toESM(require_react(), 1);
+  var import_react45 = __toESM(require_react(), 1);
   var Folder = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react46.default.createElement("svg", {
+    return /* @__PURE__ */ import_react45.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "folder-open",
@@ -34045,16 +34047,16 @@ cursor: pointer;
       height: "1em",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react46.default.createElement("path", {
+    }, /* @__PURE__ */ import_react45.default.createElement("path", {
       d: "M928 444H820V330.4c0-17.7-14.3-32-32-32H473L355.7 186.2a8.15 8.15 0 00-5.5-2.2H96c-17.7 0-32 14.3-32 32v592c0 17.7 14.3 32 32 32h698c13 0 24.8-7.9 29.7-20l134-332c1.5-3.8 2.3-7.9 2.3-12 0-17.7-14.3-32-32-32zM136 256h188.5l119.6 114.4H748V444H238c-13 0-24.8 7.9-29.7 20L136 643.2V256zm635.3 512H159l103.3-256h612.4L771.3 768z"
     }));
   };
   var Folder_default = Folder;
 
   // src/Components/common/icons/TreeIcon.tsx
-  var import_react47 = __toESM(require_react(), 1);
+  var import_react46 = __toESM(require_react(), 1);
   var TreeIcon = () => {
-    return /* @__PURE__ */ import_react47.default.createElement("svg", {
+    return /* @__PURE__ */ import_react46.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "apartment",
@@ -34062,7 +34064,7 @@ cursor: pointer;
       height: "1em",
       fill: "#1890ff",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react47.default.createElement("path", {
+    }, /* @__PURE__ */ import_react46.default.createElement("path", {
       d: "M908 640H804V488c0-4.4-3.6-8-8-8H548v-96h108c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H368c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h108v96H228c-4.4 0-8 3.6-8 8v152H116c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h288c8.8 0 16-7.2 16-16V656c0-8.8-7.2-16-16-16H292v-88h440v88H620c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h288c8.8 0 16-7.2 16-16V656c0-8.8-7.2-16-16-16zm-564 76v168H176V716h168zm84-408V140h168v168H428zm420 576H680V716h168v168z"
     }));
   };
@@ -34070,9 +34072,11 @@ cursor: pointer;
 
   // src/Components/Dashboard/Assets.tsx
   var Assets2 = () => {
-    return /* @__PURE__ */ import_react48.default.createElement(Wrapper5, null, /* @__PURE__ */ import_react48.default.createElement(AssetsHeader, null, /* @__PURE__ */ import_react48.default.createElement(AssetsHeaderTitle, null, /* @__PURE__ */ import_react48.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react48.default.createElement(Cubes_default, null)), "Assets")), /* @__PURE__ */ import_react48.default.createElement(AssetsBody, null, /* @__PURE__ */ import_react48.default.createElement(AssetsItem, null, /* @__PURE__ */ import_react48.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react48.default.createElement(Folder_default, {
+    return /* @__PURE__ */ import_react47.default.createElement(Wrapper5, null, /* @__PURE__ */ import_react47.default.createElement(AssetsHeader, null, /* @__PURE__ */ import_react47.default.createElement(AssetsHeaderTitle, null, /* @__PURE__ */ import_react47.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react47.default.createElement(Cubes_default, null)), "Assets")), /* @__PURE__ */ import_react47.default.createElement(AssetsBody, null, /* @__PURE__ */ import_react47.default.createElement(AssetsItem, null, /* @__PURE__ */ import_react47.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react47.default.createElement(Folder_default, {
       color: "#1890ff"
-    })), /* @__PURE__ */ import_react48.default.createElement(AssetsBodyTitle, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react48.default.createElement(IconWrapp3, null, /* @__PURE__ */ import_react48.default.createElement(TreeIcon_default, null)))));
+    })), /* @__PURE__ */ import_react47.default.createElement(AssetsBodyTitle, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react47.default.createElement(IconWrapp3, {
+      style: { paddingLeft: "10px" }
+    }, /* @__PURE__ */ import_react47.default.createElement(TreeIcon_default, null)))));
   };
   var Assets_default = Assets2;
   var Wrapper5 = styled_components_browser_esm_default.div`
@@ -34094,7 +34098,7 @@ cursor: pointer;
   font-size: 14px;
 `;
   var IconWrapp3 = styled_components_browser_esm_default.div`
-  padding: 0 10px;
+  padding: 0 10px 0 0;
 `;
   var AssetsHeader = styled_components_browser_esm_default.div`
   border-bottom: 1px solid #f0f0f0;
@@ -34103,22 +34107,22 @@ cursor: pointer;
   var AssetsHeaderTitle = styled_components_browser_esm_default.div`
   display: flex;
   font-weight: 400;
-  font-size: 18px;
-  padding: 16px 24px;
+  font-size: 16px;
+  padding: 19.5px 24px;
 `;
 
   // src/Components/Dashboard/Inspections.tsx
-  var import_react49 = __toESM(require_react(), 1);
+  var import_react48 = __toESM(require_react(), 1);
   var Inspection2 = () => {
-    return /* @__PURE__ */ import_react49.default.createElement(Wrapper6, null, /* @__PURE__ */ import_react49.default.createElement(AssetsHeader2, null, /* @__PURE__ */ import_react49.default.createElement(AssetsHeaderTitle2, null, /* @__PURE__ */ import_react49.default.createElement(IconSearchWrapp, null, /* @__PURE__ */ import_react49.default.createElement(SearchIcon_default, {
+    return /* @__PURE__ */ import_react48.default.createElement(Wrapper6, null, /* @__PURE__ */ import_react48.default.createElement(AssetsHeader2, null, /* @__PURE__ */ import_react48.default.createElement(AssetsHeaderTitle2, null, /* @__PURE__ */ import_react48.default.createElement(IconSearchWrapp, null, /* @__PURE__ */ import_react48.default.createElement(SearchIcon_default, {
       color: "#000"
-    })), "Inspections")), /* @__PURE__ */ import_react49.default.createElement(AssetsBody2, null, /* @__PURE__ */ import_react49.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(Folder_default, {
+    })), "Inspections")), /* @__PURE__ */ import_react48.default.createElement(AssetsBody2, null, /* @__PURE__ */ import_react48.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(Folder_default, {
       color: "#1890ff"
-    })), /* @__PURE__ */ import_react49.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react49.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(Folder_default, {
+    })), /* @__PURE__ */ import_react48.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react48.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(Folder_default, {
       color: "#1890ff"
-    })), /* @__PURE__ */ import_react49.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react49.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(Folder_default, {
+    })), /* @__PURE__ */ import_react48.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(TreeIcon_default, null))), /* @__PURE__ */ import_react48.default.createElement(AssetsItem2, null, /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(Folder_default, {
       color: "#1890ff"
-    })), /* @__PURE__ */ import_react49.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react49.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react49.default.createElement(TreeIcon_default, null)))));
+    })), /* @__PURE__ */ import_react48.default.createElement(AssetsBodyTitle2, null, "Copy of Test Inspections"), /* @__PURE__ */ import_react48.default.createElement(IconWrapp4, null, /* @__PURE__ */ import_react48.default.createElement(TreeIcon_default, null)))));
   };
   var Inspections_default = Inspection2;
   var Wrapper6 = styled_components_browser_esm_default.div`
@@ -34153,14 +34157,14 @@ cursor: pointer;
   var AssetsHeaderTitle2 = styled_components_browser_esm_default.div`
   display: flex;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   padding: 16px 24px;
 `;
 
   // src/Components/Dashboard/Footer.tsx
-  var import_react50 = __toESM(require_react(), 1);
+  var import_react49 = __toESM(require_react(), 1);
   var Footer = () => {
-    return /* @__PURE__ */ import_react50.default.createElement(Wrapper7, null, /* @__PURE__ */ import_react50.default.createElement(TopText, null, /* @__PURE__ */ import_react50.default.createElement(TopItem, null, "Terms of Service"), "\xA0 \u2022 \xA0", /* @__PURE__ */ import_react50.default.createElement(TopItem, null, "Privacy"), "\xA0 \u2022 \xA0", /* @__PURE__ */ import_react50.default.createElement(TopItem, null, "Contact Us")), /* @__PURE__ */ import_react50.default.createElement(BottomText, null, "Industrial Technology Group, LLC \xA9 2022"));
+    return /* @__PURE__ */ import_react49.default.createElement(Wrapper7, null, /* @__PURE__ */ import_react49.default.createElement(TopText, null, /* @__PURE__ */ import_react49.default.createElement(TopItem, null, "Terms of Service"), "\xA0 \u2022 \xA0", /* @__PURE__ */ import_react49.default.createElement(TopItem, null, "Privacy"), "\xA0 \u2022 \xA0", /* @__PURE__ */ import_react49.default.createElement(TopItem, null, "Contact Us")), /* @__PURE__ */ import_react49.default.createElement(BottomText, null, "Industrial Technology Group, LLC \xA9 2022"));
   };
   var Footer_default = Footer;
   var Wrapper7 = styled_components_browser_esm_default.div`
@@ -34174,7 +34178,7 @@ cursor: pointer;
   display: flex;
   align-items: center;
   color: #8C8C8C;
-  font-size: 16px;
+  font-size: 14px;
   justify-content: center;
   padding: 5px 0;
 `;
@@ -34185,18 +34189,17 @@ cursor: pointer;
 `;
   var TopItem = styled_components_browser_esm_default.div`
   color: #8C8C8C;
-    font-size: 16px;
+    font-size: 14px;
 `;
 
   // src/Components/Dashboard/Dashboard.tsx
   var Dashboard = () => {
-    return /* @__PURE__ */ import_react51.default.createElement(import_react51.default.Fragment, null, /* @__PURE__ */ import_react51.default.createElement(Wrapper8, null, /* @__PURE__ */ import_react51.default.createElement(LeftSide, null, /* @__PURE__ */ import_react51.default.createElement(LeftSideHeader, null, /* @__PURE__ */ import_react51.default.createElement(LeftSideHeaderTitle, null, "Activity")), /* @__PURE__ */ import_react51.default.createElement(Inspection_default, null), /* @__PURE__ */ import_react51.default.createElement(Discrepancies_default, null), /* @__PURE__ */ import_react51.default.createElement(UpdatedProjects_default, null)), /* @__PURE__ */ import_react51.default.createElement(RightSide, null, /* @__PURE__ */ import_react51.default.createElement(RightSideHeader, null, /* @__PURE__ */ import_react51.default.createElement(RightSideHeaderTitle, null, "Collections")), /* @__PURE__ */ import_react51.default.createElement(Assets_default, null), /* @__PURE__ */ import_react51.default.createElement(Inspections_default, null))), /* @__PURE__ */ import_react51.default.createElement(Footer_default, null));
+    return /* @__PURE__ */ import_react50.default.createElement(import_react50.default.Fragment, null, /* @__PURE__ */ import_react50.default.createElement(Wrapper8, null, /* @__PURE__ */ import_react50.default.createElement(LeftSide, null, /* @__PURE__ */ import_react50.default.createElement(LeftSideHeader, null, /* @__PURE__ */ import_react50.default.createElement(LeftSideHeaderTitle, null, "Activity")), /* @__PURE__ */ import_react50.default.createElement(Inspection_default, null), /* @__PURE__ */ import_react50.default.createElement(Discrepancies_default, null), /* @__PURE__ */ import_react50.default.createElement(UpdatedProjects_default, null)), /* @__PURE__ */ import_react50.default.createElement(RightSide, null, /* @__PURE__ */ import_react50.default.createElement(RightSideHeader, null, /* @__PURE__ */ import_react50.default.createElement(RightSideHeaderTitle, null, "Collections")), /* @__PURE__ */ import_react50.default.createElement(Assets_default, null), /* @__PURE__ */ import_react50.default.createElement(Inspections_default, null))), /* @__PURE__ */ import_react50.default.createElement(Footer_default, null));
   };
   var Dashboard_default = Dashboard;
   var Wrapper8 = styled_components_browser_esm_default.div`
-    padding: 35px 160px;
+    padding: 35px 178px;
     display: flex;
-  justify-content: space-between;
 `;
   var LeftSide = styled_components_browser_esm_default.div`
     width: 49%;
@@ -34204,45 +34207,47 @@ cursor: pointer;
 `;
   var RightSide = styled_components_browser_esm_default.div`
     width: 49%;
+  margin-left: 16px;
 `;
   var LeftSideHeader = styled_components_browser_esm_default.div``;
   var RightSideHeader = styled_components_browser_esm_default.div``;
   var LeftSideHeaderTitle = styled_components_browser_esm_default.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
-  padding: 16px 24px;
+  padding: 6px 24px 21px 23px;
 `;
   var RightSideHeaderTitle = styled_components_browser_esm_default.div`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 32px;
-  padding: 16px 24px;
+  padding: 6px 24px 21px 23px;
+
 `;
 
   // src/Pages/DashboardPage.tsx
   var DashboardPage = () => {
-    return /* @__PURE__ */ import_react52.default.createElement("div", {
+    return /* @__PURE__ */ import_react51.default.createElement("div", {
       style: { backgroundColor: "whitesmoke", height: "100%", width: "100%" }
-    }, /* @__PURE__ */ import_react52.default.createElement(Header_default, null), /* @__PURE__ */ import_react52.default.createElement(Dashboard_default, null));
+    }, /* @__PURE__ */ import_react51.default.createElement(Header_default, null), /* @__PURE__ */ import_react51.default.createElement(Dashboard_default, null));
   };
   var DashboardPage_default = DashboardPage;
 
   // src/Pages/AssetsPage.tsx
-  var import_react68 = __toESM(require_react(), 1);
+  var import_react67 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/Table.tsx
-  var import_react66 = __toESM(require_react(), 1);
+  var import_react65 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/TableContent.tsx
-  var import_react56 = __toESM(require_react(), 1);
+  var import_react55 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/AssetsPageIcons/TableArrowBottom.tsx
-  var import_react53 = __toESM(require_react(), 1);
+  var import_react52 = __toESM(require_react(), 1);
   var TableArrowBottom = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react53.default.createElement("svg", {
+    return /* @__PURE__ */ import_react52.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "caret-down",
@@ -34250,16 +34255,16 @@ cursor: pointer;
       height: "14",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react53.default.createElement("path", {
+    }, /* @__PURE__ */ import_react52.default.createElement("path", {
       d: "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
     }));
   };
   var TableArrowBottom_default = TableArrowBottom;
 
   // src/Components/common/icons/AssetsPageIcons/TableArrowTop.tsx
-  var import_react54 = __toESM(require_react(), 1);
+  var import_react53 = __toESM(require_react(), 1);
   var TableArrowTop = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react54.default.createElement("svg", {
+    return /* @__PURE__ */ import_react53.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "caret-up",
@@ -34267,7 +34272,7 @@ cursor: pointer;
       height: "14",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react54.default.createElement("path", {
+    }, /* @__PURE__ */ import_react53.default.createElement("path", {
       d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
     }));
   };
@@ -34285,10 +34290,10 @@ cursor: pointer;
   };
 
   // src/Components/utils/hooks/useOnClickOutside.ts
-  var import_react55 = __toESM(require_react(), 1);
+  var import_react54 = __toESM(require_react(), 1);
   var useOnClickOutside_default = (callback2) => {
-    const containerRef = import_react55.default.useRef(null);
-    (0, import_react55.useEffect)(() => {
+    const containerRef = import_react54.default.useRef(null);
+    (0, import_react54.useEffect)(() => {
       const listener = (e2) => {
         if (containerRef.current && !containerRef.current.contains(e2.target)) {
           callback2();
@@ -34307,7 +34312,7 @@ cursor: pointer;
   var createHeaders = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react56.useRef)()
+      ref: (0, import_react55.useRef)()
     }));
   };
   var TableContent = ({ headers, minCellWidth }) => {
@@ -34355,15 +34360,15 @@ cursor: pointer;
         inspection: 3213456785
       }
     ];
-    const [tableHeight, setTableHeight] = (0, import_react56.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react56.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react56.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react56.useState)(false);
-    const [activeTab, setActiveTab] = (0, import_react56.useState)("Details");
-    const [detailsOpen, setDetailsOpen] = (0, import_react56.useState)(false);
-    const tableElement = (0, import_react56.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react55.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react55.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react55.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react55.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react55.useState)("Details");
+    const [detailsOpen, setDetailsOpen] = (0, import_react55.useState)(false);
+    const tableElement = (0, import_react55.useRef)(null);
     const columns = createHeaders(headers);
-    (0, import_react56.useEffect)(() => {
+    (0, import_react55.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const detailsRef = useOnClickOutside_default(() => {
@@ -34372,7 +34377,7 @@ cursor: pointer;
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react56.useCallback)((e2) => {
+    const mouseMove = (0, import_react55.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -34384,15 +34389,15 @@ cursor: pointer;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react56.useCallback)(() => {
+    const removeListeners = (0, import_react55.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react56.useCallback)(() => {
+    const mouseUp = (0, import_react55.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react56.useEffect)(() => {
+    (0, import_react55.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -34430,81 +34435,83 @@ cursor: pointer;
       setActiveFilter(!activeFilter);
       console.log(sorted, "sorted");
     };
-    return /* @__PURE__ */ import_react56.default.createElement("div", {
+    return /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react56.default.createElement("table", {
+    }, /* @__PURE__ */ import_react55.default.createElement("table", {
       className: "resizeable-table",
       ref: tableElement,
-      style: { "grid-template-columns": "55px 191px 128px 191px 191px 191px 191px 191px" }
-    }, /* @__PURE__ */ import_react56.default.createElement("thead", null, /* @__PURE__ */ import_react56.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+      style: { "gridTemplateColumns": "55px 191px 128px 191px 191px 191px 191px 191px" }
+    }, /* @__PURE__ */ import_react55.default.createElement("thead", null, /* @__PURE__ */ import_react55.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, /* @__PURE__ */ import_react56.default.createElement("input", {
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, /* @__PURE__ */ import_react55.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react56.default.createElement(FilterWrapper, {
+    }, /* @__PURE__ */ import_react55.default.createElement(FilterWrapper, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, text), /* @__PURE__ */ import_react56.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react56.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, text), /* @__PURE__ */ import_react55.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react55.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react56.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react55.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react56.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, text), /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, text), /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, text), /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, text), /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react56.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react55.default.createElement("tbody", null, tableDataState.map((item, index2) => {
+      return /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("tr", {
+        key: index2
+      }, /* @__PURE__ */ import_react55.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react56.default.createElement("input", {
+      }, /* @__PURE__ */ import_react55.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", {
         className: "Items",
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.AssetsId), /* @__PURE__ */ import_react56.default.createElement("span", {
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.AssetsId), /* @__PURE__ */ import_react55.default.createElement("span", {
         className: "Details",
         onClick: () => {
           setTimeout(() => {
             setDetailsOpen(true);
           }, 0.1);
         }
-      }, "Details ", ">"))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement("td", null, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspection))));
-    }))), detailsOpen && /* @__PURE__ */ import_react56.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react56.default.createElement(Wrapper9, {
+      }, "Details ", ">"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspection))));
+    }))), detailsOpen && /* @__PURE__ */ import_react55.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react55.default.createElement(Wrapper9, {
       ref: detailsRef
-    }, /* @__PURE__ */ import_react56.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react56.default.createElement(Cross, {
+    }, /* @__PURE__ */ import_react55.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react55.default.createElement(Cross, {
       onClick: () => setDetailsOpen(false)
-    }, "X"), /* @__PURE__ */ import_react56.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react56.default.createElement(Tabs, null, /* @__PURE__ */ import_react56.default.createElement(Tab, null, /* @__PURE__ */ import_react56.default.createElement(Span, {
+    }, "X"), /* @__PURE__ */ import_react55.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react55.default.createElement(Tabs, null, /* @__PURE__ */ import_react55.default.createElement(Tab, null, /* @__PURE__ */ import_react55.default.createElement(Span, {
       active: activeTab === "Details",
       onClick: () => setActiveTab("Details")
-    }, "Details")), /* @__PURE__ */ import_react56.default.createElement(Tab, null, /* @__PURE__ */ import_react56.default.createElement(Span, {
+    }, "Details")), /* @__PURE__ */ import_react55.default.createElement(Tab, null, /* @__PURE__ */ import_react55.default.createElement(Span, {
       active: activeTab === "Inspections",
       style: { marginLeft: "20px" },
       onClick: () => setActiveTab("Inspections")
-    }, "Inspections"))), /* @__PURE__ */ import_react56.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react56.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react56.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react56.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react56.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
+    }, "Inspections"))), /* @__PURE__ */ import_react55.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react55.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react55.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react55.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react55.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
   };
   var TableContent_default = TableContent;
   var InspectionRow = styled_components_browser_esm_default.div`
@@ -34615,20 +34622,20 @@ cursor: pointer;
 `;
 
   // src/Components/common/icons/AssetsPageIcons/FolderPlus.tsx
-  var import_react57 = __toESM(require_react(), 1);
+  var import_react56 = __toESM(require_react(), 1);
   var FolderPlus = () => {
-    return /* @__PURE__ */ import_react57.default.createElement("svg", {
+    return /* @__PURE__ */ import_react56.default.createElement("svg", {
       width: "18",
       height: "18",
       viewBox: "0 0 24 24",
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg"
-    }, /* @__PURE__ */ import_react57.default.createElement("path", {
+    }, /* @__PURE__ */ import_react56.default.createElement("path", {
       fillRule: "evenodd",
       clipRule: "evenodd",
       d: "M19.2188 10.4062H21.75C22.1648 10.4062 22.5 10.7414 22.5 11.1562C22.5 11.2523 22.4813 11.3484 22.4461 11.4375L21.8154 13H20.0969L20.5008 12H6.14766L3.72656 18H13V19.6875H2.25C1.83516 19.6875 1.5 19.3523 1.5 18.9375V5.0625C1.5 4.64766 1.83516 4.3125 2.25 4.3125H8.20781C8.25573 4.31291 8.30174 4.33132 8.33672 4.36406L11.0859 6.99375H18.4688C18.8836 6.99375 19.2188 7.32891 19.2188 7.74375V10.4062ZM7.60547 6H3.1875V15.075L4.88203 10.875C4.99688 10.5914 5.27344 10.4062 5.57812 10.4062H17.5312V8.68125H10.4086L7.60547 6Z",
       fill: "currentColor"
-    }), /* @__PURE__ */ import_react57.default.createElement("path", {
+    }), /* @__PURE__ */ import_react56.default.createElement("path", {
       d: "M22.125 16.9688H19.4062V14.25C19.4062 14.1469 19.3219 14.0625 19.2188 14.0625H18.0938C17.9906 14.0625 17.9062 14.1469 17.9062 14.25V16.9688H15.1875C15.0844 16.9688 15 17.0531 15 17.1562V18.2812C15 18.3844 15.0844 18.4688 15.1875 18.4688H17.9062V21.1875C17.9062 21.2906 17.9906 21.375 18.0938 21.375H19.2188C19.3219 21.375 19.4062 21.2906 19.4062 21.1875V18.4688H22.125C22.2281 18.4688 22.3125 18.3844 22.3125 18.2812V17.1562C22.3125 17.0531 22.2281 16.9688 22.125 16.9688Z",
       fill: "currentColor"
     }));
@@ -34636,9 +34643,9 @@ cursor: pointer;
   var FolderPlus_default = FolderPlus;
 
   // src/Components/common/icons/AssetsPageIcons/Filter.tsx
-  var import_react58 = __toESM(require_react(), 1);
+  var import_react57 = __toESM(require_react(), 1);
   var Filter = () => {
-    return /* @__PURE__ */ import_react58.default.createElement("svg", {
+    return /* @__PURE__ */ import_react57.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "filter",
@@ -34646,16 +34653,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react58.default.createElement("path", {
+    }, /* @__PURE__ */ import_react57.default.createElement("path", {
       d: "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
     }));
   };
   var Filter_default = Filter;
 
   // src/Components/common/icons/AssetsPageIcons/EyeIcon.tsx
-  var import_react59 = __toESM(require_react(), 1);
+  var import_react58 = __toESM(require_react(), 1);
   var EyeIcon = () => {
-    return /* @__PURE__ */ import_react59.default.createElement("svg", {
+    return /* @__PURE__ */ import_react58.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye",
@@ -34663,19 +34670,19 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react59.default.createElement("path", {
+    }, /* @__PURE__ */ import_react58.default.createElement("path", {
       d: "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
     }));
   };
   var EyeIcon_default = EyeIcon;
 
   // src/Components/TableUtils/Filter.tsx
-  var import_react61 = __toESM(require_react(), 1);
+  var import_react60 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/AssetsPageIcons/ArrowDownIcon.tsx
-  var import_react60 = __toESM(require_react(), 1);
+  var import_react59 = __toESM(require_react(), 1);
   var ArrowDownIcon = () => {
-    return /* @__PURE__ */ import_react60.default.createElement("svg", {
+    return /* @__PURE__ */ import_react59.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "down",
@@ -34683,7 +34690,7 @@ cursor: pointer;
       height: "12",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react60.default.createElement("path", {
+    }, /* @__PURE__ */ import_react59.default.createElement("path", {
       d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
     }));
   };
@@ -34691,7 +34698,7 @@ cursor: pointer;
 
   // src/Components/TableUtils/Filter.tsx
   var TableFilter = () => {
-    const [filters, setFilters2] = (0, import_react61.useState)([]);
+    const [filters, setFilters2] = (0, import_react60.useState)([]);
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const handleCheckboxs = (e2, item) => {
       if (e2.target.checked) {
@@ -34710,21 +34717,21 @@ cursor: pointer;
         checkbox.checked = false;
       });
     };
-    return /* @__PURE__ */ import_react61.default.createElement(import_react61.default.Fragment, null, /* @__PURE__ */ import_react61.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Clear, {
+    return /* @__PURE__ */ import_react60.default.createElement(import_react60.default.Fragment, null, /* @__PURE__ */ import_react60.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Clear, {
       onClick: handleClear,
       active: Boolean(filters.length >= 1)
-    }, "Clear")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Apply, {
+    }, "Clear")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Apply, {
       active: Boolean(filters.length >= 1)
-    }, "Apply"))), /* @__PURE__ */ import_react61.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react61.default.createElement(FilterInput, null), /* @__PURE__ */ import_react61.default.createElement(Cross2, {
+    }, "Apply"))), /* @__PURE__ */ import_react60.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react60.default.createElement(FilterInput, null), /* @__PURE__ */ import_react60.default.createElement(Cross2, {
       onClick: () => handleDeleteFilter(item)
-    }, "\u0425")))), /* @__PURE__ */ import_react61.default.createElement(BodyItem, null, /* @__PURE__ */ import_react61.default.createElement(Left2, null, /* @__PURE__ */ import_react61.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react61.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react61.default.createElement(Rigth, null, /* @__PURE__ */ import_react61.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react61.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(HoverFilter, {
+    }, "\u0425")))), /* @__PURE__ */ import_react60.default.createElement(BodyItem, null, /* @__PURE__ */ import_react60.default.createElement(Left2, null, /* @__PURE__ */ import_react60.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react60.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react60.default.createElement(Rigth, null, /* @__PURE__ */ import_react60.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react60.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(HoverFilter, {
       key: index2
-    }, /* @__PURE__ */ import_react61.default.createElement(HoverFilterItem, {
+    }, /* @__PURE__ */ import_react60.default.createElement(HoverFilterItem, {
       onClick: (e2) => handleCheckboxs(e2, item)
-    }, /* @__PURE__ */ import_react61.default.createElement(Checkbox, null, /* @__PURE__ */ import_react61.default.createElement("input", {
+    }, /* @__PURE__ */ import_react60.default.createElement(Checkbox, null, /* @__PURE__ */ import_react60.default.createElement("input", {
       type: "checkbox",
       id: `checkbox${item}`
-    })), /* @__PURE__ */ import_react61.default.createElement(Label, {
+    })), /* @__PURE__ */ import_react60.default.createElement(Label, {
       htmlFor: `checkbox${item}`
     }, item)))))))));
   };
@@ -34886,12 +34893,12 @@ cursor: pointer;
 `;
 
   // src/Components/TableUtils/SettingsModal.tsx
-  var import_react65 = __toESM(require_react(), 1);
+  var import_react64 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/CloseEyeIcon.tsx
-  var import_react62 = __toESM(require_react(), 1);
+  var import_react61 = __toESM(require_react(), 1);
   var CloseEyeIcon = () => {
-    return /* @__PURE__ */ import_react62.default.createElement("svg", {
+    return /* @__PURE__ */ import_react61.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye-invisible",
@@ -34899,18 +34906,18 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react62.default.createElement("path", {
+    }, /* @__PURE__ */ import_react61.default.createElement("path", {
       d: "M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z"
-    }), /* @__PURE__ */ import_react62.default.createElement("path", {
+    }), /* @__PURE__ */ import_react61.default.createElement("path", {
       d: "M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z"
     }));
   };
   var CloseEyeIcon_default = CloseEyeIcon;
 
   // src/Components/common/icons/PinIcon.tsx
-  var import_react63 = __toESM(require_react(), 1);
+  var import_react62 = __toESM(require_react(), 1);
   var PinIcon = () => {
-    return /* @__PURE__ */ import_react63.default.createElement("svg", {
+    return /* @__PURE__ */ import_react62.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "pushpin",
@@ -34918,16 +34925,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react63.default.createElement("path", {
+    }, /* @__PURE__ */ import_react62.default.createElement("path", {
       d: "M878.3 392.1L631.9 145.7c-6.5-6.5-15-9.7-23.5-9.7s-17 3.2-23.5 9.7L423.8 306.9c-12.2-1.4-24.5-2-36.8-2-73.2 0-146.4 24.1-206.5 72.3a33.23 33.23 0 00-2.7 49.4l181.7 181.7-215.4 215.2a15.8 15.8 0 00-4.6 9.8l-3.4 37.2c-.9 9.4 6.6 17.4 15.9 17.4.5 0 1 0 1.5-.1l37.2-3.4c3.7-.3 7.2-2 9.8-4.6l215.4-215.4 181.7 181.7c6.5 6.5 15 9.7 23.5 9.7 9.7 0 19.3-4.2 25.9-12.4 56.3-70.3 79.7-158.3 70.2-243.4l161.1-161.1c12.9-12.8 12.9-33.8 0-46.8zM666.2 549.3l-24.5 24.5 3.8 34.4a259.92 259.92 0 01-30.4 153.9L262 408.8c12.9-7.1 26.3-13.1 40.3-17.9 27.2-9.4 55.7-14.1 84.7-14.1 9.6 0 19.3.5 28.9 1.6l34.4 3.8 24.5-24.5L608.5 224 800 415.5 666.2 549.3z"
     }));
   };
   var PinIcon_default = PinIcon;
 
   // src/Components/common/icons/SaveIcon.tsx
-  var import_react64 = __toESM(require_react(), 1);
+  var import_react63 = __toESM(require_react(), 1);
   var SaveIcon = () => {
-    return /* @__PURE__ */ import_react64.default.createElement("svg", {
+    return /* @__PURE__ */ import_react63.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "save",
@@ -34935,7 +34942,7 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react64.default.createElement("path", {
+    }, /* @__PURE__ */ import_react63.default.createElement("path", {
       d: "M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184zm456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840zM512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"
     }));
   };
@@ -34967,7 +34974,7 @@ cursor: pointer;
         isPinned: false
       }
     ];
-    const [newArr, setNewArr] = (0, import_react65.useState)(arr);
+    const [newArr, setNewArr] = (0, import_react64.useState)(arr);
     const handlePinAction = (id) => {
       setNewArr(newArr.map((item) => {
         if (item.id === id) {
@@ -35000,38 +35007,38 @@ cursor: pointer;
         return item;
       }));
     };
-    return /* @__PURE__ */ import_react65.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react65.default.createElement(Wrapper10, null, /* @__PURE__ */ import_react65.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react65.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react65.default.createElement(ModalClose, {
+    return /* @__PURE__ */ import_react64.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react64.default.createElement(Wrapper10, null, /* @__PURE__ */ import_react64.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react64.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react64.default.createElement(ModalClose, {
       onClick: () => setIsOpenSettings(false)
-    }, "\u2613")), /* @__PURE__ */ import_react65.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react65.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react65.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
+    }, "\u2613")), /* @__PURE__ */ import_react64.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react64.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react64.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
       style: { width: "50%" }
-    }, "Name"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
+    }, "Name"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
       style: { borderLeft: "1px solid #f0f0f0", borderRight: "1px solid #f0f0f0", width: "25%" }
-    }, "Action"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react65.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react65.default.createElement(Column, {
+    }, "Action"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react64.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react64.default.createElement(Column, {
       key: index2
-    }, /* @__PURE__ */ import_react65.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react65.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react65.default.createElement(IconWrappPin, {
+    }, /* @__PURE__ */ import_react64.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react64.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react64.default.createElement(IconWrappPin, {
       onClick: () => handlePinAction(item.id),
       active: item.isPinned
-    }, /* @__PURE__ */ import_react65.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(IconWrappEye, {
+    }, /* @__PURE__ */ import_react64.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react64.default.createElement(IconWrappEye, {
       onClick: () => handleSeeAction(item.id),
       active: item.isChecked,
       style: { marginLeft: "10px" }
-    }, item.isChecked ? /* @__PURE__ */ import_react65.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react65.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react65.default.createElement(SelectItem, {
+    }, item.isChecked ? /* @__PURE__ */ import_react64.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react64.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react64.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react64.default.createElement(SelectItem, {
       onClick: () => handleOpenSelect(item.id)
-    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemText, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemText, {
       active: item.filter.value
-    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react65.default.createElement("div", {
+    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react64.default.createElement("div", {
       style: { padding: "0px 7px", display: "flex", alignItems: "center" }
-    }, /* @__PURE__ */ import_react65.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react65.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react64.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Sum")
-    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Min")
-    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Max")
-    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Average")
-    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react65.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react65.default.createElement(ModalButton, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react64.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react64.default.createElement(ModalButton, {
       onClick: () => setIsOpenSettings(false)
-    }, /* @__PURE__ */ import_react65.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react65.default.createElement(SaveIcon_default, null)), "Save"))));
+    }, /* @__PURE__ */ import_react64.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react64.default.createElement(SaveIcon_default, null)), "Save"))));
   };
   var SettingsModal_default = SettingsModal;
   var SelectItemList = styled_components_browser_esm_default.div`
@@ -35208,8 +35215,8 @@ cursor: pointer;
 
   // src/Components/AssetsPage/Table.tsx
   var Table = () => {
-    const [isOpenFilter, setIsOpenFilter] = (0, import_react66.useState)(false);
-    const [isOpenSettings, setIsOpenSettings] = (0, import_react66.useState)(false);
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react65.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react65.useState)(false);
     const tableHeaders = [
       "checkbox",
       "Items",
@@ -35226,25 +35233,25 @@ cursor: pointer;
     const settingsRef = useOnClickOutside_default(() => {
       setIsOpenSettings(false);
     });
-    return /* @__PURE__ */ import_react66.default.createElement("div", null, /* @__PURE__ */ import_react66.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react66.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react66.default.createElement(TableUtils, null, /* @__PURE__ */ import_react66.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react66.default.createElement(Collection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Folder_default, {
+    return /* @__PURE__ */ import_react65.default.createElement("div", null, /* @__PURE__ */ import_react65.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react65.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react65.default.createElement(TableUtils, null, /* @__PURE__ */ import_react65.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react65.default.createElement(Collection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react66.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react66.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react66.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react66.default.createElement(RightSide2, null, /* @__PURE__ */ import_react66.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react66.default.createElement(FilterWrapper2, {
+    })), "Collection", /* @__PURE__ */ import_react65.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react65.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react65.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react65.default.createElement(RightSide2, null, /* @__PURE__ */ import_react65.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react65.default.createElement(FilterWrapper2, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
-    }, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react66.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react66.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react66.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react66.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(View, null, "View")), /* @__PURE__ */ import_react66.default.createElement(Settings, {
+    }, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react65.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react65.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react65.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react65.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(View, null, "View")), /* @__PURE__ */ import_react65.default.createElement(Settings, {
       onClick: () => {
         setTimeout(() => {
           setIsOpenSettings(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react66.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })), isOpenSettings && /* @__PURE__ */ import_react66.default.createElement(SettingsModal_default, {
+    })), isOpenSettings && /* @__PURE__ */ import_react65.default.createElement(SettingsModal_default, {
       settingsRef,
       setIsOpenSettings
-    }))), /* @__PURE__ */ import_react66.default.createElement(TableContent_default, {
+    }))), /* @__PURE__ */ import_react65.default.createElement(TableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -35391,19 +35398,19 @@ cursor: pointer;
 `;
 
   // src/Components/AssetsPage/AssetsSelects.tsx
-  var import_react67 = __toESM(require_react(), 1);
+  var import_react66 = __toESM(require_react(), 1);
   var AssetsSelects = () => {
-    const [select1, setSelect1] = (0, import_react67.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react67.useState)("Mainlines");
-    return /* @__PURE__ */ import_react67.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react67.default.createElement(Select1, null, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
+    const [select1, setSelect1] = (0, import_react66.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react66.useState)("Mainlines");
+    return /* @__PURE__ */ import_react66.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react66.default.createElement(Select1, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
+    }, "All systems"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react67.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react67.default.createElement(Select2, null, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react66.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react66.default.createElement(Select2, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
+    }, "All assets types"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect2("Mainlines")
     }, "Mainlines"))));
   };
@@ -35417,7 +35424,7 @@ cursor: pointer;
 `;
   var HoverItem2 = styled_components_browser_esm_default.div`
   padding: 7px 12px;
-  font-size: 16px;
+  font-size: 14px;
 
   &:hover {
     background-color: whitesmoke;
@@ -35440,6 +35447,7 @@ cursor: pointer;
   position: absolute;
   background-color: white;
   top: 50px;
+  font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
   display: none;
   &::before {
@@ -35500,7 +35508,7 @@ cursor: pointer;
   padding: 0 5px;
 `;
   var SelectItem2 = styled_components_browser_esm_default.div`
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: flex-start;
   height: 42px;
@@ -35508,43 +35516,34 @@ cursor: pointer;
 
   // src/Pages/AssetsPage.tsx
   var AssetsPage = () => {
-    return /* @__PURE__ */ import_react68.default.createElement("div", null, /* @__PURE__ */ import_react68.default.createElement(Header_default, null), /* @__PURE__ */ import_react68.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react68.default.createElement(Table_default, null));
+    return /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement(Header_default, null), /* @__PURE__ */ import_react67.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react67.default.createElement(Table_default, null));
   };
   var AssetsPage_default = AssetsPage;
 
   // src/Pages/ProjectsPage.tsx
-  var import_react85 = __toESM(require_react(), 1);
+  var import_react84 = __toESM(require_react(), 1);
 
   // src/Components/ProjectsPage/ProjectsSelects.tsx
-  var import_react69 = __toESM(require_react(), 1);
+  var import_react68 = __toESM(require_react(), 1);
   var AssetsSelects2 = () => {
-    const [select1, setSelect1] = (0, import_react69.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react69.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react69.useState)("All Templates");
-    const [hoverRef, isHovered] = useHover();
-    const [hoverRef2, isHovered2] = useHover();
-    const [hoverRef3, isHovered3] = useHover();
-    return /* @__PURE__ */ import_react69.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react69.default.createElement(Select12, {
-      ref: hoverRef
-    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    const [select1, setSelect1] = (0, import_react68.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react68.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react68.useState)("All Templates");
+    return /* @__PURE__ */ import_react68.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react68.default.createElement(Select12, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, "All systems"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select22, {
-      ref: hoverRef2
-    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered2 && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select22, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, "All assets types"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select22, {
-      ref: hoverRef3
-    }, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select3, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, {
       style: { color: "black" }
-    }, select3), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), isHovered3 && /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, select3), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper32, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All Templates")
-    }, "All Templates"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
+    }, "All Templates"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("NASSCO v6 Springfield")
     }, "NASSCO v6 Springfield"))));
   };
@@ -35558,19 +35557,38 @@ cursor: pointer;
 `;
   var HoverItem3 = styled_components_browser_esm_default.div`
   padding: 7px 12px;
-  font-size: 16px;
+  font-size: 14px;
   &:hover {
     background-color: whitesmoke;
   }
 `;
-  var HoverItemWrapper3 = styled_components_browser_esm_default.div`
+  var Select12 = styled_components_browser_esm_default.div`
   display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 14px;
+
+`;
+  var Select22 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 14px;
+`;
+  var Select3 = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 14px;
+`;
+  var HoverItemWrapper3 = styled_components_browser_esm_default.div`
   flex-direction: column;
   position: absolute;
   background-color: white;
   top: 55px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
+  display: none;
+  &::before{
   content: '';
   width: 0;
   height: 0;
@@ -35584,10 +35602,14 @@ cursor: pointer;
   top: -10px;
   left: 62px;
   transform: rotate(-27deg);
-},
+}
+
+${Select12}:hover & {
+  display: block;
+}
 `;
   var HoverItemWrapper22 = styled_components_browser_esm_default.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   background-color: white;
@@ -35607,19 +35629,38 @@ cursor: pointer;
   top: -10px;
   left: 52px;
   transform: rotate(-27deg);
-},
-`;
-  var Select12 = styled_components_browser_esm_default.div`
+}
+${Select22}:hover & {
   display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-
+}
+  
 `;
-  var Select22 = styled_components_browser_esm_default.div`
+  var HoverItemWrapper32 = styled_components_browser_esm_default.div`
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  top: 55px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+&::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 18px 9px 0;
+  border-color: transparent #fff transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: absolute;
+  top: -10px;
+  left: 52px;
+  transform: rotate(-27deg);
+}
+${Select3}:hover & {
   display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-
+}
+  
 `;
   var Slash2 = styled_components_browser_esm_default.div`
   padding: 0 5px;
@@ -35629,7 +35670,7 @@ cursor: pointer;
   padding-top: 1px;
 `;
   var SelectItem3 = styled_components_browser_esm_default.div`
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   color: rgba(0, 0, 0, 0.45);
   align-items: flex-start;
@@ -35637,7 +35678,7 @@ cursor: pointer;
 `;
 
   // node_modules/react-chartjs-2/dist/index.js
-  var import_react70 = __toESM(require_react());
+  var import_react69 = __toESM(require_react());
 
   // node_modules/chart.js/dist/chunks/helpers.segment.js
   var requestAnimFrame = function() {
@@ -47699,8 +47740,8 @@ cursor: pointer;
   }
   function ChartComponent(param, ref) {
     let { height: height2 = 150, width = 300, redraw = false, datasetIdKey, type, data, options, plugins = [], fallbackContent, updateMode, ...props } = param;
-    const canvasRef = (0, import_react70.useRef)(null);
-    const chartRef = (0, import_react70.useRef)();
+    const canvasRef = (0, import_react69.useRef)(null);
+    const chartRef = (0, import_react69.useRef)();
     const renderChart = () => {
       if (!canvasRef.current)
         return;
@@ -47719,7 +47760,7 @@ cursor: pointer;
         chartRef.current = null;
       }
     };
-    (0, import_react70.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current && options) {
         setOptions(chartRef.current, options);
       }
@@ -47727,7 +47768,7 @@ cursor: pointer;
       redraw,
       options
     ]);
-    (0, import_react70.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current) {
         setLabels(chartRef.current.config.data, data.labels);
       }
@@ -47735,7 +47776,7 @@ cursor: pointer;
       redraw,
       data.labels
     ]);
-    (0, import_react70.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current && data.datasets) {
         setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
       }
@@ -47743,7 +47784,7 @@ cursor: pointer;
       redraw,
       data.datasets
     ]);
-    (0, import_react70.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!chartRef.current)
         return;
       if (redraw) {
@@ -47759,21 +47800,21 @@ cursor: pointer;
       data.datasets,
       updateMode
     ]);
-    (0, import_react70.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       renderChart();
       return () => destroyChart();
     }, []);
-    return /* @__PURE__ */ import_react70.default.createElement("canvas", Object.assign({
+    return /* @__PURE__ */ import_react69.default.createElement("canvas", Object.assign({
       ref: canvasRef,
       role: "img",
       height: height2,
       width
     }, props), fallbackContent);
   }
-  var Chart2 = /* @__PURE__ */ (0, import_react70.forwardRef)(ChartComponent);
+  var Chart2 = /* @__PURE__ */ (0, import_react69.forwardRef)(ChartComponent);
   function createTypedChart(type, registerables) {
     Chart.register(registerables);
-    return /* @__PURE__ */ (0, import_react70.forwardRef)((props, ref) => /* @__PURE__ */ import_react70.default.createElement(Chart2, Object.assign({}, props, {
+    return /* @__PURE__ */ (0, import_react69.forwardRef)((props, ref) => /* @__PURE__ */ import_react69.default.createElement(Chart2, Object.assign({}, props, {
       ref,
       type
     })));
@@ -47917,10 +47958,10 @@ cursor: pointer;
   }
 
   // node_modules/react-big-calendar/dist/react-big-calendar.esm.js
-  var import_react83 = __toESM(require_react());
+  var import_react82 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/hook.js
-  var import_react71 = __toESM(require_react());
+  var import_react70 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/utils.js
   var import_invariant = __toESM(require_browser());
@@ -47958,7 +47999,7 @@ cursor: pointer;
   }
 
   // node_modules/uncontrollable/lib/esm/uncontrollable.js
-  var import_react72 = __toESM(require_react());
+  var import_react71 = __toESM(require_react());
 
   // node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js
   function componentWillMount() {
@@ -48129,12 +48170,12 @@ cursor: pointer;
           var propValue = _this2.props[propName];
           newProps[propName] = propValue !== void 0 ? propValue : _this2.state.values[propName];
         });
-        return import_react72.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
+        return import_react71.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
           ref: innerRef || this.attachRef
         }));
       };
       return UncontrolledComponent2;
-    }(import_react72.default.Component);
+    }(import_react71.default.Component);
     polyfill(UncontrolledComponent);
     UncontrolledComponent.displayName = "Uncontrolled(" + displayName + ")";
     UncontrolledComponent.propTypes = _extends({
@@ -48148,9 +48189,9 @@ cursor: pointer;
       };
     });
     var WrappedComponent = UncontrolledComponent;
-    if (import_react72.default.forwardRef) {
-      WrappedComponent = import_react72.default.forwardRef(function(props, ref) {
-        return import_react72.default.createElement(UncontrolledComponent, _extends({}, props, {
+    if (import_react71.default.forwardRef) {
+      WrappedComponent = import_react71.default.forwardRef(function(props, ref) {
+        return import_react71.default.createElement(UncontrolledComponent, _extends({}, props, {
           innerRef: ref,
           __source: {
             fileName: _jsxFileName,
@@ -48937,13 +48978,13 @@ cursor: pointer;
   var addEventListener_default = addEventListener;
 
   // node_modules/@restart/hooks/esm/useEventCallback.js
-  var import_react74 = __toESM(require_react());
+  var import_react73 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useCommittedRef.js
-  var import_react73 = __toESM(require_react());
+  var import_react72 = __toESM(require_react());
   function useCommittedRef(value) {
-    var ref = (0, import_react73.useRef)(value);
-    (0, import_react73.useEffect)(function() {
+    var ref = (0, import_react72.useRef)(value);
+    (0, import_react72.useEffect)(function() {
       ref.current = value;
     }, [value]);
     return ref;
@@ -48953,31 +48994,31 @@ cursor: pointer;
   // node_modules/@restart/hooks/esm/useEventCallback.js
   function useEventCallback(fn3) {
     var ref = useCommittedRef_default(fn3);
-    return (0, import_react74.useCallback)(function() {
+    return (0, import_react73.useCallback)(function() {
       return ref.current && ref.current.apply(ref, arguments);
     }, [ref]);
   }
 
   // node_modules/@restart/hooks/esm/useCallbackRef.js
-  var import_react75 = __toESM(require_react());
+  var import_react74 = __toESM(require_react());
   function useCallbackRef() {
-    return (0, import_react75.useState)(null);
+    return (0, import_react74.useState)(null);
   }
 
   // node_modules/react-overlays/esm/usePopper.js
-  var import_react78 = __toESM(require_react());
-
-  // node_modules/@restart/hooks/esm/useSafeState.js
   var import_react77 = __toESM(require_react());
 
-  // node_modules/@restart/hooks/esm/useMounted.js
+  // node_modules/@restart/hooks/esm/useSafeState.js
   var import_react76 = __toESM(require_react());
+
+  // node_modules/@restart/hooks/esm/useMounted.js
+  var import_react75 = __toESM(require_react());
   function useMounted() {
-    var mounted = (0, import_react76.useRef)(true);
-    var isMounted = (0, import_react76.useRef)(function() {
+    var mounted = (0, import_react75.useRef)(true);
+    var isMounted = (0, import_react75.useRef)(function() {
       return mounted.current;
     });
-    (0, import_react76.useEffect)(function() {
+    (0, import_react75.useEffect)(function() {
       mounted.current = true;
       return function() {
         mounted.current = false;
@@ -48989,7 +49030,7 @@ cursor: pointer;
   // node_modules/@restart/hooks/esm/useSafeState.js
   function useSafeState(state) {
     var isMounted = useMounted();
-    return [state[0], (0, import_react77.useCallback)(function(nextState) {
+    return [state[0], (0, import_react76.useCallback)(function(nextState) {
       if (!isMounted())
         return;
       return state[1](nextState);
@@ -50530,16 +50571,16 @@ cursor: pointer;
   var EMPTY_MODIFIERS = [];
   function usePopper(referenceElement, popperElement, _temp) {
     var _ref3 = _temp === void 0 ? {} : _temp, _ref3$enabled = _ref3.enabled, enabled = _ref3$enabled === void 0 ? true : _ref3$enabled, _ref3$placement = _ref3.placement, placement = _ref3$placement === void 0 ? "bottom" : _ref3$placement, _ref3$strategy = _ref3.strategy, strategy = _ref3$strategy === void 0 ? "absolute" : _ref3$strategy, _ref3$modifiers = _ref3.modifiers, modifiers = _ref3$modifiers === void 0 ? EMPTY_MODIFIERS : _ref3$modifiers, config = _objectWithoutPropertiesLoose(_ref3, ["enabled", "placement", "strategy", "modifiers"]);
-    var popperInstanceRef = (0, import_react78.useRef)();
-    var update = (0, import_react78.useCallback)(function() {
+    var popperInstanceRef = (0, import_react77.useRef)();
+    var update = (0, import_react77.useCallback)(function() {
       var _popperInstanceRef$cu;
       (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
     }, []);
-    var forceUpdate = (0, import_react78.useCallback)(function() {
+    var forceUpdate = (0, import_react77.useCallback)(function() {
       var _popperInstanceRef$cu2;
       (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
     }, []);
-    var _useSafeState = useSafeState_default((0, import_react78.useState)({
+    var _useSafeState = useSafeState_default((0, import_react77.useState)({
       placement,
       update,
       forceUpdate,
@@ -50549,7 +50590,7 @@ cursor: pointer;
         arrow: {}
       }
     })), popperState = _useSafeState[0], setState = _useSafeState[1];
-    var updateModifier = (0, import_react78.useMemo)(function() {
+    var updateModifier = (0, import_react77.useMemo)(function() {
       return {
         name: "updateStateModifier",
         enabled: true,
@@ -50574,7 +50615,7 @@ cursor: pointer;
         }
       };
     }, [update, forceUpdate, setState]);
-    (0, import_react78.useEffect)(function() {
+    (0, import_react77.useEffect)(function() {
       if (!popperInstanceRef.current || !enabled)
         return;
       popperInstanceRef.current.setOptions({
@@ -50583,7 +50624,7 @@ cursor: pointer;
         modifiers: [].concat(modifiers, [updateModifier, disabledApplyStylesModifier])
       });
     }, [strategy, placement, updateModifier, enabled]);
-    (0, import_react78.useEffect)(function() {
+    (0, import_react77.useEffect)(function() {
       if (!enabled || referenceElement == null || popperElement == null) {
         return void 0;
       }
@@ -50631,7 +50672,7 @@ cursor: pointer;
   var listen_default = listen;
 
   // node_modules/react-overlays/esm/useRootClose.js
-  var import_react79 = __toESM(require_react());
+  var import_react78 = __toESM(require_react());
   var import_warning4 = __toESM(require_warning());
 
   // node_modules/react-overlays/esm/safeFindDOMNode.js
@@ -50663,9 +50704,9 @@ cursor: pointer;
   };
   function useRootClose(ref, onRootClose, _temp) {
     var _ref = _temp === void 0 ? {} : _temp, disabled = _ref.disabled, _ref$clickTrigger = _ref.clickTrigger, clickTrigger = _ref$clickTrigger === void 0 ? "click" : _ref$clickTrigger;
-    var preventMouseRootCloseRef = (0, import_react79.useRef)(false);
+    var preventMouseRootCloseRef = (0, import_react78.useRef)(false);
     var onClose = onRootClose || noop5;
-    var handleMouseCapture = (0, import_react79.useCallback)(function(e2) {
+    var handleMouseCapture = (0, import_react78.useCallback)(function(e2) {
       var _e$composedPath$;
       var currentTarget = getRefTarget(ref);
       (0, import_warning4.default)(!!currentTarget, "RootClose captured a close event but does not have a ref to compare it to. useRootClose(), should be passed a ref that resolves to a DOM node");
@@ -50681,7 +50722,7 @@ cursor: pointer;
         onClose(e2);
       }
     });
-    (0, import_react79.useEffect)(function() {
+    (0, import_react78.useEffect)(function() {
       if (disabled || ref == null)
         return void 0;
       var currentEvent = window.event;
@@ -50828,7 +50869,7 @@ cursor: pointer;
   }
 
   // node_modules/react-overlays/esm/useWaitForDOMRef.js
-  var import_react80 = __toESM(require_react());
+  var import_react79 = __toESM(require_react());
   var resolveContainerRef = function resolveContainerRef2(ref) {
     var _ref;
     if (typeof document === "undefined")
@@ -50844,7 +50885,7 @@ cursor: pointer;
     return null;
   };
   function useWaitForDOMRef(ref, onResolved) {
-    var _useState = (0, import_react80.useState)(function() {
+    var _useState = (0, import_react79.useState)(function() {
       return resolveContainerRef(ref);
     }), resolvedRef = _useState[0], setRef = _useState[1];
     if (!resolvedRef) {
@@ -50852,12 +50893,12 @@ cursor: pointer;
       if (earlyRef)
         setRef(earlyRef);
     }
-    (0, import_react80.useEffect)(function() {
+    (0, import_react79.useEffect)(function() {
       if (onResolved && resolvedRef) {
         onResolved(resolvedRef);
       }
     }, [onResolved, resolvedRef]);
-    (0, import_react80.useEffect)(function() {
+    (0, import_react79.useEffect)(function() {
       var nextRef = resolveContainerRef(ref);
       if (nextRef !== resolvedRef) {
         setRef(nextRef);
@@ -50868,11 +50909,11 @@ cursor: pointer;
 
   // node_modules/react-overlays/esm/Overlay.js
   var import_prop_types5 = __toESM(require_prop_types());
-  var import_react82 = __toESM(require_react());
+  var import_react81 = __toESM(require_react());
   var import_react_dom3 = __toESM(require_react_dom());
 
   // node_modules/@restart/hooks/esm/useMergedRefs.js
-  var import_react81 = __toESM(require_react());
+  var import_react80 = __toESM(require_react());
   var toFnRef = function toFnRef2(ref) {
     return !ref || typeof ref === "function" ? ref : function(value) {
       ref.current = value;
@@ -50889,21 +50930,21 @@ cursor: pointer;
     };
   }
   function useMergedRefs(refA, refB) {
-    return (0, import_react81.useMemo)(function() {
+    return (0, import_react80.useMemo)(function() {
       return mergeRefs(refA, refB);
     }, [refA, refB]);
   }
   var useMergedRefs_default = useMergedRefs;
 
   // node_modules/react-overlays/esm/Overlay.js
-  var Overlay = /* @__PURE__ */ import_react82.default.forwardRef(function(props, outerRef) {
+  var Overlay = /* @__PURE__ */ import_react81.default.forwardRef(function(props, outerRef) {
     var flip2 = props.flip, offset3 = props.offset, placement = props.placement, _props$containerPaddi = props.containerPadding, containerPadding = _props$containerPaddi === void 0 ? 5 : _props$containerPaddi, _props$popperConfig = props.popperConfig, popperConfig = _props$popperConfig === void 0 ? {} : _props$popperConfig, Transition = props.transition;
     var _useCallbackRef = useCallbackRef(), rootElement = _useCallbackRef[0], attachRef = _useCallbackRef[1];
     var _useCallbackRef2 = useCallbackRef(), arrowElement = _useCallbackRef2[0], attachArrowRef = _useCallbackRef2[1];
     var mergedRef = useMergedRefs_default(attachRef, outerRef);
     var container = useWaitForDOMRef(props.container);
     var target = useWaitForDOMRef(props.target);
-    var _useState = (0, import_react82.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
+    var _useState = (0, import_react81.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
     var _usePopper = usePopper_default(target, rootElement, mergeOptionsWithPopperConfig({
       placement,
       enableEvents: !!props.show,
@@ -50946,7 +50987,7 @@ cursor: pointer;
     }));
     if (Transition) {
       var onExit = props.onExit, onExiting = props.onExiting, onEnter = props.onEnter, onEntering = props.onEntering, onEntered = props.onEntered;
-      child = /* @__PURE__ */ import_react82.default.createElement(Transition, {
+      child = /* @__PURE__ */ import_react81.default.createElement(Transition, {
         "in": props.show,
         appear: true,
         onExit,
@@ -53451,7 +53492,7 @@ cursor: pointer;
   }
   function useClickOutside(_ref) {
     var ref = _ref.ref, callback2 = _ref.callback;
-    (0, import_react83.useEffect)(function() {
+    (0, import_react82.useEffect)(function() {
       var handleClickOutside = function handleClickOutside2(e2) {
         if (ref.current && !ref.current.contains(e2.target)) {
           callback2();
@@ -53483,10 +53524,10 @@ cursor: pointer;
         var allDay = accessors.allDay(event);
         var showAsAllDay = isAllDay || allDay || localizer.diff(start2, localizer.ceil(end2, "day"), "day") > 1;
         var userProps = getters.eventProp(event, start2, end2, selected);
-        var content = /* @__PURE__ */ import_react83.default.createElement("div", {
+        var content = /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-event-content",
           title: tooltip || void 0
-        }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react82.default.createElement(Event2, {
           event,
           continuesPrior: continuesPrior2,
           continuesAfter: continuesAfter2,
@@ -53496,9 +53537,9 @@ cursor: pointer;
           slotStart,
           slotEnd
         }) : title);
-        return /* @__PURE__ */ import_react83.default.createElement(EventWrapper, Object.assign({}, this.props, {
+        return /* @__PURE__ */ import_react82.default.createElement(EventWrapper, Object.assign({}, this.props, {
           type: "date"
-        }), /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react82.default.createElement("div", Object.assign({}, props, {
           tabIndex: 0,
           style: _objectSpread22(_objectSpread22({}, userProps.style), style2),
           className: clsx_m_default("rbc-event", className, userProps.className, {
@@ -53520,7 +53561,7 @@ cursor: pointer;
       }
     }]);
     return EventCell2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   function isSelected(event, selected) {
     if (!event || selected == null)
       return false;
@@ -53604,7 +53645,7 @@ cursor: pointer;
       ref: popperRef,
       callback: show
     });
-    (0, import_react83.useLayoutEffect)(function() {
+    (0, import_react82.useLayoutEffect)(function() {
       var _getPosition = getPosition({
         target,
         offset: offset3,
@@ -53618,14 +53659,14 @@ cursor: pointer;
     var style2 = {
       minWidth: width + width / 2
     };
-    return /* @__PURE__ */ import_react83.default.createElement("div", {
+    return /* @__PURE__ */ import_react82.default.createElement("div", {
       style: style2,
       className: "rbc-overlay",
       ref: popperRef
-    }, /* @__PURE__ */ import_react83.default.createElement("div", {
+    }, /* @__PURE__ */ import_react82.default.createElement("div", {
       className: "rbc-overlay-header"
     }, localizer.format(slotStart, "dayHeaderFormat")), events.map(function(event, idx) {
-      return /* @__PURE__ */ import_react83.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react82.default.createElement(EventCell, {
         key: idx,
         type: "popup",
         localizer,
@@ -53651,8 +53692,8 @@ cursor: pointer;
       });
     }));
   }
-  var Popup = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react83.default.createElement(Pop, Object.assign({}, props, {
+  var Popup = /* @__PURE__ */ import_react82.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react82.default.createElement(Pop, Object.assign({}, props, {
       popperRef: ref
     }));
   });
@@ -53679,7 +53720,7 @@ cursor: pointer;
   };
   function CalOverlay(_ref) {
     var containerRef = _ref.containerRef, _ref$popupOffset = _ref.popupOffset, popupOffset = _ref$popupOffset === void 0 ? 5 : _ref$popupOffset, overlay = _ref.overlay, accessors = _ref.accessors, localizer = _ref.localizer, components = _ref.components, getters = _ref.getters, selected = _ref.selected, handleSelectEvent = _ref.handleSelectEvent, handleDoubleClickEvent = _ref.handleDoubleClickEvent, handleKeyPressEvent = _ref.handleKeyPressEvent, handleDragStart = _ref.handleDragStart, onHide2 = _ref.onHide, overlayDisplay = _ref.overlayDisplay;
-    var popperRef = (0, import_react83.useRef)(null);
+    var popperRef = (0, import_react82.useRef)(null);
     if (!overlay.position)
       return null;
     var offset3 = popupOffset;
@@ -53690,7 +53731,7 @@ cursor: pointer;
       };
     }
     var position2 = overlay.position, events = overlay.events, date2 = overlay.date, end2 = overlay.end;
-    return /* @__PURE__ */ import_react83.default.createElement(Overlay_default, {
+    return /* @__PURE__ */ import_react82.default.createElement(Overlay_default, {
       rootClose: true,
       flip: true,
       show: true,
@@ -53699,7 +53740,7 @@ cursor: pointer;
       target: overlay.target
     }, function(_ref2) {
       var props = _ref2.props;
-      return /* @__PURE__ */ import_react83.default.createElement(Popup, Object.assign({}, props, {
+      return /* @__PURE__ */ import_react82.default.createElement(Popup, Object.assign({}, props, {
         containerRef,
         ref: popperRef,
         target: overlay.target,
@@ -53721,8 +53762,8 @@ cursor: pointer;
       }));
     });
   }
-  var PopOverlay = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react83.default.createElement(CalOverlay, Object.assign({}, props, {
+  var PopOverlay = /* @__PURE__ */ import_react82.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react82.default.createElement(CalOverlay, Object.assign({}, props, {
       containerRef: ref
     }));
   });
@@ -54141,7 +54182,7 @@ cursor: pointer;
       _this.state = {
         selecting: false
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react82.createRef)();
       return _this;
     }
     _createClass2(BackgroundCells2, [{
@@ -54165,20 +54206,20 @@ cursor: pointer;
     }, {
       key: "render",
       value: function render() {
-        var _this$props = this.props, range3 = _this$props.range, getNow2 = _this$props.getNow, getters = _this$props.getters, currentDate = _this$props.date, Wrapper14 = _this$props.components.dateCellWrapper, localizer = _this$props.localizer;
+        var _this$props = this.props, range3 = _this$props.range, getNow2 = _this$props.getNow, getters = _this$props.getters, currentDate = _this$props.date, Wrapper15 = _this$props.components.dateCellWrapper, localizer = _this$props.localizer;
         var _this$state = this.state, selecting = _this$state.selecting, startIdx = _this$state.startIdx, endIdx = _this$state.endIdx;
         var current = getNow2();
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row-bg",
           ref: this.containerRef
         }, range3.map(function(date2, index2) {
           var selected = selecting && index2 >= startIdx && index2 <= endIdx;
           var _getters$dayProp = getters.dayProp(date2), className = _getters$dayProp.className, style2 = _getters$dayProp.style;
-          return /* @__PURE__ */ import_react83.default.createElement(Wrapper14, {
+          return /* @__PURE__ */ import_react82.default.createElement(Wrapper15, {
             key: index2,
             value: date2,
             range: range3
-          }, /* @__PURE__ */ import_react83.default.createElement("div", {
+          }, /* @__PURE__ */ import_react82.default.createElement("div", {
             style: style2,
             className: clsx_m_default("rbc-day-bg", className, selected && "rbc-selected-cell", localizer.isSameDate(date2, current) && "rbc-today", currentDate && localizer.neq(currentDate, date2, "month") && "rbc-off-range-bg")
           }));
@@ -54281,7 +54322,7 @@ cursor: pointer;
       }
     }]);
     return BackgroundCells2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   var EventRowMixin = {
     propTypes: {
       slotMetrics: import_prop_types6.default.object.isRequired,
@@ -54305,7 +54346,7 @@ cursor: pointer;
       var accessors = props.accessors, getters = props.getters, onSelect = props.onSelect, onDoubleClick = props.onDoubleClick, onKeyPress = props.onKeyPress, localizer = props.localizer, slotMetrics = props.slotMetrics, components = props.components, resizable = props.resizable;
       var continuesPrior2 = slotMetrics.continuesPrior(event);
       var continuesAfter2 = slotMetrics.continuesAfter(event);
-      return /* @__PURE__ */ import_react83.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react82.default.createElement(EventCell, {
         event,
         getters,
         localizer,
@@ -54325,7 +54366,7 @@ cursor: pointer;
     renderSpan: function renderSpan(slots, len, key) {
       var content = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : " ";
       var per = Math.abs(len) / slots * 100 + "%";
-      return /* @__PURE__ */ import_react83.default.createElement("div", {
+      return /* @__PURE__ */ import_react82.default.createElement("div", {
         key,
         className: "rbc-row-segment",
         style: {
@@ -54349,7 +54390,7 @@ cursor: pointer;
         var _this = this;
         var _this$props = this.props, segments = _this$props.segments, slots = _this$props.slotMetrics.slots, className = _this$props.className;
         var lastEnd = 1;
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default(className, "rbc-row")
         }, segments.reduce(function(row, _ref, li) {
           var event = _ref.event, left2 = _ref.left, right2 = _ref.right, span = _ref.span;
@@ -54365,7 +54406,7 @@ cursor: pointer;
       }
     }]);
     return EventRow2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   EventRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   function endOfRange(_ref) {
     var dateRange = _ref.dateRange, _ref$unit = _ref.unit, unit = _ref$unit === void 0 ? "day" : _ref$unit, localizer = _ref.localizer;
@@ -54501,7 +54542,7 @@ cursor: pointer;
             lastEnd = current = current + 1;
           }
         }
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row"
         }, row);
       }
@@ -54520,7 +54561,7 @@ cursor: pointer;
         var _this = this;
         var localizer = this.props.localizer;
         var count = eventsInSlot(segments, slot);
-        return count ? /* @__PURE__ */ import_react83.default.createElement("button", {
+        return count ? /* @__PURE__ */ import_react82.default.createElement("button", {
           type: "button",
           key: "sm_" + slot,
           className: clsx_m_default("rbc-button-link", "rbc-show-more"),
@@ -54538,11 +54579,11 @@ cursor: pointer;
       }
     }]);
     return EventEndingRow2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   EventEndingRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   var ScrollableWeekWrapper = function ScrollableWeekWrapper2(_ref) {
     var children = _ref.children;
-    return /* @__PURE__ */ import_react83.default.createElement("div", {
+    return /* @__PURE__ */ import_react82.default.createElement("div", {
       className: "rbc-row-content-scroll-container"
     }, children);
   };
@@ -54641,28 +54682,28 @@ cursor: pointer;
       };
       _this.renderDummy = function() {
         var _this$props4 = _this.props, className = _this$props4.className, range3 = _this$props4.range, renderHeader = _this$props4.renderHeader, showAllEvents = _this$props4.showAllEvents;
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className,
           ref: _this.containerRef
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable")
-        }, renderHeader && /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row",
           ref: _this.headingRowRef
-        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row",
           ref: _this.eventRowRef
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row-segment"
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-event"
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-event-content"
         }, "\xA0"))))));
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
-      _this.headingRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
-      _this.eventRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react82.createRef)();
+      _this.headingRowRef = /* @__PURE__ */ (0, import_react82.createRef)();
+      _this.eventRowRef = /* @__PURE__ */ (0, import_react82.createRef)();
       _this.slotMetrics = getSlotMetrics$1();
       return _this;
     }
@@ -54698,11 +54739,11 @@ cursor: pointer;
           slotMetrics: metrics,
           resizable
         };
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className,
           role: "rowgroup",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react83.default.createElement(BackgroundCells, {
+        }, /* @__PURE__ */ import_react82.default.createElement(BackgroundCells, {
           localizer,
           date: date2,
           getNow: getNow2,
@@ -54717,34 +54758,34 @@ cursor: pointer;
           components,
           longPressThreshold,
           resourceId
-        }), /* @__PURE__ */ import_react83.default.createElement("div", {
+        }), /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable"),
           role: "row"
-        }, renderHeader && /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row ",
           ref: this.headingRowRef
-        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react83.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react83.default.createElement(WeekWrapper, Object.assign({
+        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react82.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react82.default.createElement(WeekWrapper, Object.assign({
           isAllDay
         }, eventRowProps), levels.map(function(segs, idx) {
-          return /* @__PURE__ */ import_react83.default.createElement(EventRow, Object.assign({
+          return /* @__PURE__ */ import_react82.default.createElement(EventRow, Object.assign({
             key: idx,
             segments: segs
           }, eventRowProps));
-        }), !!extra.length && /* @__PURE__ */ import_react83.default.createElement(EventEndingRow, Object.assign({
+        }), !!extra.length && /* @__PURE__ */ import_react82.default.createElement(EventEndingRow, Object.assign({
           segments: extra,
           onShowMore: this.handleShowMore
         }, eventRowProps))))));
       }
     }]);
     return DateContentRow2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   DateContentRow.defaultProps = {
     minRows: 0,
     maxRows: Infinity
   };
   var Header2 = function Header3(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react83.default.createElement("span", {
+    return /* @__PURE__ */ import_react82.default.createElement("span", {
       role: "columnheader",
       "aria-sort": "none"
     }, label);
@@ -54752,9 +54793,9 @@ cursor: pointer;
   var DateHeader = function DateHeader2(_ref) {
     var label = _ref.label, drilldownView = _ref.drilldownView, onDrillDown = _ref.onDrillDown;
     if (!drilldownView) {
-      return /* @__PURE__ */ import_react83.default.createElement("span", null, label);
+      return /* @__PURE__ */ import_react82.default.createElement("span", null, label);
     }
-    return /* @__PURE__ */ import_react83.default.createElement("button", {
+    return /* @__PURE__ */ import_react82.default.createElement("button", {
       type: "button",
       className: "rbc-button-link",
       onClick: onDrillDown,
@@ -54787,7 +54828,7 @@ cursor: pointer;
         weeksEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react82.default.createElement(DateContentRow, {
           key: weekIdx,
           ref: weekIdx === 0 ? _this.slotRowRef : void 0,
           container: _this.getContainer,
@@ -54824,10 +54865,10 @@ cursor: pointer;
         var drilldownView = getDrilldownView(date2);
         var label = localizer.format(date2, "dateFormat");
         var DateHeaderComponent = _this.props.components.dateHeader || DateHeader;
-        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, props, {
+        return /* @__PURE__ */ import_react82.default.createElement("div", Object.assign({}, props, {
           className: clsx_m_default(className, isOffRange && "rbc-off-range", isCurrent && "rbc-current"),
           role: "cell"
-        }), /* @__PURE__ */ import_react83.default.createElement(DateHeaderComponent, {
+        }), /* @__PURE__ */ import_react82.default.createElement(DateHeaderComponent, {
           label,
           date: date2,
           drilldownView,
@@ -54898,8 +54939,8 @@ cursor: pointer;
         needLimitMeasure: true,
         date: null
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
-      _this.slotRowRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react82.createRef)();
+      _this.slotRowRef = /* @__PURE__ */ (0, import_react82.createRef)();
       _this._bgRows = [];
       _this._pendingSelection = [];
       return _this;
@@ -54938,12 +54979,12 @@ cursor: pointer;
       value: function render() {
         var _this$props4 = this.props, date2 = _this$props4.date, localizer = _this$props4.localizer, className = _this$props4.className, month2 = localizer.visibleDays(date2, localizer), weeks = chunk_default(month2, 7);
         this._weekCount = weeks.length;
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default("rbc-month-view", className),
           role: "table",
           "aria-label": "Month View",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-row rbc-month-header",
           role: "row"
         }, this.renderHeaders(weeks[0])), weeks.map(this.renderWeek), this.props.popup && this.renderOverlay());
@@ -54956,10 +54997,10 @@ cursor: pointer;
         var last2 = row[row.length - 1];
         var HeaderComponent = components.header || Header2;
         return localizer.range(first, last2, "day").map(function(day2, idx) {
-          return /* @__PURE__ */ import_react83.default.createElement("div", {
+          return /* @__PURE__ */ import_react82.default.createElement("div", {
             key: "header_" + idx,
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react83.default.createElement(HeaderComponent, {
+          }, /* @__PURE__ */ import_react82.default.createElement(HeaderComponent, {
             date: day2,
             localizer,
             label: localizer.format(day2, "weekdayFormat")
@@ -54977,7 +55018,7 @@ cursor: pointer;
             overlay: null
           });
         };
-        return /* @__PURE__ */ import_react83.default.createElement(PopOverlay, {
+        return /* @__PURE__ */ import_react82.default.createElement(PopOverlay, {
           overlay,
           accessors,
           localizer,
@@ -55040,7 +55081,7 @@ cursor: pointer;
       }
     }]);
     return MonthView2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   MonthView.range = function(date2, _ref3) {
     var localizer = _ref3.localizer;
     var start2 = localizer.firstVisibleDay(date2, localizer);
@@ -55423,24 +55464,24 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, renderSlot = _this$props.renderSlot, resource = _this$props.resource, group = _this$props.group, getters = _this$props.getters, _this$props$component = _this$props.components;
         _this$props$component = _this$props$component === void 0 ? {} : _this$props$component;
-        var _this$props$component2 = _this$props$component.timeSlotWrapper, Wrapper14 = _this$props$component2 === void 0 ? NoopWrapper : _this$props$component2;
+        var _this$props$component2 = _this$props$component.timeSlotWrapper, Wrapper15 = _this$props$component2 === void 0 ? NoopWrapper : _this$props$component2;
         var groupProps = getters ? getters.slotGroupProp() : {};
-        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({
+        return /* @__PURE__ */ import_react82.default.createElement("div", Object.assign({
           className: "rbc-timeslot-group"
         }, groupProps), group.map(function(value, idx) {
           var slotProps = getters ? getters.slotProp(value, resource) : {};
-          return /* @__PURE__ */ import_react83.default.createElement(Wrapper14, {
+          return /* @__PURE__ */ import_react82.default.createElement(Wrapper15, {
             key: idx,
             value,
             resource
-          }, /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, slotProps, {
+          }, /* @__PURE__ */ import_react82.default.createElement("div", Object.assign({}, slotProps, {
             className: clsx_m_default("rbc-time-slot", slotProps.className)
           }), renderSlot && renderSlot(value, idx)));
         }));
       }
     }]);
     return TimeSlotGroup2;
-  }(import_react83.Component);
+  }(import_react82.Component);
   function stringifyPercent(v2) {
     return typeof v2 === "string" ? v2 : v2 + "%";
   }
@@ -55452,13 +55493,13 @@ cursor: pointer;
     var start2 = accessors.start(event);
     var userProps = getters.eventProp(event, start2, end2, selected);
     var height2 = style2.height, top2 = style2.top, width = style2.width, xOffset = style2.xOffset;
-    var inner = [/* @__PURE__ */ import_react83.default.createElement("div", {
+    var inner = [/* @__PURE__ */ import_react82.default.createElement("div", {
       key: "1",
       className: "rbc-event-label"
-    }, label), /* @__PURE__ */ import_react83.default.createElement("div", {
+    }, label), /* @__PURE__ */ import_react82.default.createElement("div", {
       key: "2",
       className: "rbc-event-content"
-    }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
+    }, Event2 ? /* @__PURE__ */ import_react82.default.createElement(Event2, {
       event,
       title
     }) : title)];
@@ -55471,9 +55512,9 @@ cursor: pointer;
       width: stringifyPercent(width),
       height: stringifyPercent(height2)
     }, rtl ? "right" : "left", stringifyPercent(xOffset)));
-    return /* @__PURE__ */ import_react83.default.createElement(EventWrapper, Object.assign({
+    return /* @__PURE__ */ import_react82.default.createElement(EventWrapper, Object.assign({
       type: "time"
-    }, props), /* @__PURE__ */ import_react83.default.createElement("div", {
+    }, props), /* @__PURE__ */ import_react82.default.createElement("div", {
       onClick,
       onDoubleClick,
       style: eventStyle,
@@ -55488,14 +55529,14 @@ cursor: pointer;
   }
   var DayColumnWrapper = function DayColumnWrapper2(_ref) {
     var children = _ref.children, className = _ref.className, style2 = _ref.style, innerRef = _ref.innerRef;
-    return /* @__PURE__ */ import_react83.default.createElement("div", {
+    return /* @__PURE__ */ import_react82.default.createElement("div", {
       className,
       style: style2,
       ref: innerRef
     }, children);
   };
-  var DayColumnWrapper$1 = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react83.default.createElement(DayColumnWrapper, Object.assign({}, props, {
+  var DayColumnWrapper$1 = /* @__PURE__ */ import_react82.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react82.default.createElement(DayColumnWrapper, Object.assign({}, props, {
       innerRef: ref
     }));
   });
@@ -55549,7 +55590,7 @@ cursor: pointer;
             }, format3);
           var continuesPrior2 = startsBeforeDay || slotMetrics.startsBefore(start2);
           var continuesAfter2 = startsAfterDay || slotMetrics.startsAfter(end2);
-          return /* @__PURE__ */ import_react83.default.createElement(TimeGridEvent, {
+          return /* @__PURE__ */ import_react82.default.createElement(TimeGridEvent, {
             style: style2,
             event,
             label,
@@ -55706,7 +55747,7 @@ cursor: pointer;
         notify(_this.props.onKeyPressEvent, args);
       };
       _this.slotMetrics = getSlotMetrics(_this.props);
-      _this.containerRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react82.createRef)();
       return _this;
     }
     _createClass2(DayColumn2, [{
@@ -55794,41 +55835,41 @@ cursor: pointer;
         };
         var _dayProp = dayProp(max3), className = _dayProp.className, style2 = _dayProp.style;
         var DayColumnWrapperComponent = components.dayColumnWrapper || DayColumnWrapper$1;
-        return /* @__PURE__ */ import_react83.default.createElement(DayColumnWrapperComponent, {
+        return /* @__PURE__ */ import_react82.default.createElement(DayColumnWrapperComponent, {
           ref: this.containerRef,
           date: date2,
           style: style2,
           className: clsx_m_default(className, "rbc-day-slot", "rbc-time-column", isNow && "rbc-now", isNow && "rbc-today", selecting && "rbc-slot-selecting"),
           slotMetrics
         }, slotMetrics.groups.map(function(grp, idx) {
-          return /* @__PURE__ */ import_react83.default.createElement(TimeSlotGroup, {
+          return /* @__PURE__ */ import_react82.default.createElement(TimeSlotGroup, {
             key: idx,
             group: grp,
             resource,
             getters,
             components
           });
-        }), /* @__PURE__ */ import_react83.default.createElement(EventContainer, {
+        }), /* @__PURE__ */ import_react82.default.createElement(EventContainer, {
           localizer,
           resource,
           accessors,
           getters,
           components,
           slotMetrics
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default("rbc-events-container", rtl && "rtl")
         }, this.renderEvents({
           events: this.props.backgroundEvents,
           isBackgroundEvent: true
         }), this.renderEvents({
           events: this.props.events
-        }))), selecting && /* @__PURE__ */ import_react83.default.createElement("div", {
+        }))), selecting && /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-slot-selection",
           style: {
             top: top2,
             height: height2
           }
-        }, /* @__PURE__ */ import_react83.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-current-time-indicator",
           style: {
             top: "".concat(this.state.timeIndicatorPosition, "%")
@@ -55837,7 +55878,7 @@ cursor: pointer;
       }
     }]);
     return DayColumn2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   DayColumn.defaultProps = {
     dragThroughEvents: true,
     timeslots: 2
@@ -55857,21 +55898,21 @@ cursor: pointer;
   }
   var TimeGutter = function TimeGutter2(_ref2) {
     var min3 = _ref2.min, max3 = _ref2.max, timeslots = _ref2.timeslots, step = _ref2.step, localizer = _ref2.localizer, getNow2 = _ref2.getNow, resource = _ref2.resource, components = _ref2.components, getters = _ref2.getters, gutterRef = _ref2.gutterRef;
-    var _useMemo = (0, import_react83.useMemo)(function() {
+    var _useMemo = (0, import_react82.useMemo)(function() {
       return adjustForDST({
         min: min3,
         max: max3,
         localizer
       });
     }, [min3 === null || min3 === void 0 ? void 0 : min3.toISOString(), max3 === null || max3 === void 0 ? void 0 : max3.toISOString(), localizer]), start2 = _useMemo.start, end2 = _useMemo.end;
-    var _useState = (0, import_react83.useState)(getSlotMetrics({
+    var _useState = (0, import_react82.useState)(getSlotMetrics({
       min: start2,
       max: end2,
       timeslots,
       step,
       localizer
     })), _useState2 = _slicedToArray2(_useState, 2), slotMetrics = _useState2[0], setSlotMetrics = _useState2[1];
-    (0, import_react83.useEffect)(function() {
+    (0, import_react82.useEffect)(function() {
       if (slotMetrics) {
         setSlotMetrics(slotMetrics.update({
           min: start2,
@@ -55882,19 +55923,19 @@ cursor: pointer;
         }));
       }
     }, [start2 === null || start2 === void 0 ? void 0 : start2.toISOString(), end2 === null || end2 === void 0 ? void 0 : end2.toISOString(), timeslots, step]);
-    var renderSlot = (0, import_react83.useCallback)(function(value, idx) {
+    var renderSlot = (0, import_react82.useCallback)(function(value, idx) {
       if (idx)
         return null;
       var isNow = slotMetrics.dateIsInGroup(getNow2(), idx);
-      return /* @__PURE__ */ import_react83.default.createElement("span", {
+      return /* @__PURE__ */ import_react82.default.createElement("span", {
         className: clsx_m_default("rbc-label", isNow && "rbc-now")
       }, localizer.format(value, "timeGutterFormat"));
     }, [slotMetrics, localizer, getNow2]);
-    return /* @__PURE__ */ import_react83.default.createElement("div", {
+    return /* @__PURE__ */ import_react82.default.createElement("div", {
       className: "rbc-time-gutter rbc-time-column",
       ref: gutterRef
     }, slotMetrics.groups.map(function(grp, idx) {
-      return /* @__PURE__ */ import_react83.default.createElement(TimeSlotGroup, {
+      return /* @__PURE__ */ import_react82.default.createElement(TimeSlotGroup, {
         key: idx,
         group: grp,
         resource,
@@ -55904,14 +55945,14 @@ cursor: pointer;
       });
     }));
   };
-  var TimeGutter$1 = /* @__PURE__ */ import_react83.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react83.default.createElement(TimeGutter, Object.assign({
+  var TimeGutter$1 = /* @__PURE__ */ import_react82.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react82.default.createElement(TimeGutter, Object.assign({
       gutterRef: ref
     }, props));
   });
   var ResourceHeader = function ResourceHeader2(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, label);
+    return /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, label);
   };
   var TimeGridHeader = /* @__PURE__ */ function(_React$Component) {
     _inherits2(TimeGridHeader2, _React$Component);
@@ -55933,7 +55974,7 @@ cursor: pointer;
         var eventsToDisplay = resource ? events.filter(function(event) {
           return accessors.resource(event) === resourceId;
         }) : events;
-        return /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react82.default.createElement(DateContentRow, {
           isAllDay: true,
           rtl,
           getNow: getNow2,
@@ -55968,22 +56009,22 @@ cursor: pointer;
           var drilldownView = getDrilldownView(date2);
           var label = localizer.format(date2, "dayFormat");
           var _dayProp = dayProp(date2), className = _dayProp.className, style2 = _dayProp.style;
-          var header = /* @__PURE__ */ import_react83.default.createElement(HeaderComponent, {
+          var header = /* @__PURE__ */ import_react82.default.createElement(HeaderComponent, {
             date: date2,
             label,
             localizer
           });
-          return /* @__PURE__ */ import_react83.default.createElement("div", {
+          return /* @__PURE__ */ import_react82.default.createElement("div", {
             key: i2,
             style: style2,
             className: clsx_m_default("rbc-header", className, localizer.isSameDate(date2, today) && "rbc-today")
-          }, drilldownView ? /* @__PURE__ */ import_react83.default.createElement("button", {
+          }, drilldownView ? /* @__PURE__ */ import_react82.default.createElement("button", {
             type: "button",
             className: "rbc-button-link",
             onClick: function onClick(e2) {
               return _this2.handleHeaderClick(date2, drilldownView, e2);
             }
-          }, header) : /* @__PURE__ */ import_react83.default.createElement("span", null, header));
+          }, header) : /* @__PURE__ */ import_react82.default.createElement("span", null, header));
         });
       }
     }, {
@@ -55996,34 +56037,34 @@ cursor: pointer;
           style2[rtl ? "marginLeft" : "marginRight"] = "".concat(scrollbarSize(), "px");
         }
         var groupedEvents = resources.groupEvents(events);
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           style: style2,
           ref: scrollRef,
           className: clsx_m_default("rbc-time-header", isOverflowing && "rbc-overflowing")
-        }, /* @__PURE__ */ import_react83.default.createElement("div", {
+        }, /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-label rbc-time-header-gutter",
           style: {
             width,
             minWidth: width,
             maxWidth: width
           }
-        }, TimeGutterHeader && /* @__PURE__ */ import_react83.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
+        }, TimeGutterHeader && /* @__PURE__ */ import_react82.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
           var _ref2 = _slicedToArray2(_ref, 2), id = _ref2[0], resource = _ref2[1];
-          return /* @__PURE__ */ import_react83.default.createElement("div", {
+          return /* @__PURE__ */ import_react82.default.createElement("div", {
             className: "rbc-time-header-content",
             key: id || idx
-          }, resource && /* @__PURE__ */ import_react83.default.createElement("div", {
+          }, resource && /* @__PURE__ */ import_react82.default.createElement("div", {
             className: "rbc-row rbc-row-resource",
             key: "resource_".concat(idx)
-          }, /* @__PURE__ */ import_react83.default.createElement("div", {
+          }, /* @__PURE__ */ import_react82.default.createElement("div", {
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react83.default.createElement(ResourceHeaderComponent, {
+          }, /* @__PURE__ */ import_react82.default.createElement(ResourceHeaderComponent, {
             index: idx,
             label: accessors.resourceTitle(resource),
             resource
-          }))), /* @__PURE__ */ import_react83.default.createElement("div", {
+          }))), /* @__PURE__ */ import_react82.default.createElement("div", {
             className: "rbc-row rbc-time-header-cell".concat(range3.length <= 1 ? " rbc-time-header-cell-single-day" : "")
-          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react83.default.createElement(DateContentRow, {
+          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react82.default.createElement(DateContentRow, {
             isAllDay: true,
             rtl,
             getNow: getNow2,
@@ -56049,7 +56090,7 @@ cursor: pointer;
       }
     }]);
     return TimeGridHeader2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   var NONE = {};
   function Resources(resources, accessors) {
     return {
@@ -56133,10 +56174,10 @@ cursor: pointer;
         gutterWidth: void 0,
         isOverflowing: null
       };
-      _this.scrollRef = /* @__PURE__ */ import_react83.default.createRef();
-      _this.contentRef = /* @__PURE__ */ import_react83.default.createRef();
+      _this.scrollRef = /* @__PURE__ */ import_react82.default.createRef();
+      _this.contentRef = /* @__PURE__ */ import_react82.default.createRef();
       _this._scrollRatio = null;
-      _this.gutterRef = /* @__PURE__ */ (0, import_react83.createRef)();
+      _this.gutterRef = /* @__PURE__ */ (0, import_react82.createRef)();
       return _this;
     }
     _createClass2(TimeGrid2, [{
@@ -56186,7 +56227,7 @@ cursor: pointer;
             var daysBackgroundEvents = (groupedBackgroundEvents.get(id) || []).filter(function(event) {
               return localizer.inRange(date2, accessors.start(event), accessors.end(event), "day");
             });
-            return /* @__PURE__ */ import_react83.default.createElement(DayColumn, Object.assign({}, _this2.props, {
+            return /* @__PURE__ */ import_react82.default.createElement(DayColumn, Object.assign({}, _this2.props, {
               localizer,
               min: localizer.merge(date2, min3),
               max: localizer.merge(date2, max3),
@@ -56228,9 +56269,9 @@ cursor: pointer;
         allDayEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: clsx_m_default("rbc-time-view", resources && "rbc-time-view-resources")
-        }, /* @__PURE__ */ import_react83.default.createElement(TimeGridHeader, {
+        }, /* @__PURE__ */ import_react82.default.createElement(TimeGridHeader, {
           range: range3,
           events: allDayEvents,
           width,
@@ -56253,11 +56294,11 @@ cursor: pointer;
           onDrillDown: this.props.onDrillDown,
           getDrilldownView: this.props.getDrilldownView,
           resizable
-        }), /* @__PURE__ */ import_react83.default.createElement("div", {
+        }), /* @__PURE__ */ import_react82.default.createElement("div", {
           ref: this.contentRef,
           className: "rbc-time-content",
           onScroll: this.handleScroll
-        }, /* @__PURE__ */ import_react83.default.createElement(TimeGutter$1, {
+        }, /* @__PURE__ */ import_react82.default.createElement(TimeGutter$1, {
           date: start2,
           ref: this.gutterRef,
           localizer,
@@ -56314,7 +56355,7 @@ cursor: pointer;
       }
     }]);
     return TimeGrid2;
-  }(import_react83.Component);
+  }(import_react82.Component);
   TimeGrid.defaultProps = {
     step: 30,
     timeslots: 2
@@ -56334,7 +56375,7 @@ cursor: pointer;
         var range3 = Day2.range(date2, {
           localizer
         });
-        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react82.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 10,
           localizer,
@@ -56346,7 +56387,7 @@ cursor: pointer;
       }
     }]);
     return Day2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   Day.range = function(date2, _ref) {
     var localizer = _ref.localizer;
     return [localizer.startOf(date2, "day")];
@@ -56379,7 +56420,7 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$3);
         var range3 = Week2.range(date2, this.props);
-        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react82.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -56391,7 +56432,7 @@ cursor: pointer;
       }
     }]);
     return Week2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   Week.defaultProps = TimeGrid.defaultProps;
   Week.navigate = function(date2, action, _ref) {
     var localizer = _ref.localizer;
@@ -56439,7 +56480,7 @@ cursor: pointer;
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$2);
         var range3 = workWeekRange(date2, this.props);
-        return /* @__PURE__ */ import_react83.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react82.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -56451,7 +56492,7 @@ cursor: pointer;
       }
     }]);
     return WorkWeek2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   WorkWeek.defaultProps = TimeGrid.defaultProps;
   WorkWeek.range = workWeekRange;
   WorkWeek.navigate = Week.navigate;
@@ -56467,12 +56508,12 @@ cursor: pointer;
   };
   function Agenda(_ref) {
     var accessors = _ref.accessors, components = _ref.components, date2 = _ref.date, events = _ref.events, getters = _ref.getters, length = _ref.length, localizer = _ref.localizer, onDoubleClickEvent = _ref.onDoubleClickEvent, onSelectEvent = _ref.onSelectEvent, selected = _ref.selected;
-    var headerRef = (0, import_react83.useRef)(null);
-    var dateColRef = (0, import_react83.useRef)(null);
-    var timeColRef = (0, import_react83.useRef)(null);
-    var contentRef = (0, import_react83.useRef)(null);
-    var tbodyRef = (0, import_react83.useRef)(null);
-    (0, import_react83.useEffect)(function() {
+    var headerRef = (0, import_react82.useRef)(null);
+    var dateColRef = (0, import_react82.useRef)(null);
+    var timeColRef = (0, import_react82.useRef)(null);
+    var contentRef = (0, import_react82.useRef)(null);
+    var tbodyRef = (0, import_react82.useRef)(null);
+    (0, import_react82.useEffect)(function() {
       _adjustHeader();
     });
     var renderDay = function renderDay2(day2, events2, dayKey) {
@@ -56486,20 +56527,20 @@ cursor: pointer;
         var start2 = accessors.start(event);
         var userProps = getters.eventProp(event, start2, end3, isSelected(event, selected));
         var dateLabel = idx === 0 && localizer.format(day2, "agendaDateFormat");
-        var first = idx === 0 ? /* @__PURE__ */ import_react83.default.createElement("td", {
+        var first = idx === 0 ? /* @__PURE__ */ import_react82.default.createElement("td", {
           rowSpan: events2.length,
           className: "rbc-agenda-date-cell"
-        }, AgendaDate ? /* @__PURE__ */ import_react83.default.createElement(AgendaDate, {
+        }, AgendaDate ? /* @__PURE__ */ import_react82.default.createElement(AgendaDate, {
           day: day2,
           label: dateLabel
         }) : dateLabel) : false;
-        return /* @__PURE__ */ import_react83.default.createElement("tr", {
+        return /* @__PURE__ */ import_react82.default.createElement("tr", {
           key: dayKey + "_" + idx,
           className: userProps.className,
           style: userProps.style
-        }, first, /* @__PURE__ */ import_react83.default.createElement("td", {
+        }, first, /* @__PURE__ */ import_react82.default.createElement("td", {
           className: "rbc-agenda-time-cell"
-        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react83.default.createElement("td", {
+        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react82.default.createElement("td", {
           className: "rbc-agenda-event-cell",
           onClick: function onClick(e2) {
             return onSelectEvent && onSelectEvent(event, e2);
@@ -56507,7 +56548,7 @@ cursor: pointer;
           onDoubleClick: function onDoubleClick(e2) {
             return onDoubleClickEvent && onDoubleClickEvent(event, e2);
           }
-        }, Event2 ? /* @__PURE__ */ import_react83.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react82.default.createElement(Event2, {
           event,
           title
         }) : title));
@@ -56535,9 +56576,9 @@ cursor: pointer;
         labelClass = "rbc-continues-prior";
       if (localizer.lt(day2, end3, "day"))
         labelClass += " rbc-continues-after";
-      return /* @__PURE__ */ import_react83.default.createElement("span", {
+      return /* @__PURE__ */ import_react82.default.createElement("span", {
         className: labelClass.trim()
-      }, TimeComponent ? /* @__PURE__ */ import_react83.default.createElement(TimeComponent, {
+      }, TimeComponent ? /* @__PURE__ */ import_react82.default.createElement(TimeComponent, {
         event,
         day: day2,
         label
@@ -56574,29 +56615,29 @@ cursor: pointer;
     events.sort(function(a2, b2) {
       return +accessors.start(a2) - +accessors.start(b2);
     });
-    return /* @__PURE__ */ import_react83.default.createElement("div", {
+    return /* @__PURE__ */ import_react82.default.createElement("div", {
       className: "rbc-agenda-view"
-    }, events.length !== 0 ? /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, /* @__PURE__ */ import_react83.default.createElement("table", {
+    }, events.length !== 0 ? /* @__PURE__ */ import_react82.default.createElement(import_react82.default.Fragment, null, /* @__PURE__ */ import_react82.default.createElement("table", {
       ref: headerRef,
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react83.default.createElement("thead", null, /* @__PURE__ */ import_react83.default.createElement("tr", null, /* @__PURE__ */ import_react83.default.createElement("th", {
+    }, /* @__PURE__ */ import_react82.default.createElement("thead", null, /* @__PURE__ */ import_react82.default.createElement("tr", null, /* @__PURE__ */ import_react82.default.createElement("th", {
       className: "rbc-header",
       ref: dateColRef
-    }, messages2.date), /* @__PURE__ */ import_react83.default.createElement("th", {
+    }, messages2.date), /* @__PURE__ */ import_react82.default.createElement("th", {
       className: "rbc-header",
       ref: timeColRef
-    }, messages2.time), /* @__PURE__ */ import_react83.default.createElement("th", {
+    }, messages2.time), /* @__PURE__ */ import_react82.default.createElement("th", {
       className: "rbc-header"
-    }, messages2.event)))), /* @__PURE__ */ import_react83.default.createElement("div", {
+    }, messages2.event)))), /* @__PURE__ */ import_react82.default.createElement("div", {
       className: "rbc-agenda-content",
       ref: contentRef
-    }, /* @__PURE__ */ import_react83.default.createElement("table", {
+    }, /* @__PURE__ */ import_react82.default.createElement("table", {
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react83.default.createElement("tbody", {
+    }, /* @__PURE__ */ import_react82.default.createElement("tbody", {
       ref: tbodyRef
     }, range3.map(function(day2, idx) {
       return renderDay(day2, events, idx);
-    }))))) : /* @__PURE__ */ import_react83.default.createElement("span", {
+    }))))) : /* @__PURE__ */ import_react82.default.createElement("span", {
       className: "rbc-agenda-empty"
     }, messages2.noEventsInRange));
   }
@@ -56670,22 +56711,22 @@ cursor: pointer;
       key: "render",
       value: function render() {
         var _this$props = this.props, messages2 = _this$props.localizer.messages, label = _this$props.label;
-        return /* @__PURE__ */ import_react83.default.createElement("div", {
+        return /* @__PURE__ */ import_react82.default.createElement("div", {
           className: "rbc-toolbar"
-        }, /* @__PURE__ */ import_react83.default.createElement("span", {
+        }, /* @__PURE__ */ import_react82.default.createElement("span", {
           className: "rbc-btn-group"
-        }, /* @__PURE__ */ import_react83.default.createElement("button", {
+        }, /* @__PURE__ */ import_react82.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.TODAY)
-        }, messages2.today), /* @__PURE__ */ import_react83.default.createElement("button", {
+        }, messages2.today), /* @__PURE__ */ import_react82.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.PREVIOUS)
-        }, messages2.previous), /* @__PURE__ */ import_react83.default.createElement("button", {
+        }, messages2.previous), /* @__PURE__ */ import_react82.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.NEXT)
-        }, messages2.next)), /* @__PURE__ */ import_react83.default.createElement("span", {
+        }, messages2.next)), /* @__PURE__ */ import_react82.default.createElement("span", {
           className: "rbc-toolbar-label"
-        }, label), /* @__PURE__ */ import_react83.default.createElement("span", {
+        }, label), /* @__PURE__ */ import_react82.default.createElement("span", {
           className: "rbc-btn-group"
         }, this.viewNamesGroup(messages2)));
       }
@@ -56697,7 +56738,7 @@ cursor: pointer;
         var view = this.props.view;
         if (viewNames2.length > 1) {
           return viewNames2.map(function(name) {
-            return /* @__PURE__ */ import_react83.default.createElement("button", {
+            return /* @__PURE__ */ import_react82.default.createElement("button", {
               type: "button",
               key: name,
               className: clsx_m_default({
@@ -56710,7 +56751,7 @@ cursor: pointer;
       }
     }]);
     return Toolbar2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   function accessor(data, field) {
     var value = null;
     if (typeof field === "function")
@@ -56857,10 +56898,10 @@ cursor: pointer;
           localizer,
           length
         });
-        return /* @__PURE__ */ import_react83.default.createElement("div", Object.assign({}, elementProps, {
+        return /* @__PURE__ */ import_react82.default.createElement("div", Object.assign({}, elementProps, {
           className: clsx_m_default(className, "rbc-calendar", props.rtl && "rbc-rtl"),
           style: style2
-        }), toolbar && /* @__PURE__ */ import_react83.default.createElement(CalToolbar, {
+        }), toolbar && /* @__PURE__ */ import_react82.default.createElement(CalToolbar, {
           date: current,
           view,
           views: viewNames2,
@@ -56868,7 +56909,7 @@ cursor: pointer;
           onView: this.handleViewChange,
           onNavigate: this.handleNavigate,
           localizer
-        }), /* @__PURE__ */ import_react83.default.createElement(View4, Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react82.default.createElement(View4, Object.assign({}, props, {
           events,
           backgroundEvents,
           date: current,
@@ -56945,7 +56986,7 @@ cursor: pointer;
       }
     }]);
     return Calendar2;
-  }(import_react83.default.Component);
+  }(import_react82.default.Component);
   Calendar.defaultProps = {
     events: [],
     backgroundEvents: [],
@@ -60040,57 +60081,57 @@ cursor: pointer;
   }
 
   // src/Components/ProjectsPage/CreateProjectModal.tsx
-  var import_react84 = __toESM(require_react(), 1);
+  var import_react83 = __toESM(require_react(), 1);
   var CreateProjectModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react84.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react84.useState)();
-    const [secondColumn, setSecondColumn] = (0, import_react84.useState)();
-    const [thirdColumn, setThirdColumn] = (0, import_react84.useState)();
+    const [activeModalTab, setActiveModalTab] = (0, import_react83.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react83.useState)();
+    const [secondColumn, setSecondColumn] = (0, import_react83.useState)();
+    const [thirdColumn, setThirdColumn] = (0, import_react83.useState)();
     const modalTabsRef = useOnClickOutside_default(() => {
       setActiveModalTab(false);
     });
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react84.default.createElement(ModalWrapp, {
+    return /* @__PURE__ */ import_react83.default.createElement(import_react83.default.Fragment, null, /* @__PURE__ */ import_react83.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react83.default.createElement(ModalWrapp, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react84.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react84.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react84.default.createElement(ModalClose2, {
+    }, /* @__PURE__ */ import_react83.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react83.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react83.default.createElement(ModalClose2, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react84.default.createElement(ModalBody, null, /* @__PURE__ */ import_react84.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(Input3, {
+    }, "\u2613")), /* @__PURE__ */ import_react83.default.createElement(ModalBody, null, /* @__PURE__ */ import_react83.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react83.default.createElement(ModalRow, null, /* @__PURE__ */ import_react83.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react83.default.createElement(ModalInput, null, /* @__PURE__ */ import_react83.default.createElement(Input3, {
       type: "text",
       placeholder: "Add Project Name"
-    }))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react84.default.createElement(InputDate, {
+    }))), /* @__PURE__ */ import_react83.default.createElement(ModalRow, null, /* @__PURE__ */ import_react83.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react83.default.createElement(ModalInput, null, /* @__PURE__ */ import_react83.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react83.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "Start Date",
       onBlur: (e2) => e2.target.type = "text"
-    }), /* @__PURE__ */ import_react84.default.createElement(InputDate, {
+    }), /* @__PURE__ */ import_react83.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "End Date",
       onBlur: (e2) => e2.target.type = "text"
-    })))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalTabs, {
+    })))), /* @__PURE__ */ import_react83.default.createElement(ModalRow, null, /* @__PURE__ */ import_react83.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react83.default.createElement(ModalTabs, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react84.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react83.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => setFirstColumn("Springfield Storm1")
-    }, "Springfield Storm1"), /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm1"), /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm2"),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2"), /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm2"), /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm3"),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3")), /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm3")), /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setSecondColumn("Mainline"),
       active: secondColumn === "Mainline"
-    }, "Mainline")), /* @__PURE__ */ import_react84.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react84.default.createElement(ArctiveModalColumnTitle, {
+    }, "Mainline")), /* @__PURE__ */ import_react83.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react83.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setThirdColumn("NASSCO"),
       active: thirdColumn === "NASSCO"
-    }, "NASSCO"))))), /* @__PURE__ */ import_react84.default.createElement(ModalRow, null, /* @__PURE__ */ import_react84.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react84.default.createElement(ModalInput, null, /* @__PURE__ */ import_react84.default.createElement(Input3, {
+    }, "NASSCO"))))), /* @__PURE__ */ import_react83.default.createElement(ModalRow, null, /* @__PURE__ */ import_react83.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react83.default.createElement(ModalInput, null, /* @__PURE__ */ import_react83.default.createElement(Input3, {
       type: "text"
-    })))), /* @__PURE__ */ import_react84.default.createElement(Buttons, null, /* @__PURE__ */ import_react84.default.createElement(ButtonSave, null, "Cancel"), /* @__PURE__ */ import_react84.default.createElement(ButtonCreate, null, "Create Project"))))));
+    })))), /* @__PURE__ */ import_react83.default.createElement(Buttons, null, /* @__PURE__ */ import_react83.default.createElement(ButtonSave, null, "Cancel"), /* @__PURE__ */ import_react83.default.createElement(ButtonCreate, null, "Create Project"))))));
   };
   var CreateProjectModal_default = CreateProjectModal;
   var ArctiveModalColumnTitle = styled_components_browser_esm_default.div`
@@ -60300,18 +60341,18 @@ cursor: pointer;
         inspection: 32134
       }
     ];
-    const [activeTab, setActiveTab] = (0, import_react85.useState)(window.location.pathname.split("-")[1]);
-    const [tableHeight, setTableHeight] = (0, import_react85.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react85.useState)(null);
-    const [modal, setModal] = (0, import_react85.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react84.useState)(window.location.pathname.split("-")[1]);
+    const [tableHeight, setTableHeight] = (0, import_react84.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react84.useState)(null);
+    const [modal, setModal] = (0, import_react84.useState)(false);
     const history2 = useHistory();
-    const tableElement = (0, import_react85.useRef)(null);
-    const [tableDataState, setTableDataState] = (0, import_react85.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react85.useState)(false);
+    const tableElement = (0, import_react84.useRef)(null);
+    const [tableDataState, setTableDataState] = (0, import_react84.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react84.useState)(false);
     const createHeaders4 = (headers) => {
       return headers.map((item) => ({
         text: item,
-        ref: (0, import_react85.useRef)()
+        ref: (0, import_react84.useRef)()
       }));
     };
     const tableHeaders = [
@@ -60432,103 +60473,103 @@ cursor: pointer;
         up_down_ind: "Y"
       }
     ];
-    return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement(Header_default, null), /* @__PURE__ */ import_react85.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react85.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react85.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react85.default.createElement(Button, {
+    return /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("div", null, /* @__PURE__ */ import_react84.default.createElement(Header_default, null), /* @__PURE__ */ import_react84.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react84.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react84.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react84.default.createElement(Button, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react85.default.createElement("span", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react85.default.createElement(Tabs2, null, /* @__PURE__ */ import_react85.default.createElement(Tab2, {
+    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react84.default.createElement(Tabs2, null, /* @__PURE__ */ import_react84.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("card");
         history2.push("/projects-card");
       }
-    }, /* @__PURE__ */ import_react85.default.createElement("span", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", {
       className: activeTab === "card" ? "Active" : "UnActive"
-    }, "Cards")), /* @__PURE__ */ import_react85.default.createElement(Tab2, {
+    }, "Cards")), /* @__PURE__ */ import_react84.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("list");
         history2.push("/projects-list");
       }
-    }, /* @__PURE__ */ import_react85.default.createElement("span", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", {
       className: activeTab === "list" ? "Active" : "UnActive"
-    }, "List")), /* @__PURE__ */ import_react85.default.createElement(Tab2, {
+    }, "List")), /* @__PURE__ */ import_react84.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("calendar");
         history2.push("/projects-calendar");
       }
-    }, /* @__PURE__ */ import_react85.default.createElement("span", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", {
       className: activeTab === "calendar" ? "Active" : "UnActive"
-    }, "Calendar"))), /* @__PURE__ */ import_react85.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react85.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react85.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react85.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react85.default.createElement(Donut, null, /* @__PURE__ */ import_react85.default.createElement(Doughnut, {
+    }, "Calendar"))), /* @__PURE__ */ import_react84.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react84.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react84.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react84.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react84.default.createElement(Donut, null, /* @__PURE__ */ import_react84.default.createElement(Doughnut, {
       data
-    })), /* @__PURE__ */ import_react85.default.createElement(Wrap, null, /* @__PURE__ */ import_react85.default.createElement(Test, null, /* @__PURE__ */ import_react85.default.createElement(Assets4, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react85.default.createElement(Assigned, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react85.default.createElement(Distanse, null, /* @__PURE__ */ import_react85.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react85.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement("div", {
+    })), /* @__PURE__ */ import_react84.default.createElement(Wrap, null, /* @__PURE__ */ import_react84.default.createElement(Test, null, /* @__PURE__ */ import_react84.default.createElement(Assets4, null, /* @__PURE__ */ import_react84.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react84.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react84.default.createElement(Assigned, null, /* @__PURE__ */ import_react84.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react84.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react84.default.createElement(Distanse, null, /* @__PURE__ */ import_react84.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react84.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react84.default.createElement("div", null, /* @__PURE__ */ import_react84.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react85.default.createElement("div", {
+    }, /* @__PURE__ */ import_react84.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react85.default.createElement("div", {
+    }, /* @__PURE__ */ import_react84.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react85.default.createElement("table", {
+    }, /* @__PURE__ */ import_react84.default.createElement("table", {
       className: "resizeable-table-project",
       ref: tableElement
-    }, /* @__PURE__ */ import_react85.default.createElement("thead", null, /* @__PURE__ */ import_react85.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
+    }, /* @__PURE__ */ import_react84.default.createElement("thead", null, /* @__PURE__ */ import_react84.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react85.default.createElement("span", null, /* @__PURE__ */ import_react85.default.createElement("input", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", null, /* @__PURE__ */ import_react84.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react85.default.createElement(FilterWrapper3, {
+    }, /* @__PURE__ */ import_react84.default.createElement(FilterWrapper3, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react85.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", null, text), /* @__PURE__ */ import_react84.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react84.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react85.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react84.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react85.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react84.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement("div", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", null, text), /* @__PURE__ */ import_react84.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react85.default.createElement("span", null, text), /* @__PURE__ */ import_react85.default.createElement("div", {
+    }, /* @__PURE__ */ import_react84.default.createElement("span", null, text), /* @__PURE__ */ import_react84.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react85.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react84.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react85.default.createElement("input", {
+      }, /* @__PURE__ */ import_react84.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
+      }, /* @__PURE__ */ import_react84.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
+      }, /* @__PURE__ */ import_react84.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("td", {
+      }, /* @__PURE__ */ import_react84.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react85.default.createElement("span", null, item.AssetsId))));
-    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react85.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react85.default.createElement(Calendar$1, {
+      }, /* @__PURE__ */ import_react84.default.createElement("span", null, item.AssetsId))));
+    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react84.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react84.default.createElement(Calendar$1, {
       localizer,
       events,
       views: ["month"],
       defaultDate: new Date(2022, 7, 8)
-    })), modal && /* @__PURE__ */ import_react85.default.createElement("div", null, /* @__PURE__ */ import_react85.default.createElement(CreateProjectModal_default, {
+    })), modal && /* @__PURE__ */ import_react84.default.createElement("div", null, /* @__PURE__ */ import_react84.default.createElement(CreateProjectModal_default, {
       setModal,
       modal
     }))));
@@ -60656,6 +60697,29 @@ cursor: pointer;
 
   // src/Components/InspectionPage/InspectionSelects.tsx
   var import_react86 = __toESM(require_react(), 1);
+
+  // src/Components/utils/hooks/UseHover.tsx
+  var import_react85 = __toESM(require_react(), 1);
+  function useHover() {
+    const [value, setValue] = (0, import_react85.useState)(false);
+    const ref = (0, import_react85.useRef)(null);
+    const handleMouseOver = () => setValue(true);
+    const handleMouseOut = () => setValue(false);
+    (0, import_react85.useEffect)(() => {
+      const node = ref.current;
+      if (node) {
+        node.addEventListener("mouseover", handleMouseOver);
+        node.addEventListener("mouseout", handleMouseOut);
+        return () => {
+          node.removeEventListener("mouseover", handleMouseOver);
+          node.removeEventListener("mouseout", handleMouseOut);
+        };
+      }
+    }, [ref.current]);
+    return [ref, value];
+  }
+
+  // src/Components/InspectionPage/InspectionSelects.tsx
   var InspectionSelects = () => {
     const [select1, setSelect1] = (0, import_react86.useState)("Springfield Storm");
     const [select2, setSelect2] = (0, import_react86.useState)("Mainlines");
@@ -60700,7 +60764,7 @@ cursor: pointer;
       onClick: () => setSelect2("All assets types")
     }, "All assets types"), /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react86.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react86.default.createElement(Select3, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react86.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react86.default.createElement(Select32, {
       onMouseEnter: HandleMouseEnter_3,
       onMouseLeave: HandleMouseLeave_3
     }, /* @__PURE__ */ import_react86.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react86.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react86.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react86.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react86.default.createElement(HoverItem4, {
@@ -60719,7 +60783,7 @@ cursor: pointer;
 `;
   var HoverItem4 = styled_components_browser_esm_default.div`
   padding: 7px 12px;
-  font-size: 16px;
+  font-size: 14px;
   white-space: nowrap;
   &:hover {
     background-color: whitesmoke;
@@ -60732,6 +60796,7 @@ cursor: pointer;
   background-color: white;
   top: 50px;
   left: 0;
+  font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
   content: '';
@@ -60754,6 +60819,7 @@ cursor: pointer;
   flex-direction: column;
   position: absolute;
   background-color: white;
+  font-size: 14px;
   top: 37px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
@@ -60787,7 +60853,7 @@ padding-bottom: 25px;
   padding-bottom: 25px;
   position: relative;
 `;
-  var Select3 = styled_components_browser_esm_default.div`
+  var Select32 = styled_components_browser_esm_default.div`
   display: flex;
   align-items: flex-start;
   cursor: pointer;
@@ -60803,7 +60869,7 @@ padding-bottom: 25px;
     padding: 0 5px;
 `;
   var SelectItem4 = styled_components_browser_esm_default.div`
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: flex-start;
 `;
@@ -61258,7 +61324,7 @@ padding-bottom: 25px;
     const [firstColumn, setFirstColumn] = (0, import_react90.useState)("Springfield Storm1");
     const [secondColumn, setSecondColumn] = (0, import_react90.useState)("Mainline");
     const [thirdColumn, setThirdColumn] = (0, import_react90.useState)("NASSCO v6 Springfield");
-    const [step, setStep] = (0, import_react90.useState)(2);
+    const [step, setStep] = (0, import_react90.useState)(1);
     const [choose, setChoose] = (0, import_react90.useState)(null);
     const dispatch = useDispatch();
     const filter_1 = useSelector(selectHeaderFilters_1);
@@ -61279,7 +61345,7 @@ padding-bottom: 25px;
     };
     return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react90.default.createElement(ModalWrapp2, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react90.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react90.default.createElement(ModalTitle3, null, "Create Project"), /* @__PURE__ */ import_react90.default.createElement(ModalClose3, {
+    }, /* @__PURE__ */ import_react90.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react90.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react90.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
     }, "\u2613")), /* @__PURE__ */ import_react90.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react90.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react90.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react90.default.createElement(ModalTabs2, {
       ref: modalTabsRef,
@@ -61306,9 +61372,24 @@ padding-bottom: 25px;
     }, /* @__PURE__ */ import_react90.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react90.default.createElement(UploadFileIcon_default, null)), /* @__PURE__ */ import_react90.default.createElement(CreateTitle, null, "I want to upload data/media"), /* @__PURE__ */ import_react90.default.createElement(CreateSubtitle, null, "Create inspections from your uploaded data and/or media")), /* @__PURE__ */ import_react90.default.createElement(JustCreate, {
       active: choose === "Create",
       onClick: () => setChoose("Create")
-    }, /* @__PURE__ */ import_react90.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react90.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react90.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react90.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), /* @__PURE__ */ import_react90.default.createElement(Buttons2, null, /* @__PURE__ */ import_react90.default.createElement(ButtonSave2, null, "Cancel"), /* @__PURE__ */ import_react90.default.createElement(ButtonCreate2, {
+    }, /* @__PURE__ */ import_react90.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react90.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react90.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react90.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), step === 3 && /* @__PURE__ */ import_react90.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react90.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react90.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react90.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react90.default.createElement("span", {
+      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
+    }, firstColumn, " / "), /* @__PURE__ */ import_react90.default.createElement("span", {
+      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
+    }, secondColumn, " / "), thirdColumn), /* @__PURE__ */ import_react90.default.createElement(ModalBodyHeaderTitle, {
+      style: { paddingTop: "20px" }
+    }, "Create inspection for the following assets:"))), step === 4 && /* @__PURE__ */ import_react90.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react90.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react90.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react90.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react90.default.createElement("span", {
+      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
+    }, firstColumn, " / "), /* @__PURE__ */ import_react90.default.createElement("span", {
+      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
+    }, secondColumn, " / "), thirdColumn))), /* @__PURE__ */ import_react90.default.createElement(Buttons2, null, /* @__PURE__ */ import_react90.default.createElement(ButtonSave2, null, "Cancel"), /* @__PURE__ */ import_react90.default.createElement("div", {
+      style: { display: "flex" }
+    }, step > 1 && /* @__PURE__ */ import_react90.default.createElement(ButtonCreate2, {
+      style: { marginRight: "5px", backgroundColor: "white", color: "#000" },
+      onClick: () => setStep(step - 1)
+    }, "Back"), /* @__PURE__ */ import_react90.default.createElement(ButtonCreate2, {
       onClick: () => setStep(step + 1)
-    }, "Next"))))));
+    }, "Next")))))));
   };
   var CreateInspectionModal_default = CreateInspectionModal;
   var CreateIcon = styled_components_browser_esm_default.div`
@@ -61330,6 +61411,7 @@ padding-bottom: 25px;
 `;
   var UploadMedia = styled_components_browser_esm_default.div`
   width: 50%;
+  min-height: 250px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -61339,6 +61421,7 @@ padding-bottom: 25px;
 `;
   var JustCreate = styled_components_browser_esm_default.div`
   width: 50%;
+  min-height: 250px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -61380,6 +61463,7 @@ padding-bottom: 25px;
   var ButtonSave2 = styled_components_browser_esm_default.div`
   padding: 7px 22px;
   border: 1px solid #ccc;
+  font-size: 14px;
   cursor: pointer;
   margin-right: 10px;
 
@@ -61393,11 +61477,12 @@ padding-bottom: 25px;
   border: 1px solid #ccc;
   cursor: pointer;
   color: #fff;
+  font-size: 14px;
   background-color: #1890ff;
 `;
   var ModalWrapp2 = styled_components_browser_esm_default.div`
   background-color: #fff;
-  width: 640px;
+  width: 70%;
   padding: 8px 0 16px 0;
   position: relative;
 `;
@@ -61432,6 +61517,7 @@ padding-bottom: 25px;
   height: 33px;
   display: flex;
   align-items: center;
+  font-size: 14px;
   cursor: pointer;
   padding: 4px 11px;
   color: ${({ active }) => active ? "#ccc" : "black"};
@@ -61576,7 +61662,7 @@ padding-bottom: 25px;
     }))), /* @__PURE__ */ import_react91.default.createElement(TableInspectionContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
-    })), !modal && /* @__PURE__ */ import_react91.default.createElement("div", null, /* @__PURE__ */ import_react91.default.createElement(CreateInspectionModal_default, {
+    })), modal && /* @__PURE__ */ import_react91.default.createElement("div", null, /* @__PURE__ */ import_react91.default.createElement(CreateInspectionModal_default, {
       setModal,
       modal
     })));
@@ -62513,52 +62599,142 @@ padding-bottom: 25px;
   cursor: pointer;
 `;
 
+  // src/Pages/SettingOrganization.tsx
+  var import_react103 = __toESM(require_react(), 1);
+
+  // src/Components/common/icons/IntegrationIcon.tsx
+  var import_react102 = __toESM(require_react(), 1);
+  var IntegrationIcon = () => {
+    return /* @__PURE__ */ import_react102.default.createElement("svg", {
+      viewBox: "64 64 896 896",
+      focusable: "false",
+      "data-icon": "node-index",
+      width: "1em",
+      height: "1em",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react102.default.createElement("defs", null, /* @__PURE__ */ import_react102.default.createElement("style", null)), /* @__PURE__ */ import_react102.default.createElement("path", {
+      d: "M843.5 737.4c-12.4-75.2-79.2-129.1-155.3-125.4S550.9 676 546 752c-153.5-4.8-208-40.7-199.1-113.7 3.3-27.3 19.8-41.9 50.1-49 18.4-4.3 38.8-4.9 57.3-3.2 1.7.2 3.5.3 5.2.5 11.3 2.7 22.8 5 34.3 6.8 34.1 5.6 68.8 8.4 101.8 6.6 92.8-5 156-45.9 159.2-132.7 3.1-84.1-54.7-143.7-147.9-183.6-29.9-12.8-61.6-22.7-93.3-30.2-14.3-3.4-26.3-5.7-35.2-7.2-7.9-75.9-71.5-133.8-147.8-134.4-76.3-.6-140.9 56.1-150.1 131.9s40 146.3 114.2 163.9c74.2 17.6 149.9-23.3 175.7-95.1 9.4 1.7 18.7 3.6 28 5.8 28.2 6.6 56.4 15.4 82.4 26.6 70.7 30.2 109.3 70.1 107.5 119.9-1.6 44.6-33.6 65.2-96.2 68.6-27.5 1.5-57.6-.9-87.3-5.8-8.3-1.4-15.9-2.8-22.6-4.3-3.9-.8-6.6-1.5-7.8-1.8l-3.1-.6c-2.2-.3-5.9-.8-10.7-1.3-25-2.3-52.1-1.5-78.5 4.6-55.2 12.9-93.9 47.2-101.1 105.8-15.7 126.2 78.6 184.7 276 188.9 29.1 70.4 106.4 107.9 179.6 87 73.3-20.9 119.3-93.4 106.9-168.6zM329.1 345.2a83.3 83.3 0 11.01-166.61 83.3 83.3 0 01-.01 166.61zM695.6 845a83.3 83.3 0 11.01-166.61A83.3 83.3 0 01695.6 845z"
+    }));
+  };
+  var IntegrationIcon_default = IntegrationIcon;
+
+  // src/Pages/SettingOrganization.tsx
+  var SettingsOrganization = () => {
+    const history2 = useHistory();
+    return /* @__PURE__ */ import_react103.default.createElement("div", null, /* @__PURE__ */ import_react103.default.createElement(Header_default, null), /* @__PURE__ */ import_react103.default.createElement(Wrapper14, null, /* @__PURE__ */ import_react103.default.createElement(LeftMenu, null, /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-organization",
+      onClick: () => history2.push("/settings-organization")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-systems",
+      onClick: () => history2.push("/settings-systems")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-templates",
+      onClick: () => history2.push("/settings-templates")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-users",
+      onClick: () => history2.push("/settings-users")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-equipment",
+      onClick: () => history2.push("/settings-equipment")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react103.default.createElement(MenuItem3, {
+      active: window.location.pathname === "/settings-integrations",
+      onClick: () => history2.push("/settings-integrations")
+    }, /* @__PURE__ */ import_react103.default.createElement(IconWrapper9, null, /* @__PURE__ */ import_react103.default.createElement(IntegrationIcon_default, null)), "Integrations"))));
+  };
+  var SettingOrganization_default = SettingsOrganization;
+  var Wrapper14 = styled_components_browser_esm_default.div`
+`;
+  var MenuItem3 = styled_components_browser_esm_default.div`
+  display: flex;
+  padding: 15px 5px;
+  cursor: pointer;
+  color: ${({ active }) => active ? "#1890ff" : "#000"} ;
+  background-color:${({ active }) => active ? "#e6f7ff" : "#fff"} ;
+  margin-bottom: 10px;
+`;
+  var IconWrapper9 = styled_components_browser_esm_default.div`
+  padding: 0 10px;
+`;
+  var LeftMenu = styled_components_browser_esm_default.div`
+  width: 200px ;
+  padding-top: 10px;
+  height: calc(100vh - 64px);
+  border-right: 1px solid #ccc;
+  background-color: white;
+
+`;
+
   // src/App.tsx
   function App() {
-    return /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(Switch, null, /* @__PURE__ */ import_react102.default.createElement(Route, {
+    return /* @__PURE__ */ import_react104.default.createElement("div", null, /* @__PURE__ */ import_react104.default.createElement(Switch, null, /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/login",
       component: LoginPage_default
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/dashboard",
       component: DashboardPage_default
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/profile",
       component: ProfilePage_default
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/assets",
       component: AssetsPage_default
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/projects-card",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/projects-list",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/projects-calendar",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/inspections",
       component: InspectionPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react102.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
       path: "/deliverables",
       component: DeliverablesPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react102.default.createElement(Redirect, {
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-organization",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-systems",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-templates",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-users",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-equipment",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Route, {
+      path: "/settings-integrations",
+      component: SettingOrganization_default,
+      exact: true
+    }), /* @__PURE__ */ import_react104.default.createElement(Redirect, {
       to: "/login"
     })));
   }
   var App_default = App;
 
   // src/index.tsx
-  import_react_dom4.default.render(/* @__PURE__ */ import_react103.default.createElement(import_react103.StrictMode, null, /* @__PURE__ */ import_react103.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react103.default.createElement(Provider_default, {
+  import_react_dom4.default.render(/* @__PURE__ */ import_react105.default.createElement(import_react105.StrictMode, null, /* @__PURE__ */ import_react105.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react105.default.createElement(Provider_default, {
     store: store_default
-  }, /* @__PURE__ */ import_react103.default.createElement(ConnectedRouter, {
+  }, /* @__PURE__ */ import_react105.default.createElement(ConnectedRouter, {
     history
-  }, /* @__PURE__ */ import_react103.default.createElement(App_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react105.default.createElement(App_default, null))))), document.getElementById("root"));
 })();
 /*
 object-assign

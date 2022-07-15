@@ -23,7 +23,7 @@ const Assets = () => {
                 <AssetsBodyTitle>
                     12-19-O0+32-23-F0
                 </AssetsBodyTitle>
-                <IconWrapp>
+                <IconWrapp style={{paddingLeft: '10px'}}>
                     <TreeIcon/>
                 </IconWrapp>
                 </AssetsItem>
@@ -58,7 +58,7 @@ const AssetsBodyTitle = styled.div`
 `
 
 const IconWrapp = styled.div`
-  padding: 0 10px;
+  padding: 0 10px 0 0;
 `
 
 const AssetsHeader = styled.div`
@@ -69,6 +69,6 @@ const AssetsHeader = styled.div`
 const AssetsHeaderTitle = styled.div`
   display: flex;
   font-weight: 400;
-  font-size: 18px;
-  padding: 16px 24px;
+  font-size: 16px;
+  padding: 19.5px 24px;
 `
