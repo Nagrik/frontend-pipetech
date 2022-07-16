@@ -41,7 +41,7 @@ export default Dashboard;
 
 
 const Wrapper = styled.div`
-    padding: 35px 178px;
+    padding: 35px 140px;
     display: flex;
 `
 

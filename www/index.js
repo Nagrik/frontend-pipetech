@@ -33714,7 +33714,7 @@ ${latestSubscriptionCallbackError.current.stack}
   justify-content: flex-end;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
-  padding: 4px 7px;
+  padding: 5px 7px;
   font-size: 14px;
   font-weight: 500;
 `;
@@ -34149,6 +34149,7 @@ cursor: pointer;
 `;
   var IconSearchWrapp = styled_components_browser_esm_default.div`
   padding: 0px 10px 0px 0px;
+  margin-top: 2px;
 `;
   var AssetsHeader2 = styled_components_browser_esm_default.div`
   border-bottom: 1px solid #f0f0f0;
@@ -34198,7 +34199,7 @@ cursor: pointer;
   };
   var Dashboard_default = Dashboard;
   var Wrapper8 = styled_components_browser_esm_default.div`
-    padding: 35px 178px;
+    padding: 35px 140px;
     display: flex;
 `;
   var LeftSide = styled_components_browser_esm_default.div`

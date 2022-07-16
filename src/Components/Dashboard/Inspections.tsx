@@ -86,6 +86,7 @@ const IconWrapp = styled.div`
 
 const IconSearchWrapp = styled.div`
   padding: 0px 10px 0px 0px;
+  margin-top: 2px;
 `
 
 const AssetsHeader = styled.div`

@@ -87,7 +87,7 @@ const InspectionItemTitle = styled.div`
   justify-content: flex-end;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
-  padding: 4px 7px;
+  padding: 5px 7px;
   font-size: 14px;
   font-weight: 500;
 `
