@@ -171,7 +171,7 @@ const TableInspectionContent = ({headers, minCellWidth}: any) => {
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table" ref={tableElement}>
+                    <table className="resizeable-table-inspection" ref={tableElement}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (

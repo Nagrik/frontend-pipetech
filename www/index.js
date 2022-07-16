@@ -33571,7 +33571,7 @@ ${latestSubscriptionCallbackError.current.stack}
 
 `;
   var SettingsMenuItem = styled_components_browser_esm_default.div`
-  padding: 20px 50px 20px 10px;
+  padding: 20px 35px 20px 10px;
   color: rgba(255, 255, 255, 0.65);
   display: flex;
   font-size: 14px;
@@ -34148,7 +34148,7 @@ cursor: pointer;
   padding: 0 10px;
 `;
   var IconSearchWrapp = styled_components_browser_esm_default.div`
-  padding: 2px 10px 0px 10px;
+  padding: 0px 10px 0px 0px;
 `;
   var AssetsHeader2 = styled_components_browser_esm_default.div`
   border-bottom: 1px solid #f0f0f0;
@@ -61008,7 +61008,7 @@ padding-bottom: 25px;
     }, /* @__PURE__ */ import_react87.default.createElement("div", {
       className: "table-wrapper"
     }, /* @__PURE__ */ import_react87.default.createElement("table", {
-      className: "resizeable-table",
+      className: "resizeable-table-inspection",
       ref: tableElement
     }, /* @__PURE__ */ import_react87.default.createElement("thead", null, /* @__PURE__ */ import_react87.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
@@ -62647,7 +62647,7 @@ padding-bottom: 25px;
 `;
   var MenuItem3 = styled_components_browser_esm_default.div`
   display: flex;
-  padding: 15px 5px;
+  padding: 10px 5px;
   cursor: pointer;
   color: ${({ active }) => active ? "#1890ff" : "#000"} ;
   background-color:${({ active }) => active ? "#e6f7ff" : "#fff"} ;

@@ -230,7 +230,7 @@ const SettingsMenu = styled.div`
 `
 
 const SettingsMenuItem = styled.div`
-  padding: 20px 50px 20px 10px;
+  padding: 20px 35px 20px 10px;
   color: rgba(255, 255, 255, 0.65);
   display: flex;
   font-size: 14px;

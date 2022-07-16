@@ -80,7 +80,7 @@ const Wrapper = styled.div`
 
 const MenuItem = styled.div<{active:boolean}>`
   display: flex;
-  padding: 15px 5px;
+  padding: 10px 5px;
   cursor: pointer;
   color: ${({active}) => active ? '#1890ff' : '#000' } ;
   background-color:${({active}) => active ? '#e6f7ff' : "#fff"} ;

@@ -240,10 +240,9 @@ h6 {
   background-color: #1C5180;
   z-index: 2;
   position: absolute;
-  right: 41px;
+  right: 85px;
   display: none;
-  top: 65px;
-  width: 200px;
+  top: 63px;
 }
 .CircleWrapper {
 }
@@ -270,6 +269,17 @@ h6 {
   overflow: hidden;
 }
 .resizeable-table {
+  display: grid;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: whitesmoke;
+  padding-right: 24px;
+  margin-left: 24px;
+  border-left: 1px solid #ccc;
+  grid-auto-columns: calc(25% - 30px);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
+}
+.resizeable-table-inspection {
   display: grid;
   overflow-x: scroll;
   overflow-y: hidden;

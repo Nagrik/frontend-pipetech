@@ -33,6 +33,26 @@
     minmax(55px, 1fr);
 }
 
+.resizeable-table-inspection {
+    display: grid;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: whitesmoke;
+    padding-right: 24px;
+    margin-left: 24px;
+    border-left: 1px solid #ccc;
+    grid-auto-columns: calc(25% - 30px);
+    grid-template-columns:
+    minmax(55px, 0.1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr);
+}
+
 .checkbox{
     max-width: 60px;
     min-width: 30px;

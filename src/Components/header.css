@@ -14,10 +14,9 @@
     background-color: #1C5180;
     z-index: 2;
     position: absolute;
-    right: 41px;
+    right: 85px;
     display: none;
-    top: 65px;
-    width: 200px;
+    top: 63px;
 }
 
 .CircleWrapper{
