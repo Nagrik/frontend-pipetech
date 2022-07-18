@@ -278,7 +278,7 @@ h6 {
   margin-left: 24px;
   border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: minmax(55px, 0.1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(200px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr);
 }
 .resizeable-table-inspection {
   display: grid;
@@ -347,6 +347,8 @@ table td {
 }
 table td {
   background-color: white;
+  display: flex;
+  align-items: center;
 }
 table th span,
 table td span {

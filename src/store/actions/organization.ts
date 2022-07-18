@@ -31,6 +31,7 @@ export const getUserInfo = (organizationId:string): AsyncAction => async (
     try {
         dispatch(loginActions.setIsLoading(true))
         const response = await mainProtectedApi.getUserInfo(organizationId)
+        dispatch(loginActions.setUserResponse(response))
         dispatch(loginActions.setIsLoggedIn(true))
         dispatch(loginActions.setIsLoading(false))
         dispatch(organizationAction.organizationResponse(response))

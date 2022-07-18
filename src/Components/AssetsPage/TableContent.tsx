@@ -37,7 +37,6 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const tableElement = useRef(null);
     const columns = createHeaders(headers);
-    console.log(organisations)
 
     useEffect(() => {
         // @ts-ignore
@@ -144,7 +143,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                 text === 'checkbox' ? (
                                     <>
                                         <th ref={ref} key={i} className={i === 0 ? 'checkboxHeader' : 'checkbox'}>
-                                            <span><input type='checkbox'
+                                            <span><input type='checkbox' style={{cursor: 'pointer'}}
                                                          onClick={(e) => handleCheckCheckboxes(e)}/></span>
                                         </th>
                                     </>
@@ -173,6 +172,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                         <tr key={index}>
                                             <Td className='checkbox' isActive={item.checkbox}>
                                                 <input type='checkbox'
+                                                       style={{cursor: 'pointer'}}
                                                        checked={item.checkbox}
                                                        onClick={(e) => handleCheckCheckbox(e, item.id)}/>
                                             </Td>

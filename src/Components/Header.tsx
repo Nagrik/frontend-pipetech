@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import styled from "styled-components";
 import LogoWhite from "@/Components/common/icons/LogoWhite";
@@ -19,19 +19,26 @@ import LogoutIcon from "@/Components/common/icons/ProfileIcons/LogoutIcon";
 import {useHistory} from "react-router-dom";
 import './header.css'
 import SearchIcon from "@/Components/common/icons/SearchIcon";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "@/store/actions/login";
+import {selectUserResponse} from "@/store/selectors/auth";
+import {getUserInfo} from "@/store/actions/organization";
 
 
 const Header = () => {
-
-
     const history = useHistory();
     const dispatch = useDispatch<AppDispatch>();
-const handleLogout = () => {
-    dispatch(logout())
-    history.push("/login")
-}
+    const user = useSelector(selectUserResponse)
+
+    const handleLogout = () => {
+        dispatch(logout())
+        history.push("/login")
+    }
+
+    const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0)
+    console.log(initials)
+
+
     return (
         <Wrapper>
             <LeftSideMenu>
@@ -139,7 +146,7 @@ const handleLogout = () => {
                 <div className="CircleWrapper">
                     <Circle>
                         <CircleWrapper>
-                            RN
+                            {initials}
                             <div className='ProfileMenu'>
                                 <ProfileMenuItem onClick={() => history.push('/profile')}>
                                     <IconWrapper>

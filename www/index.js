@@ -1044,7 +1044,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect23(create, deps) {
+          function useEffect24(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1824,7 +1824,7 @@
           exports2.useContext = useContext7;
           exports2.useDebugValue = useDebugValue2;
           exports2.useDeferredValue = useDeferredValue;
-          exports2.useEffect = useEffect23;
+          exports2.useEffect = useEffect24;
           exports2.useId = useId;
           exports2.useImperativeHandle = useImperativeHandle;
           exports2.useInsertionEffect = useInsertionEffect;
@@ -2988,7 +2988,7 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState35 = React96.useState, useEffect23 = React96.useEffect, useLayoutEffect3 = React96.useLayoutEffect, useDebugValue2 = React96.useDebugValue;
+          var useState35 = React96.useState, useEffect24 = React96.useEffect, useLayoutEffect3 = React96.useLayoutEffect, useDebugValue2 = React96.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
@@ -3025,7 +3025,7 @@
                 });
               }
             }, [subscribe, value, getSnapshot]);
-            useEffect23(function() {
+            useEffect24(function() {
               if (checkIfSnapshotChanged(inst)) {
                 forceUpdate({
                   inst
@@ -3098,7 +3098,7 @@
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef16 = React96.useRef, useEffect23 = React96.useEffect, useMemo6 = React96.useMemo, useDebugValue2 = React96.useDebugValue;
+          var useRef16 = React96.useRef, useEffect24 = React96.useEffect, useMemo6 = React96.useMemo, useDebugValue2 = React96.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
             var instRef = useRef16(null);
             var inst;
@@ -3155,7 +3155,7 @@
               return [getSnapshotWithSelector, getServerSnapshotWithSelector];
             }, [getSnapshot, getServerSnapshot, selector, isEqual5]), getSelection = _useMemo[0], getServerSelection = _useMemo[1];
             var value = useSyncExternalStore3(subscribe, getSelection, getServerSelection);
-            useEffect23(function() {
+            useEffect24(function() {
               inst.hasValue = true;
               inst.value = value;
             }, [value]);
@@ -29777,7 +29777,7 @@
   var refEquality = (a2, b2) => a2 === b2;
   function createSelectorHook(context2 = ReactReduxContext) {
     const useReduxContext2 = context2 === ReactReduxContext ? useReduxContext : () => (0, import_react6.useContext)(context2);
-    return function useSelector2(selector, equalityFn = refEquality) {
+    return function useSelector3(selector, equalityFn = refEquality) {
       if (true) {
         if (!selector) {
           throw new Error(`You must pass a selector to useSelector`);
@@ -33066,6 +33066,7 @@ ${latestSubscriptionCallbackError.current.stack}
     try {
       dispatch(loginActions.setIsLoading(true));
       const response = yield mainProtectedApi.getUserInfo(organizationId);
+      dispatch(loginActions.setUserResponse(response));
       dispatch(loginActions.setIsLoggedIn(true));
       dispatch(loginActions.setIsLoading(false));
       dispatch(organizationAction.organizationResponse(response));
@@ -33861,10 +33862,13 @@ ${latestSubscriptionCallbackError.current.stack}
   var Header = () => {
     const history2 = useHistory();
     const dispatch = useDispatch();
+    const user = useSelector(selectUserResponse);
     const handleLogout = () => {
       dispatch(logout());
       history2.push("/login");
     };
+    const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0);
+    console.log(initials);
     return /* @__PURE__ */ import_react38.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react38.default.createElement(LeftSideMenu, null, /* @__PURE__ */ import_react38.default.createElement(LogoWrapper3, {
       onClick: () => history2.push("/dashboard")
     }, /* @__PURE__ */ import_react38.default.createElement(LogoWhite_default, {
@@ -33911,7 +33915,7 @@ ${latestSubscriptionCallbackError.current.stack}
       onClick: () => history2.push("/settings-integrations")
     }, /* @__PURE__ */ import_react38.default.createElement(IconWrapper, null, /* @__PURE__ */ import_react38.default.createElement(integrations_default, null)), "Integrations")))), /* @__PURE__ */ import_react38.default.createElement("div", {
       className: "CircleWrapper"
-    }, /* @__PURE__ */ import_react38.default.createElement(Circle, null, /* @__PURE__ */ import_react38.default.createElement(CircleWrapper, null, "RN", /* @__PURE__ */ import_react38.default.createElement("div", {
+    }, /* @__PURE__ */ import_react38.default.createElement(Circle, null, /* @__PURE__ */ import_react38.default.createElement(CircleWrapper, null, initials, /* @__PURE__ */ import_react38.default.createElement("div", {
       className: "ProfileMenu"
     }, /* @__PURE__ */ import_react38.default.createElement(ProfileMenuItem, {
       onClick: () => history2.push("/profile")
@@ -37910,7 +37914,6 @@ cursor: pointer;
     const [detailsOpen, setDetailsOpen] = (0, import_react55.useState)(false);
     const tableElement = (0, import_react55.useRef)(null);
     const columns = createHeaders(headers);
-    console.log(organisations);
     (0, import_react55.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
@@ -37995,6 +37998,7 @@ cursor: pointer;
       className: i2 === 0 ? "checkboxHeader" : "checkbox"
     }, /* @__PURE__ */ import_react55.default.createElement("span", null, /* @__PURE__ */ import_react55.default.createElement("input", {
       type: "checkbox",
+      style: { cursor: "pointer" },
       onClick: (e2) => handleCheckCheckboxes(e2)
     })))) : /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
@@ -38012,6 +38016,7 @@ cursor: pointer;
         isActive: item.checkbox
       }, /* @__PURE__ */ import_react55.default.createElement("input", {
         type: "checkbox",
+        style: { cursor: "pointer" },
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
       }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
