@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "@/Components/Header";
 import styled from "styled-components";
 import OrganizationIcon from "@/Components/common/icons/SettingsIcons/OrganizationIcon";
@@ -8,9 +8,15 @@ import TemplatesIcon from "@/Components/common/icons/SettingsIcons/TemplatesIcon
 import UsersIcon from "@/Components/common/icons/SettingsIcons/UsersIcon";
 import EquipmentIcon from "@/Components/common/icons/SettingsIcons/EquipmentIcon";
 import IntegrationIcon from "@/Components/common/icons/IntegrationIcon";
+import SettingsPageUsers from "@/Components/SettingsPage/SettingsPageUsers";
+import Footer from "@/Components/Dashboard/Footer";
+import {useDispatch, useSelector} from "react-redux";
+import {getOrganizationInfo} from "@/store/actions/organization";
+import {selectOrganizationInfo} from "@/store/selectors/organization";
 
 const SettingsOrganization = () => {
     const history = useHistory();
+
     return (
         <div>
             <Header/>
@@ -68,14 +74,30 @@ const SettingsOrganization = () => {
                         Integrations
                     </MenuItem>
                 </LeftMenu>
+                <RightSide>
+                {
+                    window.location.pathname === '/settings-users' && (
+                        <SettingsPageUsers />
+                    )
+                }
+                </RightSide>
             </Wrapper>
+            <Footer/>
+
         </div>
     );
 };
 
 export default SettingsOrganization;
 
+const RightSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 200px);
+`
+
 const Wrapper = styled.div`
+  display: flex;
 `
 
 const MenuItem = styled.div<{active:boolean}>`
@@ -94,6 +116,7 @@ const IconWrapper = styled.div`
 const LeftMenu = styled.div`
   width: 200px ;
   padding-top: 10px;
+  z-index: 2;
   height: calc(100vh - 64px);
   border-right: 1px solid #ccc;
   background-color: white;

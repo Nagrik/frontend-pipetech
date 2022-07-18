@@ -4,11 +4,17 @@ import styled from "styled-components";
 import LogoIcon from "@/Components/common/icons/LogoIcon";
 import useWindowDimensions from "@/Components/utils/hooks/useWindowDimensions";
 import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "@/store/actions/login";
+import useInput from "@/Components/utils/hooks/useInput";
 
 export default () => {
+    const dispatch = useDispatch<AppDispatch>();
     let history = useHistory();
+    const [email, setEmail] = useInput()
+    const [password, setPassword] = useInput()
     const goToDashboard = () => {
-        history.push("/dashboard");
+        dispatch(login(email, password))
     }
 
     const { height, width } = useWindowDimensions();
@@ -25,8 +31,8 @@ export default () => {
                     )
                 }
                 <Inputs>
-                <Input type="text" placeholder='Email'/>
-                <Input type="text" placeholder='Password'/>
+                <Input type="text" placeholder='Email' onChange={setEmail}/>
+                <Input type="text" placeholder='Password' onChange={setPassword}/>
                 </Inputs>
                 <Utils>
                 <ForgotPassword>

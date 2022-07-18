@@ -1,15 +1,14 @@
 import HttpClientProtected from './http-client-protected';
 
-export interface createCompany {
-  name:string
-}
 
-export interface postBotsRun {
-  organizationId: string,
-  botId: number,
-  bankQuantity: number,
-  commentPhrase: string,
-  errorPhrase:string
+
+export interface UserResponse {
+ email: string;
+ id: number;
+ firstName: string;
+ lastName: string;
+ phone: string;
+ avatar?: string;
 }
 
 export default class MainProtected extends HttpClientProtected {
@@ -27,6 +26,15 @@ export default class MainProtected extends HttpClientProtected {
     return MainProtected.instanceCached;
   };
 
-  // public getUserInfo = () => this.instance.get<User>('/admin');
+    public createUser = (body:any) => this.instance.post<UserResponse>('/users', body);
+
+    public addUserToOrganization = (id: string, body: { roles: string[] }) => this.instance.post<UserResponse>(`/organisation/1/add-user/${id}`, body);
+
+    public getOrganizationInfo = () => this.instance.get<UserResponse>(`/organisation/1`);
+
+    public getUserInfo = (organizationId:string) => this.instance.get<UserResponse>(`/users/${organizationId}`);
+
+
+
 
 }

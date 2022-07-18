@@ -1,51 +1,36 @@
 import { createReducerFunction, ImmerReducer } from 'immer-reducer';
+import {UserResponse} from "@/api/main-protected";
 
 export interface OTPResponse {
-  createdAt: number,
-  email: string,
-  id: number,
-  otp: string,
+
 }
 
 export interface LoginState {
-  isOTPResolved: boolean;
-  OPTResponse: OTPResponse | null;
-  access_token:string | null,
-  refresh_token:string | null,
-  loadOTP: boolean,
-  isLoggedIn: boolean;
-  isLoading: boolean;
-  isInvalidData: boolean;
+  userResponse: UserResponse | null
+  isLoggedIn: boolean,
+  isLoading: boolean,
+  isInvalidData: boolean,
+    isInvalidDataMessage: string | null,
 }
 
 const initialState: LoginState = {
-  isOTPResolved: false,
-  OPTResponse: null,
-  access_token: null,
-  refresh_token: null,
-  loadOTP: false,
+  userResponse: null,
   isLoggedIn: false,
-  isLoading: true,
-  isInvalidData: false,
+  isLoading: false,
+    isInvalidData: false,
+    isInvalidDataMessage: null,
 };
 
 export class LoginReducer extends ImmerReducer<LoginState> {
-  setIsOTPResolved() {
-    this.draftState.isOTPResolved = true;
-  }
 
-  setOTPResponse(OTPResponse: OTPResponse | null) {
-    this.draftState.OPTResponse = OTPResponse;
-  }
 
   setTokensResponse(OTPResponse: any | null) {
-    this.draftState.access_token = OTPResponse;
-    this.draftState.refresh_token = OTPResponse;
+    // this.draftState.access_token = OTPResponse;
+    // this.draftState.refresh_token = OTPResponse;
   }
 
-  setLoadOTP() {
-    const loadedOTP = this.draftState.OPTResponse;
-    this.draftState.loadOTP = !loadedOTP;
+  setUserResponse(userResponse: UserResponse | null) {
+    this.draftState.userResponse = userResponse;
   }
 
   setIsLoggedIn(isLoggedIn: boolean) {
@@ -56,13 +41,18 @@ export class LoginReducer extends ImmerReducer<LoginState> {
     this.draftState.isLoading = isLoading;
   }
 
-  setIsInvalidData(isInvalidData: boolean) {
-    this.draftState.isInvalidData = isInvalidData;
+  setIsInvalidData(isInvalid: boolean) {
+    this.draftState.isInvalidData = isInvalid;
   }
 
-  cleanIsInvalidData() {
+  isInvalidDataClear() {
     this.draftState.isInvalidData = false;
   }
+
+  setIsInvalidDataMessage(isInvalidDataMessage: string) {
+    this.draftState.isInvalidDataMessage = isInvalidDataMessage;
+  }
+
 
   cleanLogin() {
     this.draftState = initialState;

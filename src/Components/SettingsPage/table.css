@@ -1,0 +1,15 @@
+
+.resizeable-table {
+    display: grid;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: whitesmoke;
+    border-left: 1px solid #ccc;
+    grid-template-columns:
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 3fr)
+    minmax(55px, 1fr)
+    minmax(55px, 1fr)
+    minmax(55px, 2fr);
+}

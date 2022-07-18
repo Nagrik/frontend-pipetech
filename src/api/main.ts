@@ -1,4 +1,5 @@
 import HttpClient from './http-client';
+import {UserResponse} from "@/api/main-protected";
 
 export interface SendEmailBody {
     email: string
@@ -34,7 +35,12 @@ class Main extends HttpClient {
 
     public getTokens = (body: { email: string, otp: string }) => this.instance.post<OTPValidateResponse>('/otp/validate', body);
 
-    public refresh = (body:{ refreshToken: string }) => this.instance.post<RefreshResponse>('/otp/refresh', body);
+    public refresh = (body:{ refreshToken: string }) => this.instance.post<RefreshResponse>('/login/refresh', body);
+
+    public login = (body:{ email: string, password:string }) => this.instance.post<{refreshToken:string, accessToken:string, id:number}>('/login', body);
+
+
+
 }
 
 export default Main;

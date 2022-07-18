@@ -14,8 +14,10 @@ import MainProtected from '@/api/main-protected';
 
 import loginReducer from './reducers/auth';
 import inspectionReducer from './reducers/inspection';
+import OrganizationReducer from './reducers/organization';
 import {LoginActions} from "@/store/actions/login";
 import {InspectionAction} from "@/store/actions/inspection";
+import {OrganizationActions} from "@/store/actions/organization";
 
 export const history = createBrowserHistory();
 
@@ -27,7 +29,8 @@ export const api = {
 const rootReducer = combineReducers({
     router: connectRouter(history),
     loginReducer,
-    inspectionReducer
+    OrganizationReducer,
+    inspectionReducer,
 });
 
 // @ts-ignore
@@ -41,5 +44,6 @@ export type State = ReturnType<typeof rootReducer>;
 export type Actions =
     | LoginActions
     | InspectionAction
+    | OrganizationActions
 
 export default createStore(rootReducer, enhancer);

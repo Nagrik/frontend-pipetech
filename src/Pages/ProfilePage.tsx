@@ -251,7 +251,7 @@ const ProfileHeaderTitle = styled.div`
 `
 
 const SaveButton = styled.div`
-  font-size: 18px;
+  font-size: 14px;
   color: white;
   background-color: #1890ff;
   padding: 12px;

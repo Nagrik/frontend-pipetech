@@ -9,7 +9,6 @@ import AssetsIcon from "@/Components/common/icons/AssetsIcon";
 import InspectionIcon from "@/Components/common/icons/InspectionIcon";
 import ProjectsIcon from "@/Components/common/icons/ProjectsIcon";
 import DeliverablesIcon from "@/Components/common/icons/DeliverablesIcon";
-import {useHover} from "@/Components/utils/hooks/UseHover";
 import OrganizationIcon from "@/Components/common/icons/SettingsIcons/OrganizationIcon";
 import SystemsIcon from "@/Components/common/icons/SettingsIcons/SystemsIcon";
 import TemplatesIcon from "@/Components/common/icons/SettingsIcons/TemplatesIcon";
@@ -20,14 +19,19 @@ import LogoutIcon from "@/Components/common/icons/ProfileIcons/LogoutIcon";
 import {useHistory} from "react-router-dom";
 import './header.css'
 import SearchIcon from "@/Components/common/icons/SearchIcon";
+import {useDispatch} from "react-redux";
+import {logout} from "@/store/actions/login";
 
 
 const Header = () => {
 
 
     const history = useHistory();
-
-
+    const dispatch = useDispatch<AppDispatch>();
+const handleLogout = () => {
+    dispatch(logout())
+    history.push("/login")
+}
     return (
         <Wrapper>
             <LeftSideMenu>
@@ -143,7 +147,7 @@ const Header = () => {
                                     </IconWrapper>
                                     My Profile
                                 </ProfileMenuItem>
-                                <ProfileMenuItem>
+                                <ProfileMenuItem onClick={handleLogout}>
                                     <IconWrapper>
                                         <LogoutIcon/>
                                     </IconWrapper>

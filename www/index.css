@@ -312,7 +312,7 @@ table tr {
 }
 table th {
   position: relative;
-  font-size: 18px;
+  font-size: 14px;
   border-top: 1px solid #ccc;
   padding: 10px 20px;
   display: flex;
@@ -1220,4 +1220,14 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+/* src/Components/SettingsPage/table.css */
+.resizeable-table {
+  display: grid;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: whitesmoke;
+  border-left: 1px solid #ccc;
+  grid-template-columns: minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 3fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 2fr);
 }

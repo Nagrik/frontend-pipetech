@@ -10,27 +10,31 @@ import InspectionPage from "@/Pages/InspectionPage";
 import DeliverablesPage from "@/Pages/DeliverablesPage";
 import ProfilePage from './Pages/ProfilePage';
 import SettingsOrganization from "@/Pages/SettingOrganization";
+import store from "@/store";
+import {getUserInfo} from "@/store/actions/organization";
+import ProtectedRouter from "@/Components/utils/ProtectedRouter";
 
+store.dispatch<any>(getUserInfo('1'));
 function App () {
     return (
         <div>
         <Switch>
             <Route path="/login" component={LoginPage} />
-            <Route path="/dashboard" component={DashboardPage} />
-            <Route path="/profile" component={ProfilePage} />
-            <Route path="/assets" component={AssetsPage} />
-            <Route path="/projects-card" component={ProjectsPage} exact />
-            <Route path="/projects-list"  component={ProjectsPage} exact />
-            <Route path="/projects-calendar"  component={ProjectsPage} exact />
-            <Route path="/inspections"  component={InspectionPage} exact />
-            <Route path="/deliverables"  component={DeliverablesPage} exact />
+            <ProtectedRouter path="/dashboard" component={DashboardPage} />
+            <ProtectedRouter path="/profile" component={ProfilePage} />
+            <ProtectedRouter path="/assets" component={AssetsPage} />
+            <ProtectedRouter path="/projects-card" component={ProjectsPage} exact />
+            <ProtectedRouter path="/projects-list"  component={ProjectsPage} exact />
+            <ProtectedRouter path="/projects-calendar"  component={ProjectsPage} exact />
+            <ProtectedRouter path="/inspections"  component={InspectionPage} exact />
+            <ProtectedRouter path="/deliverables"  component={DeliverablesPage} exact />
 
-            <Route path="/settings-organization"  component={SettingsOrganization} exact />
-            <Route path="/settings-systems"  component={SettingsOrganization} exact />
-            <Route path="/settings-templates"  component={SettingsOrganization} exact />
-            <Route path="/settings-users"  component={SettingsOrganization} exact />
-            <Route path="/settings-equipment"  component={SettingsOrganization} exact />
-            <Route path="/settings-integrations"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-organization"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-systems"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-templates"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-users"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-equipment"  component={SettingsOrganization} exact />
+            <ProtectedRouter path="/settings-integrations"  component={SettingsOrganization} exact />
 
             <Redirect to="/login" />
         </Switch>

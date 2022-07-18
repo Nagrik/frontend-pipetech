@@ -180,14 +180,14 @@ const TableContent = ({headers, minCellWidth}: any) => {
                             {columns.map(({ref, text}: any, i: number) => (
                                 text === 'checkbox' ? (
                                     <>
-                                        <th ref={ref} key={text} className='checkbox'>
+                                        <th ref={ref} key={i} className='checkbox'>
                                             <span><input type='checkbox'
                                                          onClick={(e) => handleCheckCheckboxes(e)}/></span>
                                         </th>
                                     </>
                                 ) : text === 'Amount' ? (
                                     <>
-                                        <th ref={ref} key={text}>
+                                        <th ref={ref} key={i}>
                                             <FilterWrapper onClick={handleFilterColumn}>
                                                 <span>{text}</span>
                                                 <IconWrapper>

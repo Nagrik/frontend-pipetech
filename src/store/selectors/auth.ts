@@ -2,22 +2,13 @@ import { createSelector, Selector } from 'reselect';
 
 import { State } from '@/store';
 import { OTPResponse } from '@/store/reducers/auth';
+import {UserResponse} from "@/api/main-protected";
 
 const selectLogin = (state: State) => state.loginReducer;
 
-export const selectOTPResponse: Selector<State, OTPResponse | null> = createSelector(
+export const selectUserResponse: Selector<State, UserResponse | null> = createSelector(
   selectLogin,
-  ({ OPTResponse }) => OPTResponse,
-);
-
-export const loadOTP: Selector<State, boolean> = createSelector(
-  selectLogin,
-  ({ loadOTP }) => loadOTP,
-);
-
-export const accessToken: Selector<State, string | null > = createSelector(
-  selectLogin,
-  ({ access_token }) => access_token,
+  ({ userResponse }) => userResponse,
 );
 
 export const selectIsLoggedIn: Selector<State, boolean> = createSelector(
@@ -34,3 +25,9 @@ export const selectIsInvalidData: Selector<State, boolean> = createSelector(
   selectLogin,
   ({ isInvalidData }) => isInvalidData,
 );
+
+export const selectIsInvalidDataMessage: Selector<State, string | null> = createSelector(
+  selectLogin,
+  ({ isInvalidDataMessage }) => isInvalidDataMessage,
+);
+

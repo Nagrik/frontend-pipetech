@@ -4,52 +4,19 @@ import { push } from 'connected-react-router';
 import { LoginReducer } from '@/store/reducers/auth';
 import { AsyncAction } from '@/store/actions/common';
 import TokensLocalStorage from '@/local-storage/TokensLocalStorage';
+import {getOrganizationInfo} from "@/store/actions/organization";
 
 export const loginActions = createActionCreators(LoginReducer);
 
 export type LoginActions =
-    | ReturnType<typeof loginActions.setIsOTPResolved>
-    | ReturnType<typeof loginActions.setOTPResponse>
-    | ReturnType<typeof loginActions.setLoadOTP>
-    | ReturnType<typeof loginActions.setIsLoading>
+    | ReturnType<typeof loginActions.setUserResponse>
     | ReturnType<typeof loginActions.setIsLoggedIn>
+    | ReturnType<typeof loginActions.setIsLoading>
     | ReturnType<typeof loginActions.setIsInvalidData>
-    | ReturnType<typeof loginActions.cleanIsInvalidData>;
+    | ReturnType<typeof loginActions.setIsInvalidDataMessage>
+    | ReturnType<typeof loginActions.isInvalidDataClear>
 
-export const sendEmail = (email: string, password: string): AsyncAction => async (
-  dispatch,
-  _,
-  { mainApi, mainProtectedApi },
-) => {
-  try {
-    // const { access_token, refresh_token } = await mainApi.sendEmail({ email, password });
-    // const storage = TokensLocalStorage.getInstance();
-    //
-    // storage.setAccessToken(access_token);
-    // storage.setRefreshToken(refresh_token);
-    //
-    // const user = await mainProtectedApi.getUserInfo();
-    //
-    // dispatch(userAction.setUser(user));
-    // dispatch(loginActions.setIsLoggedIn(true));
-    //
-    // dispatch(push('/'));
-  } catch (e) {
-    // dispatch(userAction.isInvalidDataMessage(e.response.data.message));
-  } finally {
-    // dispatch(loaderActions.setIsResolved(false));
-  }
-};
 
-export const clearIsEmailInvalid = (): AsyncAction => async (
-  dispatch,
-) => {
-  try {
-    dispatch(loginActions.cleanIsInvalidData());
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 export const logout = (): AsyncAction => async (
   dispatch,
@@ -59,8 +26,85 @@ export const logout = (): AsyncAction => async (
     storage.clear();
 
     // dispatch(userAction.cleanUser());
-    dispatch(loginActions.setIsLoggedIn(false));
+    // dispatch(loginActions.setIsLoggedIn(false));
   } catch (e) {
     console.log(e);
   }
 };
+
+
+export const createUser = (email:string, firstName: string, lastName: string, phone: string, roles:string[]): AsyncAction => async (
+    dispatch,
+    _,
+    { mainApi, mainProtectedApi },
+) => {
+  try {
+    const body = {
+        email,
+        firstName,
+        lastName,
+        phone,
+    }
+    const response  = await mainProtectedApi.createUser(body)
+    dispatch(addUserToOrganization(response.id.toString(),  roles ))
+    dispatch(loginActions.setUserResponse(response))
+  } catch (e) {
+    console.log(e)
+  }
+};
+
+
+export const addUserToOrganization = (id:string, roles: string[]): AsyncAction => async (
+    dispatch,
+    _,
+    { mainApi, mainProtectedApi },
+) => {
+  try {
+    const body = {
+      roles
+    }
+     await mainProtectedApi.addUserToOrganization(id, body)
+    dispatch(getOrganizationInfo())
+  } catch (e) {
+    console.log(e)
+  }
+};
+
+export const invalidDataClear = (): AsyncAction => async (
+    dispatch,
+    _,
+    { mainApi, mainProtectedApi },
+) => {
+  try {
+    dispatch(loginActions.isInvalidDataClear())
+  } catch (e) {
+    console.log(e)
+  }
+};
+
+
+export const login = (email:string, password: string): AsyncAction => async (
+    dispatch,
+    _,
+    { mainApi, mainProtectedApi },
+) => {
+  try {
+    const body = {
+      email,
+      password
+    }
+    dispatch(loginActions.setIsLoading(true))
+     const {accessToken, refreshToken, id} = await mainApi.login(body)
+    const storage = TokensLocalStorage.getInstance();
+    dispatch(loginActions.setIsLoggedIn(true))
+    dispatch(loginActions.setIsLoading(false))
+    dispatch(push('/dashboard'))
+    storage.setAccessToken(accessToken);
+    storage.setRefreshToken(refreshToken);
+    window.localStorage.setItem('userId', id.toString())
+  } catch (e:any) {
+    dispatch(loginActions.setIsInvalidData(true));
+    dispatch(loginActions.setIsInvalidDataMessage(e.response.data.message));
+  }
+};
+
