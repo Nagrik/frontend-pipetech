@@ -78,7 +78,7 @@ const SettingsPageUsersTable = ({minCellWidth, organizationInfo}: any) => {
 
 
     return (
-        <div style={{position: 'relative', padding: '24px 0 '}}>
+        <div style={{position: 'relative', padding: '24px 24px '}}>
 
             <div className="container">
                 <div className="table-wrapper">
@@ -89,12 +89,9 @@ const SettingsPageUsersTable = ({minCellWidth, organizationInfo}: any) => {
                                     <>
                                         <th ref={ref} key={text}>
                                             <span style={{fontSize: '12px'}}>{text}</span>
-                                            <div
+                                            <Head
                                                 style={{height: tableHeight}}
                                                 onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
                                             />
                                         </th>
                                     </>
@@ -167,6 +164,15 @@ const SettingsPageUsersTable = ({minCellWidth, organizationInfo}: any) => {
 };
 
 export default SettingsPageUsersTable;
+
+const Head = styled.div`
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  background-color: #fafafa;
+`
 
 const LoaderWrapper = styled.div`
   width: 75vw;

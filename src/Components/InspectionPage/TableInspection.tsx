@@ -178,7 +178,7 @@ const TextHover = styled.div`
 const HoverWrapper = styled.div`
   position: absolute;
   top: 204px;
-  z-index: 3;
+  z-index: 999;
   left: 24px;
   display: none;
   width: 200px;

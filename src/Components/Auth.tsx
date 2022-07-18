@@ -32,7 +32,7 @@ export default () => {
                 }
                 <Inputs>
                 <Input type="text" placeholder='Email' onChange={setEmail}/>
-                <Input type="text" placeholder='Password' onChange={setPassword}/>
+                <Input type="password" placeholder='Password' onChange={setPassword}/>
                 </Inputs>
                 <Utils>
                 <ForgotPassword>
@@ -43,7 +43,7 @@ export default () => {
                 </ResetPassword>
                 </Utils>
                 <SignInWrapper>
-                    <SignIn onClick={goToDashboard}>
+                    <SignIn onClick={goToDashboard} disabled={!email || !password}>
                         Sign in
                     </SignIn>
                 </SignInWrapper>
@@ -73,7 +73,7 @@ const SignInWrapper = styled.div`
   margin-top: 20px;
 `
 
-const SignIn = styled.div`
+const SignIn = styled.button`
   cursor: pointer;
   background-color:#1890ff;
   color: white;
@@ -83,6 +83,9 @@ const SignIn = styled.div`
   border-radius: 4px;
   font-size: 14px;
   margin-bottom: 12px;
+  &:disabled {
+    background-color: #999999;
+  }
 `
 
 const Utils = styled.div`

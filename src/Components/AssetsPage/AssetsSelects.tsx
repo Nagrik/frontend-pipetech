@@ -62,9 +62,9 @@ const Wrapper = styled.div`
 `
 
 const HoverItem = styled.div`
-  padding: 7px 12px;
+  padding: 8px 12px;
   font-size: 14px;
-
+  color: rgba(0, 0, 0, 0.85);
   &:hover {
     background-color: whitesmoke;
   }

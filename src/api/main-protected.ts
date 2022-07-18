@@ -89,6 +89,7 @@ export interface AssetsResponse {
             activeProjects: Array<any>,
             fieldType: string,
             id:string,
+            checkbox?: boolean
             inspectionCount: number,
             inspections:Array<Inspection>
             lastInspected: null | string,

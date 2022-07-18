@@ -5,10 +5,11 @@ import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArr
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
-import {useSelector} from "react-redux";
-import {selectOrganizationAssets} from "@/store/selectors/organization";
+import {useDispatch, useSelector} from "react-redux";
+import {selectOrganizationAssets, selectOrganizations} from "@/store/selectors/organization";
 import format from "date-fns/format";
 import {parseISO} from "date-fns";
+import {changeOrganisationArray} from "@/store/actions/organization";
 
 
 const createHeaders = (headers: any) => {
@@ -22,8 +23,11 @@ const createHeaders = (headers: any) => {
 const TableContent = ({headers, minCellWidth}: any) => {
 
     const data = useSelector(selectOrganizationAssets)
+    const organisations = useSelector(selectOrganizations)
 
+    const dispatch = useDispatch<AppDispatch>()
 
+    const [id, setId] = useState<string | null>(null)
     const [tableHeight, setTableHeight] = useState("auto");
     const [activeIndex, setActiveIndex] = useState(null);
     const [tableDataState, setTableDataState] = useState(data?.assets?.data);
@@ -33,7 +37,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const tableElement = useRef(null);
     const columns = createHeaders(headers);
-    console.log(data?.assets?.data)
+    console.log(organisations)
 
     useEffect(() => {
         // @ts-ignore
@@ -93,7 +97,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
-        const arr = tableDataState?.map((item:any) => {
+        const arr = tableDataState?.map((item: any) => {
             return (
                 {...item, checkbox: target}
             )
@@ -104,22 +108,21 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
 
     const handleCheckCheckbox = (e: any, id: string) => {
-        const arr = tableDataState?.map((item:any) => {
-            if (item.id === id) {
-                return (
-                    {...item, checkbox: e.target.checked}
-                )
-            } else {
-                return item
+        e.target.checked
+        setId(id.toString())
+        const newOrganisation = organisations.filter((item:any) => {
+            if(item.id === id) {
+                return {...item, checkbox: true}
             }
+            return item
         })
-        console.log('arr', arr)
-        setTableDataState(arr)
+        console.log(newOrganisation, 'newOrganisation')
+        dispatch(changeOrganisationArray(newOrganisation))
     }
 
     const handleFilterColumn = () => {
         const withoutNone: any = [];
-        data?.assets.data.forEach((item:any) => {
+        data?.assets.data.forEach((item: any) => {
             if (item) withoutNone.push(item);
         });
         // @ts-ignore
@@ -133,7 +136,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
-                <div className="table-wrapper">
+                <div className="table-wrapper" style={{marginRight: '25px', borderRight: '1px solid #ccc'}}>
                     <table className="resizeable-table" ref={tableElement}>
                         <thead>
                         <tr>
@@ -163,31 +166,32 @@ const TableContent = ({headers, minCellWidth}: any) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {data && data.assets && data.assets.data && data.assets.data.map((item, index:number) => {
+                        {organisations && organisations.map((item:any, index: number) => {
                             return (
                                 <>
                                     {
                                         <tr key={index}>
-                                            <td className='checkbox'>
+                                            <Td className='checkbox' isActive={item.checkbox}>
                                                 <input type='checkbox'
+                                                       checked={item.checkbox}
                                                        onClick={(e) => handleCheckCheckbox(e, item.id)}/>
-                                            </td>
+                                            </Td>
                                         </tr>
                                     }
                                     <tr>
-                                        <td className='Items'
+                                        <Td className='Items'  isActive={item.checkbox}
                                             style={{display: 'flex', justifyContent: 'space-between'}}>
-                                        <span>
-                                            {item.systemIndexId.upstream_ap} * {item.systemIndexId.downstream_ap}
-                                        </span>
+                                            <IdWrapper>
+                                                {item.systemIndexId.upstream_ap} * {item.systemIndexId.downstream_ap}
+                                            </IdWrapper>
                                             <span className='Details' onClick={() => {
                                                 setTimeout(() => {
                                                     setDetailsOpen(true)
                                                 }, 0.1)
                                             }}>
-                                                Details {'>'}
+                                                {/*Details {'>'}*/}
                                             </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -281,7 +285,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                         <td>
                                         <span>
                                           {/*12*/}
-                                          {/*  {item.inspection}*/}
+                                            {/*  {item.inspection}*/}
                                         </span>
                                         </td>
                                     </tr>
@@ -362,7 +366,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                         <td>
                                         <span>
                                           {/*22*/}
-                                          {/*  {item.inspection}*/}
+                                            {/*  {item.inspection}*/}
                                         </span>
                                         </td>
                                     </tr>
@@ -471,17 +475,13 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                         </span>
                                         </td>
                                     </tr>
-
-
-
-
-
                                 </>
                             )
                         })}
                         </tbody>
-
                     </table>
+                    <TableFooter/>
+
                     {
                         detailsOpen && (
                             <DetailsModal>
@@ -583,6 +583,26 @@ const TableContent = ({headers, minCellWidth}: any) => {
 };
 
 export default TableContent;
+
+const Td = styled.td<{ isActive: boolean }>`
+  text-align: left;
+  width: 100%;
+  background-color: ${({isActive}) => isActive ? '#e6f7ff' : 'white'};
+`
+
+const TableFooter = styled.div`
+  background-color: #fafafa;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #f0f0f0;
+`
+
+const IdWrapper = styled.div`
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  padding: 5px 10px;
+  white-space: nowrap;
+`
 
 const InspectionRow = styled.div`
   color: #1890ff;

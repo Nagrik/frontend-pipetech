@@ -117,7 +117,7 @@ const LeftMenu = styled.div`
   width: 200px ;
   padding-top: 10px;
   z-index: 2;
-  height: calc(100vh - 64px);
+  height: 100vh;
   border-right: 1px solid #ccc;
   background-color: white;
 

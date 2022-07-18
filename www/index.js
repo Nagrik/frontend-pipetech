@@ -31687,7 +31687,8 @@ ${latestSubscriptionCallbackError.current.stack}
   var import_immer_reducer3 = __toESM(require_immer_reducer(), 1);
   var initialState3 = {
     organizationResponse: null,
-    organizationAssets: null
+    organizationAssets: null,
+    organizations: null
   };
   var OrganizationReducer = class extends import_immer_reducer3.ImmerReducer {
     organizationResponse(organizationResponse) {
@@ -31695,6 +31696,12 @@ ${latestSubscriptionCallbackError.current.stack}
     }
     setOrganizationAssets(organizationAssets) {
       this.draftState.organizationAssets = organizationAssets;
+      this.draftState.organizations = [...organizationAssets.assets.data].map((i2) => {
+        return __spreadProps(__spreadValues({}, i2), { checkbox: false });
+      });
+    }
+    setOrganizations(organizations) {
+      this.draftState.organizations = organizations;
     }
   };
   var organization_default = (0, import_immer_reducer3.createReducerFunction)(OrganizationReducer, initialState3);
@@ -33074,6 +33081,13 @@ ${latestSubscriptionCallbackError.current.stack}
       console.log(e2);
     }
   });
+  var changeOrganisationArray = (organization) => (_0, _1, _22) => __async(void 0, [_0, _1, _22], function* (dispatch, _2, { mainProtectedApi }) {
+    try {
+      dispatch(organizationAction.setOrganizations(organization));
+    } catch (e2) {
+      console.log(e2);
+    }
+  });
 
   // src/store/actions/login.ts
   var loginActions = (0, import_immer_reducer5.createActionCreators)(LoginReducer);
@@ -33170,11 +33184,12 @@ ${latestSubscriptionCallbackError.current.stack}
       placeholder: "Email",
       onChange: setEmail
     }), /* @__PURE__ */ import_react18.default.createElement(Input, {
-      type: "text",
+      type: "password",
       placeholder: "Password",
       onChange: setPassword
     })), /* @__PURE__ */ import_react18.default.createElement(Utils, null, /* @__PURE__ */ import_react18.default.createElement(ForgotPassword, null, "Forgot your password?"), /* @__PURE__ */ import_react18.default.createElement(ResetPassword, null, "Reset password")), /* @__PURE__ */ import_react18.default.createElement(SignInWrapper, null, /* @__PURE__ */ import_react18.default.createElement(SignIn, {
-      onClick: goToDashboard
+      onClick: goToDashboard,
+      disabled: !email || !password
     }, "Sign in"))));
   };
   var Wrapper = styled_components_browser_esm_default.div`
@@ -33193,7 +33208,7 @@ ${latestSubscriptionCallbackError.current.stack}
   padding: 0 24px 0 24px;
   margin-top: 20px;
 `;
-  var SignIn = styled_components_browser_esm_default.div`
+  var SignIn = styled_components_browser_esm_default.button`
   cursor: pointer;
   background-color:#1890ff;
   color: white;
@@ -33203,6 +33218,9 @@ ${latestSubscriptionCallbackError.current.stack}
   border-radius: 4px;
   font-size: 14px;
   margin-bottom: 12px;
+  &:disabled {
+    background-color: #999999;
+  }
 `;
   var Utils = styled_components_browser_esm_default.div`
     display: flex;
@@ -33829,8 +33847,8 @@ ${latestSubscriptionCallbackError.current.stack}
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "search",
-      width: "1em",
-      height: "1em",
+      width: "16",
+      height: "16",
       fill: color2,
       "aria-hidden": "true"
     }, /* @__PURE__ */ import_react37.default.createElement("path", {
@@ -34177,8 +34195,8 @@ ${latestSubscriptionCallbackError.current.stack}
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "qrcode",
-      width: "1em",
-      height: "1em",
+      width: "16",
+      height: "16",
       fill: "currentColor",
       "aria-hidden": "true"
     }, /* @__PURE__ */ import_react42.default.createElement("path", {
@@ -34543,7 +34561,6 @@ cursor: pointer;
 `;
   var IconSearchWrapp = styled_components_browser_esm_default.div`
   padding: 0px 10px 0px 0px;
-  margin-top: 2px;
 `;
   var AssetsHeader2 = styled_components_browser_esm_default.div`
   border-bottom: 1px solid #f0f0f0;
@@ -34673,6 +34690,7 @@ cursor: pointer;
   var selectInspection = (state) => state.OrganizationReducer;
   var selectOrganizationInfo = createSelector(selectInspection, ({ organizationResponse }) => organizationResponse);
   var selectOrganizationAssets = createSelector(selectInspection, ({ organizationAssets }) => organizationAssets);
+  var selectOrganizations = createSelector(selectInspection, ({ organizations }) => organizations);
 
   // node_modules/date-fns/esm/_lib/requiredArgs/index.js
   function requiredArgs(required, args) {
@@ -37879,8 +37897,11 @@ cursor: pointer;
     }));
   };
   var TableContent = ({ headers, minCellWidth }) => {
-    var _a, _b;
+    var _a;
     const data = useSelector(selectOrganizationAssets);
+    const organisations = useSelector(selectOrganizations);
+    const dispatch = useDispatch();
+    const [id, setId] = (0, import_react55.useState)(null);
     const [tableHeight, setTableHeight] = (0, import_react55.useState)("auto");
     const [activeIndex, setActiveIndex] = (0, import_react55.useState)(null);
     const [tableDataState, setTableDataState] = (0, import_react55.useState)((_a = data == null ? void 0 : data.assets) == null ? void 0 : _a.data);
@@ -37889,7 +37910,7 @@ cursor: pointer;
     const [detailsOpen, setDetailsOpen] = (0, import_react55.useState)(false);
     const tableElement = (0, import_react55.useRef)(null);
     const columns = createHeaders(headers);
-    console.log((_b = data == null ? void 0 : data.assets) == null ? void 0 : _b.data);
+    console.log(organisations);
     (0, import_react55.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
@@ -37936,16 +37957,17 @@ cursor: pointer;
       setTableDataState(arr);
       console.log(arr, "arr");
     };
-    const handleCheckCheckbox = (e2, id) => {
-      const arr = tableDataState == null ? void 0 : tableDataState.map((item) => {
-        if (item.id === id) {
-          return __spreadProps(__spreadValues({}, item), { checkbox: e2.target.checked });
-        } else {
-          return item;
+    const handleCheckCheckbox = (e2, id2) => {
+      e2.target.checked;
+      setId(id2.toString());
+      const newOrganisation = organisations.filter((item) => {
+        if (item.id === id2) {
+          return __spreadProps(__spreadValues({}, item), { checkbox: true });
         }
+        return item;
       });
-      console.log("arr", arr);
-      setTableDataState(arr);
+      console.log(newOrganisation, "newOrganisation");
+      dispatch(changeOrganisationArray(newOrganisation));
     };
     const handleFilterColumn = () => {
       const withoutNone = [];
@@ -37962,7 +37984,8 @@ cursor: pointer;
     }, /* @__PURE__ */ import_react55.default.createElement("div", {
       className: "container"
     }, /* @__PURE__ */ import_react55.default.createElement("div", {
-      className: "table-wrapper"
+      className: "table-wrapper",
+      style: { marginRight: "25px", borderRight: "1px solid #ccc" }
     }, /* @__PURE__ */ import_react55.default.createElement("table", {
       className: "resizeable-table",
       ref: tableElement
@@ -37981,26 +38004,29 @@ cursor: pointer;
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react55.default.createElement("tbody", null, data && data.assets && data.assets.data && data.assets.data.map((item, index2) => {
+    })))))), /* @__PURE__ */ import_react55.default.createElement("tbody", null, organisations && organisations.map((item, index2) => {
       return /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("tr", {
         key: index2
-      }, /* @__PURE__ */ import_react55.default.createElement("td", {
-        className: "checkbox"
+      }, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        className: "checkbox",
+        isActive: item.checkbox
       }, /* @__PURE__ */ import_react55.default.createElement("input", {
         type: "checkbox",
+        checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
         className: "Items",
+        isActive: item.checkbox,
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap, " * ", item.systemIndexId.downstream_ap), /* @__PURE__ */ import_react55.default.createElement("span", {
+      }, /* @__PURE__ */ import_react55.default.createElement(IdWrapper, null, item.systemIndexId.upstream_ap, " * ", item.systemIndexId.downstream_ap), /* @__PURE__ */ import_react55.default.createElement("span", {
         className: "Details",
         onClick: () => {
           setTimeout(() => {
             setDetailsOpen(true);
           }, 0.1);
         }
-      }, "Details ", ">"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))));
-    }))), detailsOpen && /* @__PURE__ */ import_react55.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react55.default.createElement(Wrapper10, {
+      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))));
+    }))), /* @__PURE__ */ import_react55.default.createElement(TableFooter, null), detailsOpen && /* @__PURE__ */ import_react55.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react55.default.createElement(Wrapper10, {
       ref: detailsRef
     }, /* @__PURE__ */ import_react55.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react55.default.createElement(Cross, {
       onClick: () => setDetailsOpen(false)
@@ -38014,6 +38040,23 @@ cursor: pointer;
     }, "Inspections"))), /* @__PURE__ */ import_react55.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react55.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react55.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react55.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react55.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
   };
   var TableContent_default = TableContent;
+  var Td = styled_components_browser_esm_default.td`
+  text-align: left;
+  width: 100%;
+  background-color: ${({ isActive }) => isActive ? "#e6f7ff" : "white"};
+`;
+  var TableFooter = styled_components_browser_esm_default.div`
+  background-color: #fafafa;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #f0f0f0;
+`;
+  var IdWrapper = styled_components_browser_esm_default.div`
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  padding: 5px 10px;
+  white-space: nowrap;
+`;
   var InspectionRow = styled_components_browser_esm_default.div`
   color: #1890ff;
 `;
@@ -38839,7 +38882,7 @@ cursor: pointer;
   var HoverWrapper = styled_components_browser_esm_default.div`
   position: absolute;
   top: 205px;
-  z-index: 3;
+  z-index: 5;
   left: 24px;
   display: none;
   width: 200px;
@@ -38952,9 +38995,9 @@ cursor: pointer;
   background-color: white;
 `;
   var HoverItem2 = styled_components_browser_esm_default.div`
-  padding: 7px 12px;
+  padding: 8px 12px;
   font-size: 14px;
-
+  color: rgba(0, 0, 0, 0.85);
   &:hover {
     background-color: whitesmoke;
   }
@@ -62077,7 +62120,7 @@ padding-bottom: 25px;
   var HoverWrapper2 = styled_components_browser_esm_default.div`
   position: absolute;
   top: 204px;
-  z-index: 3;
+  z-index: 999;
   left: 24px;
   display: none;
   width: 200px;
@@ -63080,7 +63123,7 @@ padding-bottom: 25px;
       removeListeners();
     }, [setActiveIndex, removeListeners]);
     return /* @__PURE__ */ import_react106.default.createElement("div", {
-      style: { position: "relative", padding: "24px 0 " }
+      style: { position: "relative", padding: "24px 24px " }
     }, /* @__PURE__ */ import_react106.default.createElement("div", {
       className: "container"
     }, /* @__PURE__ */ import_react106.default.createElement("div", {
@@ -63093,10 +63136,9 @@ padding-bottom: 25px;
       key: text
     }, /* @__PURE__ */ import_react106.default.createElement("span", {
       style: { fontSize: "12px" }
-    }, text), /* @__PURE__ */ import_react106.default.createElement("div", {
+    }, text), /* @__PURE__ */ import_react106.default.createElement(Head, {
       style: { height: tableHeight },
-      onMouseDown: () => mouseDown(i2),
-      className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
+      onMouseDown: () => mouseDown(i2)
     })))))), /* @__PURE__ */ import_react106.default.createElement("tbody", null, organizationInfo && organizationInfo.users ? organizationInfo.users.map((item, index2) => {
       return /* @__PURE__ */ import_react106.default.createElement(import_react106.default.Fragment, null, /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", {
         style: { display: "flex", justifyContent: "space-between" }
@@ -63116,6 +63158,14 @@ padding-bottom: 25px;
     }) : /* @__PURE__ */ import_react106.default.createElement(LoaderWrapper, null, /* @__PURE__ */ import_react106.default.createElement(Loader_default, null)))))));
   };
   var SettingPageUsersTable_default = SettingsPageUsersTable;
+  var Head = styled_components_browser_esm_default.div`
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  background-color: #fafafa;
+`;
   var LoaderWrapper = styled_components_browser_esm_default.div`
   width: 75vw;
   display: flex;
@@ -63518,7 +63568,7 @@ padding-bottom: 25px;
   width: 200px ;
   padding-top: 10px;
   z-index: 2;
-  height: calc(100vh - 64px);
+  height: 100vh;
   border-right: 1px solid #ccc;
   background-color: white;
 

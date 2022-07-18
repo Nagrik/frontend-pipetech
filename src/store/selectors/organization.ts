@@ -15,3 +15,8 @@ export const selectOrganizationAssets: Selector<State, AssetsResponse | null> = 
     selectInspection,
     ({ organizationAssets }) => organizationAssets,
 );
+
+export const selectOrganizations: Selector<State, any | null> = createSelector(
+    selectInspection,
+    ({ organizations }) => organizations,
+);

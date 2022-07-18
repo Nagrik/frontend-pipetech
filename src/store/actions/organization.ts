@@ -10,6 +10,7 @@ export const organizationAction = createActionCreators(OrganizationReducer);
 export type OrganizationActions =
     | ReturnType<typeof organizationAction.organizationResponse>
     | ReturnType<typeof organizationAction.setOrganizationAssets>
+    | ReturnType<typeof organizationAction.setOrganizations>
 
 
 
@@ -45,6 +46,16 @@ export const getOrganizationAssets = (organizationId:string, page:string, limit:
     try {
         const response = await mainProtectedApi.getOrganizationAssets(organizationId, page, limit)
         dispatch(organizationAction.setOrganizationAssets(response))
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const changeOrganisationArray = (organization:any): AsyncAction => async (
+    dispatch, _, {mainProtectedApi}
+) => {
+    try {
+        dispatch(organizationAction.setOrganizations(organization))
     } catch (e) {
         console.log(e);
     }

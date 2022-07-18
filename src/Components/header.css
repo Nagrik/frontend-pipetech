@@ -12,7 +12,7 @@
 
 .SettingsMenu{
     background-color: #1C5180;
-    z-index: 2;
+    z-index: 5;
     position: absolute;
     right: 85px;
     display: none;

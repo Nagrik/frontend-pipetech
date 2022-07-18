@@ -238,7 +238,7 @@ h6 {
 }
 .SettingsMenu {
   background-color: #1C5180;
-  z-index: 2;
+  z-index: 5;
   position: absolute;
   right: 85px;
   display: none;
@@ -276,7 +276,7 @@ h6 {
   background-color: whitesmoke;
   padding-right: 24px;
   margin-left: 24px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
   grid-template-columns: minmax(55px, 0.1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr);
 }
@@ -287,7 +287,7 @@ h6 {
   background-color: whitesmoke;
   padding-right: 24px;
   margin-left: 24px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
   grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
 }
@@ -305,7 +305,7 @@ h6 {
 .checkbox {
   max-width: 60px;
   min-width: 30px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -315,6 +315,7 @@ h6 {
 }
 .checkboxHeader {
   position: sticky;
+  border-right: 1px solid #ccc;
   left: 0;
   z-index: 4;
   top: 0;
@@ -332,12 +333,12 @@ table tr {
 table th {
   position: relative;
   font-size: 14px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #f0f0f0;
   padding: 10px 20px;
   display: flex;
+  background-color: #fafafa;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  background-color: whitesmoke;
+  border-bottom: 1px solid #f0f0f0;
 }
 table th,
 table td {
@@ -345,7 +346,7 @@ table td {
   width: 100%;
 }
 table td {
-  background-color: rgba(251, 250, 250);
+  background-color: white;
 }
 table th span,
 table td span {
@@ -357,8 +358,8 @@ table td span {
   font-weight: 400;
 }
 table tr td {
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
   padding: 16px 20px;
 }
 .resize-handle {
@@ -372,10 +373,10 @@ table tr td {
   border-right: 1px solid #ccc;
 }
 .resize-handle:hover {
-  border-color: #ccc;
+  border-color: #1890ff;
 }
 .resize-handle.active {
-  border-color: #517ea5;
+  border-color: #1890ff;
 }
 .Items:hover .Details {
   display: block;
@@ -431,7 +432,7 @@ table tr td {
 .checkbox {
   max-width: 60px;
   min-width: 30px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,7 +455,7 @@ table tr td {
   border-right: 1px solid #ccc;
 }
 .resize-handle:hover {
-  border-color: #ccc;
+  border-color: #1890ff;
 }
 .resize-handle.active {
   border-color: #517ea5;
