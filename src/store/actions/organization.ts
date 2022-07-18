@@ -9,6 +9,7 @@ export const organizationAction = createActionCreators(OrganizationReducer);
 
 export type OrganizationActions =
     | ReturnType<typeof organizationAction.organizationResponse>
+    | ReturnType<typeof organizationAction.setOrganizationAssets>
 
 
 
@@ -32,6 +33,18 @@ export const getUserInfo = (organizationId:string): AsyncAction => async (
         dispatch(loginActions.setIsLoggedIn(true))
         dispatch(loginActions.setIsLoading(false))
         dispatch(organizationAction.organizationResponse(response))
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+
+export const getOrganizationAssets = (organizationId:string, page:string, limit:string): AsyncAction => async (
+    dispatch, _, {mainProtectedApi}
+) => {
+    try {
+        const response = await mainProtectedApi.getOrganizationAssets(organizationId, page, limit)
+        dispatch(organizationAction.setOrganizationAssets(response))
     } catch (e) {
         console.log(e);
     }

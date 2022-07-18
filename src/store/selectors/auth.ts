@@ -26,6 +26,11 @@ export const selectIsInvalidData: Selector<State, boolean> = createSelector(
   ({ isInvalidData }) => isInvalidData,
 );
 
+export const selectIsValidData: Selector<State, boolean> = createSelector(
+  selectLogin,
+  ({ isValidData }) => isValidData,
+);
+
 export const selectIsInvalidDataMessage: Selector<State, string | null> = createSelector(
   selectLogin,
   ({ isInvalidDataMessage }) => isInvalidDataMessage,

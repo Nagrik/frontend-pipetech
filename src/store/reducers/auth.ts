@@ -10,6 +10,7 @@ export interface LoginState {
   isLoggedIn: boolean,
   isLoading: boolean,
   isInvalidData: boolean,
+  isValidData: boolean,
     isInvalidDataMessage: string | null,
 }
 
@@ -17,6 +18,7 @@ const initialState: LoginState = {
   userResponse: null,
   isLoggedIn: false,
   isLoading: false,
+  isValidData: false,
     isInvalidData: false,
     isInvalidDataMessage: null,
 };
@@ -45,8 +47,13 @@ export class LoginReducer extends ImmerReducer<LoginState> {
     this.draftState.isInvalidData = isInvalid;
   }
 
+  setIsValidData(isInvalid: boolean) {
+    this.draftState.isValidData = isInvalid;
+  }
+
   isInvalidDataClear() {
     this.draftState.isInvalidData = false;
+    this.draftState.isValidData = false
   }
 
   setIsInvalidDataMessage(isInvalidDataMessage: string) {

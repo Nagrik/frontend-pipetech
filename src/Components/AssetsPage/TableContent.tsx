@@ -5,6 +5,10 @@ import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArr
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
+import {useSelector} from "react-redux";
+import {selectOrganizationAssets} from "@/store/selectors/organization";
+import format from "date-fns/format";
+import {parseISO} from "date-fns";
 
 
 const createHeaders = (headers: any) => {
@@ -17,62 +21,19 @@ const createHeaders = (headers: any) => {
 
 const TableContent = ({headers, minCellWidth}: any) => {
 
-
-    const tableData = [
-        {
-            id: 1,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 32134,
-        },
-        {
-            id: 2,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345,
-        },
-        {
-            id: 3,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 32134567,
-        },
-        {
-            id: 4,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345675,
-        },
-        {
-            id: 5,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
-        },
-        {
-            id: 6,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
-        },
-    ]
+    const data = useSelector(selectOrganizationAssets)
 
 
     const [tableHeight, setTableHeight] = useState("auto");
     const [activeIndex, setActiveIndex] = useState(null);
-    const [tableDataState, setTableDataState] = useState(tableData);
+    const [tableDataState, setTableDataState] = useState(data?.assets?.data);
     const [activeFilter, setActiveFilter] = useState(false)
     const [activeTab, setActiveTab] = useState<string>('Details')
     const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
 
     const tableElement = useRef(null);
     const columns = createHeaders(headers);
+    console.log(data?.assets?.data)
 
     useEffect(() => {
         // @ts-ignore
@@ -132,7 +93,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
-        const arr = tableDataState.map((item) => {
+        const arr = tableDataState?.map((item:any) => {
             return (
                 {...item, checkbox: target}
             )
@@ -142,8 +103,8 @@ const TableContent = ({headers, minCellWidth}: any) => {
     }
 
 
-    const handleCheckCheckbox = (e: any, id: number) => {
-        const arr = tableDataState.map((item) => {
+    const handleCheckCheckbox = (e: any, id: string) => {
+        const arr = tableDataState?.map((item:any) => {
             if (item.id === id) {
                 return (
                     {...item, checkbox: e.target.checked}
@@ -158,7 +119,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const handleFilterColumn = () => {
         const withoutNone: any = [];
-        tableData?.forEach((item) => {
+        data?.assets.data.forEach((item:any) => {
             if (item) withoutNone.push(item);
         });
         // @ts-ignore
@@ -173,53 +134,20 @@ const TableContent = ({headers, minCellWidth}: any) => {
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table" ref={tableElement}
-                           style={{'gridTemplateColumns': "55px 191px 128px 191px 191px 191px 191px 191px"}}>
+                    <table className="resizeable-table" ref={tableElement}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (
                                 text === 'checkbox' ? (
                                     <>
-                                        <th ref={ref} key={i} className='checkbox'>
+                                        <th ref={ref} key={i} className={i === 0 ? 'checkboxHeader' : 'checkbox'}>
                                             <span><input type='checkbox'
                                                          onClick={(e) => handleCheckCheckboxes(e)}/></span>
                                         </th>
                                     </>
-                                ) : text === 'Amount' ? (
-                                    <>
-                                        <th ref={ref} key={i}>
-                                            <FilterWrapper onClick={handleFilterColumn}>
-                                                <span>{text}</span>
-                                                <IconWrapper>
-                                                    <TableArrowTop color={activeFilter ? '#276FB2' : '#ccc'}/>
-                                                    <TableArrowBottom color={!activeFilter ? '#276FB2' : '#ccc'}/>
-                                                </IconWrapper>
-                                            </FilterWrapper>
-                                            <div
-                                                style={{height: tableHeight}}
-                                                onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
-                                            />
-                                        </th>
-                                    </>
-                                ) : text === 'Items' ? (
-                                    <>
-                                        <th ref={ref} key={text} className='Items'>
-                                            <span>{text}</span>
-                                            <div
-                                                style={{height: tableHeight}}
-                                                onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
-                                            />
-                                        </th>
-                                    </>
                                 ) : (
                                     <>
-                                        <th ref={ref} key={text}>
+                                        <th ref={ref} key={text} className={i === 1 ? 'first' : 'tableHeaders'}>
                                             <span>{text}</span>
                                             <div
                                                 style={{height: tableHeight}}
@@ -235,27 +163,28 @@ const TableContent = ({headers, minCellWidth}: any) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {tableDataState.map((item, index) => {
+                        {data && data.assets && data.assets.data && data.assets.data.map((item, index:number) => {
                             return (
                                 <>
                                     {
                                         <tr key={index}>
                                             <td className='checkbox'>
-                                                <input type='checkbox' checked={item.checkbox}
+                                                <input type='checkbox'
                                                        onClick={(e) => handleCheckCheckbox(e, item.id)}/>
                                             </td>
                                         </tr>
                                     }
-                                    <tr >
+                                    <tr>
                                         <td className='Items'
                                             style={{display: 'flex', justifyContent: 'space-between'}}>
                                         <span>
-                                            {item.AssetsId}
+                                            {item.systemIndexId.upstream_ap} * {item.systemIndexId.downstream_ap}
                                         </span>
                                             <span className='Details' onClick={() => {
                                                 setTimeout(() => {
                                                     setDetailsOpen(true)
-                                            }, 0.1)}}>
+                                                }, 0.1)
+                                            }}>
                                                 Details {'>'}
                                             </span>
                                         </td>
@@ -263,45 +192,290 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                     <tr>
                                         <td>
                                             <span>
-                                                {item.Projects}
+                                                {/*1*/}
+                                                {/*{item.Projects}*/}
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                          {/*2*/}
+                                            {item.inspectionCount}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                             {/*3*/}
+                                            {item.lastInspected ? format(parseISO(item.lastInspected), 'dd/MM/yyyy') : null}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                             {/*4*/}
+                                            {item.source.material}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                             {/*5*/}
+                                            {/*{item.inspections[0].source.comments}*/}
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <span>
-                                            {item.inspection}
+                                             {/*6*/}
+                                            {item.source.city}
                                         </span>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*7*/}
+                                            {/*{item.inspections[0].source.coordinate_system}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*8*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*9*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*10*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                {/*11*/}
+                                                {item.systemIndexId.downstream_ap}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                          {/*12*/}
+                                          {/*  {item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*13*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*14*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*15*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*16*/}
+                                            {/*{item.inspections[0].source.height}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*17*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*18*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*19*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*20*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                {/*21*/}
+                                                {item.source.owner}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                          {/*22*/}
+                                          {/*  {item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*23*/}
+                                            {item.systemIndexId.upstream_ap}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*24*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*25*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*26*/}
+                                            Circular
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*27*/}
+                                            {item.source.street}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*28*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*29*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*30*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                {/*31*/}
+                                                {/*{item.Projects}*/}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                          {/*32*/}
+                                            {item.systemIndexId.upstream_ap}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*33*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*34*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <span>
+                                             {/*35*/}
+                                            {/*{item.inspection}*/}
+                                        </span>
+                                        </td>
+                                    </tr>
+
+
+
+
+
                                 </>
                             )
                         })}

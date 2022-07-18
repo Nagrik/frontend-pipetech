@@ -15,6 +15,7 @@ export type LoginActions =
     | ReturnType<typeof loginActions.setIsInvalidData>
     | ReturnType<typeof loginActions.setIsInvalidDataMessage>
     | ReturnType<typeof loginActions.isInvalidDataClear>
+    | ReturnType<typeof loginActions.setIsValidData>
 
 
 
@@ -48,8 +49,10 @@ export const createUser = (email:string, firstName: string, lastName: string, ph
     const response  = await mainProtectedApi.createUser(body)
     dispatch(addUserToOrganization(response.id.toString(),  roles ))
     dispatch(loginActions.setUserResponse(response))
-  } catch (e) {
-    console.log(e)
+    dispatch(loginActions.setIsValidData(true))
+  } catch (e:any) {
+    dispatch(loginActions.setIsInvalidData(true))
+    dispatch(loginActions.setIsInvalidDataMessage(e.response.data.message));
   }
 };
 

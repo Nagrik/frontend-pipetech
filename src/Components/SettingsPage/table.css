@@ -1,5 +1,5 @@
 
-.resizeable-table {
+.resizeable-table-settings {
     display: grid;
     overflow-x: scroll;
     overflow-y: hidden;

@@ -1044,7 +1044,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect22(create, deps) {
+          function useEffect23(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1824,7 +1824,7 @@
           exports2.useContext = useContext7;
           exports2.useDebugValue = useDebugValue2;
           exports2.useDeferredValue = useDeferredValue;
-          exports2.useEffect = useEffect22;
+          exports2.useEffect = useEffect23;
           exports2.useId = useId;
           exports2.useImperativeHandle = useImperativeHandle;
           exports2.useInsertionEffect = useInsertionEffect;
@@ -2988,7 +2988,7 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState35 = React96.useState, useEffect22 = React96.useEffect, useLayoutEffect3 = React96.useLayoutEffect, useDebugValue2 = React96.useDebugValue;
+          var useState35 = React96.useState, useEffect23 = React96.useEffect, useLayoutEffect3 = React96.useLayoutEffect, useDebugValue2 = React96.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
@@ -3025,7 +3025,7 @@
                 });
               }
             }, [subscribe, value, getSnapshot]);
-            useEffect22(function() {
+            useEffect23(function() {
               if (checkIfSnapshotChanged(inst)) {
                 forceUpdate({
                   inst
@@ -3098,7 +3098,7 @@
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef16 = React96.useRef, useEffect22 = React96.useEffect, useMemo6 = React96.useMemo, useDebugValue2 = React96.useDebugValue;
+          var useRef16 = React96.useRef, useEffect23 = React96.useEffect, useMemo6 = React96.useMemo, useDebugValue2 = React96.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
             var instRef = useRef16(null);
             var inst;
@@ -3155,7 +3155,7 @@
               return [getSnapshotWithSelector, getServerSnapshotWithSelector];
             }, [getSnapshot, getServerSnapshot, selector, isEqual5]), getSelection = _useMemo[0], getServerSelection = _useMemo[1];
             var value = useSyncExternalStore3(subscribe, getSelection, getServerSelection);
-            useEffect22(function() {
+            useEffect23(function() {
               inst.hasValue = true;
               inst.value = value;
             }, [value]);
@@ -31605,6 +31605,12 @@ ${latestSubscriptionCallbackError.current.stack}
       this.createUser = (body) => this.instance.post("/users", body);
       this.addUserToOrganization = (id, body) => this.instance.post(`/organisation/1/add-user/${id}`, body);
       this.getOrganizationInfo = () => this.instance.get(`/organisation/1`);
+      this.getOrganizationAssets = (organizationId, page, limit) => this.instance.get(`/organisation/${organizationId}/assets`, {
+        params: {
+          page,
+          limit
+        }
+      });
       this.getUserInfo = (organizationId) => this.instance.get(`/users/${organizationId}`);
     }
   };
@@ -31622,6 +31628,7 @@ ${latestSubscriptionCallbackError.current.stack}
     userResponse: null,
     isLoggedIn: false,
     isLoading: false,
+    isValidData: false,
     isInvalidData: false,
     isInvalidDataMessage: null
   };
@@ -31640,8 +31647,12 @@ ${latestSubscriptionCallbackError.current.stack}
     setIsInvalidData(isInvalid) {
       this.draftState.isInvalidData = isInvalid;
     }
+    setIsValidData(isInvalid) {
+      this.draftState.isValidData = isInvalid;
+    }
     isInvalidDataClear() {
       this.draftState.isInvalidData = false;
+      this.draftState.isValidData = false;
     }
     setIsInvalidDataMessage(isInvalidDataMessage) {
       this.draftState.isInvalidDataMessage = isInvalidDataMessage;
@@ -31675,11 +31686,15 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/store/reducers/organization.ts
   var import_immer_reducer3 = __toESM(require_immer_reducer(), 1);
   var initialState3 = {
-    organizationResponse: null
+    organizationResponse: null,
+    organizationAssets: null
   };
   var OrganizationReducer = class extends import_immer_reducer3.ImmerReducer {
     organizationResponse(organizationResponse) {
       this.draftState.organizationResponse = organizationResponse;
+    }
+    setOrganizationAssets(organizationAssets) {
+      this.draftState.organizationAssets = organizationAssets;
     }
   };
   var organization_default = (0, import_immer_reducer3.createReducerFunction)(OrganizationReducer, initialState3);
@@ -33051,6 +33066,14 @@ ${latestSubscriptionCallbackError.current.stack}
       console.log(e2);
     }
   });
+  var getOrganizationAssets = (organizationId, page, limit) => (_0, _1, _22) => __async(void 0, [_0, _1, _22], function* (dispatch, _2, { mainProtectedApi }) {
+    try {
+      const response = yield mainProtectedApi.getOrganizationAssets(organizationId, page, limit);
+      dispatch(organizationAction.setOrganizationAssets(response));
+    } catch (e2) {
+      console.log(e2);
+    }
+  });
 
   // src/store/actions/login.ts
   var loginActions = (0, import_immer_reducer5.createActionCreators)(LoginReducer);
@@ -33073,8 +33096,10 @@ ${latestSubscriptionCallbackError.current.stack}
       const response = yield mainProtectedApi.createUser(body);
       dispatch(addUserToOrganization(response.id.toString(), roles));
       dispatch(loginActions.setUserResponse(response));
+      dispatch(loginActions.setIsValidData(true));
     } catch (e2) {
-      console.log(e2);
+      dispatch(loginActions.setIsInvalidData(true));
+      dispatch(loginActions.setIsInvalidDataMessage(e2.response.data.message));
     }
   });
   var addUserToOrganization = (id, roles) => (_0, _1, _22) => __async(void 0, [_0, _1, _22], function* (dispatch, _2, { mainApi, mainProtectedApi }) {
@@ -33457,6 +33482,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var selectIsLoggedIn = createSelector(selectLogin, ({ isLoggedIn }) => isLoggedIn);
   var selectIsLoading = createSelector(selectLogin, ({ isLoading }) => isLoading);
   var selectIsInvalidData = createSelector(selectLogin, ({ isInvalidData }) => isInvalidData);
+  var selectIsValidData = createSelector(selectLogin, ({ isValidData }) => isValidData);
   var selectIsInvalidDataMessage = createSelector(selectLogin, ({ isInvalidDataMessage }) => isInvalidDataMessage);
 
   // src/Pages/LoginPage.tsx
@@ -34605,47 +34631,13 @@ cursor: pointer;
   var DashboardPage_default = DashboardPage;
 
   // src/Pages/AssetsPage.tsx
-  var import_react69 = __toESM(require_react(), 1);
-
-  // src/Components/AssetsPage/Table.tsx
   var import_react67 = __toESM(require_react(), 1);
 
+  // src/Components/AssetsPage/Table.tsx
+  var import_react65 = __toESM(require_react(), 1);
+
   // src/Components/AssetsPage/TableContent.tsx
-  var import_react57 = __toESM(require_react(), 1);
-
-  // src/Components/common/icons/AssetsPageIcons/TableArrowBottom.tsx
-  var import_react54 = __toESM(require_react(), 1);
-  var TableArrowBottom = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react54.default.createElement("svg", {
-      viewBox: "0 0 1024 1024",
-      focusable: "false",
-      "data-icon": "caret-down",
-      width: "14",
-      height: "14",
-      fill: color2,
-      "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react54.default.createElement("path", {
-      d: "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-    }));
-  };
-  var TableArrowBottom_default = TableArrowBottom;
-
-  // src/Components/common/icons/AssetsPageIcons/TableArrowTop.tsx
   var import_react55 = __toESM(require_react(), 1);
-  var TableArrowTop = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react55.default.createElement("svg", {
-      viewBox: "0 0 1024 1024",
-      focusable: "false",
-      "data-icon": "caret-up",
-      width: "14",
-      height: "14",
-      fill: color2,
-      "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react55.default.createElement("path", {
-      d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-    }));
-  };
-  var TableArrowTop_default = TableArrowTop;
 
   // src/Components/utils/sortUtil.ts
   var sortUtil = (data, getKey5, sortOrder = "asc" /* ASCENDING */, sortType = "string" /* String */) => {
@@ -34659,10 +34651,10 @@ cursor: pointer;
   };
 
   // src/Components/utils/hooks/useOnClickOutside.ts
-  var import_react56 = __toESM(require_react(), 1);
+  var import_react54 = __toESM(require_react(), 1);
   var useOnClickOutside_default = (callback2) => {
-    const containerRef = import_react56.default.useRef(null);
-    (0, import_react56.useEffect)(() => {
+    const containerRef = import_react54.default.useRef(null);
+    (0, import_react54.useEffect)(() => {
       const listener = (e2) => {
         if (containerRef.current && !containerRef.current.contains(e2.target)) {
           callback2();
@@ -34677,67 +34669,3228 @@ cursor: pointer;
     return containerRef;
   };
 
+  // src/store/selectors/organization.ts
+  var selectInspection = (state) => state.OrganizationReducer;
+  var selectOrganizationInfo = createSelector(selectInspection, ({ organizationResponse }) => organizationResponse);
+  var selectOrganizationAssets = createSelector(selectInspection, ({ organizationAssets }) => organizationAssets);
+
+  // node_modules/date-fns/esm/_lib/requiredArgs/index.js
+  function requiredArgs(required, args) {
+    if (args.length < required) {
+      throw new TypeError(required + " argument" + (required > 1 ? "s" : "") + " required, but only " + args.length + " present");
+    }
+  }
+
+  // node_modules/date-fns/esm/isDate/index.js
+  function isDate2(value) {
+    requiredArgs(1, arguments);
+    return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
+  }
+
+  // node_modules/date-fns/esm/toDate/index.js
+  function toDate(argument) {
+    requiredArgs(1, arguments);
+    var argStr = Object.prototype.toString.call(argument);
+    if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
+      return new Date(argument.getTime());
+    } else if (typeof argument === "number" || argStr === "[object Number]") {
+      return new Date(argument);
+    } else {
+      if ((typeof argument === "string" || argStr === "[object String]") && typeof console !== "undefined") {
+        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule");
+        console.warn(new Error().stack);
+      }
+      return new Date(NaN);
+    }
+  }
+
+  // node_modules/date-fns/esm/isValid/index.js
+  function isValid(dirtyDate) {
+    requiredArgs(1, arguments);
+    if (!isDate2(dirtyDate) && typeof dirtyDate !== "number") {
+      return false;
+    }
+    var date2 = toDate(dirtyDate);
+    return !isNaN(Number(date2));
+  }
+
+  // node_modules/date-fns/esm/locale/en-US/_lib/formatDistance/index.js
+  var formatDistanceLocale = {
+    lessThanXSeconds: {
+      one: "less than a second",
+      other: "less than {{count}} seconds"
+    },
+    xSeconds: {
+      one: "1 second",
+      other: "{{count}} seconds"
+    },
+    halfAMinute: "half a minute",
+    lessThanXMinutes: {
+      one: "less than a minute",
+      other: "less than {{count}} minutes"
+    },
+    xMinutes: {
+      one: "1 minute",
+      other: "{{count}} minutes"
+    },
+    aboutXHours: {
+      one: "about 1 hour",
+      other: "about {{count}} hours"
+    },
+    xHours: {
+      one: "1 hour",
+      other: "{{count}} hours"
+    },
+    xDays: {
+      one: "1 day",
+      other: "{{count}} days"
+    },
+    aboutXWeeks: {
+      one: "about 1 week",
+      other: "about {{count}} weeks"
+    },
+    xWeeks: {
+      one: "1 week",
+      other: "{{count}} weeks"
+    },
+    aboutXMonths: {
+      one: "about 1 month",
+      other: "about {{count}} months"
+    },
+    xMonths: {
+      one: "1 month",
+      other: "{{count}} months"
+    },
+    aboutXYears: {
+      one: "about 1 year",
+      other: "about {{count}} years"
+    },
+    xYears: {
+      one: "1 year",
+      other: "{{count}} years"
+    },
+    overXYears: {
+      one: "over 1 year",
+      other: "over {{count}} years"
+    },
+    almostXYears: {
+      one: "almost 1 year",
+      other: "almost {{count}} years"
+    }
+  };
+  var formatDistance = function(token, count, options) {
+    var result;
+    var tokenValue = formatDistanceLocale[token];
+    if (typeof tokenValue === "string") {
+      result = tokenValue;
+    } else if (count === 1) {
+      result = tokenValue.one;
+    } else {
+      result = tokenValue.other.replace("{{count}}", count.toString());
+    }
+    if (options !== null && options !== void 0 && options.addSuffix) {
+      if (options.comparison && options.comparison > 0) {
+        return "in " + result;
+      } else {
+        return result + " ago";
+      }
+    }
+    return result;
+  };
+  var formatDistance_default = formatDistance;
+
+  // node_modules/date-fns/esm/locale/_lib/buildFormatLongFn/index.js
+  function buildFormatLongFn(args) {
+    return function() {
+      var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+      var width = options.width ? String(options.width) : args.defaultWidth;
+      var format3 = args.formats[width] || args.formats[args.defaultWidth];
+      return format3;
+    };
+  }
+
+  // node_modules/date-fns/esm/locale/en-US/_lib/formatLong/index.js
+  var dateFormats = {
+    full: "EEEE, MMMM do, y",
+    long: "MMMM do, y",
+    medium: "MMM d, y",
+    short: "MM/dd/yyyy"
+  };
+  var timeFormats = {
+    full: "h:mm:ss a zzzz",
+    long: "h:mm:ss a z",
+    medium: "h:mm:ss a",
+    short: "h:mm a"
+  };
+  var dateTimeFormats = {
+    full: "{{date}} 'at' {{time}}",
+    long: "{{date}} 'at' {{time}}",
+    medium: "{{date}}, {{time}}",
+    short: "{{date}}, {{time}}"
+  };
+  var formatLong = {
+    date: buildFormatLongFn({
+      formats: dateFormats,
+      defaultWidth: "full"
+    }),
+    time: buildFormatLongFn({
+      formats: timeFormats,
+      defaultWidth: "full"
+    }),
+    dateTime: buildFormatLongFn({
+      formats: dateTimeFormats,
+      defaultWidth: "full"
+    })
+  };
+  var formatLong_default = formatLong;
+
+  // node_modules/date-fns/esm/locale/en-US/_lib/formatRelative/index.js
+  var formatRelativeLocale = {
+    lastWeek: "'last' eeee 'at' p",
+    yesterday: "'yesterday at' p",
+    today: "'today at' p",
+    tomorrow: "'tomorrow at' p",
+    nextWeek: "eeee 'at' p",
+    other: "P"
+  };
+  var formatRelative = function(token, _date, _baseDate, _options) {
+    return formatRelativeLocale[token];
+  };
+  var formatRelative_default = formatRelative;
+
+  // node_modules/date-fns/esm/locale/_lib/buildLocalizeFn/index.js
+  function buildLocalizeFn(args) {
+    return function(dirtyIndex, dirtyOptions) {
+      var options = dirtyOptions || {};
+      var context2 = options.context ? String(options.context) : "standalone";
+      var valuesArray;
+      if (context2 === "formatting" && args.formattingValues) {
+        var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+        var width = options.width ? String(options.width) : defaultWidth;
+        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+      } else {
+        var _defaultWidth = args.defaultWidth;
+        var _width = options.width ? String(options.width) : args.defaultWidth;
+        valuesArray = args.values[_width] || args.values[_defaultWidth];
+      }
+      var index2 = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
+      return valuesArray[index2];
+    };
+  }
+
+  // node_modules/date-fns/esm/locale/en-US/_lib/localize/index.js
+  var eraValues = {
+    narrow: ["B", "A"],
+    abbreviated: ["BC", "AD"],
+    wide: ["Before Christ", "Anno Domini"]
+  };
+  var quarterValues = {
+    narrow: ["1", "2", "3", "4"],
+    abbreviated: ["Q1", "Q2", "Q3", "Q4"],
+    wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
+  };
+  var monthValues = {
+    narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+    abbreviated: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    wide: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  };
+  var dayValues = {
+    narrow: ["S", "M", "T", "W", "T", "F", "S"],
+    short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    wide: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  };
+  var dayPeriodValues = {
+    narrow: {
+      am: "a",
+      pm: "p",
+      midnight: "mi",
+      noon: "n",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    },
+    abbreviated: {
+      am: "AM",
+      pm: "PM",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    },
+    wide: {
+      am: "a.m.",
+      pm: "p.m.",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    }
+  };
+  var formattingDayPeriodValues = {
+    narrow: {
+      am: "a",
+      pm: "p",
+      midnight: "mi",
+      noon: "n",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    },
+    abbreviated: {
+      am: "AM",
+      pm: "PM",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    },
+    wide: {
+      am: "a.m.",
+      pm: "p.m.",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    }
+  };
+  var ordinalNumber = function(dirtyNumber, _options) {
+    var number = Number(dirtyNumber);
+    var rem100 = number % 100;
+    if (rem100 > 20 || rem100 < 10) {
+      switch (rem100 % 10) {
+        case 1:
+          return number + "st";
+        case 2:
+          return number + "nd";
+        case 3:
+          return number + "rd";
+      }
+    }
+    return number + "th";
+  };
+  var localize = {
+    ordinalNumber,
+    era: buildLocalizeFn({
+      values: eraValues,
+      defaultWidth: "wide"
+    }),
+    quarter: buildLocalizeFn({
+      values: quarterValues,
+      defaultWidth: "wide",
+      argumentCallback: function(quarter) {
+        return quarter - 1;
+      }
+    }),
+    month: buildLocalizeFn({
+      values: monthValues,
+      defaultWidth: "wide"
+    }),
+    day: buildLocalizeFn({
+      values: dayValues,
+      defaultWidth: "wide"
+    }),
+    dayPeriod: buildLocalizeFn({
+      values: dayPeriodValues,
+      defaultWidth: "wide",
+      formattingValues: formattingDayPeriodValues,
+      defaultFormattingWidth: "wide"
+    })
+  };
+  var localize_default = localize;
+
+  // node_modules/date-fns/esm/locale/_lib/buildMatchFn/index.js
+  function buildMatchFn(args) {
+    return function(string) {
+      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      var width = options.width;
+      var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
+      var matchResult = string.match(matchPattern);
+      if (!matchResult) {
+        return null;
+      }
+      var matchedString = matchResult[0];
+      var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
+      var key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, function(pattern) {
+        return pattern.test(matchedString);
+      }) : findKey(parsePatterns, function(pattern) {
+        return pattern.test(matchedString);
+      });
+      var value;
+      value = args.valueCallback ? args.valueCallback(key) : key;
+      value = options.valueCallback ? options.valueCallback(value) : value;
+      var rest = string.slice(matchedString.length);
+      return {
+        value,
+        rest
+      };
+    };
+  }
+  function findKey(object, predicate) {
+    for (var key in object) {
+      if (object.hasOwnProperty(key) && predicate(object[key])) {
+        return key;
+      }
+    }
+    return void 0;
+  }
+  function findIndex(array, predicate) {
+    for (var key = 0; key < array.length; key++) {
+      if (predicate(array[key])) {
+        return key;
+      }
+    }
+    return void 0;
+  }
+
+  // node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js
+  function buildMatchPatternFn(args) {
+    return function(string) {
+      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      var matchResult = string.match(args.matchPattern);
+      if (!matchResult)
+        return null;
+      var matchedString = matchResult[0];
+      var parseResult = string.match(args.parsePattern);
+      if (!parseResult)
+        return null;
+      var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+      value = options.valueCallback ? options.valueCallback(value) : value;
+      var rest = string.slice(matchedString.length);
+      return {
+        value,
+        rest
+      };
+    };
+  }
+
+  // node_modules/date-fns/esm/locale/en-US/_lib/match/index.js
+  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
+  var parseOrdinalNumberPattern = /\d+/i;
+  var matchEraPatterns = {
+    narrow: /^(b|a)/i,
+    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+    wide: /^(before christ|before common era|anno domini|common era)/i
+  };
+  var parseEraPatterns = {
+    any: [/^b/i, /^(a|c)/i]
+  };
+  var matchQuarterPatterns = {
+    narrow: /^[1234]/i,
+    abbreviated: /^q[1234]/i,
+    wide: /^[1234](th|st|nd|rd)? quarter/i
+  };
+  var parseQuarterPatterns = {
+    any: [/1/i, /2/i, /3/i, /4/i]
+  };
+  var matchMonthPatterns = {
+    narrow: /^[jfmasond]/i,
+    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+  };
+  var parseMonthPatterns = {
+    narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
+    any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
+  };
+  var matchDayPatterns = {
+    narrow: /^[smtwf]/i,
+    short: /^(su|mo|tu|we|th|fr|sa)/i,
+    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+  };
+  var parseDayPatterns = {
+    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+  };
+  var matchDayPeriodPatterns = {
+    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+  };
+  var parseDayPeriodPatterns = {
+    any: {
+      am: /^a/i,
+      pm: /^p/i,
+      midnight: /^mi/i,
+      noon: /^no/i,
+      morning: /morning/i,
+      afternoon: /afternoon/i,
+      evening: /evening/i,
+      night: /night/i
+    }
+  };
+  var match = {
+    ordinalNumber: buildMatchPatternFn({
+      matchPattern: matchOrdinalNumberPattern,
+      parsePattern: parseOrdinalNumberPattern,
+      valueCallback: function(value) {
+        return parseInt(value, 10);
+      }
+    }),
+    era: buildMatchFn({
+      matchPatterns: matchEraPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseEraPatterns,
+      defaultParseWidth: "any"
+    }),
+    quarter: buildMatchFn({
+      matchPatterns: matchQuarterPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseQuarterPatterns,
+      defaultParseWidth: "any",
+      valueCallback: function(index2) {
+        return index2 + 1;
+      }
+    }),
+    month: buildMatchFn({
+      matchPatterns: matchMonthPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseMonthPatterns,
+      defaultParseWidth: "any"
+    }),
+    day: buildMatchFn({
+      matchPatterns: matchDayPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseDayPatterns,
+      defaultParseWidth: "any"
+    }),
+    dayPeriod: buildMatchFn({
+      matchPatterns: matchDayPeriodPatterns,
+      defaultMatchWidth: "any",
+      parsePatterns: parseDayPeriodPatterns,
+      defaultParseWidth: "any"
+    })
+  };
+  var match_default = match;
+
+  // node_modules/date-fns/esm/locale/en-US/index.js
+  var locale = {
+    code: "en-US",
+    formatDistance: formatDistance_default,
+    formatLong: formatLong_default,
+    formatRelative: formatRelative_default,
+    localize: localize_default,
+    match: match_default,
+    options: {
+      weekStartsOn: 0,
+      firstWeekContainsDate: 1
+    }
+  };
+  var en_US_default = locale;
+
+  // node_modules/date-fns/esm/_lib/toInteger/index.js
+  function toInteger(dirtyNumber) {
+    if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
+      return NaN;
+    }
+    var number = Number(dirtyNumber);
+    if (isNaN(number)) {
+      return number;
+    }
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+  }
+
+  // node_modules/date-fns/esm/addMilliseconds/index.js
+  function addMilliseconds(dirtyDate, dirtyAmount) {
+    requiredArgs(2, arguments);
+    var timestamp = toDate(dirtyDate).getTime();
+    var amount = toInteger(dirtyAmount);
+    return new Date(timestamp + amount);
+  }
+
+  // node_modules/date-fns/esm/subMilliseconds/index.js
+  function subMilliseconds(dirtyDate, dirtyAmount) {
+    requiredArgs(2, arguments);
+    var amount = toInteger(dirtyAmount);
+    return addMilliseconds(dirtyDate, -amount);
+  }
+
+  // node_modules/date-fns/esm/_lib/getUTCDayOfYear/index.js
+  var MILLISECONDS_IN_DAY = 864e5;
+  function getUTCDayOfYear(dirtyDate) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var timestamp = date2.getTime();
+    date2.setUTCMonth(0, 1);
+    date2.setUTCHours(0, 0, 0, 0);
+    var startOfYearTimestamp = date2.getTime();
+    var difference = timestamp - startOfYearTimestamp;
+    return Math.floor(difference / MILLISECONDS_IN_DAY) + 1;
+  }
+
+  // node_modules/date-fns/esm/_lib/startOfUTCISOWeek/index.js
+  function startOfUTCISOWeek(dirtyDate) {
+    requiredArgs(1, arguments);
+    var weekStartsOn = 1;
+    var date2 = toDate(dirtyDate);
+    var day2 = date2.getUTCDay();
+    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
+    date2.setUTCDate(date2.getUTCDate() - diff2);
+    date2.setUTCHours(0, 0, 0, 0);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/getUTCISOWeekYear/index.js
+  function getUTCISOWeekYear(dirtyDate) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var year2 = date2.getUTCFullYear();
+    var fourthOfJanuaryOfNextYear = new Date(0);
+    fourthOfJanuaryOfNextYear.setUTCFullYear(year2 + 1, 0, 4);
+    fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
+    var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear);
+    var fourthOfJanuaryOfThisYear = new Date(0);
+    fourthOfJanuaryOfThisYear.setUTCFullYear(year2, 0, 4);
+    fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
+    var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear);
+    if (date2.getTime() >= startOfNextYear.getTime()) {
+      return year2 + 1;
+    } else if (date2.getTime() >= startOfThisYear.getTime()) {
+      return year2;
+    } else {
+      return year2 - 1;
+    }
+  }
+
+  // node_modules/date-fns/esm/_lib/startOfUTCISOWeekYear/index.js
+  function startOfUTCISOWeekYear(dirtyDate) {
+    requiredArgs(1, arguments);
+    var year2 = getUTCISOWeekYear(dirtyDate);
+    var fourthOfJanuary = new Date(0);
+    fourthOfJanuary.setUTCFullYear(year2, 0, 4);
+    fourthOfJanuary.setUTCHours(0, 0, 0, 0);
+    var date2 = startOfUTCISOWeek(fourthOfJanuary);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/getUTCISOWeek/index.js
+  var MILLISECONDS_IN_WEEK = 6048e5;
+  function getUTCISOWeek(dirtyDate) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var diff2 = startOfUTCISOWeek(date2).getTime() - startOfUTCISOWeekYear(date2).getTime();
+    return Math.round(diff2 / MILLISECONDS_IN_WEEK) + 1;
+  }
+
+  // node_modules/date-fns/esm/_lib/startOfUTCWeek/index.js
+  function startOfUTCWeek(dirtyDate, dirtyOptions) {
+    requiredArgs(1, arguments);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale;
+    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
+    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
+    }
+    var date2 = toDate(dirtyDate);
+    var day2 = date2.getUTCDay();
+    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
+    date2.setUTCDate(date2.getUTCDate() - diff2);
+    date2.setUTCHours(0, 0, 0, 0);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/getUTCWeekYear/index.js
+  function getUTCWeekYear(dirtyDate, dirtyOptions) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var year2 = date2.getUTCFullYear();
+    var options = dirtyOptions || {};
+    var locale2 = options.locale;
+    var localeFirstWeekContainsDate = locale2 && locale2.options && locale2.options.firstWeekContainsDate;
+    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
+    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
+    }
+    var firstWeekOfNextYear = new Date(0);
+    firstWeekOfNextYear.setUTCFullYear(year2 + 1, 0, firstWeekContainsDate);
+    firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
+    var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions);
+    var firstWeekOfThisYear = new Date(0);
+    firstWeekOfThisYear.setUTCFullYear(year2, 0, firstWeekContainsDate);
+    firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
+    var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions);
+    if (date2.getTime() >= startOfNextYear.getTime()) {
+      return year2 + 1;
+    } else if (date2.getTime() >= startOfThisYear.getTime()) {
+      return year2;
+    } else {
+      return year2 - 1;
+    }
+  }
+
+  // node_modules/date-fns/esm/_lib/startOfUTCWeekYear/index.js
+  function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
+    requiredArgs(1, arguments);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale;
+    var localeFirstWeekContainsDate = locale2 && locale2.options && locale2.options.firstWeekContainsDate;
+    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
+    var year2 = getUTCWeekYear(dirtyDate, dirtyOptions);
+    var firstWeek = new Date(0);
+    firstWeek.setUTCFullYear(year2, 0, firstWeekContainsDate);
+    firstWeek.setUTCHours(0, 0, 0, 0);
+    var date2 = startOfUTCWeek(firstWeek, dirtyOptions);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/getUTCWeek/index.js
+  var MILLISECONDS_IN_WEEK2 = 6048e5;
+  function getUTCWeek(dirtyDate, options) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var diff2 = startOfUTCWeek(date2, options).getTime() - startOfUTCWeekYear(date2, options).getTime();
+    return Math.round(diff2 / MILLISECONDS_IN_WEEK2) + 1;
+  }
+
+  // node_modules/date-fns/esm/_lib/addLeadingZeros/index.js
+  function addLeadingZeros(number, targetLength) {
+    var sign2 = number < 0 ? "-" : "";
+    var output = Math.abs(number).toString();
+    while (output.length < targetLength) {
+      output = "0" + output;
+    }
+    return sign2 + output;
+  }
+
+  // node_modules/date-fns/esm/_lib/format/lightFormatters/index.js
+  var formatters = {
+    y: function(date2, token) {
+      var signedYear = date2.getUTCFullYear();
+      var year2 = signedYear > 0 ? signedYear : 1 - signedYear;
+      return addLeadingZeros(token === "yy" ? year2 % 100 : year2, token.length);
+    },
+    M: function(date2, token) {
+      var month2 = date2.getUTCMonth();
+      return token === "M" ? String(month2 + 1) : addLeadingZeros(month2 + 1, 2);
+    },
+    d: function(date2, token) {
+      return addLeadingZeros(date2.getUTCDate(), token.length);
+    },
+    a: function(date2, token) {
+      var dayPeriodEnumValue = date2.getUTCHours() / 12 >= 1 ? "pm" : "am";
+      switch (token) {
+        case "a":
+        case "aa":
+          return dayPeriodEnumValue.toUpperCase();
+        case "aaa":
+          return dayPeriodEnumValue;
+        case "aaaaa":
+          return dayPeriodEnumValue[0];
+        case "aaaa":
+        default:
+          return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+      }
+    },
+    h: function(date2, token) {
+      return addLeadingZeros(date2.getUTCHours() % 12 || 12, token.length);
+    },
+    H: function(date2, token) {
+      return addLeadingZeros(date2.getUTCHours(), token.length);
+    },
+    m: function(date2, token) {
+      return addLeadingZeros(date2.getUTCMinutes(), token.length);
+    },
+    s: function(date2, token) {
+      return addLeadingZeros(date2.getUTCSeconds(), token.length);
+    },
+    S: function(date2, token) {
+      var numberOfDigits = token.length;
+      var milliseconds2 = date2.getUTCMilliseconds();
+      var fractionalSeconds = Math.floor(milliseconds2 * Math.pow(10, numberOfDigits - 3));
+      return addLeadingZeros(fractionalSeconds, token.length);
+    }
+  };
+  var lightFormatters_default = formatters;
+
+  // node_modules/date-fns/esm/_lib/format/formatters/index.js
+  var dayPeriodEnum = {
+    am: "am",
+    pm: "pm",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  };
+  var formatters2 = {
+    G: function(date2, token, localize2) {
+      var era = date2.getUTCFullYear() > 0 ? 1 : 0;
+      switch (token) {
+        case "G":
+        case "GG":
+        case "GGG":
+          return localize2.era(era, {
+            width: "abbreviated"
+          });
+        case "GGGGG":
+          return localize2.era(era, {
+            width: "narrow"
+          });
+        case "GGGG":
+        default:
+          return localize2.era(era, {
+            width: "wide"
+          });
+      }
+    },
+    y: function(date2, token, localize2) {
+      if (token === "yo") {
+        var signedYear = date2.getUTCFullYear();
+        var year2 = signedYear > 0 ? signedYear : 1 - signedYear;
+        return localize2.ordinalNumber(year2, {
+          unit: "year"
+        });
+      }
+      return lightFormatters_default.y(date2, token);
+    },
+    Y: function(date2, token, localize2, options) {
+      var signedWeekYear = getUTCWeekYear(date2, options);
+      var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
+      if (token === "YY") {
+        var twoDigitYear = weekYear % 100;
+        return addLeadingZeros(twoDigitYear, 2);
+      }
+      if (token === "Yo") {
+        return localize2.ordinalNumber(weekYear, {
+          unit: "year"
+        });
+      }
+      return addLeadingZeros(weekYear, token.length);
+    },
+    R: function(date2, token) {
+      var isoWeekYear = getUTCISOWeekYear(date2);
+      return addLeadingZeros(isoWeekYear, token.length);
+    },
+    u: function(date2, token) {
+      var year2 = date2.getUTCFullYear();
+      return addLeadingZeros(year2, token.length);
+    },
+    Q: function(date2, token, localize2) {
+      var quarter = Math.ceil((date2.getUTCMonth() + 1) / 3);
+      switch (token) {
+        case "Q":
+          return String(quarter);
+        case "QQ":
+          return addLeadingZeros(quarter, 2);
+        case "Qo":
+          return localize2.ordinalNumber(quarter, {
+            unit: "quarter"
+          });
+        case "QQQ":
+          return localize2.quarter(quarter, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "QQQQQ":
+          return localize2.quarter(quarter, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "QQQQ":
+        default:
+          return localize2.quarter(quarter, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    q: function(date2, token, localize2) {
+      var quarter = Math.ceil((date2.getUTCMonth() + 1) / 3);
+      switch (token) {
+        case "q":
+          return String(quarter);
+        case "qq":
+          return addLeadingZeros(quarter, 2);
+        case "qo":
+          return localize2.ordinalNumber(quarter, {
+            unit: "quarter"
+          });
+        case "qqq":
+          return localize2.quarter(quarter, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "qqqqq":
+          return localize2.quarter(quarter, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "qqqq":
+        default:
+          return localize2.quarter(quarter, {
+            width: "wide",
+            context: "standalone"
+          });
+      }
+    },
+    M: function(date2, token, localize2) {
+      var month2 = date2.getUTCMonth();
+      switch (token) {
+        case "M":
+        case "MM":
+          return lightFormatters_default.M(date2, token);
+        case "Mo":
+          return localize2.ordinalNumber(month2 + 1, {
+            unit: "month"
+          });
+        case "MMM":
+          return localize2.month(month2, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "MMMMM":
+          return localize2.month(month2, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "MMMM":
+        default:
+          return localize2.month(month2, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    L: function(date2, token, localize2) {
+      var month2 = date2.getUTCMonth();
+      switch (token) {
+        case "L":
+          return String(month2 + 1);
+        case "LL":
+          return addLeadingZeros(month2 + 1, 2);
+        case "Lo":
+          return localize2.ordinalNumber(month2 + 1, {
+            unit: "month"
+          });
+        case "LLL":
+          return localize2.month(month2, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "LLLLL":
+          return localize2.month(month2, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "LLLL":
+        default:
+          return localize2.month(month2, {
+            width: "wide",
+            context: "standalone"
+          });
+      }
+    },
+    w: function(date2, token, localize2, options) {
+      var week = getUTCWeek(date2, options);
+      if (token === "wo") {
+        return localize2.ordinalNumber(week, {
+          unit: "week"
+        });
+      }
+      return addLeadingZeros(week, token.length);
+    },
+    I: function(date2, token, localize2) {
+      var isoWeek = getUTCISOWeek(date2);
+      if (token === "Io") {
+        return localize2.ordinalNumber(isoWeek, {
+          unit: "week"
+        });
+      }
+      return addLeadingZeros(isoWeek, token.length);
+    },
+    d: function(date2, token, localize2) {
+      if (token === "do") {
+        return localize2.ordinalNumber(date2.getUTCDate(), {
+          unit: "date"
+        });
+      }
+      return lightFormatters_default.d(date2, token);
+    },
+    D: function(date2, token, localize2) {
+      var dayOfYear = getUTCDayOfYear(date2);
+      if (token === "Do") {
+        return localize2.ordinalNumber(dayOfYear, {
+          unit: "dayOfYear"
+        });
+      }
+      return addLeadingZeros(dayOfYear, token.length);
+    },
+    E: function(date2, token, localize2) {
+      var dayOfWeek = date2.getUTCDay();
+      switch (token) {
+        case "E":
+        case "EE":
+        case "EEE":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "EEEEE":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "EEEEEE":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "EEEE":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    e: function(date2, token, localize2, options) {
+      var dayOfWeek = date2.getUTCDay();
+      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+      switch (token) {
+        case "e":
+          return String(localDayOfWeek);
+        case "ee":
+          return addLeadingZeros(localDayOfWeek, 2);
+        case "eo":
+          return localize2.ordinalNumber(localDayOfWeek, {
+            unit: "day"
+          });
+        case "eee":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "eeeee":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "eeeeee":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "eeee":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    c: function(date2, token, localize2, options) {
+      var dayOfWeek = date2.getUTCDay();
+      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
+      switch (token) {
+        case "c":
+          return String(localDayOfWeek);
+        case "cc":
+          return addLeadingZeros(localDayOfWeek, token.length);
+        case "co":
+          return localize2.ordinalNumber(localDayOfWeek, {
+            unit: "day"
+          });
+        case "ccc":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "ccccc":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "cccccc":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "standalone"
+          });
+        case "cccc":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "standalone"
+          });
+      }
+    },
+    i: function(date2, token, localize2) {
+      var dayOfWeek = date2.getUTCDay();
+      var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+      switch (token) {
+        case "i":
+          return String(isoDayOfWeek);
+        case "ii":
+          return addLeadingZeros(isoDayOfWeek, token.length);
+        case "io":
+          return localize2.ordinalNumber(isoDayOfWeek, {
+            unit: "day"
+          });
+        case "iii":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "iiiii":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "iiiiii":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "iiii":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    a: function(date2, token, localize2) {
+      var hours2 = date2.getUTCHours();
+      var dayPeriodEnumValue = hours2 / 12 >= 1 ? "pm" : "am";
+      switch (token) {
+        case "a":
+        case "aa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "aaa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          }).toLowerCase();
+        case "aaaaa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "aaaa":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    b: function(date2, token, localize2) {
+      var hours2 = date2.getUTCHours();
+      var dayPeriodEnumValue;
+      if (hours2 === 12) {
+        dayPeriodEnumValue = dayPeriodEnum.noon;
+      } else if (hours2 === 0) {
+        dayPeriodEnumValue = dayPeriodEnum.midnight;
+      } else {
+        dayPeriodEnumValue = hours2 / 12 >= 1 ? "pm" : "am";
+      }
+      switch (token) {
+        case "b":
+        case "bb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "bbb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          }).toLowerCase();
+        case "bbbbb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "bbbb":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    B: function(date2, token, localize2) {
+      var hours2 = date2.getUTCHours();
+      var dayPeriodEnumValue;
+      if (hours2 >= 17) {
+        dayPeriodEnumValue = dayPeriodEnum.evening;
+      } else if (hours2 >= 12) {
+        dayPeriodEnumValue = dayPeriodEnum.afternoon;
+      } else if (hours2 >= 4) {
+        dayPeriodEnumValue = dayPeriodEnum.morning;
+      } else {
+        dayPeriodEnumValue = dayPeriodEnum.night;
+      }
+      switch (token) {
+        case "B":
+        case "BB":
+        case "BBB":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "BBBBB":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "BBBB":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    h: function(date2, token, localize2) {
+      if (token === "ho") {
+        var hours2 = date2.getUTCHours() % 12;
+        if (hours2 === 0)
+          hours2 = 12;
+        return localize2.ordinalNumber(hours2, {
+          unit: "hour"
+        });
+      }
+      return lightFormatters_default.h(date2, token);
+    },
+    H: function(date2, token, localize2) {
+      if (token === "Ho") {
+        return localize2.ordinalNumber(date2.getUTCHours(), {
+          unit: "hour"
+        });
+      }
+      return lightFormatters_default.H(date2, token);
+    },
+    K: function(date2, token, localize2) {
+      var hours2 = date2.getUTCHours() % 12;
+      if (token === "Ko") {
+        return localize2.ordinalNumber(hours2, {
+          unit: "hour"
+        });
+      }
+      return addLeadingZeros(hours2, token.length);
+    },
+    k: function(date2, token, localize2) {
+      var hours2 = date2.getUTCHours();
+      if (hours2 === 0)
+        hours2 = 24;
+      if (token === "ko") {
+        return localize2.ordinalNumber(hours2, {
+          unit: "hour"
+        });
+      }
+      return addLeadingZeros(hours2, token.length);
+    },
+    m: function(date2, token, localize2) {
+      if (token === "mo") {
+        return localize2.ordinalNumber(date2.getUTCMinutes(), {
+          unit: "minute"
+        });
+      }
+      return lightFormatters_default.m(date2, token);
+    },
+    s: function(date2, token, localize2) {
+      if (token === "so") {
+        return localize2.ordinalNumber(date2.getUTCSeconds(), {
+          unit: "second"
+        });
+      }
+      return lightFormatters_default.s(date2, token);
+    },
+    S: function(date2, token) {
+      return lightFormatters_default.S(date2, token);
+    },
+    X: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timezoneOffset = originalDate.getTimezoneOffset();
+      if (timezoneOffset === 0) {
+        return "Z";
+      }
+      switch (token) {
+        case "X":
+          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+        case "XXXX":
+        case "XX":
+          return formatTimezone(timezoneOffset);
+        case "XXXXX":
+        case "XXX":
+        default:
+          return formatTimezone(timezoneOffset, ":");
+      }
+    },
+    x: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timezoneOffset = originalDate.getTimezoneOffset();
+      switch (token) {
+        case "x":
+          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+        case "xxxx":
+        case "xx":
+          return formatTimezone(timezoneOffset);
+        case "xxxxx":
+        case "xxx":
+        default:
+          return formatTimezone(timezoneOffset, ":");
+      }
+    },
+    O: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timezoneOffset = originalDate.getTimezoneOffset();
+      switch (token) {
+        case "O":
+        case "OO":
+        case "OOO":
+          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+        case "OOOO":
+        default:
+          return "GMT" + formatTimezone(timezoneOffset, ":");
+      }
+    },
+    z: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timezoneOffset = originalDate.getTimezoneOffset();
+      switch (token) {
+        case "z":
+        case "zz":
+        case "zzz":
+          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+        case "zzzz":
+        default:
+          return "GMT" + formatTimezone(timezoneOffset, ":");
+      }
+    },
+    t: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timestamp = Math.floor(originalDate.getTime() / 1e3);
+      return addLeadingZeros(timestamp, token.length);
+    },
+    T: function(date2, token, _localize, options) {
+      var originalDate = options._originalDate || date2;
+      var timestamp = originalDate.getTime();
+      return addLeadingZeros(timestamp, token.length);
+    }
+  };
+  function formatTimezoneShort(offset3, dirtyDelimiter) {
+    var sign2 = offset3 > 0 ? "-" : "+";
+    var absOffset = Math.abs(offset3);
+    var hours2 = Math.floor(absOffset / 60);
+    var minutes2 = absOffset % 60;
+    if (minutes2 === 0) {
+      return sign2 + String(hours2);
+    }
+    var delimiter = dirtyDelimiter || "";
+    return sign2 + String(hours2) + delimiter + addLeadingZeros(minutes2, 2);
+  }
+  function formatTimezoneWithOptionalMinutes(offset3, dirtyDelimiter) {
+    if (offset3 % 60 === 0) {
+      var sign2 = offset3 > 0 ? "-" : "+";
+      return sign2 + addLeadingZeros(Math.abs(offset3) / 60, 2);
+    }
+    return formatTimezone(offset3, dirtyDelimiter);
+  }
+  function formatTimezone(offset3, dirtyDelimiter) {
+    var delimiter = dirtyDelimiter || "";
+    var sign2 = offset3 > 0 ? "-" : "+";
+    var absOffset = Math.abs(offset3);
+    var hours2 = addLeadingZeros(Math.floor(absOffset / 60), 2);
+    var minutes2 = addLeadingZeros(absOffset % 60, 2);
+    return sign2 + hours2 + delimiter + minutes2;
+  }
+  var formatters_default = formatters2;
+
+  // node_modules/date-fns/esm/_lib/format/longFormatters/index.js
+  function dateLongFormatter(pattern, formatLong2) {
+    switch (pattern) {
+      case "P":
+        return formatLong2.date({
+          width: "short"
+        });
+      case "PP":
+        return formatLong2.date({
+          width: "medium"
+        });
+      case "PPP":
+        return formatLong2.date({
+          width: "long"
+        });
+      case "PPPP":
+      default:
+        return formatLong2.date({
+          width: "full"
+        });
+    }
+  }
+  function timeLongFormatter(pattern, formatLong2) {
+    switch (pattern) {
+      case "p":
+        return formatLong2.time({
+          width: "short"
+        });
+      case "pp":
+        return formatLong2.time({
+          width: "medium"
+        });
+      case "ppp":
+        return formatLong2.time({
+          width: "long"
+        });
+      case "pppp":
+      default:
+        return formatLong2.time({
+          width: "full"
+        });
+    }
+  }
+  function dateTimeLongFormatter(pattern, formatLong2) {
+    var matchResult = pattern.match(/(P+)(p+)?/) || [];
+    var datePattern = matchResult[1];
+    var timePattern = matchResult[2];
+    if (!timePattern) {
+      return dateLongFormatter(pattern, formatLong2);
+    }
+    var dateTimeFormat;
+    switch (datePattern) {
+      case "P":
+        dateTimeFormat = formatLong2.dateTime({
+          width: "short"
+        });
+        break;
+      case "PP":
+        dateTimeFormat = formatLong2.dateTime({
+          width: "medium"
+        });
+        break;
+      case "PPP":
+        dateTimeFormat = formatLong2.dateTime({
+          width: "long"
+        });
+        break;
+      case "PPPP":
+      default:
+        dateTimeFormat = formatLong2.dateTime({
+          width: "full"
+        });
+        break;
+    }
+    return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
+  }
+  var longFormatters = {
+    p: timeLongFormatter,
+    P: dateTimeLongFormatter
+  };
+  var longFormatters_default = longFormatters;
+
+  // node_modules/date-fns/esm/_lib/getTimezoneOffsetInMilliseconds/index.js
+  function getTimezoneOffsetInMilliseconds(date2) {
+    var utcDate = new Date(Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate(), date2.getHours(), date2.getMinutes(), date2.getSeconds(), date2.getMilliseconds()));
+    utcDate.setUTCFullYear(date2.getFullYear());
+    return date2.getTime() - utcDate.getTime();
+  }
+
+  // node_modules/date-fns/esm/_lib/protectedTokens/index.js
+  var protectedDayOfYearTokens = ["D", "DD"];
+  var protectedWeekYearTokens = ["YY", "YYYY"];
+  function isProtectedDayOfYearToken(token) {
+    return protectedDayOfYearTokens.indexOf(token) !== -1;
+  }
+  function isProtectedWeekYearToken(token) {
+    return protectedWeekYearTokens.indexOf(token) !== -1;
+  }
+  function throwProtectedError(token, format3, input) {
+    if (token === "YYYY") {
+      throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format3, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+    } else if (token === "YY") {
+      throw new RangeError("Use `yy` instead of `YY` (in `".concat(format3, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+    } else if (token === "D") {
+      throw new RangeError("Use `d` instead of `D` (in `".concat(format3, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+    } else if (token === "DD") {
+      throw new RangeError("Use `dd` instead of `DD` (in `".concat(format3, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+    }
+  }
+
+  // node_modules/date-fns/esm/format/index.js
+  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+  var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+  var escapedStringRegExp = /^'([^]*?)'?$/;
+  var doubleQuoteRegExp = /''/g;
+  var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
+  function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
+    requiredArgs(2, arguments);
+    var formatStr = String(dirtyFormatStr);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale || en_US_default;
+    var localeFirstWeekContainsDate = locale2.options && locale2.options.firstWeekContainsDate;
+    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
+    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
+    }
+    var localeWeekStartsOn = locale2.options && locale2.options.weekStartsOn;
+    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
+    }
+    if (!locale2.localize) {
+      throw new RangeError("locale must contain localize property");
+    }
+    if (!locale2.formatLong) {
+      throw new RangeError("locale must contain formatLong property");
+    }
+    var originalDate = toDate(dirtyDate);
+    if (!isValid(originalDate)) {
+      throw new RangeError("Invalid time value");
+    }
+    var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
+    var utcDate = subMilliseconds(originalDate, timezoneOffset);
+    var formatterOptions = {
+      firstWeekContainsDate,
+      weekStartsOn,
+      locale: locale2,
+      _originalDate: originalDate
+    };
+    var result = formatStr.match(longFormattingTokensRegExp).map(function(substring) {
+      var firstCharacter = substring[0];
+      if (firstCharacter === "p" || firstCharacter === "P") {
+        var longFormatter = longFormatters_default[firstCharacter];
+        return longFormatter(substring, locale2.formatLong, formatterOptions);
+      }
+      return substring;
+    }).join("").match(formattingTokensRegExp).map(function(substring) {
+      if (substring === "''") {
+        return "'";
+      }
+      var firstCharacter = substring[0];
+      if (firstCharacter === "'") {
+        return cleanEscapedString(substring);
+      }
+      var formatter = formatters_default[firstCharacter];
+      if (formatter) {
+        if (!options.useAdditionalWeekYearTokens && isProtectedWeekYearToken(substring)) {
+          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
+        }
+        if (!options.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(substring)) {
+          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
+        }
+        return formatter(utcDate, substring, locale2.localize, formatterOptions);
+      }
+      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+        throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
+      }
+      return substring;
+    }).join("");
+    return result;
+  }
+  function cleanEscapedString(input) {
+    return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'");
+  }
+
+  // node_modules/date-fns/esm/startOfWeek/index.js
+  function startOfWeek(dirtyDate, dirtyOptions) {
+    requiredArgs(1, arguments);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale;
+    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
+    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
+    }
+    var date2 = toDate(dirtyDate);
+    var day2 = date2.getDay();
+    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
+    date2.setDate(date2.getDate() - diff2);
+    date2.setHours(0, 0, 0, 0);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/constants/index.js
+  var maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1e3;
+  var millisecondsInMinute = 6e4;
+  var millisecondsInHour = 36e5;
+  var minTime = -maxTime;
+
+  // node_modules/date-fns/esm/_lib/assign/index.js
+  function assign(target, dirtyObject) {
+    if (target == null) {
+      throw new TypeError("assign requires that input parameter not be null or undefined");
+    }
+    dirtyObject = dirtyObject || {};
+    for (var property2 in dirtyObject) {
+      if (Object.prototype.hasOwnProperty.call(dirtyObject, property2)) {
+        target[property2] = dirtyObject[property2];
+      }
+    }
+    return target;
+  }
+
+  // node_modules/date-fns/esm/getDay/index.js
+  function getDay(dirtyDate) {
+    requiredArgs(1, arguments);
+    var date2 = toDate(dirtyDate);
+    var day2 = date2.getDay();
+    return day2;
+  }
+
+  // node_modules/date-fns/esm/_lib/setUTCDay/index.js
+  function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
+    requiredArgs(2, arguments);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale;
+    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
+    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
+    }
+    var date2 = toDate(dirtyDate);
+    var day2 = toInteger(dirtyDay);
+    var currentDay = date2.getUTCDay();
+    var remainder = day2 % 7;
+    var dayIndex = (remainder + 7) % 7;
+    var diff2 = (dayIndex < weekStartsOn ? 7 : 0) + day2 - currentDay;
+    date2.setUTCDate(date2.getUTCDate() + diff2);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/setUTCISODay/index.js
+  function setUTCISODay(dirtyDate, dirtyDay) {
+    requiredArgs(2, arguments);
+    var day2 = toInteger(dirtyDay);
+    if (day2 % 7 === 0) {
+      day2 = day2 - 7;
+    }
+    var weekStartsOn = 1;
+    var date2 = toDate(dirtyDate);
+    var currentDay = date2.getUTCDay();
+    var remainder = day2 % 7;
+    var dayIndex = (remainder + 7) % 7;
+    var diff2 = (dayIndex < weekStartsOn ? 7 : 0) + day2 - currentDay;
+    date2.setUTCDate(date2.getUTCDate() + diff2);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/setUTCISOWeek/index.js
+  function setUTCISOWeek(dirtyDate, dirtyISOWeek) {
+    requiredArgs(2, arguments);
+    var date2 = toDate(dirtyDate);
+    var isoWeek = toInteger(dirtyISOWeek);
+    var diff2 = getUTCISOWeek(date2) - isoWeek;
+    date2.setUTCDate(date2.getUTCDate() - diff2 * 7);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/_lib/setUTCWeek/index.js
+  function setUTCWeek(dirtyDate, dirtyWeek, options) {
+    requiredArgs(2, arguments);
+    var date2 = toDate(dirtyDate);
+    var week = toInteger(dirtyWeek);
+    var diff2 = getUTCWeek(date2, options) - week;
+    date2.setUTCDate(date2.getUTCDate() - diff2 * 7);
+    return date2;
+  }
+
+  // node_modules/date-fns/esm/parse/_lib/parsers/index.js
+  var MILLISECONDS_IN_HOUR = 36e5;
+  var MILLISECONDS_IN_MINUTE = 6e4;
+  var MILLISECONDS_IN_SECOND = 1e3;
+  var numericPatterns = {
+    month: /^(1[0-2]|0?\d)/,
+    date: /^(3[0-1]|[0-2]?\d)/,
+    dayOfYear: /^(36[0-6]|3[0-5]\d|[0-2]?\d?\d)/,
+    week: /^(5[0-3]|[0-4]?\d)/,
+    hour23h: /^(2[0-3]|[0-1]?\d)/,
+    hour24h: /^(2[0-4]|[0-1]?\d)/,
+    hour11h: /^(1[0-1]|0?\d)/,
+    hour12h: /^(1[0-2]|0?\d)/,
+    minute: /^[0-5]?\d/,
+    second: /^[0-5]?\d/,
+    singleDigit: /^\d/,
+    twoDigits: /^\d{1,2}/,
+    threeDigits: /^\d{1,3}/,
+    fourDigits: /^\d{1,4}/,
+    anyDigitsSigned: /^-?\d+/,
+    singleDigitSigned: /^-?\d/,
+    twoDigitsSigned: /^-?\d{1,2}/,
+    threeDigitsSigned: /^-?\d{1,3}/,
+    fourDigitsSigned: /^-?\d{1,4}/
+  };
+  var timezonePatterns = {
+    basicOptionalMinutes: /^([+-])(\d{2})(\d{2})?|Z/,
+    basic: /^([+-])(\d{2})(\d{2})|Z/,
+    basicOptionalSeconds: /^([+-])(\d{2})(\d{2})((\d{2}))?|Z/,
+    extended: /^([+-])(\d{2}):(\d{2})|Z/,
+    extendedOptionalSeconds: /^([+-])(\d{2}):(\d{2})(:(\d{2}))?|Z/
+  };
+  function parseNumericPattern(pattern, string, valueCallback) {
+    var matchResult = string.match(pattern);
+    if (!matchResult) {
+      return null;
+    }
+    var value = parseInt(matchResult[0], 10);
+    return {
+      value: valueCallback ? valueCallback(value) : value,
+      rest: string.slice(matchResult[0].length)
+    };
+  }
+  function parseTimezonePattern(pattern, string) {
+    var matchResult = string.match(pattern);
+    if (!matchResult) {
+      return null;
+    }
+    if (matchResult[0] === "Z") {
+      return {
+        value: 0,
+        rest: string.slice(1)
+      };
+    }
+    var sign2 = matchResult[1] === "+" ? 1 : -1;
+    var hours2 = matchResult[2] ? parseInt(matchResult[2], 10) : 0;
+    var minutes2 = matchResult[3] ? parseInt(matchResult[3], 10) : 0;
+    var seconds2 = matchResult[5] ? parseInt(matchResult[5], 10) : 0;
+    return {
+      value: sign2 * (hours2 * MILLISECONDS_IN_HOUR + minutes2 * MILLISECONDS_IN_MINUTE + seconds2 * MILLISECONDS_IN_SECOND),
+      rest: string.slice(matchResult[0].length)
+    };
+  }
+  function parseAnyDigitsSigned(string, valueCallback) {
+    return parseNumericPattern(numericPatterns.anyDigitsSigned, string, valueCallback);
+  }
+  function parseNDigits(n2, string, valueCallback) {
+    switch (n2) {
+      case 1:
+        return parseNumericPattern(numericPatterns.singleDigit, string, valueCallback);
+      case 2:
+        return parseNumericPattern(numericPatterns.twoDigits, string, valueCallback);
+      case 3:
+        return parseNumericPattern(numericPatterns.threeDigits, string, valueCallback);
+      case 4:
+        return parseNumericPattern(numericPatterns.fourDigits, string, valueCallback);
+      default:
+        return parseNumericPattern(new RegExp("^\\d{1," + n2 + "}"), string, valueCallback);
+    }
+  }
+  function parseNDigitsSigned(n2, string, valueCallback) {
+    switch (n2) {
+      case 1:
+        return parseNumericPattern(numericPatterns.singleDigitSigned, string, valueCallback);
+      case 2:
+        return parseNumericPattern(numericPatterns.twoDigitsSigned, string, valueCallback);
+      case 3:
+        return parseNumericPattern(numericPatterns.threeDigitsSigned, string, valueCallback);
+      case 4:
+        return parseNumericPattern(numericPatterns.fourDigitsSigned, string, valueCallback);
+      default:
+        return parseNumericPattern(new RegExp("^-?\\d{1," + n2 + "}"), string, valueCallback);
+    }
+  }
+  function dayPeriodEnumToHours(enumValue) {
+    switch (enumValue) {
+      case "morning":
+        return 4;
+      case "evening":
+        return 17;
+      case "pm":
+      case "noon":
+      case "afternoon":
+        return 12;
+      case "am":
+      case "midnight":
+      case "night":
+      default:
+        return 0;
+    }
+  }
+  function normalizeTwoDigitYear(twoDigitYear, currentYear) {
+    var isCommonEra = currentYear > 0;
+    var absCurrentYear = isCommonEra ? currentYear : 1 - currentYear;
+    var result;
+    if (absCurrentYear <= 50) {
+      result = twoDigitYear || 100;
+    } else {
+      var rangeEnd = absCurrentYear + 50;
+      var rangeEndCentury = Math.floor(rangeEnd / 100) * 100;
+      var isPreviousCentury = twoDigitYear >= rangeEnd % 100;
+      result = twoDigitYear + rangeEndCentury - (isPreviousCentury ? 100 : 0);
+    }
+    return isCommonEra ? result : 1 - result;
+  }
+  var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  function isLeapYearIndex(year2) {
+    return year2 % 400 === 0 || year2 % 4 === 0 && year2 % 100 !== 0;
+  }
+  var parsers = {
+    G: {
+      priority: 140,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "G":
+          case "GG":
+          case "GGG":
+            return match2.era(string, {
+              width: "abbreviated"
+            }) || match2.era(string, {
+              width: "narrow"
+            });
+          case "GGGGG":
+            return match2.era(string, {
+              width: "narrow"
+            });
+          case "GGGG":
+          default:
+            return match2.era(string, {
+              width: "wide"
+            }) || match2.era(string, {
+              width: "abbreviated"
+            }) || match2.era(string, {
+              width: "narrow"
+            });
+        }
+      },
+      set: function(date2, flags, value, _options) {
+        flags.era = value;
+        date2.setUTCFullYear(value, 0, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["R", "u", "t", "T"]
+    },
+    y: {
+      priority: 130,
+      parse: function(string, token, match2, _options) {
+        var valueCallback = function(year2) {
+          return {
+            year: year2,
+            isTwoDigitYear: token === "yy"
+          };
+        };
+        switch (token) {
+          case "y":
+            return parseNDigits(4, string, valueCallback);
+          case "yo":
+            return match2.ordinalNumber(string, {
+              unit: "year",
+              valueCallback
+            });
+          default:
+            return parseNDigits(token.length, string, valueCallback);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value.isTwoDigitYear || value.year > 0;
+      },
+      set: function(date2, flags, value, _options) {
+        var currentYear = date2.getUTCFullYear();
+        if (value.isTwoDigitYear) {
+          var normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
+          date2.setUTCFullYear(normalizedTwoDigitYear, 0, 1);
+          date2.setUTCHours(0, 0, 0, 0);
+          return date2;
+        }
+        var year2 = !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
+        date2.setUTCFullYear(year2, 0, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "u", "w", "I", "i", "e", "c", "t", "T"]
+    },
+    Y: {
+      priority: 130,
+      parse: function(string, token, match2, _options) {
+        var valueCallback = function(year2) {
+          return {
+            year: year2,
+            isTwoDigitYear: token === "YY"
+          };
+        };
+        switch (token) {
+          case "Y":
+            return parseNDigits(4, string, valueCallback);
+          case "Yo":
+            return match2.ordinalNumber(string, {
+              unit: "year",
+              valueCallback
+            });
+          default:
+            return parseNDigits(token.length, string, valueCallback);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value.isTwoDigitYear || value.year > 0;
+      },
+      set: function(date2, flags, value, options) {
+        var currentYear = getUTCWeekYear(date2, options);
+        if (value.isTwoDigitYear) {
+          var normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
+          date2.setUTCFullYear(normalizedTwoDigitYear, 0, options.firstWeekContainsDate);
+          date2.setUTCHours(0, 0, 0, 0);
+          return startOfUTCWeek(date2, options);
+        }
+        var year2 = !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
+        date2.setUTCFullYear(year2, 0, options.firstWeekContainsDate);
+        date2.setUTCHours(0, 0, 0, 0);
+        return startOfUTCWeek(date2, options);
+      },
+      incompatibleTokens: ["y", "R", "u", "Q", "q", "M", "L", "I", "d", "D", "i", "t", "T"]
+    },
+    R: {
+      priority: 130,
+      parse: function(string, token, _match, _options) {
+        if (token === "R") {
+          return parseNDigitsSigned(4, string);
+        }
+        return parseNDigitsSigned(token.length, string);
+      },
+      set: function(_date, _flags, value, _options) {
+        var firstWeekOfYear = new Date(0);
+        firstWeekOfYear.setUTCFullYear(value, 0, 4);
+        firstWeekOfYear.setUTCHours(0, 0, 0, 0);
+        return startOfUTCISOWeek(firstWeekOfYear);
+      },
+      incompatibleTokens: ["G", "y", "Y", "u", "Q", "q", "M", "L", "w", "d", "D", "e", "c", "t", "T"]
+    },
+    u: {
+      priority: 130,
+      parse: function(string, token, _match, _options) {
+        if (token === "u") {
+          return parseNDigitsSigned(4, string);
+        }
+        return parseNDigitsSigned(token.length, string);
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCFullYear(value, 0, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["G", "y", "Y", "R", "w", "I", "i", "e", "c", "t", "T"]
+    },
+    Q: {
+      priority: 120,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "Q":
+          case "QQ":
+            return parseNDigits(token.length, string);
+          case "Qo":
+            return match2.ordinalNumber(string, {
+              unit: "quarter"
+            });
+          case "QQQ":
+            return match2.quarter(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.quarter(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "QQQQQ":
+            return match2.quarter(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "QQQQ":
+          default:
+            return match2.quarter(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.quarter(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.quarter(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 4;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMonth((value - 1) * 3, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "q", "M", "L", "w", "I", "d", "D", "i", "e", "c", "t", "T"]
+    },
+    q: {
+      priority: 120,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "q":
+          case "qq":
+            return parseNDigits(token.length, string);
+          case "qo":
+            return match2.ordinalNumber(string, {
+              unit: "quarter"
+            });
+          case "qqq":
+            return match2.quarter(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.quarter(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "qqqqq":
+            return match2.quarter(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "qqqq":
+          default:
+            return match2.quarter(string, {
+              width: "wide",
+              context: "standalone"
+            }) || match2.quarter(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.quarter(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 4;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMonth((value - 1) * 3, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "Q", "M", "L", "w", "I", "d", "D", "i", "e", "c", "t", "T"]
+    },
+    M: {
+      priority: 110,
+      parse: function(string, token, match2, _options) {
+        var valueCallback = function(value) {
+          return value - 1;
+        };
+        switch (token) {
+          case "M":
+            return parseNumericPattern(numericPatterns.month, string, valueCallback);
+          case "MM":
+            return parseNDigits(2, string, valueCallback);
+          case "Mo":
+            return match2.ordinalNumber(string, {
+              unit: "month",
+              valueCallback
+            });
+          case "MMM":
+            return match2.month(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.month(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "MMMMM":
+            return match2.month(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "MMMM":
+          default:
+            return match2.month(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.month(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.month(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 11;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMonth(value, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "q", "Q", "L", "w", "I", "D", "i", "e", "c", "t", "T"]
+    },
+    L: {
+      priority: 110,
+      parse: function(string, token, match2, _options) {
+        var valueCallback = function(value) {
+          return value - 1;
+        };
+        switch (token) {
+          case "L":
+            return parseNumericPattern(numericPatterns.month, string, valueCallback);
+          case "LL":
+            return parseNDigits(2, string, valueCallback);
+          case "Lo":
+            return match2.ordinalNumber(string, {
+              unit: "month",
+              valueCallback
+            });
+          case "LLL":
+            return match2.month(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.month(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "LLLLL":
+            return match2.month(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "LLLL":
+          default:
+            return match2.month(string, {
+              width: "wide",
+              context: "standalone"
+            }) || match2.month(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.month(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 11;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMonth(value, 1);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "q", "Q", "M", "w", "I", "D", "i", "e", "c", "t", "T"]
+    },
+    w: {
+      priority: 100,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "w":
+            return parseNumericPattern(numericPatterns.week, string);
+          case "wo":
+            return match2.ordinalNumber(string, {
+              unit: "week"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 53;
+      },
+      set: function(date2, _flags, value, options) {
+        return startOfUTCWeek(setUTCWeek(date2, value, options), options);
+      },
+      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "i", "t", "T"]
+    },
+    I: {
+      priority: 100,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "I":
+            return parseNumericPattern(numericPatterns.week, string);
+          case "Io":
+            return match2.ordinalNumber(string, {
+              unit: "week"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 53;
+      },
+      set: function(date2, _flags, value, options) {
+        return startOfUTCISOWeek(setUTCISOWeek(date2, value, options), options);
+      },
+      incompatibleTokens: ["y", "Y", "u", "q", "Q", "M", "L", "w", "d", "D", "e", "c", "t", "T"]
+    },
+    d: {
+      priority: 90,
+      subPriority: 1,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "d":
+            return parseNumericPattern(numericPatterns.date, string);
+          case "do":
+            return match2.ordinalNumber(string, {
+              unit: "date"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(date2, value, _options) {
+        var year2 = date2.getUTCFullYear();
+        var isLeapYear = isLeapYearIndex(year2);
+        var month2 = date2.getUTCMonth();
+        if (isLeapYear) {
+          return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month2];
+        } else {
+          return value >= 1 && value <= DAYS_IN_MONTH[month2];
+        }
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCDate(value);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "q", "Q", "w", "I", "D", "i", "e", "c", "t", "T"]
+    },
+    D: {
+      priority: 90,
+      subPriority: 1,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "D":
+          case "DD":
+            return parseNumericPattern(numericPatterns.dayOfYear, string);
+          case "Do":
+            return match2.ordinalNumber(string, {
+              unit: "date"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(date2, value, _options) {
+        var year2 = date2.getUTCFullYear();
+        var isLeapYear = isLeapYearIndex(year2);
+        if (isLeapYear) {
+          return value >= 1 && value <= 366;
+        } else {
+          return value >= 1 && value <= 365;
+        }
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMonth(0, value);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["Y", "R", "q", "Q", "M", "L", "w", "I", "d", "E", "i", "e", "c", "t", "T"]
+    },
+    E: {
+      priority: 90,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "E":
+          case "EE":
+          case "EEE":
+            return match2.day(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "EEEEE":
+            return match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "EEEEEE":
+            return match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "EEEE":
+          default:
+            return match2.day(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 6;
+      },
+      set: function(date2, _flags, value, options) {
+        date2 = setUTCDay(date2, value, options);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["D", "i", "e", "c", "t", "T"]
+    },
+    e: {
+      priority: 90,
+      parse: function(string, token, match2, options) {
+        var valueCallback = function(value) {
+          var wholeWeekDays = Math.floor((value - 1) / 7) * 7;
+          return (value + options.weekStartsOn + 6) % 7 + wholeWeekDays;
+        };
+        switch (token) {
+          case "e":
+          case "ee":
+            return parseNDigits(token.length, string, valueCallback);
+          case "eo":
+            return match2.ordinalNumber(string, {
+              unit: "day",
+              valueCallback
+            });
+          case "eee":
+            return match2.day(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "eeeee":
+            return match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "eeeeee":
+            return match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "eeee":
+          default:
+            return match2.day(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 6;
+      },
+      set: function(date2, _flags, value, options) {
+        date2 = setUTCDay(date2, value, options);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "E", "i", "c", "t", "T"]
+    },
+    c: {
+      priority: 90,
+      parse: function(string, token, match2, options) {
+        var valueCallback = function(value) {
+          var wholeWeekDays = Math.floor((value - 1) / 7) * 7;
+          return (value + options.weekStartsOn + 6) % 7 + wholeWeekDays;
+        };
+        switch (token) {
+          case "c":
+          case "cc":
+            return parseNDigits(token.length, string, valueCallback);
+          case "co":
+            return match2.ordinalNumber(string, {
+              unit: "day",
+              valueCallback
+            });
+          case "ccc":
+            return match2.day(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "short",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "ccccc":
+            return match2.day(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "cccccc":
+            return match2.day(string, {
+              width: "short",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+          case "cccc":
+          default:
+            return match2.day(string, {
+              width: "wide",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "abbreviated",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "short",
+              context: "standalone"
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "standalone"
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 6;
+      },
+      set: function(date2, _flags, value, options) {
+        date2 = setUTCDay(date2, value, options);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "E", "i", "e", "t", "T"]
+    },
+    i: {
+      priority: 90,
+      parse: function(string, token, match2, _options) {
+        var valueCallback = function(value) {
+          if (value === 0) {
+            return 7;
+          }
+          return value;
+        };
+        switch (token) {
+          case "i":
+          case "ii":
+            return parseNDigits(token.length, string);
+          case "io":
+            return match2.ordinalNumber(string, {
+              unit: "day"
+            });
+          case "iii":
+            return match2.day(string, {
+              width: "abbreviated",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting",
+              valueCallback
+            });
+          case "iiiii":
+            return match2.day(string, {
+              width: "narrow",
+              context: "formatting",
+              valueCallback
+            });
+          case "iiiiii":
+            return match2.day(string, {
+              width: "short",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting",
+              valueCallback
+            });
+          case "iiii":
+          default:
+            return match2.day(string, {
+              width: "wide",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "abbreviated",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "short",
+              context: "formatting",
+              valueCallback
+            }) || match2.day(string, {
+              width: "narrow",
+              context: "formatting",
+              valueCallback
+            });
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 7;
+      },
+      set: function(date2, _flags, value, options) {
+        date2 = setUTCISODay(date2, value, options);
+        date2.setUTCHours(0, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["y", "Y", "u", "q", "Q", "M", "L", "w", "d", "D", "E", "e", "c", "t", "T"]
+    },
+    a: {
+      priority: 80,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "a":
+          case "aa":
+          case "aaa":
+            return match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "aaaaa":
+            return match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "aaaa":
+          default:
+            return match2.dayPeriod(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["b", "B", "H", "k", "t", "T"]
+    },
+    b: {
+      priority: 80,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "b":
+          case "bb":
+          case "bbb":
+            return match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "bbbbb":
+            return match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "bbbb":
+          default:
+            return match2.dayPeriod(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["a", "B", "H", "k", "t", "T"]
+    },
+    B: {
+      priority: 80,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "B":
+          case "BB":
+          case "BBB":
+            return match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "BBBBB":
+            return match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+          case "BBBB":
+          default:
+            return match2.dayPeriod(string, {
+              width: "wide",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "abbreviated",
+              context: "formatting"
+            }) || match2.dayPeriod(string, {
+              width: "narrow",
+              context: "formatting"
+            });
+        }
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["a", "b", "t", "T"]
+    },
+    h: {
+      priority: 70,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "h":
+            return parseNumericPattern(numericPatterns.hour12h, string);
+          case "ho":
+            return match2.ordinalNumber(string, {
+              unit: "hour"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 12;
+      },
+      set: function(date2, _flags, value, _options) {
+        var isPM = date2.getUTCHours() >= 12;
+        if (isPM && value < 12) {
+          date2.setUTCHours(value + 12, 0, 0, 0);
+        } else if (!isPM && value === 12) {
+          date2.setUTCHours(0, 0, 0, 0);
+        } else {
+          date2.setUTCHours(value, 0, 0, 0);
+        }
+        return date2;
+      },
+      incompatibleTokens: ["H", "K", "k", "t", "T"]
+    },
+    H: {
+      priority: 70,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "H":
+            return parseNumericPattern(numericPatterns.hour23h, string);
+          case "Ho":
+            return match2.ordinalNumber(string, {
+              unit: "hour"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 23;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCHours(value, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["a", "b", "h", "K", "k", "t", "T"]
+    },
+    K: {
+      priority: 70,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "K":
+            return parseNumericPattern(numericPatterns.hour11h, string);
+          case "Ko":
+            return match2.ordinalNumber(string, {
+              unit: "hour"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 11;
+      },
+      set: function(date2, _flags, value, _options) {
+        var isPM = date2.getUTCHours() >= 12;
+        if (isPM && value < 12) {
+          date2.setUTCHours(value + 12, 0, 0, 0);
+        } else {
+          date2.setUTCHours(value, 0, 0, 0);
+        }
+        return date2;
+      },
+      incompatibleTokens: ["h", "H", "k", "t", "T"]
+    },
+    k: {
+      priority: 70,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "k":
+            return parseNumericPattern(numericPatterns.hour24h, string);
+          case "ko":
+            return match2.ordinalNumber(string, {
+              unit: "hour"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 1 && value <= 24;
+      },
+      set: function(date2, _flags, value, _options) {
+        var hours2 = value <= 24 ? value % 24 : value;
+        date2.setUTCHours(hours2, 0, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["a", "b", "h", "H", "K", "t", "T"]
+    },
+    m: {
+      priority: 60,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "m":
+            return parseNumericPattern(numericPatterns.minute, string);
+          case "mo":
+            return match2.ordinalNumber(string, {
+              unit: "minute"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 59;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMinutes(value, 0, 0);
+        return date2;
+      },
+      incompatibleTokens: ["t", "T"]
+    },
+    s: {
+      priority: 50,
+      parse: function(string, token, match2, _options) {
+        switch (token) {
+          case "s":
+            return parseNumericPattern(numericPatterns.second, string);
+          case "so":
+            return match2.ordinalNumber(string, {
+              unit: "second"
+            });
+          default:
+            return parseNDigits(token.length, string);
+        }
+      },
+      validate: function(_date, value, _options) {
+        return value >= 0 && value <= 59;
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCSeconds(value, 0);
+        return date2;
+      },
+      incompatibleTokens: ["t", "T"]
+    },
+    S: {
+      priority: 30,
+      parse: function(string, token, _match, _options) {
+        var valueCallback = function(value) {
+          return Math.floor(value * Math.pow(10, -token.length + 3));
+        };
+        return parseNDigits(token.length, string, valueCallback);
+      },
+      set: function(date2, _flags, value, _options) {
+        date2.setUTCMilliseconds(value);
+        return date2;
+      },
+      incompatibleTokens: ["t", "T"]
+    },
+    X: {
+      priority: 10,
+      parse: function(string, token, _match, _options) {
+        switch (token) {
+          case "X":
+            return parseTimezonePattern(timezonePatterns.basicOptionalMinutes, string);
+          case "XX":
+            return parseTimezonePattern(timezonePatterns.basic, string);
+          case "XXXX":
+            return parseTimezonePattern(timezonePatterns.basicOptionalSeconds, string);
+          case "XXXXX":
+            return parseTimezonePattern(timezonePatterns.extendedOptionalSeconds, string);
+          case "XXX":
+          default:
+            return parseTimezonePattern(timezonePatterns.extended, string);
+        }
+      },
+      set: function(date2, flags, value, _options) {
+        if (flags.timestampIsSet) {
+          return date2;
+        }
+        return new Date(date2.getTime() - value);
+      },
+      incompatibleTokens: ["t", "T", "x"]
+    },
+    x: {
+      priority: 10,
+      parse: function(string, token, _match, _options) {
+        switch (token) {
+          case "x":
+            return parseTimezonePattern(timezonePatterns.basicOptionalMinutes, string);
+          case "xx":
+            return parseTimezonePattern(timezonePatterns.basic, string);
+          case "xxxx":
+            return parseTimezonePattern(timezonePatterns.basicOptionalSeconds, string);
+          case "xxxxx":
+            return parseTimezonePattern(timezonePatterns.extendedOptionalSeconds, string);
+          case "xxx":
+          default:
+            return parseTimezonePattern(timezonePatterns.extended, string);
+        }
+      },
+      set: function(date2, flags, value, _options) {
+        if (flags.timestampIsSet) {
+          return date2;
+        }
+        return new Date(date2.getTime() - value);
+      },
+      incompatibleTokens: ["t", "T", "X"]
+    },
+    t: {
+      priority: 40,
+      parse: function(string, _token, _match, _options) {
+        return parseAnyDigitsSigned(string);
+      },
+      set: function(_date, _flags, value, _options) {
+        return [new Date(value * 1e3), {
+          timestampIsSet: true
+        }];
+      },
+      incompatibleTokens: "*"
+    },
+    T: {
+      priority: 20,
+      parse: function(string, _token, _match, _options) {
+        return parseAnyDigitsSigned(string);
+      },
+      set: function(_date, _flags, value, _options) {
+        return [new Date(value), {
+          timestampIsSet: true
+        }];
+      },
+      incompatibleTokens: "*"
+    }
+  };
+  var parsers_default = parsers;
+
+  // node_modules/date-fns/esm/parse/index.js
+  var TIMEZONE_UNIT_PRIORITY = 10;
+  var formattingTokensRegExp2 = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+  var longFormattingTokensRegExp2 = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+  var escapedStringRegExp2 = /^'([^]*?)'?$/;
+  var doubleQuoteRegExp2 = /''/g;
+  var notWhitespaceRegExp = /\S/;
+  var unescapedLatinCharacterRegExp2 = /[a-zA-Z]/;
+  function parse(dirtyDateString, dirtyFormatString, dirtyReferenceDate, dirtyOptions) {
+    requiredArgs(3, arguments);
+    var dateString = String(dirtyDateString);
+    var formatString = String(dirtyFormatString);
+    var options = dirtyOptions || {};
+    var locale2 = options.locale || en_US_default;
+    if (!locale2.match) {
+      throw new RangeError("locale must contain match property");
+    }
+    var localeFirstWeekContainsDate = locale2.options && locale2.options.firstWeekContainsDate;
+    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
+    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
+    }
+    var localeWeekStartsOn = locale2.options && locale2.options.weekStartsOn;
+    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn);
+    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
+    }
+    if (formatString === "") {
+      if (dateString === "") {
+        return toDate(dirtyReferenceDate);
+      } else {
+        return new Date(NaN);
+      }
+    }
+    var subFnOptions = {
+      firstWeekContainsDate,
+      weekStartsOn,
+      locale: locale2
+    };
+    var setters = [{
+      priority: TIMEZONE_UNIT_PRIORITY,
+      subPriority: -1,
+      set: dateToSystemTimezone,
+      index: 0
+    }];
+    var i2;
+    var tokens = formatString.match(longFormattingTokensRegExp2).map(function(substring) {
+      var firstCharacter2 = substring[0];
+      if (firstCharacter2 === "p" || firstCharacter2 === "P") {
+        var longFormatter = longFormatters_default[firstCharacter2];
+        return longFormatter(substring, locale2.formatLong, subFnOptions);
+      }
+      return substring;
+    }).join("").match(formattingTokensRegExp2);
+    var usedTokens = [];
+    for (i2 = 0; i2 < tokens.length; i2++) {
+      var token = tokens[i2];
+      if (!options.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) {
+        throwProtectedError(token, formatString, dirtyDateString);
+      }
+      if (!options.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) {
+        throwProtectedError(token, formatString, dirtyDateString);
+      }
+      var firstCharacter = token[0];
+      var parser = parsers_default[firstCharacter];
+      if (parser) {
+        var incompatibleTokens = parser.incompatibleTokens;
+        if (Array.isArray(incompatibleTokens)) {
+          var incompatibleToken = void 0;
+          for (var _i = 0; _i < usedTokens.length; _i++) {
+            var usedToken = usedTokens[_i].token;
+            if (incompatibleTokens.indexOf(usedToken) !== -1 || usedToken === firstCharacter) {
+              incompatibleToken = usedTokens[_i];
+              break;
+            }
+          }
+          if (incompatibleToken) {
+            throw new RangeError("The format string mustn't contain `".concat(incompatibleToken.fullToken, "` and `").concat(token, "` at the same time"));
+          }
+        } else if (parser.incompatibleTokens === "*" && usedTokens.length) {
+          throw new RangeError("The format string mustn't contain `".concat(token, "` and any other token at the same time"));
+        }
+        usedTokens.push({
+          token: firstCharacter,
+          fullToken: token
+        });
+        var parseResult = parser.parse(dateString, token, locale2.match, subFnOptions);
+        if (!parseResult) {
+          return new Date(NaN);
+        }
+        setters.push({
+          priority: parser.priority,
+          subPriority: parser.subPriority || 0,
+          set: parser.set,
+          validate: parser.validate,
+          value: parseResult.value,
+          index: setters.length
+        });
+        dateString = parseResult.rest;
+      } else {
+        if (firstCharacter.match(unescapedLatinCharacterRegExp2)) {
+          throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
+        }
+        if (token === "''") {
+          token = "'";
+        } else if (firstCharacter === "'") {
+          token = cleanEscapedString2(token);
+        }
+        if (dateString.indexOf(token) === 0) {
+          dateString = dateString.slice(token.length);
+        } else {
+          return new Date(NaN);
+        }
+      }
+    }
+    if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
+      return new Date(NaN);
+    }
+    var uniquePrioritySetters = setters.map(function(setter2) {
+      return setter2.priority;
+    }).sort(function(a2, b2) {
+      return b2 - a2;
+    }).filter(function(priority, index2, array) {
+      return array.indexOf(priority) === index2;
+    }).map(function(priority) {
+      return setters.filter(function(setter2) {
+        return setter2.priority === priority;
+      }).sort(function(a2, b2) {
+        return b2.subPriority - a2.subPriority;
+      });
+    }).map(function(setterArray) {
+      return setterArray[0];
+    });
+    var date2 = toDate(dirtyReferenceDate);
+    if (isNaN(date2)) {
+      return new Date(NaN);
+    }
+    var utcDate = subMilliseconds(date2, getTimezoneOffsetInMilliseconds(date2));
+    var flags = {};
+    for (i2 = 0; i2 < uniquePrioritySetters.length; i2++) {
+      var setter = uniquePrioritySetters[i2];
+      if (setter.validate && !setter.validate(utcDate, setter.value, subFnOptions)) {
+        return new Date(NaN);
+      }
+      var result = setter.set(utcDate, flags, setter.value, subFnOptions);
+      if (result[0]) {
+        utcDate = result[0];
+        assign(flags, result[1]);
+      } else {
+        utcDate = result;
+      }
+    }
+    return utcDate;
+  }
+  function dateToSystemTimezone(date2, flags) {
+    if (flags.timestampIsSet) {
+      return date2;
+    }
+    var convertedDate = new Date(0);
+    convertedDate.setFullYear(date2.getUTCFullYear(), date2.getUTCMonth(), date2.getUTCDate());
+    convertedDate.setHours(date2.getUTCHours(), date2.getUTCMinutes(), date2.getUTCSeconds(), date2.getUTCMilliseconds());
+    return convertedDate;
+  }
+  function cleanEscapedString2(input) {
+    return input.match(escapedStringRegExp2)[1].replace(doubleQuoteRegExp2, "'");
+  }
+
+  // node_modules/date-fns/esm/parseISO/index.js
+  function parseISO(argument, dirtyOptions) {
+    requiredArgs(1, arguments);
+    var options = dirtyOptions || {};
+    var additionalDigits = options.additionalDigits == null ? 2 : toInteger(options.additionalDigits);
+    if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
+      throw new RangeError("additionalDigits must be 0, 1 or 2");
+    }
+    if (!(typeof argument === "string" || Object.prototype.toString.call(argument) === "[object String]")) {
+      return new Date(NaN);
+    }
+    var dateStrings = splitDateString(argument);
+    var date2;
+    if (dateStrings.date) {
+      var parseYearResult = parseYear(dateStrings.date, additionalDigits);
+      date2 = parseDate(parseYearResult.restDateString, parseYearResult.year);
+    }
+    if (!date2 || isNaN(date2.getTime())) {
+      return new Date(NaN);
+    }
+    var timestamp = date2.getTime();
+    var time = 0;
+    var offset3;
+    if (dateStrings.time) {
+      time = parseTime(dateStrings.time);
+      if (isNaN(time)) {
+        return new Date(NaN);
+      }
+    }
+    if (dateStrings.timezone) {
+      offset3 = parseTimezone(dateStrings.timezone);
+      if (isNaN(offset3)) {
+        return new Date(NaN);
+      }
+    } else {
+      var dirtyDate = new Date(timestamp + time);
+      var result = new Date(0);
+      result.setFullYear(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate());
+      result.setHours(dirtyDate.getUTCHours(), dirtyDate.getUTCMinutes(), dirtyDate.getUTCSeconds(), dirtyDate.getUTCMilliseconds());
+      return result;
+    }
+    return new Date(timestamp + time + offset3);
+  }
+  var patterns = {
+    dateTimeDelimiter: /[T ]/,
+    timeZoneDelimiter: /[Z ]/i,
+    timezone: /([Z+-].*)$/
+  };
+  var dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+  var timeRegex = /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+  var timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+  function splitDateString(dateString) {
+    var dateStrings = {};
+    var array = dateString.split(patterns.dateTimeDelimiter);
+    var timeString;
+    if (array.length > 2) {
+      return dateStrings;
+    }
+    if (/:/.test(array[0])) {
+      timeString = array[0];
+    } else {
+      dateStrings.date = array[0];
+      timeString = array[1];
+      if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+        dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+        timeString = dateString.substr(dateStrings.date.length, dateString.length);
+      }
+    }
+    if (timeString) {
+      var token = patterns.timezone.exec(timeString);
+      if (token) {
+        dateStrings.time = timeString.replace(token[1], "");
+        dateStrings.timezone = token[1];
+      } else {
+        dateStrings.time = timeString;
+      }
+    }
+    return dateStrings;
+  }
+  function parseYear(dateString, additionalDigits) {
+    var regex = new RegExp("^(?:(\\d{4}|[+-]\\d{" + (4 + additionalDigits) + "})|(\\d{2}|[+-]\\d{" + (2 + additionalDigits) + "})$)");
+    var captures = dateString.match(regex);
+    if (!captures)
+      return {
+        year: NaN,
+        restDateString: ""
+      };
+    var year2 = captures[1] ? parseInt(captures[1]) : null;
+    var century = captures[2] ? parseInt(captures[2]) : null;
+    return {
+      year: century === null ? year2 : century * 100,
+      restDateString: dateString.slice((captures[1] || captures[2]).length)
+    };
+  }
+  function parseDate(dateString, year2) {
+    if (year2 === null)
+      return new Date(NaN);
+    var captures = dateString.match(dateRegex);
+    if (!captures)
+      return new Date(NaN);
+    var isWeekDate = !!captures[4];
+    var dayOfYear = parseDateUnit(captures[1]);
+    var month2 = parseDateUnit(captures[2]) - 1;
+    var day2 = parseDateUnit(captures[3]);
+    var week = parseDateUnit(captures[4]);
+    var dayOfWeek = parseDateUnit(captures[5]) - 1;
+    if (isWeekDate) {
+      if (!validateWeekDate(year2, week, dayOfWeek)) {
+        return new Date(NaN);
+      }
+      return dayOfISOWeekYear(year2, week, dayOfWeek);
+    } else {
+      var date2 = new Date(0);
+      if (!validateDate(year2, month2, day2) || !validateDayOfYearDate(year2, dayOfYear)) {
+        return new Date(NaN);
+      }
+      date2.setUTCFullYear(year2, month2, Math.max(dayOfYear, day2));
+      return date2;
+    }
+  }
+  function parseDateUnit(value) {
+    return value ? parseInt(value) : 1;
+  }
+  function parseTime(timeString) {
+    var captures = timeString.match(timeRegex);
+    if (!captures)
+      return NaN;
+    var hours2 = parseTimeUnit(captures[1]);
+    var minutes2 = parseTimeUnit(captures[2]);
+    var seconds2 = parseTimeUnit(captures[3]);
+    if (!validateTime(hours2, minutes2, seconds2)) {
+      return NaN;
+    }
+    return hours2 * millisecondsInHour + minutes2 * millisecondsInMinute + seconds2 * 1e3;
+  }
+  function parseTimeUnit(value) {
+    return value && parseFloat(value.replace(",", ".")) || 0;
+  }
+  function parseTimezone(timezoneString) {
+    if (timezoneString === "Z")
+      return 0;
+    var captures = timezoneString.match(timezoneRegex);
+    if (!captures)
+      return 0;
+    var sign2 = captures[1] === "+" ? -1 : 1;
+    var hours2 = parseInt(captures[2]);
+    var minutes2 = captures[3] && parseInt(captures[3]) || 0;
+    if (!validateTimezone(hours2, minutes2)) {
+      return NaN;
+    }
+    return sign2 * (hours2 * millisecondsInHour + minutes2 * millisecondsInMinute);
+  }
+  function dayOfISOWeekYear(isoWeekYear, week, day2) {
+    var date2 = new Date(0);
+    date2.setUTCFullYear(isoWeekYear, 0, 4);
+    var fourthOfJanuaryDay = date2.getUTCDay() || 7;
+    var diff2 = (week - 1) * 7 + day2 + 1 - fourthOfJanuaryDay;
+    date2.setUTCDate(date2.getUTCDate() + diff2);
+    return date2;
+  }
+  var daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  function isLeapYearIndex2(year2) {
+    return year2 % 400 === 0 || year2 % 4 === 0 && year2 % 100 !== 0;
+  }
+  function validateDate(year2, month2, date2) {
+    return month2 >= 0 && month2 <= 11 && date2 >= 1 && date2 <= (daysInMonths[month2] || (isLeapYearIndex2(year2) ? 29 : 28));
+  }
+  function validateDayOfYearDate(year2, dayOfYear) {
+    return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex2(year2) ? 366 : 365);
+  }
+  function validateWeekDate(_year, week, day2) {
+    return week >= 1 && week <= 53 && day2 >= 0 && day2 <= 6;
+  }
+  function validateTime(hours2, minutes2, seconds2) {
+    if (hours2 === 24) {
+      return minutes2 === 0 && seconds2 === 0;
+    }
+    return seconds2 >= 0 && seconds2 < 60 && minutes2 >= 0 && minutes2 < 60 && hours2 >= 0 && hours2 < 25;
+  }
+  function validateTimezone(_hours, minutes2) {
+    return minutes2 >= 0 && minutes2 <= 59;
+  }
+
   // src/Components/AssetsPage/TableContent.tsx
   var createHeaders = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react57.useRef)()
+      ref: (0, import_react55.useRef)()
     }));
   };
   var TableContent = ({ headers, minCellWidth }) => {
-    const tableData = [
-      {
-        id: 1,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 32134
-      },
-      {
-        id: 2,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 321345
-      },
-      {
-        id: 3,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 32134567
-      },
-      {
-        id: 4,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 321345675
-      },
-      {
-        id: 5,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 3213456785
-      },
-      {
-        id: 6,
-        checkbox: false,
-        AssetsId: "assetsId",
-        Projects: "Large Detroit Style Pizza",
-        inspection: 3213456785
-      }
-    ];
-    const [tableHeight, setTableHeight] = (0, import_react57.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react57.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react57.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react57.useState)(false);
-    const [activeTab, setActiveTab] = (0, import_react57.useState)("Details");
-    const [detailsOpen, setDetailsOpen] = (0, import_react57.useState)(false);
-    const tableElement = (0, import_react57.useRef)(null);
+    var _a, _b;
+    const data = useSelector(selectOrganizationAssets);
+    const [tableHeight, setTableHeight] = (0, import_react55.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react55.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react55.useState)((_a = data == null ? void 0 : data.assets) == null ? void 0 : _a.data);
+    const [activeFilter, setActiveFilter] = (0, import_react55.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react55.useState)("Details");
+    const [detailsOpen, setDetailsOpen] = (0, import_react55.useState)(false);
+    const tableElement = (0, import_react55.useRef)(null);
     const columns = createHeaders(headers);
-    (0, import_react57.useEffect)(() => {
+    console.log((_b = data == null ? void 0 : data.assets) == null ? void 0 : _b.data);
+    (0, import_react55.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const detailsRef = useOnClickOutside_default(() => {
@@ -34746,7 +37899,7 @@ cursor: pointer;
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react57.useCallback)((e2) => {
+    const mouseMove = (0, import_react55.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -34758,15 +37911,15 @@ cursor: pointer;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react57.useCallback)(() => {
+    const removeListeners = (0, import_react55.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react57.useCallback)(() => {
+    const mouseUp = (0, import_react55.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react57.useEffect)(() => {
+    (0, import_react55.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -34777,14 +37930,14 @@ cursor: pointer;
     }, [activeIndex, mouseMove, mouseUp, removeListeners]);
     const handleCheckCheckboxes = (e2) => {
       const target = e2.target.checked;
-      const arr = tableDataState.map((item) => {
+      const arr = tableDataState == null ? void 0 : tableDataState.map((item) => {
         return __spreadProps(__spreadValues({}, item), { checkbox: target });
       });
       setTableDataState(arr);
       console.log(arr, "arr");
     };
     const handleCheckCheckbox = (e2, id) => {
-      const arr = tableDataState.map((item) => {
+      const arr = tableDataState == null ? void 0 : tableDataState.map((item) => {
         if (item.id === id) {
           return __spreadProps(__spreadValues({}, item), { checkbox: e2.target.checked });
         } else {
@@ -34796,7 +37949,7 @@ cursor: pointer;
     };
     const handleFilterColumn = () => {
       const withoutNone = [];
-      tableData == null ? void 0 : tableData.forEach((item) => {
+      data == null ? void 0 : data.assets.data.forEach((item) => {
         if (item)
           withoutNone.push(item);
       });
@@ -34804,83 +37957,61 @@ cursor: pointer;
       setActiveFilter(!activeFilter);
       console.log(sorted, "sorted");
     };
-    return /* @__PURE__ */ import_react57.default.createElement("div", {
+    return /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react57.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react57.default.createElement("div", {
+    }, /* @__PURE__ */ import_react55.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react57.default.createElement("table", {
+    }, /* @__PURE__ */ import_react55.default.createElement("table", {
       className: "resizeable-table",
-      ref: tableElement,
-      style: { "gridTemplateColumns": "55px 191px 128px 191px 191px 191px 191px 191px" }
-    }, /* @__PURE__ */ import_react57.default.createElement("thead", null, /* @__PURE__ */ import_react57.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
+      ref: tableElement
+    }, /* @__PURE__ */ import_react55.default.createElement("thead", null, /* @__PURE__ */ import_react55.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: i2,
-      className: "checkbox"
-    }, /* @__PURE__ */ import_react57.default.createElement("span", null, /* @__PURE__ */ import_react57.default.createElement("input", {
+      className: i2 === 0 ? "checkboxHeader" : "checkbox"
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, /* @__PURE__ */ import_react55.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
-      ref,
-      key: i2
-    }, /* @__PURE__ */ import_react57.default.createElement(FilterWrapper, {
-      onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react57.default.createElement("span", null, text), /* @__PURE__ */ import_react57.default.createElement(IconWrapper2, null, /* @__PURE__ */ import_react57.default.createElement(TableArrowTop_default, {
-      color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react57.default.createElement(TableArrowBottom_default, {
-      color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react57.default.createElement("div", {
-      style: { height: tableHeight },
-      onMouseDown: () => mouseDown(i2),
-      className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
+    })))) : /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("th", {
       ref,
       key: text,
-      className: "Items"
-    }, /* @__PURE__ */ import_react57.default.createElement("span", null, text), /* @__PURE__ */ import_react57.default.createElement("div", {
+      className: i2 === 1 ? "first" : "tableHeaders"
+    }, /* @__PURE__ */ import_react55.default.createElement("span", null, text), /* @__PURE__ */ import_react55.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
-      ref,
-      key: text
-    }, /* @__PURE__ */ import_react57.default.createElement("span", null, text), /* @__PURE__ */ import_react57.default.createElement("div", {
-      style: { height: tableHeight },
-      onMouseDown: () => mouseDown(i2),
-      className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react57.default.createElement("tbody", null, tableDataState.map((item, index2) => {
-      return /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("tr", {
+    })))))), /* @__PURE__ */ import_react55.default.createElement("tbody", null, data && data.assets && data.assets.data && data.assets.data.map((item, index2) => {
+      return /* @__PURE__ */ import_react55.default.createElement(import_react55.default.Fragment, null, /* @__PURE__ */ import_react55.default.createElement("tr", {
         key: index2
-      }, /* @__PURE__ */ import_react57.default.createElement("td", {
+      }, /* @__PURE__ */ import_react55.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react57.default.createElement("input", {
+      }, /* @__PURE__ */ import_react55.default.createElement("input", {
         type: "checkbox",
-        checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", {
         className: "Items",
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.AssetsId), /* @__PURE__ */ import_react57.default.createElement("span", {
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap, " * ", item.systemIndexId.downstream_ap), /* @__PURE__ */ import_react55.default.createElement("span", {
         className: "Details",
         onClick: () => {
           setTimeout(() => {
             setDetailsOpen(true);
           }, 0.1);
         }
-      }, "Details ", ">"))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.Projects))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement("td", null, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspection))));
-    }))), detailsOpen && /* @__PURE__ */ import_react57.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react57.default.createElement(Wrapper10, {
+      }, "Details ", ">"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))));
+    }))), detailsOpen && /* @__PURE__ */ import_react55.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react55.default.createElement(Wrapper10, {
       ref: detailsRef
-    }, /* @__PURE__ */ import_react57.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react57.default.createElement(Cross, {
+    }, /* @__PURE__ */ import_react55.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react55.default.createElement(Cross, {
       onClick: () => setDetailsOpen(false)
-    }, "X"), /* @__PURE__ */ import_react57.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react57.default.createElement(Tabs, null, /* @__PURE__ */ import_react57.default.createElement(Tab, null, /* @__PURE__ */ import_react57.default.createElement(Span, {
+    }, "X"), /* @__PURE__ */ import_react55.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react55.default.createElement(Tabs, null, /* @__PURE__ */ import_react55.default.createElement(Tab, null, /* @__PURE__ */ import_react55.default.createElement(Span, {
       active: activeTab === "Details",
       onClick: () => setActiveTab("Details")
-    }, "Details")), /* @__PURE__ */ import_react57.default.createElement(Tab, null, /* @__PURE__ */ import_react57.default.createElement(Span, {
+    }, "Details")), /* @__PURE__ */ import_react55.default.createElement(Tab, null, /* @__PURE__ */ import_react55.default.createElement(Span, {
       active: activeTab === "Inspections",
       style: { marginLeft: "20px" },
       onClick: () => setActiveTab("Inspections")
-    }, "Inspections"))), /* @__PURE__ */ import_react57.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react57.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react57.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react57.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react57.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
+    }, "Inspections"))), /* @__PURE__ */ import_react55.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react55.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react55.default.createElement(Row, null, /* @__PURE__ */ import_react55.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react55.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react55.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react55.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react55.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
   };
   var TableContent_default = TableContent;
   var InspectionRow = styled_components_browser_esm_default.div`
@@ -34991,20 +38122,20 @@ cursor: pointer;
 `;
 
   // src/Components/common/icons/AssetsPageIcons/FolderPlus.tsx
-  var import_react58 = __toESM(require_react(), 1);
+  var import_react56 = __toESM(require_react(), 1);
   var FolderPlus = () => {
-    return /* @__PURE__ */ import_react58.default.createElement("svg", {
+    return /* @__PURE__ */ import_react56.default.createElement("svg", {
       width: "18",
       height: "18",
       viewBox: "0 0 24 24",
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg"
-    }, /* @__PURE__ */ import_react58.default.createElement("path", {
+    }, /* @__PURE__ */ import_react56.default.createElement("path", {
       fillRule: "evenodd",
       clipRule: "evenodd",
       d: "M19.2188 10.4062H21.75C22.1648 10.4062 22.5 10.7414 22.5 11.1562C22.5 11.2523 22.4813 11.3484 22.4461 11.4375L21.8154 13H20.0969L20.5008 12H6.14766L3.72656 18H13V19.6875H2.25C1.83516 19.6875 1.5 19.3523 1.5 18.9375V5.0625C1.5 4.64766 1.83516 4.3125 2.25 4.3125H8.20781C8.25573 4.31291 8.30174 4.33132 8.33672 4.36406L11.0859 6.99375H18.4688C18.8836 6.99375 19.2188 7.32891 19.2188 7.74375V10.4062ZM7.60547 6H3.1875V15.075L4.88203 10.875C4.99688 10.5914 5.27344 10.4062 5.57812 10.4062H17.5312V8.68125H10.4086L7.60547 6Z",
       fill: "currentColor"
-    }), /* @__PURE__ */ import_react58.default.createElement("path", {
+    }), /* @__PURE__ */ import_react56.default.createElement("path", {
       d: "M22.125 16.9688H19.4062V14.25C19.4062 14.1469 19.3219 14.0625 19.2188 14.0625H18.0938C17.9906 14.0625 17.9062 14.1469 17.9062 14.25V16.9688H15.1875C15.0844 16.9688 15 17.0531 15 17.1562V18.2812C15 18.3844 15.0844 18.4688 15.1875 18.4688H17.9062V21.1875C17.9062 21.2906 17.9906 21.375 18.0938 21.375H19.2188C19.3219 21.375 19.4062 21.2906 19.4062 21.1875V18.4688H22.125C22.2281 18.4688 22.3125 18.3844 22.3125 18.2812V17.1562C22.3125 17.0531 22.2281 16.9688 22.125 16.9688Z",
       fill: "currentColor"
     }));
@@ -35012,9 +38143,9 @@ cursor: pointer;
   var FolderPlus_default = FolderPlus;
 
   // src/Components/common/icons/AssetsPageIcons/Filter.tsx
-  var import_react59 = __toESM(require_react(), 1);
+  var import_react57 = __toESM(require_react(), 1);
   var Filter = () => {
-    return /* @__PURE__ */ import_react59.default.createElement("svg", {
+    return /* @__PURE__ */ import_react57.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "filter",
@@ -35022,16 +38153,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react59.default.createElement("path", {
+    }, /* @__PURE__ */ import_react57.default.createElement("path", {
       d: "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
     }));
   };
   var Filter_default = Filter;
 
   // src/Components/common/icons/AssetsPageIcons/EyeIcon.tsx
-  var import_react60 = __toESM(require_react(), 1);
+  var import_react58 = __toESM(require_react(), 1);
   var EyeIcon = () => {
-    return /* @__PURE__ */ import_react60.default.createElement("svg", {
+    return /* @__PURE__ */ import_react58.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye",
@@ -35039,19 +38170,19 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react60.default.createElement("path", {
+    }, /* @__PURE__ */ import_react58.default.createElement("path", {
       d: "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
     }));
   };
   var EyeIcon_default = EyeIcon;
 
   // src/Components/TableUtils/Filter.tsx
-  var import_react62 = __toESM(require_react(), 1);
+  var import_react60 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/AssetsPageIcons/ArrowDownIcon.tsx
-  var import_react61 = __toESM(require_react(), 1);
+  var import_react59 = __toESM(require_react(), 1);
   var ArrowDownIcon = () => {
-    return /* @__PURE__ */ import_react61.default.createElement("svg", {
+    return /* @__PURE__ */ import_react59.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "down",
@@ -35059,7 +38190,7 @@ cursor: pointer;
       height: "12",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react61.default.createElement("path", {
+    }, /* @__PURE__ */ import_react59.default.createElement("path", {
       d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
     }));
   };
@@ -35067,7 +38198,7 @@ cursor: pointer;
 
   // src/Components/TableUtils/Filter.tsx
   var TableFilter = () => {
-    const [filters, setFilters2] = (0, import_react62.useState)([]);
+    const [filters, setFilters2] = (0, import_react60.useState)([]);
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const handleCheckboxs = (e2, item) => {
       if (e2.target.checked) {
@@ -35086,21 +38217,21 @@ cursor: pointer;
         checkbox.checked = false;
       });
     };
-    return /* @__PURE__ */ import_react62.default.createElement(import_react62.default.Fragment, null, /* @__PURE__ */ import_react62.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react62.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react62.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react62.default.createElement(Clear, {
+    return /* @__PURE__ */ import_react60.default.createElement(import_react60.default.Fragment, null, /* @__PURE__ */ import_react60.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Clear, {
       onClick: handleClear,
       active: Boolean(filters.length >= 1)
-    }, "Clear")), /* @__PURE__ */ import_react62.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react62.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react62.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react62.default.createElement(Apply, {
+    }, "Clear")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Apply, {
       active: Boolean(filters.length >= 1)
-    }, "Apply"))), /* @__PURE__ */ import_react62.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react62.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react62.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react62.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react62.default.createElement(FilterInput, null), /* @__PURE__ */ import_react62.default.createElement(Cross2, {
+    }, "Apply"))), /* @__PURE__ */ import_react60.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react60.default.createElement(FilterInput, null), /* @__PURE__ */ import_react60.default.createElement(Cross2, {
       onClick: () => handleDeleteFilter(item)
-    }, "\u0425")))), /* @__PURE__ */ import_react62.default.createElement(BodyItem, null, /* @__PURE__ */ import_react62.default.createElement(Left2, null, /* @__PURE__ */ import_react62.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react62.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react62.default.createElement(Rigth, null, /* @__PURE__ */ import_react62.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react62.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react62.default.createElement(HoverFilter, {
+    }, "\u0425")))), /* @__PURE__ */ import_react60.default.createElement(BodyItem, null, /* @__PURE__ */ import_react60.default.createElement(Left2, null, /* @__PURE__ */ import_react60.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react60.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react60.default.createElement(Rigth, null, /* @__PURE__ */ import_react60.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react60.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(HoverFilter, {
       key: index2
-    }, /* @__PURE__ */ import_react62.default.createElement(HoverFilterItem, {
+    }, /* @__PURE__ */ import_react60.default.createElement(HoverFilterItem, {
       onClick: (e2) => handleCheckboxs(e2, item)
-    }, /* @__PURE__ */ import_react62.default.createElement(Checkbox, null, /* @__PURE__ */ import_react62.default.createElement("input", {
+    }, /* @__PURE__ */ import_react60.default.createElement(Checkbox, null, /* @__PURE__ */ import_react60.default.createElement("input", {
       type: "checkbox",
       id: `checkbox${item}`
-    })), /* @__PURE__ */ import_react62.default.createElement(Label, {
+    })), /* @__PURE__ */ import_react60.default.createElement(Label, {
       htmlFor: `checkbox${item}`
     }, item)))))))));
   };
@@ -35262,12 +38393,12 @@ cursor: pointer;
 `;
 
   // src/Components/TableUtils/SettingsModal.tsx
-  var import_react66 = __toESM(require_react(), 1);
+  var import_react64 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/CloseEyeIcon.tsx
-  var import_react63 = __toESM(require_react(), 1);
+  var import_react61 = __toESM(require_react(), 1);
   var CloseEyeIcon = () => {
-    return /* @__PURE__ */ import_react63.default.createElement("svg", {
+    return /* @__PURE__ */ import_react61.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye-invisible",
@@ -35275,18 +38406,18 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react63.default.createElement("path", {
+    }, /* @__PURE__ */ import_react61.default.createElement("path", {
       d: "M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z"
-    }), /* @__PURE__ */ import_react63.default.createElement("path", {
+    }), /* @__PURE__ */ import_react61.default.createElement("path", {
       d: "M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z"
     }));
   };
   var CloseEyeIcon_default = CloseEyeIcon;
 
   // src/Components/common/icons/PinIcon.tsx
-  var import_react64 = __toESM(require_react(), 1);
+  var import_react62 = __toESM(require_react(), 1);
   var PinIcon = () => {
-    return /* @__PURE__ */ import_react64.default.createElement("svg", {
+    return /* @__PURE__ */ import_react62.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "pushpin",
@@ -35294,16 +38425,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react64.default.createElement("path", {
+    }, /* @__PURE__ */ import_react62.default.createElement("path", {
       d: "M878.3 392.1L631.9 145.7c-6.5-6.5-15-9.7-23.5-9.7s-17 3.2-23.5 9.7L423.8 306.9c-12.2-1.4-24.5-2-36.8-2-73.2 0-146.4 24.1-206.5 72.3a33.23 33.23 0 00-2.7 49.4l181.7 181.7-215.4 215.2a15.8 15.8 0 00-4.6 9.8l-3.4 37.2c-.9 9.4 6.6 17.4 15.9 17.4.5 0 1 0 1.5-.1l37.2-3.4c3.7-.3 7.2-2 9.8-4.6l215.4-215.4 181.7 181.7c6.5 6.5 15 9.7 23.5 9.7 9.7 0 19.3-4.2 25.9-12.4 56.3-70.3 79.7-158.3 70.2-243.4l161.1-161.1c12.9-12.8 12.9-33.8 0-46.8zM666.2 549.3l-24.5 24.5 3.8 34.4a259.92 259.92 0 01-30.4 153.9L262 408.8c12.9-7.1 26.3-13.1 40.3-17.9 27.2-9.4 55.7-14.1 84.7-14.1 9.6 0 19.3.5 28.9 1.6l34.4 3.8 24.5-24.5L608.5 224 800 415.5 666.2 549.3z"
     }));
   };
   var PinIcon_default = PinIcon;
 
   // src/Components/common/icons/SaveIcon.tsx
-  var import_react65 = __toESM(require_react(), 1);
+  var import_react63 = __toESM(require_react(), 1);
   var SaveIcon = () => {
-    return /* @__PURE__ */ import_react65.default.createElement("svg", {
+    return /* @__PURE__ */ import_react63.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "save",
@@ -35311,7 +38442,7 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react65.default.createElement("path", {
+    }, /* @__PURE__ */ import_react63.default.createElement("path", {
       d: "M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184zm456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840zM512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"
     }));
   };
@@ -35343,7 +38474,7 @@ cursor: pointer;
         isPinned: false
       }
     ];
-    const [newArr, setNewArr] = (0, import_react66.useState)(arr);
+    const [newArr, setNewArr] = (0, import_react64.useState)(arr);
     const handlePinAction = (id) => {
       setNewArr(newArr.map((item) => {
         if (item.id === id) {
@@ -35376,38 +38507,38 @@ cursor: pointer;
         return item;
       }));
     };
-    return /* @__PURE__ */ import_react66.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react66.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react66.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react66.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react66.default.createElement(ModalClose, {
+    return /* @__PURE__ */ import_react64.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react64.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react64.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react64.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react64.default.createElement(ModalClose, {
       onClick: () => setIsOpenSettings(false)
-    }, "\u2613")), /* @__PURE__ */ import_react66.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react66.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react66.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react66.default.createElement(ColumnHeaderTitle, {
+    }, "\u2613")), /* @__PURE__ */ import_react64.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react64.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react64.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
       style: { width: "50%" }
-    }, "Name"), /* @__PURE__ */ import_react66.default.createElement(ColumnHeaderTitle, {
+    }, "Name"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
       style: { borderLeft: "1px solid #f0f0f0", borderRight: "1px solid #f0f0f0", width: "25%" }
-    }, "Action"), /* @__PURE__ */ import_react66.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react66.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react66.default.createElement(Column, {
+    }, "Action"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react64.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react64.default.createElement(Column, {
       key: index2
-    }, /* @__PURE__ */ import_react66.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react66.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react66.default.createElement(IconWrappPin, {
+    }, /* @__PURE__ */ import_react64.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react64.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react64.default.createElement(IconWrappPin, {
       onClick: () => handlePinAction(item.id),
       active: item.isPinned
-    }, /* @__PURE__ */ import_react66.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(IconWrappEye, {
+    }, /* @__PURE__ */ import_react64.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react64.default.createElement(IconWrappEye, {
       onClick: () => handleSeeAction(item.id),
       active: item.isChecked,
       style: { marginLeft: "10px" }
-    }, item.isChecked ? /* @__PURE__ */ import_react66.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react66.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react66.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react66.default.createElement(SelectItem, {
+    }, item.isChecked ? /* @__PURE__ */ import_react64.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react64.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react64.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react64.default.createElement(SelectItem, {
       onClick: () => handleOpenSelect(item.id)
-    }, /* @__PURE__ */ import_react66.default.createElement(SelectItemText, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemText, {
       active: item.filter.value
-    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react66.default.createElement("div", {
+    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react64.default.createElement("div", {
       style: { padding: "0px 7px", display: "flex", alignItems: "center" }
-    }, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react66.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react66.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react64.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Sum")
-    }, /* @__PURE__ */ import_react66.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react66.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Min")
-    }, /* @__PURE__ */ import_react66.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react66.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Max")
-    }, /* @__PURE__ */ import_react66.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react66.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Average")
-    }, /* @__PURE__ */ import_react66.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react66.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react66.default.createElement(ModalButton, {
+    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react64.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react64.default.createElement(ModalButton, {
       onClick: () => setIsOpenSettings(false)
-    }, /* @__PURE__ */ import_react66.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react66.default.createElement(SaveIcon_default, null)), "Save"))));
+    }, /* @__PURE__ */ import_react64.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react64.default.createElement(SaveIcon_default, null)), "Save"))));
   };
   var SettingsModal_default = SettingsModal;
   var SelectItemList = styled_components_browser_esm_default.div`
@@ -35584,17 +38715,46 @@ cursor: pointer;
 
   // src/Components/AssetsPage/Table.tsx
   var Table = () => {
-    const [isOpenFilter, setIsOpenFilter] = (0, import_react67.useState)(false);
-    const [isOpenSettings, setIsOpenSettings] = (0, import_react67.useState)(false);
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react65.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react65.useState)(false);
     const tableHeaders = [
       "checkbox",
-      "Items",
-      "Order #",
-      "Amount",
-      "Status",
-      "test",
-      "tes2",
-      "tes3"
+      "Assets ID",
+      "Projects",
+      "# of Inspections",
+      "Last Inspected",
+      "Material",
+      "Comments",
+      "City",
+      "Coordinate system",
+      "Downstream Manhole Grade to Invert (mm)",
+      "Downstream Manhole Rim to Grade (mm)",
+      "Downstream Manhole Rim to Invert (mm)",
+      "Downstream Manhole",
+      "Drainage area",
+      "Easting",
+      "Elevation",
+      "GPS Accuracy",
+      "Height (mm)",
+      "Lining method",
+      "Location code",
+      "Location Details",
+      "Northing",
+      "Owner",
+      "Pipe Joint Length (mm)",
+      "Pipe Segment Reference",
+      "Sewer Category",
+      "Sewer Use",
+      "Shape",
+      "Street",
+      "Total Length (mm)",
+      "Upstream Manhole Grade to Invert (mm)",
+      "Upstream Manhole Rim to Grade (mm)",
+      "Upstream Manhole Rim to Invert (mm)",
+      "Upstream Manhole",
+      "Width (mm)",
+      "Year Laid",
+      "Year Renewed"
     ];
     const filterRef = useOnClickOutside_default(() => {
       setIsOpenFilter(false);
@@ -35602,25 +38762,25 @@ cursor: pointer;
     const settingsRef = useOnClickOutside_default(() => {
       setIsOpenSettings(false);
     });
-    return /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react67.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react67.default.createElement(TableUtils, null, /* @__PURE__ */ import_react67.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react67.default.createElement(Collection, null, /* @__PURE__ */ import_react67.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react67.default.createElement(Folder_default, {
+    return /* @__PURE__ */ import_react65.default.createElement("div", null, /* @__PURE__ */ import_react65.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react65.default.createElement(TableWrapper, null, /* @__PURE__ */ import_react65.default.createElement(TableUtils, null, /* @__PURE__ */ import_react65.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react65.default.createElement(Collection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react67.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react67.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react67.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react67.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react67.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react67.default.createElement(RightSide2, null, /* @__PURE__ */ import_react67.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react67.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react67.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react67.default.createElement(FilterWrapper2, {
+    })), "Collection", /* @__PURE__ */ import_react65.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react65.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react65.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react65.default.createElement(RightSide2, null, /* @__PURE__ */ import_react65.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react65.default.createElement(FilterWrapper2, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
-    }, /* @__PURE__ */ import_react67.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react67.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react67.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react67.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react67.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react67.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react67.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react67.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react67.default.createElement(View, null, "View")), /* @__PURE__ */ import_react67.default.createElement(Settings, {
+    }, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react65.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react65.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react65.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react65.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(View, null, "View")), /* @__PURE__ */ import_react65.default.createElement(Settings, {
       onClick: () => {
         setTimeout(() => {
           setIsOpenSettings(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react67.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })), isOpenSettings && /* @__PURE__ */ import_react67.default.createElement(SettingsModal_default, {
+    })), isOpenSettings && /* @__PURE__ */ import_react65.default.createElement(SettingsModal_default, {
       settingsRef,
       setIsOpenSettings
-    }))), /* @__PURE__ */ import_react67.default.createElement(TableContent_default, {
+    }))), /* @__PURE__ */ import_react65.default.createElement(TableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -35767,19 +38927,19 @@ cursor: pointer;
 `;
 
   // src/Components/AssetsPage/AssetsSelects.tsx
-  var import_react68 = __toESM(require_react(), 1);
+  var import_react66 = __toESM(require_react(), 1);
   var AssetsSelects = () => {
-    const [select1, setSelect1] = (0, import_react68.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react68.useState)("Mainlines");
-    return /* @__PURE__ */ import_react68.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react68.default.createElement(Select1, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react68.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem2, {
+    const [select1, setSelect1] = (0, import_react66.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react66.useState)("Mainlines");
+    return /* @__PURE__ */ import_react66.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react66.default.createElement(Select1, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react68.default.createElement(HoverItem2, {
+    }, "All systems"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react68.default.createElement(HoverItem2, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react68.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select2, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react68.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem2, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react66.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react66.default.createElement(Select2, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react68.default.createElement(HoverItem2, {
+    }, "All assets types"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
       onClick: () => setSelect2("Mainlines")
     }, "Mainlines"))));
   };
@@ -35885,7 +39045,11 @@ cursor: pointer;
 
   // src/Pages/AssetsPage.tsx
   var AssetsPage = () => {
-    return /* @__PURE__ */ import_react69.default.createElement("div", null, /* @__PURE__ */ import_react69.default.createElement(Header_default, null), /* @__PURE__ */ import_react69.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react69.default.createElement(Table_default, null));
+    const dispatch = useDispatch();
+    (0, import_react67.useEffect)(() => {
+      dispatch(getOrganizationAssets("1", "1", "50"));
+    }, []);
+    return /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement(Header_default, null), /* @__PURE__ */ import_react67.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react67.default.createElement(Table_default, null));
   };
   var AssetsPage_default = AssetsPage;
 
@@ -35893,26 +39057,26 @@ cursor: pointer;
   var import_react86 = __toESM(require_react(), 1);
 
   // src/Components/ProjectsPage/ProjectsSelects.tsx
-  var import_react70 = __toESM(require_react(), 1);
+  var import_react68 = __toESM(require_react(), 1);
   var AssetsSelects2 = () => {
-    const [select1, setSelect1] = (0, import_react70.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react70.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react70.useState)("All Templates");
-    return /* @__PURE__ */ import_react70.default.createElement(Wrapper13, null, /* @__PURE__ */ import_react70.default.createElement(Select12, null, /* @__PURE__ */ import_react70.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react70.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react70.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react70.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    const [select1, setSelect1] = (0, import_react68.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react68.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react68.useState)("All Templates");
+    return /* @__PURE__ */ import_react68.default.createElement(Wrapper13, null, /* @__PURE__ */ import_react68.default.createElement(Select12, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, "All systems"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react70.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react70.default.createElement(Select22, null, /* @__PURE__ */ import_react70.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react70.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react70.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react70.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select22, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, "All assets types"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react70.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react70.default.createElement(Select3, null, /* @__PURE__ */ import_react70.default.createElement(SelectItem3, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select3, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, {
       style: { color: "black" }
-    }, select3), /* @__PURE__ */ import_react70.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react70.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react70.default.createElement(HoverItemWrapper32, null, /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, select3), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper32, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All Templates")
-    }, "All Templates"), /* @__PURE__ */ import_react70.default.createElement(HoverItem3, {
+    }, "All Templates"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
       onClick: () => setSelect2("NASSCO v6 Springfield")
     }, "NASSCO v6 Springfield"))));
   };
@@ -36047,7 +39211,7 @@ ${Select3}:hover & {
 `;
 
   // node_modules/react-chartjs-2/dist/index.js
-  var import_react71 = __toESM(require_react());
+  var import_react69 = __toESM(require_react());
 
   // node_modules/chart.js/dist/chunks/helpers.segment.js
   var requestAnimFrame = function() {
@@ -41736,7 +44900,7 @@ ${Select3}:hover & {
   };
   Element2.defaults = {};
   Element2.defaultRoutes = void 0;
-  var formatters = {
+  var formatters3 = {
     values(value) {
       return isArray(value) ? value : "" + value;
     },
@@ -41766,7 +44930,7 @@ ${Select3}:hover & {
       }
       const remain = tickValue / Math.pow(10, Math.floor(log10(tickValue)));
       if (remain === 1 || remain === 2 || remain === 5) {
-        return formatters.numeric.call(this, tickValue, index2, ticks);
+        return formatters3.numeric.call(this, tickValue, index2, ticks);
       }
       return "";
     }
@@ -41778,7 +44942,7 @@ ${Select3}:hover & {
     }
     return delta;
   }
-  var Ticks = { formatters };
+  var Ticks = { formatters: formatters3 };
   defaults.set("scale", {
     display: true,
     offset: false,
@@ -47629,7 +50793,7 @@ ${Select3}:hover & {
   function sorter(a2, b2) {
     return a2 - b2;
   }
-  function parse(scale, input) {
+  function parse2(scale, input) {
     if (isNullOrUndef(input)) {
       return null;
     }
@@ -47744,7 +50908,7 @@ ${Select3}:hover & {
       if (raw === void 0) {
         return null;
       }
-      return parse(this, raw);
+      return parse2(this, raw);
     }
     beforeLayout() {
       super.beforeLayout();
@@ -47950,7 +51114,7 @@ ${Select3}:hover & {
       }
       const labels = this.getLabels();
       for (i2 = 0, ilen = labels.length; i2 < ilen; ++i2) {
-        timestamps.push(parse(this, labels[i2]));
+        timestamps.push(parse2(this, labels[i2]));
       }
       return this._cache.labels = this._normalized ? timestamps : this.normalize(timestamps);
     }
@@ -48109,8 +51273,8 @@ ${Select3}:hover & {
   }
   function ChartComponent(param, ref) {
     let { height: height2 = 150, width = 300, redraw = false, datasetIdKey, type, data, options, plugins = [], fallbackContent, updateMode, ...props } = param;
-    const canvasRef = (0, import_react71.useRef)(null);
-    const chartRef = (0, import_react71.useRef)();
+    const canvasRef = (0, import_react69.useRef)(null);
+    const chartRef = (0, import_react69.useRef)();
     const renderChart = () => {
       if (!canvasRef.current)
         return;
@@ -48129,7 +51293,7 @@ ${Select3}:hover & {
         chartRef.current = null;
       }
     };
-    (0, import_react71.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current && options) {
         setOptions(chartRef.current, options);
       }
@@ -48137,7 +51301,7 @@ ${Select3}:hover & {
       redraw,
       options
     ]);
-    (0, import_react71.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current) {
         setLabels(chartRef.current.config.data, data.labels);
       }
@@ -48145,7 +51309,7 @@ ${Select3}:hover & {
       redraw,
       data.labels
     ]);
-    (0, import_react71.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!redraw && chartRef.current && data.datasets) {
         setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
       }
@@ -48153,7 +51317,7 @@ ${Select3}:hover & {
       redraw,
       data.datasets
     ]);
-    (0, import_react71.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       if (!chartRef.current)
         return;
       if (redraw) {
@@ -48169,26 +51333,60 @@ ${Select3}:hover & {
       data.datasets,
       updateMode
     ]);
-    (0, import_react71.useEffect)(() => {
+    (0, import_react69.useEffect)(() => {
       renderChart();
       return () => destroyChart();
     }, []);
-    return /* @__PURE__ */ import_react71.default.createElement("canvas", Object.assign({
+    return /* @__PURE__ */ import_react69.default.createElement("canvas", Object.assign({
       ref: canvasRef,
       role: "img",
       height: height2,
       width
     }, props), fallbackContent);
   }
-  var Chart2 = /* @__PURE__ */ (0, import_react71.forwardRef)(ChartComponent);
+  var Chart2 = /* @__PURE__ */ (0, import_react69.forwardRef)(ChartComponent);
   function createTypedChart(type, registerables) {
     Chart.register(registerables);
-    return /* @__PURE__ */ (0, import_react71.forwardRef)((props, ref) => /* @__PURE__ */ import_react71.default.createElement(Chart2, Object.assign({}, props, {
+    return /* @__PURE__ */ (0, import_react69.forwardRef)((props, ref) => /* @__PURE__ */ import_react69.default.createElement(Chart2, Object.assign({}, props, {
       ref,
       type
     })));
   }
   var Doughnut = /* @__PURE__ */ createTypedChart("doughnut", DoughnutController);
+
+  // src/Components/common/icons/AssetsPageIcons/TableArrowTop.tsx
+  var import_react70 = __toESM(require_react(), 1);
+  var TableArrowTop = ({ color: color2 }) => {
+    return /* @__PURE__ */ import_react70.default.createElement("svg", {
+      viewBox: "0 0 1024 1024",
+      focusable: "false",
+      "data-icon": "caret-up",
+      width: "14",
+      height: "14",
+      fill: color2,
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react70.default.createElement("path", {
+      d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+    }));
+  };
+  var TableArrowTop_default = TableArrowTop;
+
+  // src/Components/common/icons/AssetsPageIcons/TableArrowBottom.tsx
+  var import_react71 = __toESM(require_react(), 1);
+  var TableArrowBottom = ({ color: color2 }) => {
+    return /* @__PURE__ */ import_react71.default.createElement("svg", {
+      viewBox: "0 0 1024 1024",
+      focusable: "false",
+      "data-icon": "caret-down",
+      width: "14",
+      height: "14",
+      fill: color2,
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react71.default.createElement("path", {
+      d: "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+    }));
+  };
+  var TableArrowBottom_default = TableArrowBottom;
 
   // node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
   function _objectWithoutProperties(source, excluded) {
@@ -49059,11 +52257,11 @@ ${Select3}:hover & {
   var toFinite_default = toFinite;
 
   // node_modules/lodash-es/toInteger.js
-  function toInteger(value) {
+  function toInteger2(value) {
     var result = toFinite_default(value), remainder = result % 1;
     return result === result ? remainder ? result - remainder : result : 0;
   }
-  var toInteger_default = toInteger;
+  var toInteger_default = toInteger2;
 
   // node_modules/lodash-es/chunk.js
   var nativeCeil = Math.ceil;
@@ -50614,7 +53812,7 @@ ${Select3}:hover & {
   }
 
   // node_modules/@popperjs/core/lib/utils/format.js
-  function format(str) {
+  function format2(str) {
     for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
@@ -50635,37 +53833,37 @@ ${Select3}:hover & {
         switch (key) {
           case "name":
             if (typeof modifier.name !== "string") {
-              console.error(format(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', '"' + String(modifier.name) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', '"' + String(modifier.name) + '"'));
             }
             break;
           case "enabled":
             if (typeof modifier.enabled !== "boolean") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', '"' + String(modifier.enabled) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', '"' + String(modifier.enabled) + '"'));
             }
             break;
           case "phase":
             if (modifierPhases.indexOf(modifier.phase) < 0) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(", "), '"' + String(modifier.phase) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(", "), '"' + String(modifier.phase) + '"'));
             }
             break;
           case "fn":
             if (typeof modifier.fn !== "function") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', '"' + String(modifier.fn) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', '"' + String(modifier.fn) + '"'));
             }
             break;
           case "effect":
             if (modifier.effect != null && typeof modifier.effect !== "function") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', '"' + String(modifier.fn) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', '"' + String(modifier.fn) + '"'));
             }
             break;
           case "requires":
             if (modifier.requires != null && !Array.isArray(modifier.requires)) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', '"' + String(modifier.requires) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', '"' + String(modifier.requires) + '"'));
             }
             break;
           case "requiresIfExists":
             if (!Array.isArray(modifier.requiresIfExists)) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', '"' + String(modifier.requiresIfExists) + '"'));
+              console.error(format2(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', '"' + String(modifier.requiresIfExists) + '"'));
             }
             break;
           case "options":
@@ -50680,7 +53878,7 @@ ${Select3}:hover & {
           if (modifiers.find(function(mod) {
             return mod.name === requirement;
           }) == null) {
-            console.error(format(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
+            console.error(format2(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
           }
         });
       });
@@ -52640,7 +55838,7 @@ ${Select3}:hover & {
 
   // node_modules/lodash-es/findIndex.js
   var nativeMax2 = Math.max;
-  function findIndex(array, predicate, fromIndex) {
+  function findIndex2(array, predicate, fromIndex) {
     var length = array == null ? 0 : array.length;
     if (!length) {
       return -1;
@@ -52651,7 +55849,7 @@ ${Select3}:hover & {
     }
     return baseFindIndex_default(array, baseIteratee_default(predicate, 3), index2);
   }
-  var findIndex_default = findIndex;
+  var findIndex_default = findIndex2;
 
   // node_modules/lodash-es/_baseRange.js
   var nativeCeil2 = Math.ceil;
@@ -57441,3014 +60639,6 @@ ${Select3}:hover & {
     });
   };
 
-  // node_modules/date-fns/esm/_lib/requiredArgs/index.js
-  function requiredArgs(required, args) {
-    if (args.length < required) {
-      throw new TypeError(required + " argument" + (required > 1 ? "s" : "") + " required, but only " + args.length + " present");
-    }
-  }
-
-  // node_modules/date-fns/esm/isDate/index.js
-  function isDate2(value) {
-    requiredArgs(1, arguments);
-    return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
-  }
-
-  // node_modules/date-fns/esm/toDate/index.js
-  function toDate(argument) {
-    requiredArgs(1, arguments);
-    var argStr = Object.prototype.toString.call(argument);
-    if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
-      return new Date(argument.getTime());
-    } else if (typeof argument === "number" || argStr === "[object Number]") {
-      return new Date(argument);
-    } else {
-      if ((typeof argument === "string" || argStr === "[object String]") && typeof console !== "undefined") {
-        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule");
-        console.warn(new Error().stack);
-      }
-      return new Date(NaN);
-    }
-  }
-
-  // node_modules/date-fns/esm/isValid/index.js
-  function isValid(dirtyDate) {
-    requiredArgs(1, arguments);
-    if (!isDate2(dirtyDate) && typeof dirtyDate !== "number") {
-      return false;
-    }
-    var date2 = toDate(dirtyDate);
-    return !isNaN(Number(date2));
-  }
-
-  // node_modules/date-fns/esm/locale/en-US/_lib/formatDistance/index.js
-  var formatDistanceLocale = {
-    lessThanXSeconds: {
-      one: "less than a second",
-      other: "less than {{count}} seconds"
-    },
-    xSeconds: {
-      one: "1 second",
-      other: "{{count}} seconds"
-    },
-    halfAMinute: "half a minute",
-    lessThanXMinutes: {
-      one: "less than a minute",
-      other: "less than {{count}} minutes"
-    },
-    xMinutes: {
-      one: "1 minute",
-      other: "{{count}} minutes"
-    },
-    aboutXHours: {
-      one: "about 1 hour",
-      other: "about {{count}} hours"
-    },
-    xHours: {
-      one: "1 hour",
-      other: "{{count}} hours"
-    },
-    xDays: {
-      one: "1 day",
-      other: "{{count}} days"
-    },
-    aboutXWeeks: {
-      one: "about 1 week",
-      other: "about {{count}} weeks"
-    },
-    xWeeks: {
-      one: "1 week",
-      other: "{{count}} weeks"
-    },
-    aboutXMonths: {
-      one: "about 1 month",
-      other: "about {{count}} months"
-    },
-    xMonths: {
-      one: "1 month",
-      other: "{{count}} months"
-    },
-    aboutXYears: {
-      one: "about 1 year",
-      other: "about {{count}} years"
-    },
-    xYears: {
-      one: "1 year",
-      other: "{{count}} years"
-    },
-    overXYears: {
-      one: "over 1 year",
-      other: "over {{count}} years"
-    },
-    almostXYears: {
-      one: "almost 1 year",
-      other: "almost {{count}} years"
-    }
-  };
-  var formatDistance = function(token, count, options) {
-    var result;
-    var tokenValue = formatDistanceLocale[token];
-    if (typeof tokenValue === "string") {
-      result = tokenValue;
-    } else if (count === 1) {
-      result = tokenValue.one;
-    } else {
-      result = tokenValue.other.replace("{{count}}", count.toString());
-    }
-    if (options !== null && options !== void 0 && options.addSuffix) {
-      if (options.comparison && options.comparison > 0) {
-        return "in " + result;
-      } else {
-        return result + " ago";
-      }
-    }
-    return result;
-  };
-  var formatDistance_default = formatDistance;
-
-  // node_modules/date-fns/esm/locale/_lib/buildFormatLongFn/index.js
-  function buildFormatLongFn(args) {
-    return function() {
-      var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-      var width = options.width ? String(options.width) : args.defaultWidth;
-      var format3 = args.formats[width] || args.formats[args.defaultWidth];
-      return format3;
-    };
-  }
-
-  // node_modules/date-fns/esm/locale/en-US/_lib/formatLong/index.js
-  var dateFormats = {
-    full: "EEEE, MMMM do, y",
-    long: "MMMM do, y",
-    medium: "MMM d, y",
-    short: "MM/dd/yyyy"
-  };
-  var timeFormats = {
-    full: "h:mm:ss a zzzz",
-    long: "h:mm:ss a z",
-    medium: "h:mm:ss a",
-    short: "h:mm a"
-  };
-  var dateTimeFormats = {
-    full: "{{date}} 'at' {{time}}",
-    long: "{{date}} 'at' {{time}}",
-    medium: "{{date}}, {{time}}",
-    short: "{{date}}, {{time}}"
-  };
-  var formatLong = {
-    date: buildFormatLongFn({
-      formats: dateFormats,
-      defaultWidth: "full"
-    }),
-    time: buildFormatLongFn({
-      formats: timeFormats,
-      defaultWidth: "full"
-    }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats,
-      defaultWidth: "full"
-    })
-  };
-  var formatLong_default = formatLong;
-
-  // node_modules/date-fns/esm/locale/en-US/_lib/formatRelative/index.js
-  var formatRelativeLocale = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday at' p",
-    today: "'today at' p",
-    tomorrow: "'tomorrow at' p",
-    nextWeek: "eeee 'at' p",
-    other: "P"
-  };
-  var formatRelative = function(token, _date, _baseDate, _options) {
-    return formatRelativeLocale[token];
-  };
-  var formatRelative_default = formatRelative;
-
-  // node_modules/date-fns/esm/locale/_lib/buildLocalizeFn/index.js
-  function buildLocalizeFn(args) {
-    return function(dirtyIndex, dirtyOptions) {
-      var options = dirtyOptions || {};
-      var context2 = options.context ? String(options.context) : "standalone";
-      var valuesArray;
-      if (context2 === "formatting" && args.formattingValues) {
-        var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-        var width = options.width ? String(options.width) : defaultWidth;
-        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
-      } else {
-        var _defaultWidth = args.defaultWidth;
-        var _width = options.width ? String(options.width) : args.defaultWidth;
-        valuesArray = args.values[_width] || args.values[_defaultWidth];
-      }
-      var index2 = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
-      return valuesArray[index2];
-    };
-  }
-
-  // node_modules/date-fns/esm/locale/en-US/_lib/localize/index.js
-  var eraValues = {
-    narrow: ["B", "A"],
-    abbreviated: ["BC", "AD"],
-    wide: ["Before Christ", "Anno Domini"]
-  };
-  var quarterValues = {
-    narrow: ["1", "2", "3", "4"],
-    abbreviated: ["Q1", "Q2", "Q3", "Q4"],
-    wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
-  };
-  var monthValues = {
-    narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-    abbreviated: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    wide: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-  };
-  var dayValues = {
-    narrow: ["S", "M", "T", "W", "T", "F", "S"],
-    short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    wide: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  };
-  var dayPeriodValues = {
-    narrow: {
-      am: "a",
-      pm: "p",
-      midnight: "mi",
-      noon: "n",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    },
-    abbreviated: {
-      am: "AM",
-      pm: "PM",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    },
-    wide: {
-      am: "a.m.",
-      pm: "p.m.",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    }
-  };
-  var formattingDayPeriodValues = {
-    narrow: {
-      am: "a",
-      pm: "p",
-      midnight: "mi",
-      noon: "n",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    },
-    abbreviated: {
-      am: "AM",
-      pm: "PM",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    },
-    wide: {
-      am: "a.m.",
-      pm: "p.m.",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    }
-  };
-  var ordinalNumber = function(dirtyNumber, _options) {
-    var number = Number(dirtyNumber);
-    var rem100 = number % 100;
-    if (rem100 > 20 || rem100 < 10) {
-      switch (rem100 % 10) {
-        case 1:
-          return number + "st";
-        case 2:
-          return number + "nd";
-        case 3:
-          return number + "rd";
-      }
-    }
-    return number + "th";
-  };
-  var localize = {
-    ordinalNumber,
-    era: buildLocalizeFn({
-      values: eraValues,
-      defaultWidth: "wide"
-    }),
-    quarter: buildLocalizeFn({
-      values: quarterValues,
-      defaultWidth: "wide",
-      argumentCallback: function(quarter) {
-        return quarter - 1;
-      }
-    }),
-    month: buildLocalizeFn({
-      values: monthValues,
-      defaultWidth: "wide"
-    }),
-    day: buildLocalizeFn({
-      values: dayValues,
-      defaultWidth: "wide"
-    }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues,
-      defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues,
-      defaultFormattingWidth: "wide"
-    })
-  };
-  var localize_default = localize;
-
-  // node_modules/date-fns/esm/locale/_lib/buildMatchFn/index.js
-  function buildMatchFn(args) {
-    return function(string) {
-      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      var width = options.width;
-      var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
-      var matchResult = string.match(matchPattern);
-      if (!matchResult) {
-        return null;
-      }
-      var matchedString = matchResult[0];
-      var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-      var key = Array.isArray(parsePatterns) ? findIndex2(parsePatterns, function(pattern) {
-        return pattern.test(matchedString);
-      }) : findKey(parsePatterns, function(pattern) {
-        return pattern.test(matchedString);
-      });
-      var value;
-      value = args.valueCallback ? args.valueCallback(key) : key;
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value,
-        rest
-      };
-    };
-  }
-  function findKey(object, predicate) {
-    for (var key in object) {
-      if (object.hasOwnProperty(key) && predicate(object[key])) {
-        return key;
-      }
-    }
-    return void 0;
-  }
-  function findIndex2(array, predicate) {
-    for (var key = 0; key < array.length; key++) {
-      if (predicate(array[key])) {
-        return key;
-      }
-    }
-    return void 0;
-  }
-
-  // node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js
-  function buildMatchPatternFn(args) {
-    return function(string) {
-      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      var matchResult = string.match(args.matchPattern);
-      if (!matchResult)
-        return null;
-      var matchedString = matchResult[0];
-      var parseResult = string.match(args.parsePattern);
-      if (!parseResult)
-        return null;
-      var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value,
-        rest
-      };
-    };
-  }
-
-  // node_modules/date-fns/esm/locale/en-US/_lib/match/index.js
-  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
-  var parseOrdinalNumberPattern = /\d+/i;
-  var matchEraPatterns = {
-    narrow: /^(b|a)/i,
-    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-    wide: /^(before christ|before common era|anno domini|common era)/i
-  };
-  var parseEraPatterns = {
-    any: [/^b/i, /^(a|c)/i]
-  };
-  var matchQuarterPatterns = {
-    narrow: /^[1234]/i,
-    abbreviated: /^q[1234]/i,
-    wide: /^[1234](th|st|nd|rd)? quarter/i
-  };
-  var parseQuarterPatterns = {
-    any: [/1/i, /2/i, /3/i, /4/i]
-  };
-  var matchMonthPatterns = {
-    narrow: /^[jfmasond]/i,
-    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-  };
-  var parseMonthPatterns = {
-    narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-    any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-  };
-  var matchDayPatterns = {
-    narrow: /^[smtwf]/i,
-    short: /^(su|mo|tu|we|th|fr|sa)/i,
-    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-  };
-  var parseDayPatterns = {
-    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-  };
-  var matchDayPeriodPatterns = {
-    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-  };
-  var parseDayPeriodPatterns = {
-    any: {
-      am: /^a/i,
-      pm: /^p/i,
-      midnight: /^mi/i,
-      noon: /^no/i,
-      morning: /morning/i,
-      afternoon: /afternoon/i,
-      evening: /evening/i,
-      night: /night/i
-    }
-  };
-  var match = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern,
-      parsePattern: parseOrdinalNumberPattern,
-      valueCallback: function(value) {
-        return parseInt(value, 10);
-      }
-    }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns,
-      defaultParseWidth: "any"
-    }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns,
-      defaultParseWidth: "any",
-      valueCallback: function(index2) {
-        return index2 + 1;
-      }
-    }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns,
-      defaultParseWidth: "any"
-    }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns,
-      defaultParseWidth: "any"
-    }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns,
-      defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns,
-      defaultParseWidth: "any"
-    })
-  };
-  var match_default = match;
-
-  // node_modules/date-fns/esm/locale/en-US/index.js
-  var locale = {
-    code: "en-US",
-    formatDistance: formatDistance_default,
-    formatLong: formatLong_default,
-    formatRelative: formatRelative_default,
-    localize: localize_default,
-    match: match_default,
-    options: {
-      weekStartsOn: 0,
-      firstWeekContainsDate: 1
-    }
-  };
-  var en_US_default = locale;
-
-  // node_modules/date-fns/esm/_lib/toInteger/index.js
-  function toInteger2(dirtyNumber) {
-    if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
-      return NaN;
-    }
-    var number = Number(dirtyNumber);
-    if (isNaN(number)) {
-      return number;
-    }
-    return number < 0 ? Math.ceil(number) : Math.floor(number);
-  }
-
-  // node_modules/date-fns/esm/addMilliseconds/index.js
-  function addMilliseconds(dirtyDate, dirtyAmount) {
-    requiredArgs(2, arguments);
-    var timestamp = toDate(dirtyDate).getTime();
-    var amount = toInteger2(dirtyAmount);
-    return new Date(timestamp + amount);
-  }
-
-  // node_modules/date-fns/esm/subMilliseconds/index.js
-  function subMilliseconds(dirtyDate, dirtyAmount) {
-    requiredArgs(2, arguments);
-    var amount = toInteger2(dirtyAmount);
-    return addMilliseconds(dirtyDate, -amount);
-  }
-
-  // node_modules/date-fns/esm/_lib/getUTCDayOfYear/index.js
-  var MILLISECONDS_IN_DAY = 864e5;
-  function getUTCDayOfYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var timestamp = date2.getTime();
-    date2.setUTCMonth(0, 1);
-    date2.setUTCHours(0, 0, 0, 0);
-    var startOfYearTimestamp = date2.getTime();
-    var difference = timestamp - startOfYearTimestamp;
-    return Math.floor(difference / MILLISECONDS_IN_DAY) + 1;
-  }
-
-  // node_modules/date-fns/esm/_lib/startOfUTCISOWeek/index.js
-  function startOfUTCISOWeek(dirtyDate) {
-    requiredArgs(1, arguments);
-    var weekStartsOn = 1;
-    var date2 = toDate(dirtyDate);
-    var day2 = date2.getUTCDay();
-    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
-    date2.setUTCDate(date2.getUTCDate() - diff2);
-    date2.setUTCHours(0, 0, 0, 0);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/getUTCISOWeekYear/index.js
-  function getUTCISOWeekYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var year2 = date2.getUTCFullYear();
-    var fourthOfJanuaryOfNextYear = new Date(0);
-    fourthOfJanuaryOfNextYear.setUTCFullYear(year2 + 1, 0, 4);
-    fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
-    var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear);
-    var fourthOfJanuaryOfThisYear = new Date(0);
-    fourthOfJanuaryOfThisYear.setUTCFullYear(year2, 0, 4);
-    fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
-    var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear);
-    if (date2.getTime() >= startOfNextYear.getTime()) {
-      return year2 + 1;
-    } else if (date2.getTime() >= startOfThisYear.getTime()) {
-      return year2;
-    } else {
-      return year2 - 1;
-    }
-  }
-
-  // node_modules/date-fns/esm/_lib/startOfUTCISOWeekYear/index.js
-  function startOfUTCISOWeekYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var year2 = getUTCISOWeekYear(dirtyDate);
-    var fourthOfJanuary = new Date(0);
-    fourthOfJanuary.setUTCFullYear(year2, 0, 4);
-    fourthOfJanuary.setUTCHours(0, 0, 0, 0);
-    var date2 = startOfUTCISOWeek(fourthOfJanuary);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/getUTCISOWeek/index.js
-  var MILLISECONDS_IN_WEEK = 6048e5;
-  function getUTCISOWeek(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var diff2 = startOfUTCISOWeek(date2).getTime() - startOfUTCISOWeekYear(date2).getTime();
-    return Math.round(diff2 / MILLISECONDS_IN_WEEK) + 1;
-  }
-
-  // node_modules/date-fns/esm/_lib/startOfUTCWeek/index.js
-  function startOfUTCWeek(dirtyDate, dirtyOptions) {
-    requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale;
-    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger2(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger2(options.weekStartsOn);
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-    }
-    var date2 = toDate(dirtyDate);
-    var day2 = date2.getUTCDay();
-    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
-    date2.setUTCDate(date2.getUTCDate() - diff2);
-    date2.setUTCHours(0, 0, 0, 0);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/getUTCWeekYear/index.js
-  function getUTCWeekYear(dirtyDate, dirtyOptions) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var year2 = date2.getUTCFullYear();
-    var options = dirtyOptions || {};
-    var locale2 = options.locale;
-    var localeFirstWeekContainsDate = locale2 && locale2.options && locale2.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger2(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger2(options.firstWeekContainsDate);
-    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-    }
-    var firstWeekOfNextYear = new Date(0);
-    firstWeekOfNextYear.setUTCFullYear(year2 + 1, 0, firstWeekContainsDate);
-    firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
-    var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions);
-    var firstWeekOfThisYear = new Date(0);
-    firstWeekOfThisYear.setUTCFullYear(year2, 0, firstWeekContainsDate);
-    firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
-    var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions);
-    if (date2.getTime() >= startOfNextYear.getTime()) {
-      return year2 + 1;
-    } else if (date2.getTime() >= startOfThisYear.getTime()) {
-      return year2;
-    } else {
-      return year2 - 1;
-    }
-  }
-
-  // node_modules/date-fns/esm/_lib/startOfUTCWeekYear/index.js
-  function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
-    requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale;
-    var localeFirstWeekContainsDate = locale2 && locale2.options && locale2.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger2(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger2(options.firstWeekContainsDate);
-    var year2 = getUTCWeekYear(dirtyDate, dirtyOptions);
-    var firstWeek = new Date(0);
-    firstWeek.setUTCFullYear(year2, 0, firstWeekContainsDate);
-    firstWeek.setUTCHours(0, 0, 0, 0);
-    var date2 = startOfUTCWeek(firstWeek, dirtyOptions);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/getUTCWeek/index.js
-  var MILLISECONDS_IN_WEEK2 = 6048e5;
-  function getUTCWeek(dirtyDate, options) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var diff2 = startOfUTCWeek(date2, options).getTime() - startOfUTCWeekYear(date2, options).getTime();
-    return Math.round(diff2 / MILLISECONDS_IN_WEEK2) + 1;
-  }
-
-  // node_modules/date-fns/esm/_lib/addLeadingZeros/index.js
-  function addLeadingZeros(number, targetLength) {
-    var sign2 = number < 0 ? "-" : "";
-    var output = Math.abs(number).toString();
-    while (output.length < targetLength) {
-      output = "0" + output;
-    }
-    return sign2 + output;
-  }
-
-  // node_modules/date-fns/esm/_lib/format/lightFormatters/index.js
-  var formatters2 = {
-    y: function(date2, token) {
-      var signedYear = date2.getUTCFullYear();
-      var year2 = signedYear > 0 ? signedYear : 1 - signedYear;
-      return addLeadingZeros(token === "yy" ? year2 % 100 : year2, token.length);
-    },
-    M: function(date2, token) {
-      var month2 = date2.getUTCMonth();
-      return token === "M" ? String(month2 + 1) : addLeadingZeros(month2 + 1, 2);
-    },
-    d: function(date2, token) {
-      return addLeadingZeros(date2.getUTCDate(), token.length);
-    },
-    a: function(date2, token) {
-      var dayPeriodEnumValue = date2.getUTCHours() / 12 >= 1 ? "pm" : "am";
-      switch (token) {
-        case "a":
-        case "aa":
-          return dayPeriodEnumValue.toUpperCase();
-        case "aaa":
-          return dayPeriodEnumValue;
-        case "aaaaa":
-          return dayPeriodEnumValue[0];
-        case "aaaa":
-        default:
-          return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
-      }
-    },
-    h: function(date2, token) {
-      return addLeadingZeros(date2.getUTCHours() % 12 || 12, token.length);
-    },
-    H: function(date2, token) {
-      return addLeadingZeros(date2.getUTCHours(), token.length);
-    },
-    m: function(date2, token) {
-      return addLeadingZeros(date2.getUTCMinutes(), token.length);
-    },
-    s: function(date2, token) {
-      return addLeadingZeros(date2.getUTCSeconds(), token.length);
-    },
-    S: function(date2, token) {
-      var numberOfDigits = token.length;
-      var milliseconds2 = date2.getUTCMilliseconds();
-      var fractionalSeconds = Math.floor(milliseconds2 * Math.pow(10, numberOfDigits - 3));
-      return addLeadingZeros(fractionalSeconds, token.length);
-    }
-  };
-  var lightFormatters_default = formatters2;
-
-  // node_modules/date-fns/esm/_lib/format/formatters/index.js
-  var dayPeriodEnum = {
-    am: "am",
-    pm: "pm",
-    midnight: "midnight",
-    noon: "noon",
-    morning: "morning",
-    afternoon: "afternoon",
-    evening: "evening",
-    night: "night"
-  };
-  var formatters3 = {
-    G: function(date2, token, localize2) {
-      var era = date2.getUTCFullYear() > 0 ? 1 : 0;
-      switch (token) {
-        case "G":
-        case "GG":
-        case "GGG":
-          return localize2.era(era, {
-            width: "abbreviated"
-          });
-        case "GGGGG":
-          return localize2.era(era, {
-            width: "narrow"
-          });
-        case "GGGG":
-        default:
-          return localize2.era(era, {
-            width: "wide"
-          });
-      }
-    },
-    y: function(date2, token, localize2) {
-      if (token === "yo") {
-        var signedYear = date2.getUTCFullYear();
-        var year2 = signedYear > 0 ? signedYear : 1 - signedYear;
-        return localize2.ordinalNumber(year2, {
-          unit: "year"
-        });
-      }
-      return lightFormatters_default.y(date2, token);
-    },
-    Y: function(date2, token, localize2, options) {
-      var signedWeekYear = getUTCWeekYear(date2, options);
-      var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
-      if (token === "YY") {
-        var twoDigitYear = weekYear % 100;
-        return addLeadingZeros(twoDigitYear, 2);
-      }
-      if (token === "Yo") {
-        return localize2.ordinalNumber(weekYear, {
-          unit: "year"
-        });
-      }
-      return addLeadingZeros(weekYear, token.length);
-    },
-    R: function(date2, token) {
-      var isoWeekYear = getUTCISOWeekYear(date2);
-      return addLeadingZeros(isoWeekYear, token.length);
-    },
-    u: function(date2, token) {
-      var year2 = date2.getUTCFullYear();
-      return addLeadingZeros(year2, token.length);
-    },
-    Q: function(date2, token, localize2) {
-      var quarter = Math.ceil((date2.getUTCMonth() + 1) / 3);
-      switch (token) {
-        case "Q":
-          return String(quarter);
-        case "QQ":
-          return addLeadingZeros(quarter, 2);
-        case "Qo":
-          return localize2.ordinalNumber(quarter, {
-            unit: "quarter"
-          });
-        case "QQQ":
-          return localize2.quarter(quarter, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "QQQQQ":
-          return localize2.quarter(quarter, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "QQQQ":
-        default:
-          return localize2.quarter(quarter, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    q: function(date2, token, localize2) {
-      var quarter = Math.ceil((date2.getUTCMonth() + 1) / 3);
-      switch (token) {
-        case "q":
-          return String(quarter);
-        case "qq":
-          return addLeadingZeros(quarter, 2);
-        case "qo":
-          return localize2.ordinalNumber(quarter, {
-            unit: "quarter"
-          });
-        case "qqq":
-          return localize2.quarter(quarter, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        case "qqqqq":
-          return localize2.quarter(quarter, {
-            width: "narrow",
-            context: "standalone"
-          });
-        case "qqqq":
-        default:
-          return localize2.quarter(quarter, {
-            width: "wide",
-            context: "standalone"
-          });
-      }
-    },
-    M: function(date2, token, localize2) {
-      var month2 = date2.getUTCMonth();
-      switch (token) {
-        case "M":
-        case "MM":
-          return lightFormatters_default.M(date2, token);
-        case "Mo":
-          return localize2.ordinalNumber(month2 + 1, {
-            unit: "month"
-          });
-        case "MMM":
-          return localize2.month(month2, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "MMMMM":
-          return localize2.month(month2, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "MMMM":
-        default:
-          return localize2.month(month2, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    L: function(date2, token, localize2) {
-      var month2 = date2.getUTCMonth();
-      switch (token) {
-        case "L":
-          return String(month2 + 1);
-        case "LL":
-          return addLeadingZeros(month2 + 1, 2);
-        case "Lo":
-          return localize2.ordinalNumber(month2 + 1, {
-            unit: "month"
-          });
-        case "LLL":
-          return localize2.month(month2, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        case "LLLLL":
-          return localize2.month(month2, {
-            width: "narrow",
-            context: "standalone"
-          });
-        case "LLLL":
-        default:
-          return localize2.month(month2, {
-            width: "wide",
-            context: "standalone"
-          });
-      }
-    },
-    w: function(date2, token, localize2, options) {
-      var week = getUTCWeek(date2, options);
-      if (token === "wo") {
-        return localize2.ordinalNumber(week, {
-          unit: "week"
-        });
-      }
-      return addLeadingZeros(week, token.length);
-    },
-    I: function(date2, token, localize2) {
-      var isoWeek = getUTCISOWeek(date2);
-      if (token === "Io") {
-        return localize2.ordinalNumber(isoWeek, {
-          unit: "week"
-        });
-      }
-      return addLeadingZeros(isoWeek, token.length);
-    },
-    d: function(date2, token, localize2) {
-      if (token === "do") {
-        return localize2.ordinalNumber(date2.getUTCDate(), {
-          unit: "date"
-        });
-      }
-      return lightFormatters_default.d(date2, token);
-    },
-    D: function(date2, token, localize2) {
-      var dayOfYear = getUTCDayOfYear(date2);
-      if (token === "Do") {
-        return localize2.ordinalNumber(dayOfYear, {
-          unit: "dayOfYear"
-        });
-      }
-      return addLeadingZeros(dayOfYear, token.length);
-    },
-    E: function(date2, token, localize2) {
-      var dayOfWeek = date2.getUTCDay();
-      switch (token) {
-        case "E":
-        case "EE":
-        case "EEE":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "EEEEE":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "EEEEEE":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        case "EEEE":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    e: function(date2, token, localize2, options) {
-      var dayOfWeek = date2.getUTCDay();
-      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        case "e":
-          return String(localDayOfWeek);
-        case "ee":
-          return addLeadingZeros(localDayOfWeek, 2);
-        case "eo":
-          return localize2.ordinalNumber(localDayOfWeek, {
-            unit: "day"
-          });
-        case "eee":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "eeeee":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "eeeeee":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        case "eeee":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    c: function(date2, token, localize2, options) {
-      var dayOfWeek = date2.getUTCDay();
-      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        case "c":
-          return String(localDayOfWeek);
-        case "cc":
-          return addLeadingZeros(localDayOfWeek, token.length);
-        case "co":
-          return localize2.ordinalNumber(localDayOfWeek, {
-            unit: "day"
-          });
-        case "ccc":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        case "ccccc":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "standalone"
-          });
-        case "cccccc":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "standalone"
-          });
-        case "cccc":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "standalone"
-          });
-      }
-    },
-    i: function(date2, token, localize2) {
-      var dayOfWeek = date2.getUTCDay();
-      var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-      switch (token) {
-        case "i":
-          return String(isoDayOfWeek);
-        case "ii":
-          return addLeadingZeros(isoDayOfWeek, token.length);
-        case "io":
-          return localize2.ordinalNumber(isoDayOfWeek, {
-            unit: "day"
-          });
-        case "iii":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "iiiii":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "iiiiii":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        case "iiii":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    a: function(date2, token, localize2) {
-      var hours2 = date2.getUTCHours();
-      var dayPeriodEnumValue = hours2 / 12 >= 1 ? "pm" : "am";
-      switch (token) {
-        case "a":
-        case "aa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "aaa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          }).toLowerCase();
-        case "aaaaa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "aaaa":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    b: function(date2, token, localize2) {
-      var hours2 = date2.getUTCHours();
-      var dayPeriodEnumValue;
-      if (hours2 === 12) {
-        dayPeriodEnumValue = dayPeriodEnum.noon;
-      } else if (hours2 === 0) {
-        dayPeriodEnumValue = dayPeriodEnum.midnight;
-      } else {
-        dayPeriodEnumValue = hours2 / 12 >= 1 ? "pm" : "am";
-      }
-      switch (token) {
-        case "b":
-        case "bb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "bbb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          }).toLowerCase();
-        case "bbbbb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "bbbb":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    B: function(date2, token, localize2) {
-      var hours2 = date2.getUTCHours();
-      var dayPeriodEnumValue;
-      if (hours2 >= 17) {
-        dayPeriodEnumValue = dayPeriodEnum.evening;
-      } else if (hours2 >= 12) {
-        dayPeriodEnumValue = dayPeriodEnum.afternoon;
-      } else if (hours2 >= 4) {
-        dayPeriodEnumValue = dayPeriodEnum.morning;
-      } else {
-        dayPeriodEnumValue = dayPeriodEnum.night;
-      }
-      switch (token) {
-        case "B":
-        case "BB":
-        case "BBB":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "BBBBB":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "BBBB":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    h: function(date2, token, localize2) {
-      if (token === "ho") {
-        var hours2 = date2.getUTCHours() % 12;
-        if (hours2 === 0)
-          hours2 = 12;
-        return localize2.ordinalNumber(hours2, {
-          unit: "hour"
-        });
-      }
-      return lightFormatters_default.h(date2, token);
-    },
-    H: function(date2, token, localize2) {
-      if (token === "Ho") {
-        return localize2.ordinalNumber(date2.getUTCHours(), {
-          unit: "hour"
-        });
-      }
-      return lightFormatters_default.H(date2, token);
-    },
-    K: function(date2, token, localize2) {
-      var hours2 = date2.getUTCHours() % 12;
-      if (token === "Ko") {
-        return localize2.ordinalNumber(hours2, {
-          unit: "hour"
-        });
-      }
-      return addLeadingZeros(hours2, token.length);
-    },
-    k: function(date2, token, localize2) {
-      var hours2 = date2.getUTCHours();
-      if (hours2 === 0)
-        hours2 = 24;
-      if (token === "ko") {
-        return localize2.ordinalNumber(hours2, {
-          unit: "hour"
-        });
-      }
-      return addLeadingZeros(hours2, token.length);
-    },
-    m: function(date2, token, localize2) {
-      if (token === "mo") {
-        return localize2.ordinalNumber(date2.getUTCMinutes(), {
-          unit: "minute"
-        });
-      }
-      return lightFormatters_default.m(date2, token);
-    },
-    s: function(date2, token, localize2) {
-      if (token === "so") {
-        return localize2.ordinalNumber(date2.getUTCSeconds(), {
-          unit: "second"
-        });
-      }
-      return lightFormatters_default.s(date2, token);
-    },
-    S: function(date2, token) {
-      return lightFormatters_default.S(date2, token);
-    },
-    X: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      if (timezoneOffset === 0) {
-        return "Z";
-      }
-      switch (token) {
-        case "X":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-        case "XXXX":
-        case "XX":
-          return formatTimezone(timezoneOffset);
-        case "XXXXX":
-        case "XXX":
-        default:
-          return formatTimezone(timezoneOffset, ":");
-      }
-    },
-    x: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        case "x":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-        case "xxxx":
-        case "xx":
-          return formatTimezone(timezoneOffset);
-        case "xxxxx":
-        case "xxx":
-        default:
-          return formatTimezone(timezoneOffset, ":");
-      }
-    },
-    O: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        case "O":
-        case "OO":
-        case "OOO":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-        case "OOOO":
-        default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
-      }
-    },
-    z: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        case "z":
-        case "zz":
-        case "zzz":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-        case "zzzz":
-        default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
-      }
-    },
-    t: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timestamp = Math.floor(originalDate.getTime() / 1e3);
-      return addLeadingZeros(timestamp, token.length);
-    },
-    T: function(date2, token, _localize, options) {
-      var originalDate = options._originalDate || date2;
-      var timestamp = originalDate.getTime();
-      return addLeadingZeros(timestamp, token.length);
-    }
-  };
-  function formatTimezoneShort(offset3, dirtyDelimiter) {
-    var sign2 = offset3 > 0 ? "-" : "+";
-    var absOffset = Math.abs(offset3);
-    var hours2 = Math.floor(absOffset / 60);
-    var minutes2 = absOffset % 60;
-    if (minutes2 === 0) {
-      return sign2 + String(hours2);
-    }
-    var delimiter = dirtyDelimiter || "";
-    return sign2 + String(hours2) + delimiter + addLeadingZeros(minutes2, 2);
-  }
-  function formatTimezoneWithOptionalMinutes(offset3, dirtyDelimiter) {
-    if (offset3 % 60 === 0) {
-      var sign2 = offset3 > 0 ? "-" : "+";
-      return sign2 + addLeadingZeros(Math.abs(offset3) / 60, 2);
-    }
-    return formatTimezone(offset3, dirtyDelimiter);
-  }
-  function formatTimezone(offset3, dirtyDelimiter) {
-    var delimiter = dirtyDelimiter || "";
-    var sign2 = offset3 > 0 ? "-" : "+";
-    var absOffset = Math.abs(offset3);
-    var hours2 = addLeadingZeros(Math.floor(absOffset / 60), 2);
-    var minutes2 = addLeadingZeros(absOffset % 60, 2);
-    return sign2 + hours2 + delimiter + minutes2;
-  }
-  var formatters_default = formatters3;
-
-  // node_modules/date-fns/esm/_lib/format/longFormatters/index.js
-  function dateLongFormatter(pattern, formatLong2) {
-    switch (pattern) {
-      case "P":
-        return formatLong2.date({
-          width: "short"
-        });
-      case "PP":
-        return formatLong2.date({
-          width: "medium"
-        });
-      case "PPP":
-        return formatLong2.date({
-          width: "long"
-        });
-      case "PPPP":
-      default:
-        return formatLong2.date({
-          width: "full"
-        });
-    }
-  }
-  function timeLongFormatter(pattern, formatLong2) {
-    switch (pattern) {
-      case "p":
-        return formatLong2.time({
-          width: "short"
-        });
-      case "pp":
-        return formatLong2.time({
-          width: "medium"
-        });
-      case "ppp":
-        return formatLong2.time({
-          width: "long"
-        });
-      case "pppp":
-      default:
-        return formatLong2.time({
-          width: "full"
-        });
-    }
-  }
-  function dateTimeLongFormatter(pattern, formatLong2) {
-    var matchResult = pattern.match(/(P+)(p+)?/) || [];
-    var datePattern = matchResult[1];
-    var timePattern = matchResult[2];
-    if (!timePattern) {
-      return dateLongFormatter(pattern, formatLong2);
-    }
-    var dateTimeFormat;
-    switch (datePattern) {
-      case "P":
-        dateTimeFormat = formatLong2.dateTime({
-          width: "short"
-        });
-        break;
-      case "PP":
-        dateTimeFormat = formatLong2.dateTime({
-          width: "medium"
-        });
-        break;
-      case "PPP":
-        dateTimeFormat = formatLong2.dateTime({
-          width: "long"
-        });
-        break;
-      case "PPPP":
-      default:
-        dateTimeFormat = formatLong2.dateTime({
-          width: "full"
-        });
-        break;
-    }
-    return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
-  }
-  var longFormatters = {
-    p: timeLongFormatter,
-    P: dateTimeLongFormatter
-  };
-  var longFormatters_default = longFormatters;
-
-  // node_modules/date-fns/esm/_lib/getTimezoneOffsetInMilliseconds/index.js
-  function getTimezoneOffsetInMilliseconds(date2) {
-    var utcDate = new Date(Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate(), date2.getHours(), date2.getMinutes(), date2.getSeconds(), date2.getMilliseconds()));
-    utcDate.setUTCFullYear(date2.getFullYear());
-    return date2.getTime() - utcDate.getTime();
-  }
-
-  // node_modules/date-fns/esm/_lib/protectedTokens/index.js
-  var protectedDayOfYearTokens = ["D", "DD"];
-  var protectedWeekYearTokens = ["YY", "YYYY"];
-  function isProtectedDayOfYearToken(token) {
-    return protectedDayOfYearTokens.indexOf(token) !== -1;
-  }
-  function isProtectedWeekYearToken(token) {
-    return protectedWeekYearTokens.indexOf(token) !== -1;
-  }
-  function throwProtectedError(token, format3, input) {
-    if (token === "YYYY") {
-      throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format3, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
-    } else if (token === "YY") {
-      throw new RangeError("Use `yy` instead of `YY` (in `".concat(format3, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
-    } else if (token === "D") {
-      throw new RangeError("Use `d` instead of `D` (in `".concat(format3, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
-    } else if (token === "DD") {
-      throw new RangeError("Use `dd` instead of `DD` (in `".concat(format3, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
-    }
-  }
-
-  // node_modules/date-fns/esm/format/index.js
-  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-  var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-  var escapedStringRegExp = /^'([^]*?)'?$/;
-  var doubleQuoteRegExp = /''/g;
-  var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-  function format2(dirtyDate, dirtyFormatStr, dirtyOptions) {
-    requiredArgs(2, arguments);
-    var formatStr = String(dirtyFormatStr);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale || en_US_default;
-    var localeFirstWeekContainsDate = locale2.options && locale2.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger2(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger2(options.firstWeekContainsDate);
-    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-    }
-    var localeWeekStartsOn = locale2.options && locale2.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger2(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger2(options.weekStartsOn);
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-    }
-    if (!locale2.localize) {
-      throw new RangeError("locale must contain localize property");
-    }
-    if (!locale2.formatLong) {
-      throw new RangeError("locale must contain formatLong property");
-    }
-    var originalDate = toDate(dirtyDate);
-    if (!isValid(originalDate)) {
-      throw new RangeError("Invalid time value");
-    }
-    var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
-    var utcDate = subMilliseconds(originalDate, timezoneOffset);
-    var formatterOptions = {
-      firstWeekContainsDate,
-      weekStartsOn,
-      locale: locale2,
-      _originalDate: originalDate
-    };
-    var result = formatStr.match(longFormattingTokensRegExp).map(function(substring) {
-      var firstCharacter = substring[0];
-      if (firstCharacter === "p" || firstCharacter === "P") {
-        var longFormatter = longFormatters_default[firstCharacter];
-        return longFormatter(substring, locale2.formatLong, formatterOptions);
-      }
-      return substring;
-    }).join("").match(formattingTokensRegExp).map(function(substring) {
-      if (substring === "''") {
-        return "'";
-      }
-      var firstCharacter = substring[0];
-      if (firstCharacter === "'") {
-        return cleanEscapedString(substring);
-      }
-      var formatter = formatters_default[firstCharacter];
-      if (formatter) {
-        if (!options.useAdditionalWeekYearTokens && isProtectedWeekYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
-        }
-        if (!options.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
-        }
-        return formatter(utcDate, substring, locale2.localize, formatterOptions);
-      }
-      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
-      }
-      return substring;
-    }).join("");
-    return result;
-  }
-  function cleanEscapedString(input) {
-    return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'");
-  }
-
-  // node_modules/date-fns/esm/_lib/assign/index.js
-  function assign(target, dirtyObject) {
-    if (target == null) {
-      throw new TypeError("assign requires that input parameter not be null or undefined");
-    }
-    dirtyObject = dirtyObject || {};
-    for (var property2 in dirtyObject) {
-      if (Object.prototype.hasOwnProperty.call(dirtyObject, property2)) {
-        target[property2] = dirtyObject[property2];
-      }
-    }
-    return target;
-  }
-
-  // node_modules/date-fns/esm/_lib/setUTCDay/index.js
-  function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
-    requiredArgs(2, arguments);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale;
-    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger2(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger2(options.weekStartsOn);
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-    }
-    var date2 = toDate(dirtyDate);
-    var day2 = toInteger2(dirtyDay);
-    var currentDay = date2.getUTCDay();
-    var remainder = day2 % 7;
-    var dayIndex = (remainder + 7) % 7;
-    var diff2 = (dayIndex < weekStartsOn ? 7 : 0) + day2 - currentDay;
-    date2.setUTCDate(date2.getUTCDate() + diff2);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/setUTCISODay/index.js
-  function setUTCISODay(dirtyDate, dirtyDay) {
-    requiredArgs(2, arguments);
-    var day2 = toInteger2(dirtyDay);
-    if (day2 % 7 === 0) {
-      day2 = day2 - 7;
-    }
-    var weekStartsOn = 1;
-    var date2 = toDate(dirtyDate);
-    var currentDay = date2.getUTCDay();
-    var remainder = day2 % 7;
-    var dayIndex = (remainder + 7) % 7;
-    var diff2 = (dayIndex < weekStartsOn ? 7 : 0) + day2 - currentDay;
-    date2.setUTCDate(date2.getUTCDate() + diff2);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/setUTCISOWeek/index.js
-  function setUTCISOWeek(dirtyDate, dirtyISOWeek) {
-    requiredArgs(2, arguments);
-    var date2 = toDate(dirtyDate);
-    var isoWeek = toInteger2(dirtyISOWeek);
-    var diff2 = getUTCISOWeek(date2) - isoWeek;
-    date2.setUTCDate(date2.getUTCDate() - diff2 * 7);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/_lib/setUTCWeek/index.js
-  function setUTCWeek(dirtyDate, dirtyWeek, options) {
-    requiredArgs(2, arguments);
-    var date2 = toDate(dirtyDate);
-    var week = toInteger2(dirtyWeek);
-    var diff2 = getUTCWeek(date2, options) - week;
-    date2.setUTCDate(date2.getUTCDate() - diff2 * 7);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/parse/_lib/parsers/index.js
-  var MILLISECONDS_IN_HOUR = 36e5;
-  var MILLISECONDS_IN_MINUTE = 6e4;
-  var MILLISECONDS_IN_SECOND = 1e3;
-  var numericPatterns = {
-    month: /^(1[0-2]|0?\d)/,
-    date: /^(3[0-1]|[0-2]?\d)/,
-    dayOfYear: /^(36[0-6]|3[0-5]\d|[0-2]?\d?\d)/,
-    week: /^(5[0-3]|[0-4]?\d)/,
-    hour23h: /^(2[0-3]|[0-1]?\d)/,
-    hour24h: /^(2[0-4]|[0-1]?\d)/,
-    hour11h: /^(1[0-1]|0?\d)/,
-    hour12h: /^(1[0-2]|0?\d)/,
-    minute: /^[0-5]?\d/,
-    second: /^[0-5]?\d/,
-    singleDigit: /^\d/,
-    twoDigits: /^\d{1,2}/,
-    threeDigits: /^\d{1,3}/,
-    fourDigits: /^\d{1,4}/,
-    anyDigitsSigned: /^-?\d+/,
-    singleDigitSigned: /^-?\d/,
-    twoDigitsSigned: /^-?\d{1,2}/,
-    threeDigitsSigned: /^-?\d{1,3}/,
-    fourDigitsSigned: /^-?\d{1,4}/
-  };
-  var timezonePatterns = {
-    basicOptionalMinutes: /^([+-])(\d{2})(\d{2})?|Z/,
-    basic: /^([+-])(\d{2})(\d{2})|Z/,
-    basicOptionalSeconds: /^([+-])(\d{2})(\d{2})((\d{2}))?|Z/,
-    extended: /^([+-])(\d{2}):(\d{2})|Z/,
-    extendedOptionalSeconds: /^([+-])(\d{2}):(\d{2})(:(\d{2}))?|Z/
-  };
-  function parseNumericPattern(pattern, string, valueCallback) {
-    var matchResult = string.match(pattern);
-    if (!matchResult) {
-      return null;
-    }
-    var value = parseInt(matchResult[0], 10);
-    return {
-      value: valueCallback ? valueCallback(value) : value,
-      rest: string.slice(matchResult[0].length)
-    };
-  }
-  function parseTimezonePattern(pattern, string) {
-    var matchResult = string.match(pattern);
-    if (!matchResult) {
-      return null;
-    }
-    if (matchResult[0] === "Z") {
-      return {
-        value: 0,
-        rest: string.slice(1)
-      };
-    }
-    var sign2 = matchResult[1] === "+" ? 1 : -1;
-    var hours2 = matchResult[2] ? parseInt(matchResult[2], 10) : 0;
-    var minutes2 = matchResult[3] ? parseInt(matchResult[3], 10) : 0;
-    var seconds2 = matchResult[5] ? parseInt(matchResult[5], 10) : 0;
-    return {
-      value: sign2 * (hours2 * MILLISECONDS_IN_HOUR + minutes2 * MILLISECONDS_IN_MINUTE + seconds2 * MILLISECONDS_IN_SECOND),
-      rest: string.slice(matchResult[0].length)
-    };
-  }
-  function parseAnyDigitsSigned(string, valueCallback) {
-    return parseNumericPattern(numericPatterns.anyDigitsSigned, string, valueCallback);
-  }
-  function parseNDigits(n2, string, valueCallback) {
-    switch (n2) {
-      case 1:
-        return parseNumericPattern(numericPatterns.singleDigit, string, valueCallback);
-      case 2:
-        return parseNumericPattern(numericPatterns.twoDigits, string, valueCallback);
-      case 3:
-        return parseNumericPattern(numericPatterns.threeDigits, string, valueCallback);
-      case 4:
-        return parseNumericPattern(numericPatterns.fourDigits, string, valueCallback);
-      default:
-        return parseNumericPattern(new RegExp("^\\d{1," + n2 + "}"), string, valueCallback);
-    }
-  }
-  function parseNDigitsSigned(n2, string, valueCallback) {
-    switch (n2) {
-      case 1:
-        return parseNumericPattern(numericPatterns.singleDigitSigned, string, valueCallback);
-      case 2:
-        return parseNumericPattern(numericPatterns.twoDigitsSigned, string, valueCallback);
-      case 3:
-        return parseNumericPattern(numericPatterns.threeDigitsSigned, string, valueCallback);
-      case 4:
-        return parseNumericPattern(numericPatterns.fourDigitsSigned, string, valueCallback);
-      default:
-        return parseNumericPattern(new RegExp("^-?\\d{1," + n2 + "}"), string, valueCallback);
-    }
-  }
-  function dayPeriodEnumToHours(enumValue) {
-    switch (enumValue) {
-      case "morning":
-        return 4;
-      case "evening":
-        return 17;
-      case "pm":
-      case "noon":
-      case "afternoon":
-        return 12;
-      case "am":
-      case "midnight":
-      case "night":
-      default:
-        return 0;
-    }
-  }
-  function normalizeTwoDigitYear(twoDigitYear, currentYear) {
-    var isCommonEra = currentYear > 0;
-    var absCurrentYear = isCommonEra ? currentYear : 1 - currentYear;
-    var result;
-    if (absCurrentYear <= 50) {
-      result = twoDigitYear || 100;
-    } else {
-      var rangeEnd = absCurrentYear + 50;
-      var rangeEndCentury = Math.floor(rangeEnd / 100) * 100;
-      var isPreviousCentury = twoDigitYear >= rangeEnd % 100;
-      result = twoDigitYear + rangeEndCentury - (isPreviousCentury ? 100 : 0);
-    }
-    return isCommonEra ? result : 1 - result;
-  }
-  var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  var DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  function isLeapYearIndex(year2) {
-    return year2 % 400 === 0 || year2 % 4 === 0 && year2 % 100 !== 0;
-  }
-  var parsers = {
-    G: {
-      priority: 140,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "G":
-          case "GG":
-          case "GGG":
-            return match2.era(string, {
-              width: "abbreviated"
-            }) || match2.era(string, {
-              width: "narrow"
-            });
-          case "GGGGG":
-            return match2.era(string, {
-              width: "narrow"
-            });
-          case "GGGG":
-          default:
-            return match2.era(string, {
-              width: "wide"
-            }) || match2.era(string, {
-              width: "abbreviated"
-            }) || match2.era(string, {
-              width: "narrow"
-            });
-        }
-      },
-      set: function(date2, flags, value, _options) {
-        flags.era = value;
-        date2.setUTCFullYear(value, 0, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["R", "u", "t", "T"]
-    },
-    y: {
-      priority: 130,
-      parse: function(string, token, match2, _options) {
-        var valueCallback = function(year2) {
-          return {
-            year: year2,
-            isTwoDigitYear: token === "yy"
-          };
-        };
-        switch (token) {
-          case "y":
-            return parseNDigits(4, string, valueCallback);
-          case "yo":
-            return match2.ordinalNumber(string, {
-              unit: "year",
-              valueCallback
-            });
-          default:
-            return parseNDigits(token.length, string, valueCallback);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value.isTwoDigitYear || value.year > 0;
-      },
-      set: function(date2, flags, value, _options) {
-        var currentYear = date2.getUTCFullYear();
-        if (value.isTwoDigitYear) {
-          var normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
-          date2.setUTCFullYear(normalizedTwoDigitYear, 0, 1);
-          date2.setUTCHours(0, 0, 0, 0);
-          return date2;
-        }
-        var year2 = !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
-        date2.setUTCFullYear(year2, 0, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "u", "w", "I", "i", "e", "c", "t", "T"]
-    },
-    Y: {
-      priority: 130,
-      parse: function(string, token, match2, _options) {
-        var valueCallback = function(year2) {
-          return {
-            year: year2,
-            isTwoDigitYear: token === "YY"
-          };
-        };
-        switch (token) {
-          case "Y":
-            return parseNDigits(4, string, valueCallback);
-          case "Yo":
-            return match2.ordinalNumber(string, {
-              unit: "year",
-              valueCallback
-            });
-          default:
-            return parseNDigits(token.length, string, valueCallback);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value.isTwoDigitYear || value.year > 0;
-      },
-      set: function(date2, flags, value, options) {
-        var currentYear = getUTCWeekYear(date2, options);
-        if (value.isTwoDigitYear) {
-          var normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
-          date2.setUTCFullYear(normalizedTwoDigitYear, 0, options.firstWeekContainsDate);
-          date2.setUTCHours(0, 0, 0, 0);
-          return startOfUTCWeek(date2, options);
-        }
-        var year2 = !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
-        date2.setUTCFullYear(year2, 0, options.firstWeekContainsDate);
-        date2.setUTCHours(0, 0, 0, 0);
-        return startOfUTCWeek(date2, options);
-      },
-      incompatibleTokens: ["y", "R", "u", "Q", "q", "M", "L", "I", "d", "D", "i", "t", "T"]
-    },
-    R: {
-      priority: 130,
-      parse: function(string, token, _match, _options) {
-        if (token === "R") {
-          return parseNDigitsSigned(4, string);
-        }
-        return parseNDigitsSigned(token.length, string);
-      },
-      set: function(_date, _flags, value, _options) {
-        var firstWeekOfYear = new Date(0);
-        firstWeekOfYear.setUTCFullYear(value, 0, 4);
-        firstWeekOfYear.setUTCHours(0, 0, 0, 0);
-        return startOfUTCISOWeek(firstWeekOfYear);
-      },
-      incompatibleTokens: ["G", "y", "Y", "u", "Q", "q", "M", "L", "w", "d", "D", "e", "c", "t", "T"]
-    },
-    u: {
-      priority: 130,
-      parse: function(string, token, _match, _options) {
-        if (token === "u") {
-          return parseNDigitsSigned(4, string);
-        }
-        return parseNDigitsSigned(token.length, string);
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCFullYear(value, 0, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["G", "y", "Y", "R", "w", "I", "i", "e", "c", "t", "T"]
-    },
-    Q: {
-      priority: 120,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "Q":
-          case "QQ":
-            return parseNDigits(token.length, string);
-          case "Qo":
-            return match2.ordinalNumber(string, {
-              unit: "quarter"
-            });
-          case "QQQ":
-            return match2.quarter(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.quarter(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "QQQQQ":
-            return match2.quarter(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "QQQQ":
-          default:
-            return match2.quarter(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.quarter(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.quarter(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 4;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMonth((value - 1) * 3, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "q", "M", "L", "w", "I", "d", "D", "i", "e", "c", "t", "T"]
-    },
-    q: {
-      priority: 120,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "q":
-          case "qq":
-            return parseNDigits(token.length, string);
-          case "qo":
-            return match2.ordinalNumber(string, {
-              unit: "quarter"
-            });
-          case "qqq":
-            return match2.quarter(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.quarter(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "qqqqq":
-            return match2.quarter(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "qqqq":
-          default:
-            return match2.quarter(string, {
-              width: "wide",
-              context: "standalone"
-            }) || match2.quarter(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.quarter(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 4;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMonth((value - 1) * 3, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "Q", "M", "L", "w", "I", "d", "D", "i", "e", "c", "t", "T"]
-    },
-    M: {
-      priority: 110,
-      parse: function(string, token, match2, _options) {
-        var valueCallback = function(value) {
-          return value - 1;
-        };
-        switch (token) {
-          case "M":
-            return parseNumericPattern(numericPatterns.month, string, valueCallback);
-          case "MM":
-            return parseNDigits(2, string, valueCallback);
-          case "Mo":
-            return match2.ordinalNumber(string, {
-              unit: "month",
-              valueCallback
-            });
-          case "MMM":
-            return match2.month(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.month(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "MMMMM":
-            return match2.month(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "MMMM":
-          default:
-            return match2.month(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.month(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.month(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 11;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMonth(value, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "q", "Q", "L", "w", "I", "D", "i", "e", "c", "t", "T"]
-    },
-    L: {
-      priority: 110,
-      parse: function(string, token, match2, _options) {
-        var valueCallback = function(value) {
-          return value - 1;
-        };
-        switch (token) {
-          case "L":
-            return parseNumericPattern(numericPatterns.month, string, valueCallback);
-          case "LL":
-            return parseNDigits(2, string, valueCallback);
-          case "Lo":
-            return match2.ordinalNumber(string, {
-              unit: "month",
-              valueCallback
-            });
-          case "LLL":
-            return match2.month(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.month(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "LLLLL":
-            return match2.month(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "LLLL":
-          default:
-            return match2.month(string, {
-              width: "wide",
-              context: "standalone"
-            }) || match2.month(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.month(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 11;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMonth(value, 1);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "q", "Q", "M", "w", "I", "D", "i", "e", "c", "t", "T"]
-    },
-    w: {
-      priority: 100,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "w":
-            return parseNumericPattern(numericPatterns.week, string);
-          case "wo":
-            return match2.ordinalNumber(string, {
-              unit: "week"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 53;
-      },
-      set: function(date2, _flags, value, options) {
-        return startOfUTCWeek(setUTCWeek(date2, value, options), options);
-      },
-      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "i", "t", "T"]
-    },
-    I: {
-      priority: 100,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "I":
-            return parseNumericPattern(numericPatterns.week, string);
-          case "Io":
-            return match2.ordinalNumber(string, {
-              unit: "week"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 53;
-      },
-      set: function(date2, _flags, value, options) {
-        return startOfUTCISOWeek(setUTCISOWeek(date2, value, options), options);
-      },
-      incompatibleTokens: ["y", "Y", "u", "q", "Q", "M", "L", "w", "d", "D", "e", "c", "t", "T"]
-    },
-    d: {
-      priority: 90,
-      subPriority: 1,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "d":
-            return parseNumericPattern(numericPatterns.date, string);
-          case "do":
-            return match2.ordinalNumber(string, {
-              unit: "date"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(date2, value, _options) {
-        var year2 = date2.getUTCFullYear();
-        var isLeapYear = isLeapYearIndex(year2);
-        var month2 = date2.getUTCMonth();
-        if (isLeapYear) {
-          return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month2];
-        } else {
-          return value >= 1 && value <= DAYS_IN_MONTH[month2];
-        }
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCDate(value);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "q", "Q", "w", "I", "D", "i", "e", "c", "t", "T"]
-    },
-    D: {
-      priority: 90,
-      subPriority: 1,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "D":
-          case "DD":
-            return parseNumericPattern(numericPatterns.dayOfYear, string);
-          case "Do":
-            return match2.ordinalNumber(string, {
-              unit: "date"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(date2, value, _options) {
-        var year2 = date2.getUTCFullYear();
-        var isLeapYear = isLeapYearIndex(year2);
-        if (isLeapYear) {
-          return value >= 1 && value <= 366;
-        } else {
-          return value >= 1 && value <= 365;
-        }
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMonth(0, value);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["Y", "R", "q", "Q", "M", "L", "w", "I", "d", "E", "i", "e", "c", "t", "T"]
-    },
-    E: {
-      priority: 90,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "E":
-          case "EE":
-          case "EEE":
-            return match2.day(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "EEEEE":
-            return match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "EEEEEE":
-            return match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "EEEE":
-          default:
-            return match2.day(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 6;
-      },
-      set: function(date2, _flags, value, options) {
-        date2 = setUTCDay(date2, value, options);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["D", "i", "e", "c", "t", "T"]
-    },
-    e: {
-      priority: 90,
-      parse: function(string, token, match2, options) {
-        var valueCallback = function(value) {
-          var wholeWeekDays = Math.floor((value - 1) / 7) * 7;
-          return (value + options.weekStartsOn + 6) % 7 + wholeWeekDays;
-        };
-        switch (token) {
-          case "e":
-          case "ee":
-            return parseNDigits(token.length, string, valueCallback);
-          case "eo":
-            return match2.ordinalNumber(string, {
-              unit: "day",
-              valueCallback
-            });
-          case "eee":
-            return match2.day(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "eeeee":
-            return match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "eeeeee":
-            return match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "eeee":
-          default:
-            return match2.day(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 6;
-      },
-      set: function(date2, _flags, value, options) {
-        date2 = setUTCDay(date2, value, options);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "E", "i", "c", "t", "T"]
-    },
-    c: {
-      priority: 90,
-      parse: function(string, token, match2, options) {
-        var valueCallback = function(value) {
-          var wholeWeekDays = Math.floor((value - 1) / 7) * 7;
-          return (value + options.weekStartsOn + 6) % 7 + wholeWeekDays;
-        };
-        switch (token) {
-          case "c":
-          case "cc":
-            return parseNDigits(token.length, string, valueCallback);
-          case "co":
-            return match2.ordinalNumber(string, {
-              unit: "day",
-              valueCallback
-            });
-          case "ccc":
-            return match2.day(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "short",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "ccccc":
-            return match2.day(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "cccccc":
-            return match2.day(string, {
-              width: "short",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-          case "cccc":
-          default:
-            return match2.day(string, {
-              width: "wide",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "abbreviated",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "short",
-              context: "standalone"
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "standalone"
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 6;
-      },
-      set: function(date2, _flags, value, options) {
-        date2 = setUTCDay(date2, value, options);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["y", "R", "u", "q", "Q", "M", "L", "I", "d", "D", "E", "i", "e", "t", "T"]
-    },
-    i: {
-      priority: 90,
-      parse: function(string, token, match2, _options) {
-        var valueCallback = function(value) {
-          if (value === 0) {
-            return 7;
-          }
-          return value;
-        };
-        switch (token) {
-          case "i":
-          case "ii":
-            return parseNDigits(token.length, string);
-          case "io":
-            return match2.ordinalNumber(string, {
-              unit: "day"
-            });
-          case "iii":
-            return match2.day(string, {
-              width: "abbreviated",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting",
-              valueCallback
-            });
-          case "iiiii":
-            return match2.day(string, {
-              width: "narrow",
-              context: "formatting",
-              valueCallback
-            });
-          case "iiiiii":
-            return match2.day(string, {
-              width: "short",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting",
-              valueCallback
-            });
-          case "iiii":
-          default:
-            return match2.day(string, {
-              width: "wide",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "abbreviated",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "short",
-              context: "formatting",
-              valueCallback
-            }) || match2.day(string, {
-              width: "narrow",
-              context: "formatting",
-              valueCallback
-            });
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 7;
-      },
-      set: function(date2, _flags, value, options) {
-        date2 = setUTCISODay(date2, value, options);
-        date2.setUTCHours(0, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["y", "Y", "u", "q", "Q", "M", "L", "w", "d", "D", "E", "e", "c", "t", "T"]
-    },
-    a: {
-      priority: 80,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "a":
-          case "aa":
-          case "aaa":
-            return match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "aaaaa":
-            return match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "aaaa":
-          default:
-            return match2.dayPeriod(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["b", "B", "H", "k", "t", "T"]
-    },
-    b: {
-      priority: 80,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "b":
-          case "bb":
-          case "bbb":
-            return match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "bbbbb":
-            return match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "bbbb":
-          default:
-            return match2.dayPeriod(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["a", "B", "H", "k", "t", "T"]
-    },
-    B: {
-      priority: 80,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "B":
-          case "BB":
-          case "BBB":
-            return match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "BBBBB":
-            return match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-          case "BBBB":
-          default:
-            return match2.dayPeriod(string, {
-              width: "wide",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "abbreviated",
-              context: "formatting"
-            }) || match2.dayPeriod(string, {
-              width: "narrow",
-              context: "formatting"
-            });
-        }
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["a", "b", "t", "T"]
-    },
-    h: {
-      priority: 70,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "h":
-            return parseNumericPattern(numericPatterns.hour12h, string);
-          case "ho":
-            return match2.ordinalNumber(string, {
-              unit: "hour"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 12;
-      },
-      set: function(date2, _flags, value, _options) {
-        var isPM = date2.getUTCHours() >= 12;
-        if (isPM && value < 12) {
-          date2.setUTCHours(value + 12, 0, 0, 0);
-        } else if (!isPM && value === 12) {
-          date2.setUTCHours(0, 0, 0, 0);
-        } else {
-          date2.setUTCHours(value, 0, 0, 0);
-        }
-        return date2;
-      },
-      incompatibleTokens: ["H", "K", "k", "t", "T"]
-    },
-    H: {
-      priority: 70,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "H":
-            return parseNumericPattern(numericPatterns.hour23h, string);
-          case "Ho":
-            return match2.ordinalNumber(string, {
-              unit: "hour"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 23;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCHours(value, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["a", "b", "h", "K", "k", "t", "T"]
-    },
-    K: {
-      priority: 70,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "K":
-            return parseNumericPattern(numericPatterns.hour11h, string);
-          case "Ko":
-            return match2.ordinalNumber(string, {
-              unit: "hour"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 11;
-      },
-      set: function(date2, _flags, value, _options) {
-        var isPM = date2.getUTCHours() >= 12;
-        if (isPM && value < 12) {
-          date2.setUTCHours(value + 12, 0, 0, 0);
-        } else {
-          date2.setUTCHours(value, 0, 0, 0);
-        }
-        return date2;
-      },
-      incompatibleTokens: ["h", "H", "k", "t", "T"]
-    },
-    k: {
-      priority: 70,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "k":
-            return parseNumericPattern(numericPatterns.hour24h, string);
-          case "ko":
-            return match2.ordinalNumber(string, {
-              unit: "hour"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 1 && value <= 24;
-      },
-      set: function(date2, _flags, value, _options) {
-        var hours2 = value <= 24 ? value % 24 : value;
-        date2.setUTCHours(hours2, 0, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["a", "b", "h", "H", "K", "t", "T"]
-    },
-    m: {
-      priority: 60,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "m":
-            return parseNumericPattern(numericPatterns.minute, string);
-          case "mo":
-            return match2.ordinalNumber(string, {
-              unit: "minute"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 59;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMinutes(value, 0, 0);
-        return date2;
-      },
-      incompatibleTokens: ["t", "T"]
-    },
-    s: {
-      priority: 50,
-      parse: function(string, token, match2, _options) {
-        switch (token) {
-          case "s":
-            return parseNumericPattern(numericPatterns.second, string);
-          case "so":
-            return match2.ordinalNumber(string, {
-              unit: "second"
-            });
-          default:
-            return parseNDigits(token.length, string);
-        }
-      },
-      validate: function(_date, value, _options) {
-        return value >= 0 && value <= 59;
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCSeconds(value, 0);
-        return date2;
-      },
-      incompatibleTokens: ["t", "T"]
-    },
-    S: {
-      priority: 30,
-      parse: function(string, token, _match, _options) {
-        var valueCallback = function(value) {
-          return Math.floor(value * Math.pow(10, -token.length + 3));
-        };
-        return parseNDigits(token.length, string, valueCallback);
-      },
-      set: function(date2, _flags, value, _options) {
-        date2.setUTCMilliseconds(value);
-        return date2;
-      },
-      incompatibleTokens: ["t", "T"]
-    },
-    X: {
-      priority: 10,
-      parse: function(string, token, _match, _options) {
-        switch (token) {
-          case "X":
-            return parseTimezonePattern(timezonePatterns.basicOptionalMinutes, string);
-          case "XX":
-            return parseTimezonePattern(timezonePatterns.basic, string);
-          case "XXXX":
-            return parseTimezonePattern(timezonePatterns.basicOptionalSeconds, string);
-          case "XXXXX":
-            return parseTimezonePattern(timezonePatterns.extendedOptionalSeconds, string);
-          case "XXX":
-          default:
-            return parseTimezonePattern(timezonePatterns.extended, string);
-        }
-      },
-      set: function(date2, flags, value, _options) {
-        if (flags.timestampIsSet) {
-          return date2;
-        }
-        return new Date(date2.getTime() - value);
-      },
-      incompatibleTokens: ["t", "T", "x"]
-    },
-    x: {
-      priority: 10,
-      parse: function(string, token, _match, _options) {
-        switch (token) {
-          case "x":
-            return parseTimezonePattern(timezonePatterns.basicOptionalMinutes, string);
-          case "xx":
-            return parseTimezonePattern(timezonePatterns.basic, string);
-          case "xxxx":
-            return parseTimezonePattern(timezonePatterns.basicOptionalSeconds, string);
-          case "xxxxx":
-            return parseTimezonePattern(timezonePatterns.extendedOptionalSeconds, string);
-          case "xxx":
-          default:
-            return parseTimezonePattern(timezonePatterns.extended, string);
-        }
-      },
-      set: function(date2, flags, value, _options) {
-        if (flags.timestampIsSet) {
-          return date2;
-        }
-        return new Date(date2.getTime() - value);
-      },
-      incompatibleTokens: ["t", "T", "X"]
-    },
-    t: {
-      priority: 40,
-      parse: function(string, _token, _match, _options) {
-        return parseAnyDigitsSigned(string);
-      },
-      set: function(_date, _flags, value, _options) {
-        return [new Date(value * 1e3), {
-          timestampIsSet: true
-        }];
-      },
-      incompatibleTokens: "*"
-    },
-    T: {
-      priority: 20,
-      parse: function(string, _token, _match, _options) {
-        return parseAnyDigitsSigned(string);
-      },
-      set: function(_date, _flags, value, _options) {
-        return [new Date(value), {
-          timestampIsSet: true
-        }];
-      },
-      incompatibleTokens: "*"
-    }
-  };
-  var parsers_default = parsers;
-
-  // node_modules/date-fns/esm/parse/index.js
-  var TIMEZONE_UNIT_PRIORITY = 10;
-  var formattingTokensRegExp2 = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-  var longFormattingTokensRegExp2 = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-  var escapedStringRegExp2 = /^'([^]*?)'?$/;
-  var doubleQuoteRegExp2 = /''/g;
-  var notWhitespaceRegExp = /\S/;
-  var unescapedLatinCharacterRegExp2 = /[a-zA-Z]/;
-  function parse2(dirtyDateString, dirtyFormatString, dirtyReferenceDate, dirtyOptions) {
-    requiredArgs(3, arguments);
-    var dateString = String(dirtyDateString);
-    var formatString = String(dirtyFormatString);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale || en_US_default;
-    if (!locale2.match) {
-      throw new RangeError("locale must contain match property");
-    }
-    var localeFirstWeekContainsDate = locale2.options && locale2.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger2(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger2(options.firstWeekContainsDate);
-    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-      throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-    }
-    var localeWeekStartsOn = locale2.options && locale2.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger2(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger2(options.weekStartsOn);
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-    }
-    if (formatString === "") {
-      if (dateString === "") {
-        return toDate(dirtyReferenceDate);
-      } else {
-        return new Date(NaN);
-      }
-    }
-    var subFnOptions = {
-      firstWeekContainsDate,
-      weekStartsOn,
-      locale: locale2
-    };
-    var setters = [{
-      priority: TIMEZONE_UNIT_PRIORITY,
-      subPriority: -1,
-      set: dateToSystemTimezone,
-      index: 0
-    }];
-    var i2;
-    var tokens = formatString.match(longFormattingTokensRegExp2).map(function(substring) {
-      var firstCharacter2 = substring[0];
-      if (firstCharacter2 === "p" || firstCharacter2 === "P") {
-        var longFormatter = longFormatters_default[firstCharacter2];
-        return longFormatter(substring, locale2.formatLong, subFnOptions);
-      }
-      return substring;
-    }).join("").match(formattingTokensRegExp2);
-    var usedTokens = [];
-    for (i2 = 0; i2 < tokens.length; i2++) {
-      var token = tokens[i2];
-      if (!options.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) {
-        throwProtectedError(token, formatString, dirtyDateString);
-      }
-      if (!options.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) {
-        throwProtectedError(token, formatString, dirtyDateString);
-      }
-      var firstCharacter = token[0];
-      var parser = parsers_default[firstCharacter];
-      if (parser) {
-        var incompatibleTokens = parser.incompatibleTokens;
-        if (Array.isArray(incompatibleTokens)) {
-          var incompatibleToken = void 0;
-          for (var _i = 0; _i < usedTokens.length; _i++) {
-            var usedToken = usedTokens[_i].token;
-            if (incompatibleTokens.indexOf(usedToken) !== -1 || usedToken === firstCharacter) {
-              incompatibleToken = usedTokens[_i];
-              break;
-            }
-          }
-          if (incompatibleToken) {
-            throw new RangeError("The format string mustn't contain `".concat(incompatibleToken.fullToken, "` and `").concat(token, "` at the same time"));
-          }
-        } else if (parser.incompatibleTokens === "*" && usedTokens.length) {
-          throw new RangeError("The format string mustn't contain `".concat(token, "` and any other token at the same time"));
-        }
-        usedTokens.push({
-          token: firstCharacter,
-          fullToken: token
-        });
-        var parseResult = parser.parse(dateString, token, locale2.match, subFnOptions);
-        if (!parseResult) {
-          return new Date(NaN);
-        }
-        setters.push({
-          priority: parser.priority,
-          subPriority: parser.subPriority || 0,
-          set: parser.set,
-          validate: parser.validate,
-          value: parseResult.value,
-          index: setters.length
-        });
-        dateString = parseResult.rest;
-      } else {
-        if (firstCharacter.match(unescapedLatinCharacterRegExp2)) {
-          throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
-        }
-        if (token === "''") {
-          token = "'";
-        } else if (firstCharacter === "'") {
-          token = cleanEscapedString2(token);
-        }
-        if (dateString.indexOf(token) === 0) {
-          dateString = dateString.slice(token.length);
-        } else {
-          return new Date(NaN);
-        }
-      }
-    }
-    if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
-      return new Date(NaN);
-    }
-    var uniquePrioritySetters = setters.map(function(setter2) {
-      return setter2.priority;
-    }).sort(function(a2, b2) {
-      return b2 - a2;
-    }).filter(function(priority, index2, array) {
-      return array.indexOf(priority) === index2;
-    }).map(function(priority) {
-      return setters.filter(function(setter2) {
-        return setter2.priority === priority;
-      }).sort(function(a2, b2) {
-        return b2.subPriority - a2.subPriority;
-      });
-    }).map(function(setterArray) {
-      return setterArray[0];
-    });
-    var date2 = toDate(dirtyReferenceDate);
-    if (isNaN(date2)) {
-      return new Date(NaN);
-    }
-    var utcDate = subMilliseconds(date2, getTimezoneOffsetInMilliseconds(date2));
-    var flags = {};
-    for (i2 = 0; i2 < uniquePrioritySetters.length; i2++) {
-      var setter = uniquePrioritySetters[i2];
-      if (setter.validate && !setter.validate(utcDate, setter.value, subFnOptions)) {
-        return new Date(NaN);
-      }
-      var result = setter.set(utcDate, flags, setter.value, subFnOptions);
-      if (result[0]) {
-        utcDate = result[0];
-        assign(flags, result[1]);
-      } else {
-        utcDate = result;
-      }
-    }
-    return utcDate;
-  }
-  function dateToSystemTimezone(date2, flags) {
-    if (flags.timestampIsSet) {
-      return date2;
-    }
-    var convertedDate = new Date(0);
-    convertedDate.setFullYear(date2.getUTCFullYear(), date2.getUTCMonth(), date2.getUTCDate());
-    convertedDate.setHours(date2.getUTCHours(), date2.getUTCMinutes(), date2.getUTCSeconds(), date2.getUTCMilliseconds());
-    return convertedDate;
-  }
-  function cleanEscapedString2(input) {
-    return input.match(escapedStringRegExp2)[1].replace(doubleQuoteRegExp2, "'");
-  }
-
-  // node_modules/date-fns/esm/startOfWeek/index.js
-  function startOfWeek(dirtyDate, dirtyOptions) {
-    requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var locale2 = options.locale;
-    var localeWeekStartsOn = locale2 && locale2.options && locale2.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger2(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger2(options.weekStartsOn);
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-    }
-    var date2 = toDate(dirtyDate);
-    var day2 = date2.getDay();
-    var diff2 = (day2 < weekStartsOn ? 7 : 0) + day2 - weekStartsOn;
-    date2.setDate(date2.getDate() - diff2);
-    date2.setHours(0, 0, 0, 0);
-    return date2;
-  }
-
-  // node_modules/date-fns/esm/getDay/index.js
-  function getDay(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date2 = toDate(dirtyDate);
-    var day2 = date2.getDay();
-    return day2;
-  }
-
   // src/Components/ProjectsPage/CreateProjectModal.tsx
   var import_react85 = __toESM(require_react(), 1);
   var CreateProjectModal = ({ setModal, modal }) => {
@@ -60674,8 +60864,8 @@ ${Select3}:hover & {
       "en-US": en_US_default
     };
     const localizer = dateFnsLocalizer({
-      format: format2,
-      parse: parse2,
+      format,
+      parse,
       startOfWeek,
       getDay,
       locales
@@ -61451,10 +61641,10 @@ padding-bottom: 25px;
   var import_react92 = __toESM(require_react(), 1);
 
   // src/store/selectors/inspection.ts
-  var selectInspection = (state) => state.inspectionReducer;
-  var selectHeaderFilters_1 = createSelector(selectInspection, ({ filter_1 }) => filter_1);
-  var selectHeaderFilters_2 = createSelector(selectInspection, ({ filter_2 }) => filter_2);
-  var selectHeaderFilters_3 = createSelector(selectInspection, ({ filter_3 }) => filter_3);
+  var selectInspection2 = (state) => state.inspectionReducer;
+  var selectHeaderFilters_1 = createSelector(selectInspection2, ({ filter_1 }) => filter_1);
+  var selectHeaderFilters_2 = createSelector(selectInspection2, ({ filter_2 }) => filter_2);
+  var selectHeaderFilters_3 = createSelector(selectInspection2, ({ filter_3 }) => filter_3);
 
   // src/store/actions/inspection.ts
   var import_immer_reducer6 = __toESM(require_immer_reducer(), 1);
@@ -62853,38 +63043,6 @@ padding-bottom: 25px;
   };
   var SettingsPageUsersTable = ({ minCellWidth, organizationInfo }) => {
     const headers = ["First Name", "Last Name", "Email", "Phone", "Roles", "Actions"];
-    if (organizationInfo) {
-      console.log(organizationInfo.users);
-    }
-    const tableData = [
-      {
-        id: 1,
-        firstName: "Roman",
-        lastName: "Nahryshko",
-        email: "nagrishkoo@gmail.com",
-        phone: "+12345678",
-        roles: "Admin",
-        actions: ""
-      },
-      {
-        id: 2,
-        firstName: "Oleksii",
-        lastName: "Kilevoi",
-        email: "lunaxodd@gmail.com",
-        phone: "+12345678",
-        roles: "Admin",
-        actions: ""
-      },
-      {
-        id: 3,
-        firstName: "Alex",
-        lastName: "Blokh",
-        email: "alex.blokh@lambda.direct",
-        phone: "+12345678",
-        roles: "Admin",
-        actions: ""
-      }
-    ];
     const [tableHeight, setTableHeight] = (0, import_react106.useState)("auto");
     const [activeIndex, setActiveIndex] = (0, import_react106.useState)(null);
     const [activeFilter, setActiveFilter] = (0, import_react106.useState)(false);
@@ -62928,7 +63086,7 @@ padding-bottom: 25px;
     }, /* @__PURE__ */ import_react106.default.createElement("div", {
       className: "table-wrapper"
     }, /* @__PURE__ */ import_react106.default.createElement("table", {
-      className: "resizeable-table",
+      className: "resizeable-table-settings",
       ref: tableElement
     }, /* @__PURE__ */ import_react106.default.createElement("thead", null, /* @__PURE__ */ import_react106.default.createElement("tr", null, columns.map(({ ref, text }, i2) => /* @__PURE__ */ import_react106.default.createElement(import_react106.default.Fragment, null, /* @__PURE__ */ import_react106.default.createElement("th", {
       ref,
@@ -63241,19 +63399,41 @@ padding-bottom: 25px;
   position: relative;
 `;
 
-  // src/store/selectors/organization.ts
-  var selectInspection2 = (state) => state.OrganizationReducer;
-  var selectOrganizationInfo = createSelector(selectInspection2, ({ organizationResponse }) => organizationResponse);
-
   // src/Components/SettingsPage/SettingsPageUsers.tsx
   var SettingsPageUsers = () => {
     const [modal, setModal] = (0, import_react108.useState)(false);
     const dispatch = useDispatch();
     const organizationInfo = useSelector(selectOrganizationInfo);
+    const [popup, setPopup] = (0, import_react108.useState)(false);
+    const isInvalidData = useSelector(selectIsInvalidData);
+    const isValidData = useSelector(selectIsValidData);
+    const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage);
+    (0, import_react108.useEffect)(() => {
+      if (isInvalidData)
+        setPopup(true);
+      if (isValidData)
+        setPopup(true);
+    }, [isInvalidData, isValidData]);
+    (0, import_react108.useEffect)(() => {
+      let timer;
+      if (popup) {
+        timer = setTimeout(() => {
+          setPopup(false);
+          dispatch(invalidDataClear());
+        }, 3e3);
+      }
+      return () => clearTimeout(timer);
+    }, [popup]);
     (0, import_react108.useEffect)(() => {
       dispatch(getOrganizationInfo());
     }, []);
-    return /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement(Wrapper16, null, /* @__PURE__ */ import_react108.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react108.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react108.default.createElement(HeaderButton, {
+    return /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement(Wrapper16, null, isInvalidData && /* @__PURE__ */ import_react108.default.createElement(Popup_default, {
+      text: isInvalidDataMessage,
+      status: "error"
+    }), isValidData && /* @__PURE__ */ import_react108.default.createElement(Popup_default, {
+      text: "User was created",
+      status: "success"
+    }), /* @__PURE__ */ import_react108.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react108.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react108.default.createElement(HeaderButton, {
       onClick: () => {
         setTimeout(() => {
           setModal(true);

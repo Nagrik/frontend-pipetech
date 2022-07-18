@@ -6,11 +6,39 @@ import AddUserModal from "@/Components/SettingsPage/AddUserModal";
 import {useDispatch, useSelector} from "react-redux";
 import {selectOrganizationInfo} from "@/store/selectors/organization";
 import {getOrganizationInfo} from "@/store/actions/organization";
+import Popup from "@/Components/utils/Popup";
+import {selectIsInvalidData, selectIsInvalidDataMessage, selectIsValidData} from "@/store/selectors/auth";
+import {invalidDataClear} from "@/store/actions/login";
 
 const SettingsPageUsers = () => {
     const [modal, setModal] = useState<boolean>(false)
     const dispatch = useDispatch<AppDispatch>();
     const organizationInfo = useSelector(selectOrganizationInfo);
+
+    const [popup, setPopup] = useState(false);
+
+
+    const isInvalidData = useSelector(selectIsInvalidData)
+    const isValidData = useSelector(selectIsValidData)
+    const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage)
+
+    useEffect(() => {
+        if (isInvalidData) setPopup(true);
+        if (isValidData) setPopup(true);
+    }, [isInvalidData, isValidData]);
+
+    useEffect(() => {
+        let timer: any;
+
+        if (popup) {
+            timer = setTimeout(() => {
+                setPopup(false);
+                dispatch(invalidDataClear());
+            }, 3000);
+        }
+
+        return () => clearTimeout(timer);
+    }, [popup]);
 
     useEffect(() => {
         dispatch(getOrganizationInfo())
@@ -18,6 +46,12 @@ const SettingsPageUsers = () => {
     return (
         <>
         <Wrapper>
+            {
+              isInvalidData && <Popup text={isInvalidDataMessage!} status={'error'}/>
+            }
+            {
+                isValidData && <Popup text={'User was created'} status={'success'}/>
+            }
             <HeaderUser>
                 <HeaderTitle>
                     Users

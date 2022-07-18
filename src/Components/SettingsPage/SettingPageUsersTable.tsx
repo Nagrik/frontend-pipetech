@@ -6,6 +6,7 @@ import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowT
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import Loader from "@/Components/TableUtils/Loader";
+import Popup from "@/Components/utils/Popup";
 
 
 const createHeaders = (headers: any) => {
@@ -19,38 +20,7 @@ const createHeaders = (headers: any) => {
 const SettingsPageUsersTable = ({minCellWidth, organizationInfo}: any) => {
 
     const headers = ['First Name', 'Last Name', 'Email', 'Phone', 'Roles', 'Actions'];
-    if (organizationInfo) {
-        console.log(organizationInfo.users)
-    }
-    const tableData = [
-        {
-            id: 1,
-            firstName: 'Roman',
-            lastName: 'Nahryshko',
-            email: 'nagrishkoo@gmail.com',
-            phone: '+12345678',
-            roles: 'Admin',
-            actions: ''
-        },
-        {
-            id: 2,
-            firstName: 'Oleksii',
-            lastName: 'Kilevoi',
-            email: 'lunaxodd@gmail.com',
-            phone: '+12345678',
-            roles: 'Admin',
-            actions: ''
-        },
-        {
-            id: 3,
-            firstName: 'Alex',
-            lastName: 'Blokh',
-            email: 'alex.blokh@lambda.direct',
-            phone: '+12345678',
-            roles: 'Admin',
-            actions: ''
-        },
-    ]
+
 
 
     const [tableHeight, setTableHeight] = useState("auto");
@@ -109,9 +79,10 @@ const SettingsPageUsersTable = ({minCellWidth, organizationInfo}: any) => {
 
     return (
         <div style={{position: 'relative', padding: '24px 0 '}}>
+
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table" ref={tableElement}>
+                    <table className="resizeable-table-settings" ref={tableElement}>
                         <thead>
                         <tr>
                             {columns.map(({ref, text}: any, i: number) => (

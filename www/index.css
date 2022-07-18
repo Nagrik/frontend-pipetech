@@ -270,14 +270,15 @@ h6 {
 }
 .resizeable-table {
   display: grid;
+  max-height: 500px;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: scroll;
   background-color: whitesmoke;
   padding-right: 24px;
   margin-left: 24px;
   border-left: 1px solid #ccc;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
+  grid-template-columns: minmax(55px, 0.1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr) minmax(155px, 1fr);
 }
 .resizeable-table-inspection {
   display: grid;
@@ -290,6 +291,17 @@ h6 {
   grid-auto-columns: calc(25% - 30px);
   grid-template-columns: minmax(55px, 0.1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr) minmax(55px, 1fr);
 }
+.first {
+  position: sticky;
+  left: 55px;
+  z-index: 4;
+  top: 0;
+}
+.tableHeaders {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 .checkbox {
   max-width: 60px;
   min-width: 30px;
@@ -299,6 +311,13 @@ h6 {
   justify-content: center;
   position: sticky;
   left: 0;
+  z-index: 2;
+}
+.checkboxHeader {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  top: 0;
 }
 .Items {
   position: sticky;
@@ -1223,7 +1242,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 /* src/Components/SettingsPage/table.css */
-.resizeable-table {
+.resizeable-table-settings {
   display: grid;
   overflow-x: scroll;
   overflow-y: hidden;
