@@ -33868,7 +33868,6 @@ ${latestSubscriptionCallbackError.current.stack}
       history2.push("/login");
     };
     const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0);
-    console.log(initials);
     return /* @__PURE__ */ import_react38.default.createElement(Wrapper4, null, /* @__PURE__ */ import_react38.default.createElement(LeftSideMenu, null, /* @__PURE__ */ import_react38.default.createElement(LogoWrapper3, {
       onClick: () => history2.push("/dashboard")
     }, /* @__PURE__ */ import_react38.default.createElement(LogoWhite_default, {
@@ -37954,11 +37953,10 @@ cursor: pointer;
     }, [activeIndex, mouseMove, mouseUp, removeListeners]);
     const handleCheckCheckboxes = (e2) => {
       const target = e2.target.checked;
-      const arr = tableDataState == null ? void 0 : tableDataState.map((item) => {
-        return __spreadProps(__spreadValues({}, item), { checkbox: target });
+      const newOrganisation = organisations.map((item) => {
+        return __spreadProps(__spreadValues({}, item), { checkbox: !item.checkbox });
       });
-      setTableDataState(arr);
-      console.log(arr, "arr");
+      dispatch(changeOrganisationArray(newOrganisation));
     };
     const handleCheckCheckbox = (e2, id2) => {
       e2.target.checked;
@@ -37969,7 +37967,6 @@ cursor: pointer;
         }
         return item;
       });
-      console.log(newOrganisation, "newOrganisation");
       dispatch(changeOrganisationArray(newOrganisation));
     };
     const handleFilterColumn = () => {

@@ -36,7 +36,6 @@ const Header = () => {
     }
 
     const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0)
-    console.log(initials)
 
 
     return (

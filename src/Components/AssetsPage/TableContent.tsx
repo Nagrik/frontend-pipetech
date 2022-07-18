@@ -96,13 +96,11 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
-        const arr = tableDataState?.map((item: any) => {
-            return (
-                {...item, checkbox: target}
-            )
-        });
-        setTableDataState(arr)
-        console.log(arr, 'arr')
+        const newOrganisation = organisations.map((item:any) => {
+
+                return {...item, checkbox: !item.checkbox}
+        })
+        dispatch(changeOrganisationArray(newOrganisation))
     }
 
 
@@ -115,7 +113,6 @@ const TableContent = ({headers, minCellWidth}: any) => {
             }
             return item
         })
-        console.log(newOrganisation, 'newOrganisation')
         dispatch(changeOrganisationArray(newOrganisation))
     }
 
