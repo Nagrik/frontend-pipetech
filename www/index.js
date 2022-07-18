@@ -37960,9 +37960,9 @@ cursor: pointer;
     const handleCheckCheckbox = (e2, id2) => {
       e2.target.checked;
       setId(id2.toString());
-      const newOrganisation = organisations.filter((item) => {
+      const newOrganisation = organisations.map((item) => {
         if (item.id === id2) {
-          return __spreadProps(__spreadValues({}, item), { checkbox: true });
+          return __spreadProps(__spreadValues({}, item), { checkbox: !item.checkbox });
         }
         return item;
       });
@@ -38025,7 +38025,77 @@ cursor: pointer;
             setDetailsOpen(true);
           }, 0.1);
         }
-      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement("td", null, /* @__PURE__ */ import_react55.default.createElement("span", null))));
+      }))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))), /* @__PURE__ */ import_react55.default.createElement("tr", null, /* @__PURE__ */ import_react55.default.createElement(Td, {
+        isActive: item.checkbox
+      }, /* @__PURE__ */ import_react55.default.createElement("span", null))));
     }))), /* @__PURE__ */ import_react55.default.createElement(TableFooter, null), detailsOpen && /* @__PURE__ */ import_react55.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react55.default.createElement(Wrapper10, {
       ref: detailsRef
     }, /* @__PURE__ */ import_react55.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react55.default.createElement(Cross, {

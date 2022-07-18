@@ -110,9 +110,9 @@ const TableContent = ({headers, minCellWidth}: any) => {
     const handleCheckCheckbox = (e: any, id: string) => {
         e.target.checked
         setId(id.toString())
-        const newOrganisation = organisations.filter((item:any) => {
+        const newOrganisation = organisations.map((item:any) => {
             if(item.id === id) {
-                return {...item, checkbox: true}
+                return {...item, checkbox: !item.checkbox}
             }
             return item
         })
@@ -194,286 +194,286 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                         </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                             <span>
                                                 {/*1*/}
                                                 {/*{item.Projects}*/}
                                             </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                           {/*2*/}
                                             {item.inspectionCount}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*3*/}
                                             {item.lastInspected ? format(parseISO(item.lastInspected), 'dd/MM/yyyy') : null}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*4*/}
                                             {item.source.material}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*5*/}
                                             {/*{item.inspections[0].source.comments}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*6*/}
                                             {item.source.city}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*7*/}
                                             {/*{item.inspections[0].source.coordinate_system}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*8*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*9*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*10*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                             <span>
                                                 {/*11*/}
                                                 {item.systemIndexId.downstream_ap}
                                             </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                           {/*12*/}
                                             {/*  {item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*13*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*14*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*15*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*16*/}
                                             {/*{item.inspections[0].source.height}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*17*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*18*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*19*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*20*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
 
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                             <span>
                                                 {/*21*/}
                                                 {item.source.owner}
                                             </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                           {/*22*/}
                                             {/*  {item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*23*/}
                                             {item.systemIndexId.upstream_ap}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*24*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*25*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*26*/}
                                             Circular
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*27*/}
                                             {item.source.street}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*28*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*29*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*30*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
 
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                             <span>
                                                 {/*31*/}
                                                 {/*{item.Projects}*/}
                                             </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                           {/*32*/}
                                             {item.systemIndexId.upstream_ap}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*33*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*34*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <Td isActive={item.checkbox}>
                                         <span>
                                              {/*35*/}
                                             {/*{item.inspection}*/}
                                         </span>
-                                        </td>
+                                        </Td>
                                     </tr>
                                 </>
                             )
