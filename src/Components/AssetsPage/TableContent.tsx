@@ -33,7 +33,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [tableDataState, setTableDataState] = useState(data?.assets?.data);
     const [activeFilter, setActiveFilter] = useState(false)
-    const [activePage, setActivePage] = useState<number>(1)
+    const [activePage, setActivePage] = useState<number>(6)
     const [activeTab, setActiveTab] = useState<string>('Details')
     const [detailsOpen, setDetailsOpen] = useState<boolean>(false)
     const [openSelect, setOpenSelect] = useState<boolean>(false)
@@ -137,14 +137,14 @@ const TableContent = ({headers, minCellWidth}: any) => {
         setActiveFilter(!activeFilter)
     }
 
-    const paginateArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37]
+    const paginateArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
 
     paginateArr.slice(5, 8).map((item) => console.log(item))
 
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
-                <TableWrapper className="table-wrapper" style={{marginRight: '25px', borderRight: '1px solid #ccc'}}>
+                <TableWrapper className="table-wrapper" style={{marginRight: '25px'}}>
                     <ResizableTable arr={paginateArr} className="resizeable-table" ref={tableElement}>
                         <thead style={{marginLeft: 12 * paginateArr.length + 'px'}}>
                         <tr>
@@ -498,28 +498,50 @@ const TableContent = ({headers, minCellWidth}: any) => {
                             </PaginationIconLeft>
                             <PaginationItemsWrapp>
 
-                                <PaginationItem isActive={activePage === 1} >
+                                <PaginationItem isActive={activePage === 1} onClick={() => setActivePage(1)}>
                                     {paginateArr[0]}
                                 </PaginationItem>
-                                &nbsp;
                                 {
-                                    "..."
+                                    activePage < 5 && (
+                                        paginateArr.map((item, index) => {
+                                            if (index > 4 || index === 0) {
+                                                return null
+                                            } else {
+                                                return <PaginationItem onClick={() => setActivePage(item)}
+                                                                       key={index} isActive={activePage === item}>{item}
+                                                </PaginationItem>
+                                            }
+                                        })
+                                    )
                                 }
-                                &nbsp;
+                                <Dots>
+                                    ...
+                                </Dots>
+                                {
+                                    activePage >= 5 && (
+                                        paginateArr.slice(activePage - 2, activePage + 1).map((item, index) => {
+                                            if (item === paginateArr[paginateArr.length - 1]) {
+                                                return
+                                            }
+                                            return (
+                                                <>
 
-                                {
-                                    paginateArr.slice(5, 8).map((item) => (
-                                        <PaginationItem isActive={activePage === item}>
-                                            {item}
-                                        </PaginationItem>
-                                    ))
+                                                <PaginationItem isActive={activePage === item}
+                                                                onClick={() => setActivePage(item)}>
+                                                    {item}
+                                                </PaginationItem>
+
+                                                </>
+                                            )
+                                        })
+                                    )
                                 }
-                                &nbsp;
-                                {
-                                    '...'
-                                }
-                                &nbsp;
-                                <PaginationItem isActive={activePage === paginateArr[paginateArr.length - 1]}>
+                                <Dots>
+                                    ...
+                                </Dots>
+                                <PaginationItem
+                                    onClick={() => setActivePage(paginateArr[paginateArr.length - 1])}
+                                isActive={activePage === paginateArr[paginateArr.length - 1]} >
                                     {paginateArr[paginateArr.length - 1]}
                                 </PaginationItem>
                             </PaginationItemsWrapp>
@@ -675,7 +697,15 @@ const TableContent = ({headers, minCellWidth}: any) => {
 
 export default TableContent;
 
-const ResizableTable = styled.table<{arr:number[]}>`
+const Dots = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0px 0px 0px 0px;
+`
+
+const ResizableTable = styled.table<{ arr: number[] }>`
   display: grid;
   max-height: 450px;
   overflow-x: scroll;
@@ -685,7 +715,7 @@ const ResizableTable = styled.table<{arr:number[]}>`
   margin-left: 24px;
   border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: ${({ arr }:any) => arr.map((item:any, index:number) => index === 0 ? 'minmax(55px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
+  grid-template-columns: ${({arr}: any) => arr.map((item: any, index: number) => index === 0 ? 'minmax(55px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
 
 `
 
@@ -739,9 +769,9 @@ const PaginationIconLeft = styled.div`
   transform: rotate(90deg);
   color: #ccc;
   cursor: pointer;
-  position: absolute;
   top: 5px;
   right: 185px;
+  margin-right: 15px;
 `
 
 const PaginationIconRight = styled.div`
@@ -769,12 +799,13 @@ const Pagination = styled.div`
 `
 
 const PaginationItem = styled.div<{ isActive: boolean }>`
-  padding: 5px 12px;
+  padding: 5px 9px;
   display: flex;
   align-items: center;
   cursor: pointer;
   color: ${props => props.isActive ? '#1890ff' : '#000'};
   border: ${props => props.isActive ? '1px solid #1890ff' : 'none'};
+  margin-left: ${props => props.isActive ? '6px' : '0px'};
 `
 
 const Td = styled.td<{ isActive: boolean }>`

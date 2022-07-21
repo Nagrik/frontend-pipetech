@@ -189,7 +189,7 @@ export default class MainProtected extends HttpClientProtected {
         }
     });
 
-    public getOrganizationInspection = (organizationId:string, page:string, limit: string) => this.instance.get<AssetsResponse>(`/organisation/${organizationId}/inspections`
+    public getOrganizationInspection = (organizationId:string, page:string, limit: string) => this.instance.get<AssetsResponse>(`/organisation/interface/${organizationId}/inspections`
     );
 
     public getUserInfo = (organizationId:string) => this.instance.get<UserResponse>(`/users/${organizationId}`);

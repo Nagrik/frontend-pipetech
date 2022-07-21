@@ -31564,7 +31564,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main.ts
   var _Main = class extends http_client_default {
     constructor() {
-      super("https://api-dev.pipe-tech.lambda-team.club");
+      super("https://3299-188-163-108-228.ngrok.io");
       this.sendEmail = (body) => this.instance.post("/super-admin/login", body);
       this.getTokens = (body) => this.instance.post("/otp/validate", body);
       this.refresh = (body) => this.instance.post("/login/refresh", body);
@@ -31601,7 +31601,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main-protected.ts
   var _MainProtected = class extends HttpClientProtected {
     constructor() {
-      super("https://api-dev.pipe-tech.lambda-team.club");
+      super("https://3299-188-163-108-228.ngrok.io");
       this.createUser = (body) => this.instance.post("/users", body);
       this.addUserToOrganization = (id, body) => this.instance.post(`/organisation/1/add-user/${id}`, body);
       this.getOrganizationInfo = () => this.instance.get(`/organisation/1`);
@@ -31611,7 +31611,7 @@ ${latestSubscriptionCallbackError.current.stack}
           limit
         }
       });
-      this.getOrganizationInspection = (organizationId, page, limit) => this.instance.get(`/organisation/${organizationId}/inspections`);
+      this.getOrganizationInspection = (organizationId, page, limit) => this.instance.get(`/organisation/interface/${organizationId}/inspections`);
       this.getUserInfo = (organizationId) => this.instance.get(`/users/${organizationId}`);
     }
   };
@@ -31691,7 +31691,8 @@ ${latestSubscriptionCallbackError.current.stack}
     organizationAssets: null,
     organizations: null,
     organizationsInspection: null,
-    organizationsInspections: null
+    organizationsInspections: null,
+    inspectionsHeaders: null
   };
   var OrganizationReducer = class extends import_immer_reducer3.ImmerReducer {
     organizationResponse(organizationResponse) {
@@ -31708,6 +31709,8 @@ ${latestSubscriptionCallbackError.current.stack}
       this.draftState.organizationsInspection = [...organizationInspections.values.data].map((i2, index2) => {
         return { arr: [...i2], checkbox: false, id: index2, hover: false };
       });
+      const newArray = [...organizationInspections.columns];
+      this.draftState.inspectionsHeaders = [{ title: "checkbox" }, { title: "Assets" }, ...newArray];
     }
     setOrganizations(organizations) {
       this.draftState.organizations = organizations;
@@ -34726,6 +34729,7 @@ cursor: pointer;
   var selectOrganizationInspections = createSelector(selectInspection, ({ organizationsInspections }) => organizationsInspections);
   var selectOrganizations = createSelector(selectInspection, ({ organizations }) => organizations);
   var selectOrganizationsInspection = createSelector(selectInspection, ({ organizationsInspection }) => organizationsInspection);
+  var selectInspectionHeader = createSelector(selectInspection, ({ inspectionsHeaders }) => inspectionsHeaders);
 
   // node_modules/date-fns/esm/_lib/requiredArgs/index.js
   function requiredArgs(required, args) {
@@ -37958,7 +37962,7 @@ cursor: pointer;
     const [activeIndex, setActiveIndex] = (0, import_react56.useState)(null);
     const [tableDataState, setTableDataState] = (0, import_react56.useState)((_a = data == null ? void 0 : data.assets) == null ? void 0 : _a.data);
     const [activeFilter, setActiveFilter] = (0, import_react56.useState)(false);
-    const [activePage, setActivePage] = (0, import_react56.useState)(1);
+    const [activePage, setActivePage] = (0, import_react56.useState)(6);
     const [activeTab, setActiveTab] = (0, import_react56.useState)("Details");
     const [detailsOpen, setDetailsOpen] = (0, import_react56.useState)(false);
     const [openSelect, setOpenSelect] = (0, import_react56.useState)(false);
@@ -38045,7 +38049,7 @@ cursor: pointer;
       className: "container"
     }, /* @__PURE__ */ import_react56.default.createElement(TableWrapper, {
       className: "table-wrapper",
-      style: { marginRight: "25px", borderRight: "1px solid #ccc" }
+      style: { marginRight: "25px" }
     }, /* @__PURE__ */ import_react56.default.createElement(ResizableTable, {
       arr: paginateArr,
       className: "resizeable-table",
@@ -38162,10 +38166,28 @@ cursor: pointer;
         isActive: item.checkbox
       }, /* @__PURE__ */ import_react56.default.createElement("span", null))));
     }))), /* @__PURE__ */ import_react56.default.createElement(TableFooter, null), /* @__PURE__ */ import_react56.default.createElement(PaginationWrapp, null, /* @__PURE__ */ import_react56.default.createElement(Pagination, null, /* @__PURE__ */ import_react56.default.createElement(PaginationIconLeft, null, /* @__PURE__ */ import_react56.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react56.default.createElement(PaginationItemsWrapp, null, /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
-      isActive: activePage === 1
-    }, paginateArr[0]), "\xA0", "...", "\xA0", paginateArr.slice(5, 8).map((item) => /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
-      isActive: activePage === item
-    }, item)), "\xA0", "...", "\xA0", /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+      isActive: activePage === 1,
+      onClick: () => setActivePage(1)
+    }, paginateArr[0]), activePage < 5 && paginateArr.map((item, index2) => {
+      if (index2 > 4 || index2 === 0) {
+        return null;
+      } else {
+        return /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+          onClick: () => setActivePage(item),
+          key: index2,
+          isActive: activePage === item
+        }, item);
+      }
+    }), /* @__PURE__ */ import_react56.default.createElement(Dots, null, "..."), activePage >= 5 && paginateArr.slice(activePage - 2, activePage + 1).map((item, index2) => {
+      if (item === paginateArr[paginateArr.length - 1]) {
+        return;
+      }
+      return /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+        isActive: activePage === item,
+        onClick: () => setActivePage(item)
+      }, item));
+    }), /* @__PURE__ */ import_react56.default.createElement(Dots, null, "..."), /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+      onClick: () => setActivePage(paginateArr[paginateArr.length - 1]),
       isActive: activePage === paginateArr[paginateArr.length - 1]
     }, paginateArr[paginateArr.length - 1])), /* @__PURE__ */ import_react56.default.createElement(PaginationIconRight, null, /* @__PURE__ */ import_react56.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react56.default.createElement(SelectCountPage, {
       onClick: () => {
@@ -38209,6 +38231,13 @@ cursor: pointer;
     }, "Inspections"))), /* @__PURE__ */ import_react56.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react56.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react56.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react56.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react56.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
   };
   var TableContent_default = TableContent;
+  var Dots = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0px 0px 0px 0px;
+`;
   var ResizableTable = styled_components_browser_esm_default.table`
   display: grid;
   max-height: 450px;
@@ -38266,9 +38295,9 @@ cursor: pointer;
   transform: rotate(90deg);
   color: #ccc;
   cursor: pointer;
-  position: absolute;
   top: 5px;
   right: 185px;
+  margin-right: 15px;
 `;
   var PaginationIconRight = styled_components_browser_esm_default.div`
   transform: rotate(270deg);
@@ -38292,12 +38321,13 @@ cursor: pointer;
   margin-right: 35px;
 `;
   var PaginationItem = styled_components_browser_esm_default.div`
-  padding: 5px 12px;
+  padding: 5px 9px;
   display: flex;
   align-items: center;
   cursor: pointer;
   color: ${(props) => props.isActive ? "#1890ff" : "#000"};
   border: ${(props) => props.isActive ? "1px solid #1890ff" : "none"};
+  margin-left: ${(props) => props.isActive ? "6px" : "0px"};
 `;
   var Td = styled_components_browser_esm_default.td`
   text-align: left;
@@ -61744,8 +61774,8 @@ padding-bottom: 25px;
   :after{
     content: " ";
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 34px;
+    height: 34px;
     margin: 8px;
     border-radius: 50%;
     border: 6px solid #1890ff;
@@ -61757,24 +61787,23 @@ padding-bottom: 25px;
   // src/Components/InspectionPage/TableInspectionContent.tsx
   var TableInspectionContent = ({ headers, minCellWidth, data }) => {
     const createHeaders4 = (headers2) => {
-      if (headers2) {
-        return headers2.map((item) => ({
-          text: item.title
-        }));
-      }
+      return headers2 && headers2.map((item) => ({
+        text: item.title
+      }));
     };
     const [tableHeight, setTableHeight] = (0, import_react90.useState)("auto");
     const [activeIndex, setActiveIndex] = (0, import_react90.useState)(null);
     const [activeFilter, setActiveFilter] = (0, import_react90.useState)(false);
     const [hover, setHover] = (0, import_react90.useState)(false);
     const [activeFilterN, setActiveFilterN] = (0, import_react90.useState)([]);
-    const tableElement = (0, import_react90.useRef)(null);
     const dispatch = useDispatch();
     const inspections = useSelector(selectOrganizationsInspection);
-    const columns = createHeaders4(headers);
-    console.log(inspections, "inspections");
+    const inspectionHeaders = useSelector(selectInspectionHeader);
+    const tableElement = (0, import_react90.useRef)(null);
+    const columns = createHeaders4(inspectionHeaders);
     (0, import_react90.useEffect)(() => {
-    }, []);
+      setTableHeight(tableElement.current && tableElement.current.offsetHeight);
+    }, [tableElement, columns]);
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
@@ -61838,6 +61867,8 @@ padding-bottom: 25px;
       });
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
+    const handleFilterColumn = (index2) => {
+    };
     return /* @__PURE__ */ import_react90.default.createElement("div", {
       style: { position: "relative" }
     }, /* @__PURE__ */ import_react90.default.createElement("div", {
@@ -61847,38 +61878,74 @@ padding-bottom: 25px;
     }, columns ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement(ResizableTableInspection, {
       arr: columns,
       ref: tableElement
-    }, /* @__PURE__ */ import_react90.default.createElement("thead", null, /* @__PURE__ */ import_react90.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "Check box" ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
-      ref,
-      key: text,
-      className: "checkbox"
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
-      type: "checkbox",
-      onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
-      ref,
-      key: text
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, text), /* @__PURE__ */ import_react90.default.createElement("div", {
-      style: { height: tableHeight },
-      onMouseDown: () => mouseDown(i2),
-      className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react90.default.createElement("tbody", null, inspections.map((item, i2) => /* @__PURE__ */ import_react90.default.createElement("tr", {
-      key: item.id
-    }, /* @__PURE__ */ import_react90.default.createElement(Td2, {
-      style: { position: "sticky", left: "0px" },
-      isActive: item.checkbox
-    }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
-      type: "checkbox",
-      checked: item.checkbox,
-      onClick: (e2) => handleCheckCheckbox(e2, item.id)
-    }))), item.arr.map((item2, i3) => /* @__PURE__ */ import_react90.default.createElement(Td2, {
-      isActive: item.checkbox,
-      onMouseEnter: () => isHovered(item.id),
-      onMouseLeave: () => isHovered(item.id),
-      isHovered: item.hover,
-      key: i3
-    }, item2)))))), /* @__PURE__ */ import_react90.default.createElement(TableFooter2, null)) : /* @__PURE__ */ import_react90.default.createElement(Loader_default, null))));
+    }, /* @__PURE__ */ import_react90.default.createElement("thead", null, /* @__PURE__ */ import_react90.default.createElement("tr", null, columns.map(({ ref, text }, i2) => {
+      if (text === "checkbox") {
+        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+          ref,
+          key: text,
+          className: "checkbox"
+        }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
+          type: "checkbox",
+          onClick: (e2) => handleCheckCheckboxes(e2)
+        }))));
+      } else if (text === "Assets") {
+        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+          ref,
+          key: text,
+          className: "id"
+        }, /* @__PURE__ */ import_react90.default.createElement("span", null, "Assets"), /* @__PURE__ */ import_react90.default.createElement("div", {
+          style: { height: tableHeight },
+          onMouseDown: () => mouseDown(i2),
+          className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
+        })));
+      } else {
+        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+          style: { borderRight: "1px solid #ccc" },
+          ref,
+          key: text,
+          className: i2 === 1 ? "first" : "tableHeaders",
+          onClick: () => handleFilterColumn(i2)
+        }, /* @__PURE__ */ import_react90.default.createElement("span", {
+          style: { fontWeight: "500" }
+        }, text), /* @__PURE__ */ import_react90.default.createElement("div", {
+          style: { height: tableHeight },
+          onMouseDown: () => mouseDown(i2),
+          className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
+        })));
+      }
+    }))), /* @__PURE__ */ import_react90.default.createElement("tbody", null, inspections.map((item, i2) => {
+      return /* @__PURE__ */ import_react90.default.createElement("tr", {
+        key: item.id
+      }, /* @__PURE__ */ import_react90.default.createElement(Td2, {
+        style: { position: "sticky", left: "0px" },
+        isActive: item.checkbox,
+        isHovered: item.hover,
+        key: i2
+      }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
+        type: "checkbox",
+        checked: item.checkbox,
+        onClick: (e2) => handleCheckCheckbox(e2, item.id)
+      }))), /* @__PURE__ */ import_react90.default.createElement(Td2, {
+        style: { position: "sticky", left: "55px" },
+        isActive: item.checkbox,
+        isHovered: item.hover,
+        key: i2
+      }, /* @__PURE__ */ import_react90.default.createElement(IdWrapper2, null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.id))), item.arr.map((item2, i3) => /* @__PURE__ */ import_react90.default.createElement(Td2, {
+        isActive: item.checkbox,
+        onMouseEnter: () => isHovered(item.id),
+        onMouseLeave: () => isHovered(item.id),
+        isHovered: item.hover,
+        key: i3
+      }, item2)));
+    }))), /* @__PURE__ */ import_react90.default.createElement(TableFooter2, null)) : /* @__PURE__ */ import_react90.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react90.default.createElement(Loader_default, null)))));
   };
   var TableInspectionContent_default = TableInspectionContent;
+  var LoaderWrapp2 = styled_components_browser_esm_default.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
   var TableFooter2 = styled_components_browser_esm_default.div`
   background-color: #fafafa;
   width: 100%;
@@ -61888,7 +61955,9 @@ padding-bottom: 25px;
   var Td2 = styled_components_browser_esm_default.td`
   text-align: left;
   width: 100%;
-  background-color: ${({ isActive, isHovered }) => isActive ? "#e6f7ff" : isHovered ? "whitesmoke" : "white"};
+  background-color: ${({ isActive, isHovered }) => isActive ? "#e6f7ff" : isHovered ? "#fafafa" : "white"};
+  position: ${({ isSticky }) => isSticky ? "sticky" : "unset"};
+  left: 55px;
 `;
   var ResizableTableInspection = styled_components_browser_esm_default.table`
   display: grid;
@@ -61899,7 +61968,6 @@ padding-bottom: 25px;
   padding-right: 24px;
   margin-right: 24px;
   margin-left: 24px;
-  border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
   grid-template-columns: ${({ arr }) => arr.map((item, index2) => index2 === 0 ? "minmax(55px, 0.1fr)" : index2 === 1 ? "minmax(200px, 1fr)" : "minmax(155px, 1fr)").join(" ")};
 
@@ -61994,7 +62062,7 @@ padding-bottom: 25px;
     const [firstColumn, setFirstColumn] = (0, import_react93.useState)("Springfield Storm1");
     const [secondColumn, setSecondColumn] = (0, import_react93.useState)("Mainline");
     const [thirdColumn, setThirdColumn] = (0, import_react93.useState)("NASSCO v6 Springfield");
-    const [step, setStep] = (0, import_react93.useState)(1);
+    const [step, setStep] = (0, import_react93.useState)(4);
     const [choose, setChoose] = (0, import_react93.useState)(null);
     const dispatch = useDispatch();
     const filter_1 = useSelector(selectHeaderFilters_1);
@@ -62013,9 +62081,8 @@ padding-bottom: 25px;
       setThirdColumn(thirdColumn2);
       dispatch(setFilters(firstColumn2, secondColumn2, thirdColumn2));
     };
-    return /* @__PURE__ */ import_react93.default.createElement(import_react93.default.Fragment, null, /* @__PURE__ */ import_react93.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react93.default.createElement(ModalWrapp2, {
-      ref: modalRef
-    }, /* @__PURE__ */ import_react93.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react93.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react93.default.createElement(ModalClose3, {
+    console.log(step);
+    return /* @__PURE__ */ import_react93.default.createElement(import_react93.default.Fragment, null, /* @__PURE__ */ import_react93.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react93.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react93.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react93.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react93.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
     }, "\u2613")), /* @__PURE__ */ import_react93.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react93.default.createElement(ModalTabs2, {
       ref: modalTabsRef,
@@ -62052,16 +62119,29 @@ padding-bottom: 25px;
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
     }, firstColumn, " / "), /* @__PURE__ */ import_react93.default.createElement("span", {
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, secondColumn, " / "), thirdColumn))), /* @__PURE__ */ import_react93.default.createElement(Buttons2, null, /* @__PURE__ */ import_react93.default.createElement(ButtonSave2, null, "Cancel"), /* @__PURE__ */ import_react93.default.createElement("div", {
+    }, secondColumn, " / "), thirdColumn))), step === 5 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react93.default.createElement(TextWrapper, null, /* @__PURE__ */ import_react93.default.createElement(Text, null, "0 inspection(s) are the be created."), /* @__PURE__ */ import_react93.default.createElement(Text, null, "No inspection(s) have names.")))), /* @__PURE__ */ import_react93.default.createElement(Buttons2, null, /* @__PURE__ */ import_react93.default.createElement(ButtonSave2, {
+      onClick: () => {
+        setStep(1);
+        setModal(false);
+      }
+    }, "Cancel"), /* @__PURE__ */ import_react93.default.createElement("div", {
       style: { display: "flex" }
     }, step > 1 && /* @__PURE__ */ import_react93.default.createElement(ButtonCreate2, {
       style: { marginRight: "5px", backgroundColor: "white", color: "#000" },
       onClick: () => setStep(step - 1)
     }, "Back"), /* @__PURE__ */ import_react93.default.createElement(ButtonCreate2, {
-      onClick: () => setStep(step + 1)
+      onClick: () => setStep(step + 1),
+      disabled: step == 2 && !choose
     }, "Next")))))));
   };
   var CreateInspectionModal_default = CreateInspectionModal;
+  var TextWrapper = styled_components_browser_esm_default.div`
+  padding-bottom: 50px;
+`;
+  var Text = styled_components_browser_esm_default.div`
+    font-size: 14px;
+  padding: 10px 0;
+`;
   var CreateIcon = styled_components_browser_esm_default.div`
   padding: 20px 0;
 `;
@@ -62142,13 +62222,16 @@ padding-bottom: 25px;
     color: #00a8ff;
   }
 `;
-  var ButtonCreate2 = styled_components_browser_esm_default.div`
+  var ButtonCreate2 = styled_components_browser_esm_default.button`
   padding: 7px 22px;
   border: 1px solid #ccc;
   cursor: pointer;
   color: #fff;
   font-size: 14px;
   background-color: #1890ff;
+  &:disabled{
+    background-color: #ccc;
+  }
 `;
   var ModalWrapp2 = styled_components_browser_esm_default.div`
   background-color: #fff;
@@ -62310,7 +62393,7 @@ padding-bottom: 25px;
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
     }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react94.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react94.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react94.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react94.default.createElement(Collection2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react94.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react94.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react94.default.createElement(Assets5, null, "651 Inspections")), /* @__PURE__ */ import_react94.default.createElement(RightSide3, null, /* @__PURE__ */ import_react94.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react94.default.createElement(FilterWrapper5, {
+    })), "Collection", /* @__PURE__ */ import_react94.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react94.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react94.default.createElement(Assets5, null, inspections && inspections.values.data.length, " Inspections")), /* @__PURE__ */ import_react94.default.createElement(RightSide3, null, /* @__PURE__ */ import_react94.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react94.default.createElement(FilterWrapper5, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
     }, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react94.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react94.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react94.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react94.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react94.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react94.default.createElement(Settings2, {
@@ -63822,11 +63905,11 @@ padding-bottom: 25px;
 `;
   var MenuItem3 = styled_components_browser_esm_default.div`
   display: flex;
-  padding: 10px 5px;
+  padding: 15px 5px 15px 5px;
   cursor: pointer;
   color: ${({ active }) => active ? "#1890ff" : "#000"} ;
   background-color:${({ active }) => active ? "#e6f7ff" : "#fff"} ;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
 `;
   var IconWrapper10 = styled_components_browser_esm_default.div`
   padding: 0 10px;

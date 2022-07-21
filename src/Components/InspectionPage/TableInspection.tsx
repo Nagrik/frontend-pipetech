@@ -77,7 +77,7 @@ const TableInspection = () => {
                             </HoverWrapper>
                         </Collection>
                         <Assets>
-                            651 Inspections
+                            {inspections && inspections.values.data.length} Inspections
                         </Assets>
                     </LeftSide>
                     <RightSide>

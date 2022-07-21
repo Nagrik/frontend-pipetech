@@ -11,6 +11,7 @@ export interface LoginState {
     organizations: any | null
     organizationsInspections: any | null
     organizationsInspection: any | null
+    inspectionsHeaders: any | null
 }
 
 const initialState: LoginState = {
@@ -18,7 +19,8 @@ const initialState: LoginState = {
     organizationAssets: null,
     organizations: null,
     organizationsInspection: null,
-    organizationsInspections: null
+    organizationsInspections: null,
+    inspectionsHeaders: null
 };
 
 export class OrganizationReducer extends ImmerReducer<LoginState> {
@@ -39,6 +41,8 @@ export class OrganizationReducer extends ImmerReducer<LoginState> {
         this.draftState.organizationsInspection  =  [...organizationInspections!.values.data].map((i, index) => {
             return {arr:[...i], checkbox: false, id: index, hover: false}
         });
+        const newArray = [...organizationInspections!.columns]
+        this.draftState.inspectionsHeaders = [{title: 'checkbox'},{title: 'Assets'},...newArray ];
     }
 
     setOrganizations(organizations: any | null) {

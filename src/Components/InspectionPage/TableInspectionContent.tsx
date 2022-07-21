@@ -5,7 +5,11 @@ import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArr
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
 import {useDispatch, useSelector} from "react-redux";
-import {selectOrganizationInspections, selectOrganizationsInspection} from "@/store/selectors/organization";
+import {
+    selectInspectionHeader,
+    selectOrganizationInspections,
+    selectOrganizationsInspection
+} from "@/store/selectors/organization";
 import {
     changeOrganisationArray,
     changeOrganisationInspectionArray,
@@ -16,16 +20,13 @@ import Loader from "@/Components/TableUtils/Loader";
 
 const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
+
     const createHeaders = (headers: any) => {
-        if (headers) {
-            return headers.map((item: any) => ({
-                text: item.title,
-                // ref: useRef()
-            }));
-        }
+        return headers && headers.map((item: any) => ({
+            text: item.title,
+            // ref: useRef()
+        }));
     };
-
-
 
 
     const [tableHeight, setTableHeight] = useState("auto");
@@ -35,20 +36,25 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
     const [hover, setHover] = useState<boolean>(false)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
 
-    const tableElement = useRef(null);
     const dispatch = useDispatch<AppDispatch>();
 
+
     const inspections = useSelector(selectOrganizationsInspection)
+    const inspectionHeaders = useSelector(selectInspectionHeader)
 
 
-    const columns = createHeaders(headers);
-    console.log(inspections, 'inspections')
+
+    const tableElement = useRef(null);
+
+    const columns = createHeaders(inspectionHeaders);
 
 
     useEffect(() => {
         // @ts-ignore
-        // setTableHeight(tableElement.current.offsetHeight);
-    }, []);
+        // setTableHeight(tableElement && tableElement.current.offsetHeight);
+        // @ts-ignore
+        setTableHeight(tableElement.current && tableElement.current.offsetHeight)
+    }, [tableElement, columns]);
     const mouseDown = (index: any) => {
         setActiveIndex(index);
     };
@@ -124,11 +130,24 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
         const newOrganisation = inspections.map((item: any) => {
             if (item.id === id) {
                 return {...item, hover: true}
-            }else{
+            } else {
                 return {...item, hover: false}
             }
         })
         dispatch(changeOrganisationInspectionArray(newOrganisation))
+    }
+
+
+
+
+
+    const handleFilterColumn = (index: number) => {
+
+        // const newArray = inspections.sort(function(a:any, b:any) {
+        //     return b[index] - a[index];
+        // });
+        // console.log(newArray)
+
     }
 
     return (
@@ -137,73 +156,122 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                 <div className="table-wrapper">
                     {
                         columns ? (
-                            <><ResizableTableInspection arr={columns} ref={tableElement}>
-                                <thead>
-                                <tr>
-                                    {columns.map(({ref, text}: any, i: number) => (
-                                        text === 'Check box' ? (
-                                            <>
-                                                <th ref={ref} key={text} className='checkbox'>
+                            <>
+                                <ResizableTableInspection arr={columns} ref={tableElement}>
+                                    <thead>
+                                    <tr>
+                                        {columns.map(({ref, text}: any, i: number) => {
+                                                if (text === 'checkbox') {
+                                                    return (
+                                                        <>
+                                                            <th ref={ref} key={text} className='checkbox'>
                                                         <span><input type='checkbox'
                                                                      onClick={(e) => handleCheckCheckboxes(e)}/></span>
-                                                </th>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <th ref={ref} key={text}>
-                                                    <span>{text}</span>
-                                                    <div
-                                                        style={{height: tableHeight}}
-                                                        onMouseDown={() => mouseDown(i)}
-                                                        className={`resize-handle ${activeIndex === i ? "active" : "idle"}`}/>
-                                                </th>
-                                            </>
-                                        )
-                                    ))}
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {/*{tableDataState.values.map((item: any, i: number) => (*/}
-                                {/*    <tr key={item.id}>*/}
-                                {/*        <td>*/}
-                                {/*            <span><input type='checkbox'*/}
-                                {/*                            onClick={(e) => handleCheckCheckbox(e, item.id)}/></span>*/}
-                                {/*        </td>*/}
-                                {/*        <td>{item.id}</td>*/}
-                                {/*        <td>{item.name}</td>*/}
-                                {/*        <td>{item.description}</td>*/}
-                                {/*    </tr>*/}
-                                {/*))}*/}
+                                                            </th>
+                                                        </>
+                                                    )
+                                                }else if(text === 'Assets'){
+                                                    return (
+                                                        <>
+                                                            <th ref={ref} key={text} className='id' >
+                                                                <span>
+                                                                   Assets
+                                                                </span>
+                                                                <div
+                                                                    style={{height: tableHeight}}
+                                                                    onMouseDown={() => mouseDown(i)}
+                                                                    className={`resize-handle ${
+                                                                        activeIndex === i ? "active" : "idle"
+                                                                    }`}
+                                                                />
+                                                            </th>
+                                                        </>
+                                                    )
+                                                } else {
+                                                    return (
+                                                        <>
+                                                            <th style={{borderRight: '1px solid #ccc'}}
+                                                                ref={ref} key={text}
+                                                                className={i === 1 ? 'first' : 'tableHeaders'}
+                                                                onClick={() => handleFilterColumn(i)}
+                                                            >
+                                                                <span style={{fontWeight: '500'}}>{text}</span>
+                                                                <div
+                                                                    style={{height: tableHeight}}
+                                                                    onMouseDown={() => mouseDown(i)}
+                                                                    className={`resize-handle ${
+                                                                        activeIndex === i ? "active" : "idle"
+                                                                    }`}
+                                                                />
+                                                            </th>
+                                                        </>
+                                                    )
+                                                }
 
-                                {inspections.map((item: any, i: number) => (
-                                    <tr key={item.id}>
-                                        <Td style={{position: 'sticky', left: '0px'}}
-                                            isActive={item.checkbox}
-                                        >
+                                            }
+                                        )}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {/*{tableDataState.values.map((item: any, i: number) => (*/}
+                                    {/*    <tr key={item.id}>*/}
+                                    {/*        <td>*/}
+                                    {/*            <span><input type='checkbox'*/}
+                                    {/*                            onClick={(e) => handleCheckCheckbox(e, item.id)}/></span>*/}
+                                    {/*        </td>*/}
+                                    {/*        <td>{item.id}</td>*/}
+                                    {/*        <td>{item.name}</td>*/}
+                                    {/*        <td>{item.description}</td>*/}
+                                    {/*    </tr>*/}
+                                    {/*))}*/}
+
+                                    {inspections.map((item: any, i: number) => {
+                                            return (
+                                                <tr key={item.id}>
+                                                    <Td style={{position: 'sticky', left: '0px'}}
+                                                        isActive={item.checkbox}
+                                                        isHovered={item.hover} key={i}
+
+                                                    >
                                                 <span>
                                                     <input type='checkbox'
                                                            checked={item.checkbox}
                                                            onClick={(e) => handleCheckCheckbox(e, item.id)}/>
                                                 </span>
-                                        </Td>
-                                        {item.arr.map((item2: any, i: number) => (
-                                            <Td
-                                                isActive={item.checkbox}
-                                                onMouseEnter={() => isHovered(item.id)}
-                                                onMouseLeave={() => isHovered(item.id)}
-                                                isHovered={item.hover} key={i}>
-                                                {item2}
-                                            </Td>
-                                        ))}
-                                    </tr>
-                                ))}
 
-                                </tbody>
+                                                    </Td>
+                                                    <Td  style={{position: 'sticky', left: '55px'}}
+                                                        isActive={item.checkbox}
+                                                         isHovered={item.hover} key={i}
 
-                            </ResizableTableInspection>
+                                                    >
+                                                <IdWrapper>
+                                                    <span>{item.id}</span>
+                                                </IdWrapper>
+                                                    </Td>
+
+                                                    {item.arr.map((item2: any, i: number) => (
+                                                        <Td
+                                                            isActive={item.checkbox}
+                                                            onMouseEnter={() => isHovered(item.id)}
+                                                            onMouseLeave={() => isHovered(item.id)}
+                                                            isHovered={item.hover} key={i}>
+                                                            {item2}
+                                                        </Td>
+                                                    ))}
+                                                </tr>
+                                            )
+                                        }
+                                    )}
+
+                                    </tbody>
+
+                                </ResizableTableInspection>
                                 <TableFooter/>
                             </>
-                        ) : <Loader/>
+                        ) : <LoaderWrapp>
+                            <Loader/>
+                        </LoaderWrapp>
                     }
                 </div>
             </div>
@@ -213,6 +281,13 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
 export default TableInspectionContent;
 
+const LoaderWrapp = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const TableFooter = styled.div`
   background-color: #fafafa;
   width: 100%;
@@ -221,11 +296,12 @@ const TableFooter = styled.div`
 `
 
 
-
-const Td = styled.td<{ isActive: boolean, isHovered?:boolean }>`
+const Td = styled.td<{ isActive: boolean, isHovered?: boolean, isSticky?: boolean }>`
   text-align: left;
   width: 100%;
-  background-color: ${({isActive, isHovered}) => isActive ? '#e6f7ff' : isHovered ? 'whitesmoke' : 'white'};
+  background-color: ${({isActive, isHovered}) => isActive ? '#e6f7ff' : isHovered ? '#fafafa' : 'white'};
+  position: ${({isSticky}) => isSticky ? 'sticky' : 'unset'};
+  left: 55px;
 `
 
 const ResizableTableInspection = styled.table<{ arr: any }>`
@@ -237,7 +313,6 @@ const ResizableTableInspection = styled.table<{ arr: any }>`
   padding-right: 24px;
   margin-right: 24px;
   margin-left: 24px;
-  border-left: 1px solid #f0f0f0;
   grid-auto-columns: calc(25% - 30px);
   grid-template-columns: ${({arr}: any) => arr.map((item: any, index: number) => index === 0 ? 'minmax(55px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
 

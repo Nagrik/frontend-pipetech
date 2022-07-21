@@ -112,7 +112,15 @@
     justify-content: center;
     position: sticky;
     left: 0;
-    z-index: 2;
+    top: 0;
+    z-index: 4;
+}
+
+.id{
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    left: 55px;
 }
 
 .checkboxHeader{
@@ -182,7 +190,7 @@ table tr td {
     right: 0;
     top: 0;
     z-index: 1;
-    border-right: 1px solid #ccc;
+    height: 37px !important;
 }
 
 .resize-handle:hover {
@@ -191,6 +199,7 @@ table tr td {
 
 .resize-handle.active {
     border-color: #1890ff;
+    height: 450px !important;
 }
 
 

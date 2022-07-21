@@ -14,7 +14,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     const [firstColumn, setFirstColumn] = useState<string>('Springfield Storm1');
     const [secondColumn, setSecondColumn] = useState<string>('Mainline')
     const [thirdColumn, setThirdColumn] = useState<string>('NASSCO v6 Springfield')
-    const [step, setStep] = useState<number>(1)
+    const [step, setStep] = useState<number>(4)
     const [choose, setChoose] = useState<string | null>(null)
 
     const dispatch = useDispatch<AppDispatch>();
@@ -40,11 +40,12 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
         setThirdColumn(thirdColumn)
         dispatch(setFilters(firstColumn, secondColumn, thirdColumn))
     }
+    console.log(step)
 
     return (
         <>
             <ContainerModal>
-                <ModalWrapp ref={modalRef}>
+                <ModalWrapp >
                     <ModalHeader>
                         <ModalTitle>
                             Add Inspection
@@ -197,13 +198,32 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                 </ModalBodyContent>
                             )
                         }
+                        {
+                            step === 5 && (
+                                <ModalBodyContent>
+                                    <ModalBodyHeader>
+                                        <TextWrapper>
+                                        <Text>
+                                            0 inspection(s) are the be created.
+                                        </Text>
+                                        <Text>
+                                            No inspection(s) have names.
+                                        </Text>
+                                        </TextWrapper>
+                                    </ModalBodyHeader>
+                                </ModalBodyContent>
+                            )
+                        }
                         <Buttons>
-                            <ButtonSave>
+                            <ButtonSave onClick={() => {
+                                setStep(1)
+                                setModal(false)
+                            }}>
                                 Cancel
                             </ButtonSave>
                             <div style={{display: 'flex'}}>
                                 {
-                                    step >1 && (
+                                    step > 1 && (
                                         <ButtonCreate
                                             style={{marginRight: '5px',backgroundColor: 'white', color: '#000' }}
                                             onClick={() => setStep(step - 1)}>
@@ -211,8 +231,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                         </ButtonCreate>
                                     )
                                 }
-
-                                <ButtonCreate onClick={() => setStep(step + 1)}>
+                            <ButtonCreate onClick={() => setStep(step + 1)} disabled={step == 2 && !choose}>
                                 Next
                             </ButtonCreate>
 
@@ -226,6 +245,15 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
 };
 
 export default CreateInspectionModal;
+
+
+const TextWrapper = styled.div`
+  padding-bottom: 50px;
+`
+const Text = styled.div`
+    font-size: 14px;
+  padding: 10px 0;
+`
 
 const CreateIcon = styled.div`
   padding: 20px 0;
@@ -319,13 +347,16 @@ const ButtonSave = styled.div`
   }
 `
 
-const ButtonCreate = styled.div`
+const ButtonCreate = styled.button`
   padding: 7px 22px;
   border: 1px solid #ccc;
   cursor: pointer;
   color: #fff;
   font-size: 14px;
   background-color: #1890ff;
+  &:disabled{
+    background-color: #ccc;
+  }
 `
 
 const ModalWrapp = styled.div`

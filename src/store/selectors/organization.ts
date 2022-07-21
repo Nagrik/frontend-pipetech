@@ -30,3 +30,8 @@ export const selectOrganizationsInspection: Selector<State, any | null> = create
     selectInspection,
     ({ organizationsInspection }) => organizationsInspection,
 );
+
+export const selectInspectionHeader: Selector<State, any | null> = createSelector(
+    selectInspection,
+    ({ inspectionsHeaders }) => inspectionsHeaders,
+);
