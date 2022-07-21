@@ -16,7 +16,6 @@ const AddUserModal = ({setModal}: any) => {
 
     const dispatch = useDispatch<AppDispatch>()
     const userResponse = useSelector(selectUserResponse);
-    console.log(activeRoles)
 
 
     const modalRef = useOnClickOutside(() => {
@@ -124,7 +123,7 @@ const AddUserModal = ({setModal}: any) => {
                         </Row>
                     </ModalBody>
                 </ModalWrappBody>
-                <Button onClick={handleAddUser}>
+                <Button onClick={handleAddUser} disabled={!firstName || !lastName || !phone || !email || !activeRoles}>
                     Add New User
                 </Button>
             </ModalWrapp>
@@ -141,16 +140,20 @@ const Row = styled.div`
   margin-bottom: 24px;
 `
 
-const Button = styled.div`
+const Button = styled.button`
     background-color: #00a8ff;
   color: white;
   font-size: 16px;
   margin: 0px 48px;
+  width: 430px;
   padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  &:disabled {
+    background-color: #999999;
+  }
 `
 
 const Span = styled.span`

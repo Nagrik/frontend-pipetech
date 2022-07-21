@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import TableContent from "@/Components/AssetsPage/TableContent";
 import Folder from "@/Components/common/icons/Folder";
@@ -12,22 +12,26 @@ import CreateInspectionModal from "@/Components/InspectionPage/CreateInspectionM
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import TableFilter from "@/Components/TableUtils/Filter";
 import SettingsModal from "@/Components/TableUtils/SettingsModal";
+import {getOrganizationInspections} from "@/store/actions/organization";
+import {useDispatch, useSelector} from "react-redux";
+import {selectOrganizationInspections} from "@/store/selectors/organization";
 
 const TableInspection = () => {
     const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false)
     const [modal, setModal] = useState(false)
     const [isOpenSettings, setIsOpenSettings] = useState<boolean>(false)
+    const [columns, setColumns] = useState<any>()
 
-    const tableHeaders = [
-        "checkbox",
-        "Items",
-        "Order #",
-        "Amount",
-        "Status",
-        "test",
-        "tes2",
-        "tes3",
-    ];
+    const dispatch = useDispatch<AppDispatch>();
+    useEffect(() => {
+        dispatch(getOrganizationInspections('1', '1', '50'))
+    }, [])
+
+    const inspections = useSelector(selectOrganizationInspections)
+    console.log(inspections, 'inspections')
+//54
+
+
 
     const filterRef = useOnClickOutside(() => {
         setIsOpenFilter(false);
@@ -122,7 +126,8 @@ const TableInspection = () => {
                     </RightSide>
                 </TableUtils>
                 <TableInspectionContent
-                    headers={tableHeaders}
+                    headers={inspections?.columns}
+                    data={inspections}
                     minCellWidth={120}
                 />
             </TableWrapper>

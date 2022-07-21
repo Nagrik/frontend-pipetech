@@ -11,6 +11,8 @@ export type OrganizationActions =
     | ReturnType<typeof organizationAction.organizationResponse>
     | ReturnType<typeof organizationAction.setOrganizationAssets>
     | ReturnType<typeof organizationAction.setOrganizations>
+    | ReturnType<typeof organizationAction.setOrganizationInspections>
+    | ReturnType<typeof organizationAction.setOrganizationsInspection>
 
 
 
@@ -52,11 +54,33 @@ export const getOrganizationAssets = (organizationId:string, page:string, limit:
     }
 };
 
+
+export const getOrganizationInspections = (organizationId:string, page:string, limit:string): AsyncAction => async (
+    dispatch, _, {mainProtectedApi}
+) => {
+    try {
+        const response = await mainProtectedApi.getOrganizationInspection(organizationId, page, limit)
+        dispatch(organizationAction.setOrganizationInspections(response))
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export const changeOrganisationArray = (organization:any): AsyncAction => async (
     dispatch, _, {mainProtectedApi}
 ) => {
     try {
         dispatch(organizationAction.setOrganizations(organization))
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const changeOrganisationInspectionArray = (inspection:any): AsyncAction => async (
+    dispatch, _, {mainProtectedApi}
+) => {
+    try {
+        dispatch(organizationAction.setOrganizationsInspection(inspection))
     } catch (e) {
         console.log(e);
     }

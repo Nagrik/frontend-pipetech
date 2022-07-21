@@ -9,12 +9,16 @@ export interface LoginState {
     organizationResponse: any | null
     organizationAssets: AssetsResponse | null
     organizations: any | null
+    organizationsInspections: any | null
+    organizationsInspection: any | null
 }
 
 const initialState: LoginState = {
     organizationResponse: null,
     organizationAssets: null,
     organizations: null,
+    organizationsInspection: null,
+    organizationsInspections: null
 };
 
 export class OrganizationReducer extends ImmerReducer<LoginState> {
@@ -30,8 +34,19 @@ export class OrganizationReducer extends ImmerReducer<LoginState> {
         });
     }
 
+    setOrganizationInspections(organizationInspections:any) {
+        this.draftState.organizationsInspections  = organizationInspections;
+        this.draftState.organizationsInspection  =  [...organizationInspections!.values.data].map((i, index) => {
+            return {arr:[...i], checkbox: false, id: index, hover: false}
+        });
+    }
+
     setOrganizations(organizations: any | null) {
         this.draftState.organizations  = organizations;
+    }
+
+    setOrganizationsInspection(organizationsInspection: any | null) {
+        this.draftState.organizationsInspection  = organizationsInspection;
     }
 
 }

@@ -16,7 +16,17 @@ export const selectOrganizationAssets: Selector<State, AssetsResponse | null> = 
     ({ organizationAssets }) => organizationAssets,
 );
 
+export const selectOrganizationInspections: Selector<State, any | null> = createSelector(
+    selectInspection,
+    ({ organizationsInspections }) => organizationsInspections,
+);
+
 export const selectOrganizations: Selector<State, any | null> = createSelector(
     selectInspection,
     ({ organizations }) => organizations,
+);
+
+export const selectOrganizationsInspection: Selector<State, any | null> = createSelector(
+    selectInspection,
+    ({ organizationsInspection }) => organizationsInspection,
 );

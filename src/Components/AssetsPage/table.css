@@ -7,15 +7,16 @@
 /* Demo Only */
 
 .table-wrapper {
-    margin-bottom: 25px;
-    border-radius: 6px;
-    background: whitesmoke;
-    overflow: hidden; /* Clip any scrollbars that appear */
+
 }
 
 .resizeable-table {
+
+}
+
+.resizeable-table-inspection {
     display: grid;
-    max-height: 500px;
+    max-height: 450px;
     overflow-x: scroll;
     overflow-y: scroll;
     background-color: whitesmoke;
@@ -25,7 +26,7 @@
     grid-auto-columns: calc(25% - 30px);
     grid-template-columns:
     minmax(55px, 0.1fr)
-    minmax(200px, 1fr)
+    minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
@@ -42,52 +43,51 @@
     minmax(155px, 1fr)
     minmax(155px, 1fr)
 
-            minmax(155px, 1fr)
+        minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
 
-            minmax(155px, 1fr)
+        minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
 
-            minmax(155px, 1fr)
+        minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
 
-            minmax(155px, 1fr)
+        minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
     minmax(155px, 1fr)
 
-          minmax(155px, 1fr)
-          minmax(155px, 1fr)
-}
+        minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
 
-.resizeable-table-inspection {
-    display: grid;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    background-color: whitesmoke;
-    padding-right: 24px;
-    margin-left: 24px;
-    border-left: 1px solid #f0f0f0;;
-    grid-auto-columns: calc(25% - 30px);
-    grid-template-columns:
-    minmax(55px, 0.1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr)
-    minmax(55px, 1fr);
+        minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+
+        minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
+
+        minmax(155px, 1fr)
+    minmax(155px, 1fr)
+    minmax(155px, 1fr)
 }
 
 .first{

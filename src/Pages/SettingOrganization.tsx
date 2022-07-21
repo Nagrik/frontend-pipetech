@@ -13,6 +13,7 @@ import Footer from "@/Components/Dashboard/Footer";
 import {useDispatch, useSelector} from "react-redux";
 import {getOrganizationInfo} from "@/store/actions/organization";
 import {selectOrganizationInfo} from "@/store/selectors/organization";
+import SettingsOrganizationPage from "@/Components/SettingsPage/SettingsOrganizationPage";
 
 const SettingsOrganization = () => {
     const history = useHistory();
@@ -78,6 +79,11 @@ const SettingsOrganization = () => {
                 {
                     window.location.pathname === '/settings-users' && (
                         <SettingsPageUsers />
+                    )
+                }
+                {
+                    window.location.pathname === '/settings-organization' && (
+                        <SettingsOrganizationPage />
                     )
                 }
                 </RightSide>

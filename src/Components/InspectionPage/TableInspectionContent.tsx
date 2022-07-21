@@ -4,80 +4,51 @@ import styled from "styled-components";
 import TableArrowBottom from "@/Components/common/icons/AssetsPageIcons/TableArrowBottom";
 import TableArrowTop from "@/Components/common/icons/AssetsPageIcons/TableArrowTop";
 import {SortOrder, SortType, sortUtil} from "@/Components/utils/sortUtil";
+import {useDispatch, useSelector} from "react-redux";
+import {selectOrganizationInspections, selectOrganizationsInspection} from "@/store/selectors/organization";
+import {
+    changeOrganisationArray,
+    changeOrganisationInspectionArray,
+    getOrganizationInspections
+} from "@/store/actions/organization";
+import Loader from "@/Components/TableUtils/Loader";
 
 
-const createHeaders = (headers: any) => {
-    return headers.map((item: any) => ({
-        text: item,
-        ref: useRef()
-    }));
-};
+const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
+    const createHeaders = (headers: any) => {
+        if (headers) {
+            return headers.map((item: any) => ({
+                text: item.title,
+                // ref: useRef()
+            }));
+        }
+    };
 
-const TableInspectionContent = ({headers, minCellWidth}: any) => {
-
-
-
-    const tableData = [
-        {
-            id: 1,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 32134,
-        },
-        {
-            id: 2,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345,
-        },
-        {
-            id: 3,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 32134567,
-        },
-        {
-            id: 4,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 321345675,
-        },
-        {
-            id: 5,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
-        },
-        {
-            id: 6,
-            checkbox: false,
-            AssetsId: 'assetsId',
-            Projects: 'Large Detroit Style Pizza',
-            inspection: 3213456785,
-        },
-    ]
 
 
 
     const [tableHeight, setTableHeight] = useState("auto");
     const [activeIndex, setActiveIndex] = useState(null);
-    const [tableDataState, setTableDataState] = useState(tableData);
+    // const [tableDataState, setTableDataState] = useState(tableData);
     const [activeFilter, setActiveFilter] = useState(false)
+    const [hover, setHover] = useState<boolean>(false)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
 
     const tableElement = useRef(null);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const inspections = useSelector(selectOrganizationsInspection)
+
+
     const columns = createHeaders(headers);
+    console.log(inspections, 'inspections')
+
+
     useEffect(() => {
         // @ts-ignore
-        setTableHeight(tableElement.current.offsetHeight);
+        // setTableHeight(tableElement.current.offsetHeight);
     }, []);
-
     const mouseDown = (index: any) => {
         setActiveIndex(index);
     };
@@ -127,177 +98,113 @@ const TableInspectionContent = ({headers, minCellWidth}: any) => {
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
-        const arr = tableDataState.map((item) => {
-            return (
-                {...item, checkbox: target}
-            )
-        });
-        setTableDataState(arr)
-        console.log(arr, 'arr')
-    }
-
-
-
-
-    const handleCheckCheckbox = (e: any, id: number) => {
-        const arr = tableDataState.map((item) => {
-            if (item.id === id) {
-                return (
-                    {...item, checkbox: e.target.checked}
-                )
+        const newOrganisation = inspections.map((item: any) => {
+            if (target === false) {
+                return {...item, checkbox: false}
             } else {
-                return item
+                return {...item, checkbox: true}
             }
         })
-        console.log('arr', arr)
-        setTableDataState(arr)
-    }
-
-    const handleFilterColumn = () => {
-        const withoutNone: any = [];
-        tableData?.forEach((item) => {
-            if (item) withoutNone.push(item);
-        });
-        // @ts-ignore
-        const sorted = sortUtil(withoutNone!, ((item) => item.inspection), SortOrder.DESCENDING, SortType.Number);
-        setActiveFilter(!activeFilter)
-        console.log(sorted, 'sorted')
-
+        dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
 
+    const handleCheckCheckbox = (e: any, id: string) => {
+        e.target.checked
+        const newOrganisation = inspections.map((item: any) => {
+            if (item.id === id) {
+                return {...item, checkbox: !item.checkbox}
+            }
+            return item
+        })
+        dispatch(changeOrganisationInspectionArray(newOrganisation))
+    }
+
+    const isHovered = (id: string) => {
+        const newOrganisation = inspections.map((item: any) => {
+            if (item.id === id) {
+                return {...item, hover: true}
+            }else{
+                return {...item, hover: false}
+            }
+        })
+        dispatch(changeOrganisationInspectionArray(newOrganisation))
+    }
 
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
                 <div className="table-wrapper">
-                    <table className="resizeable-table-inspection" ref={tableElement}>
-                        <thead>
-                        <tr>
-                            {columns.map(({ref, text}: any, i: number) => (
-                                text === 'checkbox' ? (
-                                    <>
-                                        <th ref={ref} key={text} className='checkbox'>
-                                            <span><input type='checkbox'
-                                                         onClick={(e) => handleCheckCheckboxes(e)}/></span>
-                                        </th>
-                                    </>
-                                ) : text === 'Amount' ? (
-                                    <>
-                                        <th ref={ref} key={text}>
-                                            <FilterWrapper onClick={handleFilterColumn}>
-                                                <span>{text}</span>
-                                                <IconWrapper>
-                                                    <TableArrowTop color={activeFilter ? '#276FB2' : '#ccc'}/>
-                                                    <TableArrowBottom color={!activeFilter ? '#276FB2' : '#ccc'}/>
-                                                </IconWrapper>
-                                            </FilterWrapper>
-                                            <div
-                                                style={{height: tableHeight}}
-                                                onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
-                                            />
-                                        </th>
-                                    </>
-                                ) : text === 'Items' ? (
-                                    <>
-                                        <th ref={ref} key={text} className='Items'>
-                                            <span>{text}</span>
-                                            <div
-                                                style={{height: tableHeight}}
-                                                onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
-                                            />
-                                        </th>
-                                    </>
-                                ) : (
-                                    <>
-                                        <th ref={ref} key={text}>
-                                            <span>{text}</span>
-                                            <div
-                                                style={{height: tableHeight}}
-                                                onMouseDown={() => mouseDown(i)}
-                                                className={`resize-handle ${
-                                                    activeIndex === i ? "active" : "idle"
-                                                }`}
-                                            />
-                                        </th>
-                                    </>
-                                )
-                            ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {tableDataState.map((item) => {
-                            return (
-                                <>
-                                    {
-                                        <tr>
-                                            <td className='checkbox'>
-                                                <input type='checkbox' checked={item.checkbox}
-                                                       onClick={(e) => handleCheckCheckbox(e, item.id)}/>
-                                            </td>
-                                        </tr>
-                                    }
-                                    <tr >
-                                        <td className='Items'>
-                                        <span>
-                                            {item.AssetsId}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>
-                                                {item.Projects}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <span>
-                                            {item.inspection}
-                                        </span>
-                                        </td>
-                                    </tr>
-                                </>
-                            )
-                        })}
-                        </tbody>
+                    {
+                        columns ? (
+                            <><ResizableTableInspection arr={columns} ref={tableElement}>
+                                <thead>
+                                <tr>
+                                    {columns.map(({ref, text}: any, i: number) => (
+                                        text === 'Check box' ? (
+                                            <>
+                                                <th ref={ref} key={text} className='checkbox'>
+                                                        <span><input type='checkbox'
+                                                                     onClick={(e) => handleCheckCheckboxes(e)}/></span>
+                                                </th>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <th ref={ref} key={text}>
+                                                    <span>{text}</span>
+                                                    <div
+                                                        style={{height: tableHeight}}
+                                                        onMouseDown={() => mouseDown(i)}
+                                                        className={`resize-handle ${activeIndex === i ? "active" : "idle"}`}/>
+                                                </th>
+                                            </>
+                                        )
+                                    ))}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {/*{tableDataState.values.map((item: any, i: number) => (*/}
+                                {/*    <tr key={item.id}>*/}
+                                {/*        <td>*/}
+                                {/*            <span><input type='checkbox'*/}
+                                {/*                            onClick={(e) => handleCheckCheckbox(e, item.id)}/></span>*/}
+                                {/*        </td>*/}
+                                {/*        <td>{item.id}</td>*/}
+                                {/*        <td>{item.name}</td>*/}
+                                {/*        <td>{item.description}</td>*/}
+                                {/*    </tr>*/}
+                                {/*))}*/}
 
-                    </table>
+                                {inspections.map((item: any, i: number) => (
+                                    <tr key={item.id}>
+                                        <Td style={{position: 'sticky', left: '0px'}}
+                                            isActive={item.checkbox}
+                                        >
+                                                <span>
+                                                    <input type='checkbox'
+                                                           checked={item.checkbox}
+                                                           onClick={(e) => handleCheckCheckbox(e, item.id)}/>
+                                                </span>
+                                        </Td>
+                                        {item.arr.map((item2: any, i: number) => (
+                                            <Td
+                                                isActive={item.checkbox}
+                                                onMouseEnter={() => isHovered(item.id)}
+                                                onMouseLeave={() => isHovered(item.id)}
+                                                isHovered={item.hover} key={i}>
+                                                {item2}
+                                            </Td>
+                                        ))}
+                                    </tr>
+                                ))}
+
+                                </tbody>
+
+                            </ResizableTableInspection>
+                                <TableFooter/>
+                            </>
+                        ) : <Loader/>
+                    }
                 </div>
             </div>
         </div>
@@ -305,6 +212,44 @@ const TableInspectionContent = ({headers, minCellWidth}: any) => {
 };
 
 export default TableInspectionContent;
+
+const TableFooter = styled.div`
+  background-color: #fafafa;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #f0f0f0;
+`
+
+
+
+const Td = styled.td<{ isActive: boolean, isHovered?:boolean }>`
+  text-align: left;
+  width: 100%;
+  background-color: ${({isActive, isHovered}) => isActive ? '#e6f7ff' : isHovered ? 'whitesmoke' : 'white'};
+`
+
+const ResizableTableInspection = styled.table<{ arr: any }>`
+  display: grid;
+  max-height: 450px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  background-color: whitesmoke;
+  padding-right: 24px;
+  margin-right: 24px;
+  margin-left: 24px;
+  border-left: 1px solid #f0f0f0;
+  grid-auto-columns: calc(25% - 30px);
+  grid-template-columns: ${({arr}: any) => arr.map((item: any, index: number) => index === 0 ? 'minmax(55px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
+
+`
+
+
+const IdWrapper = styled.div`
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  padding: 5px 10px;
+  white-space: nowrap;
+`
 
 
 const Checkboxs = styled.div`
@@ -317,7 +262,7 @@ const IconWrapper = styled.div`
   padding: 0 5px;
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 `
 
 const FilterWrapper = styled.div`

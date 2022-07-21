@@ -3,11 +3,19 @@ import Header from "@/Components/Header";
 import styled from "styled-components";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIcon";
+import {useSelector} from "react-redux";
+import {selectUserResponse} from "@/store/selectors/auth";
 
 const ProfilePage = () => {
 
     const [preferences, setPreferences] = useState<string | null>(null)
     const [preferencesOpen, setPreferencesOpen] = useState<boolean>(false)
+
+    const user = useSelector(selectUserResponse)
+
+
+    const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0)
+
 
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const onUploadChange = async (e: any) => {
@@ -39,7 +47,7 @@ const ProfilePage = () => {
                     </ChoosePhoto>
                     <Photo onClick={onAddClick}>
                         <PhotoInitial>
-                        RN
+                            {initials}
                         </PhotoInitial>
                     </Photo>
                     <Right>
@@ -185,7 +193,7 @@ const InputRow = styled.div`
 `
 
 const InputTitle = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   width: 130px;
   white-space: nowrap;
 `

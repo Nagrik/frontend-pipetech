@@ -29,7 +29,10 @@ const LoginPage = () => {
             }, 3000);
         }
 
-        return () => clearTimeout(timer);
+        return () => {
+            dispatch(invalidDataClear())
+            clearTimeout(timer)
+        };
     }, [popup]);
     return (
         <>
