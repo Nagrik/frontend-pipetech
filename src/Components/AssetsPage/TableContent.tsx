@@ -16,7 +16,7 @@ import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIc
 const createHeaders = (headers: any) => {
     return headers.map((item: any) => ({
         text: item,
-        ref: useRef()
+        // ref: useRef()
     }));
 };
 
@@ -44,7 +44,47 @@ const TableContent = ({headers, minCellWidth}: any) => {
         setOpenSelect(false);
     });
     const tableElement = useRef(null);
-    const columns = createHeaders(headers);
+
+    const tableHeaders = [
+        "checkbox",
+        "Assets ID",
+        "Projects",
+        "# of Inspections",
+        "Last Inspected",
+        "Material",
+        "Comments",
+        "City",
+        "Coordinate system",
+        "Downstream Manhole Grade to Invert (mm)",
+        "Downstream Manhole Rim to Grade (mm)",
+        "Downstream Manhole Rim to Invert (mm)",
+        "Downstream Manhole",
+        "Drainage area",
+        "Easting",
+        "Elevation",
+        "GPS Accuracy",
+        "Height (mm)",
+        "Lining method",
+        "Location code",
+        "Location Details",
+        "Northing",
+        "Owner",
+        "Pipe Joint Length (mm)",
+        "Pipe Segment Reference",
+        "Sewer Category",
+        "Sewer Use",
+        "Shape",
+        "Street",
+        "Total Length (mm)",
+        "Upstream Manhole Grade to Invert (mm)",
+        "Upstream Manhole Rim to Grade (mm)",
+        "Upstream Manhole Rim to Invert (mm)",
+        "Upstream Manhole",
+        "Width (mm)",
+        "Year Laid",
+        "Year Renewed",
+    ];
+    const columns = createHeaders(tableHeaders);
 
     useEffect(() => {
         // @ts-ignore

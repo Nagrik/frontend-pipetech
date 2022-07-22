@@ -201,7 +201,6 @@ const Title = styled.div`
   font-weight: 500;
   padding: 0 24px 24px 0px;
   background-color: white;
-  border-bottom: 1px solid rgb(217,217,217);
 `
 
 
@@ -224,6 +223,7 @@ const TitleWrapperContent = styled.div`
   padding: 0px 24px 0 24px;
   justify-content: space-between;
   background-color: white;
+  border-bottom: 1px solid rgb(217,217,217);
 `
 
 

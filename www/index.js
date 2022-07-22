@@ -37951,8 +37951,7 @@ cursor: pointer;
   // src/Components/AssetsPage/TableContent.tsx
   var createHeaders = (headers) => {
     return headers.map((item) => ({
-      text: item,
-      ref: (0, import_react56.useRef)()
+      text: item
     }));
   };
   var TableContent = ({ headers, minCellWidth }) => {
@@ -37974,7 +37973,46 @@ cursor: pointer;
       setOpenSelect(false);
     });
     const tableElement = (0, import_react56.useRef)(null);
-    const columns = createHeaders(headers);
+    const tableHeaders = [
+      "checkbox",
+      "Assets ID",
+      "Projects",
+      "# of Inspections",
+      "Last Inspected",
+      "Material",
+      "Comments",
+      "City",
+      "Coordinate system",
+      "Downstream Manhole Grade to Invert (mm)",
+      "Downstream Manhole Rim to Grade (mm)",
+      "Downstream Manhole Rim to Invert (mm)",
+      "Downstream Manhole",
+      "Drainage area",
+      "Easting",
+      "Elevation",
+      "GPS Accuracy",
+      "Height (mm)",
+      "Lining method",
+      "Location code",
+      "Location Details",
+      "Northing",
+      "Owner",
+      "Pipe Joint Length (mm)",
+      "Pipe Segment Reference",
+      "Sewer Category",
+      "Sewer Use",
+      "Shape",
+      "Street",
+      "Total Length (mm)",
+      "Upstream Manhole Grade to Invert (mm)",
+      "Upstream Manhole Rim to Grade (mm)",
+      "Upstream Manhole Rim to Invert (mm)",
+      "Upstream Manhole",
+      "Width (mm)",
+      "Year Laid",
+      "Year Renewed"
+    ];
+    const columns = createHeaders(tableHeaders);
     (0, import_react56.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
@@ -61224,7 +61262,7 @@ ${Select3}:hover & {
     const tableElement = (0, import_react86.useRef)(null);
     const [tableDataState, setTableDataState] = (0, import_react86.useState)(tableData);
     const [activeFilter, setActiveFilter] = (0, import_react86.useState)(false);
-    const createHeaders4 = (headers) => {
+    const createHeaders5 = (headers) => {
       return headers.map((item) => ({
         text: item,
         ref: (0, import_react86.useRef)()
@@ -61238,7 +61276,7 @@ ${Select3}:hover & {
       "Status",
       ,
     ];
-    const columns = createHeaders4(tableHeaders);
+    const columns = createHeaders5(tableHeaders);
     Chart.register(ArcElement, plugin_tooltip, plugin_legend);
     const data = {
       labels: ["No stage", "On truck", "On truck"],
@@ -61819,12 +61857,13 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/TableInspectionContent.tsx
-  var TableInspectionContent = ({ headers, minCellWidth, data }) => {
-    const createHeaders4 = (headers2) => {
-      return headers2 && headers2.map((item) => ({
-        text: item.title
-      }));
-    };
+  var createHeaders2 = (headers) => {
+    return headers && headers.map((item) => ({
+      text: item.title,
+      ref: null
+    }));
+  };
+  var TableInspectionContent = ({ minCellWidth, data }) => {
     const [tableHeight, setTableHeight] = (0, import_react90.useState)("auto");
     const [activeIndex, setActiveIndex] = (0, import_react90.useState)(null);
     const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react90.useState)(null);
@@ -61832,14 +61871,13 @@ padding-bottom: 25px;
     const [hover, setHover] = (0, import_react90.useState)(false);
     const [downstreamId, setDownstreamId] = (0, import_react90.useState)(null);
     const [activeFilterN, setActiveFilterN] = (0, import_react90.useState)([]);
-    const dispatch = useDispatch();
     const inspections = useSelector(selectOrganizationsInspection);
     const inspectionHeaders = useSelector(selectInspectionHeader);
+    const dispatch = useDispatch();
     const tableElement = (0, import_react90.useRef)(null);
-    const columns = createHeaders4(inspectionHeaders);
+    const columns = createHeaders2(inspectionHeaders);
     (0, import_react90.useEffect)(() => {
-      setTableHeight(tableElement.current && tableElement.current.offsetHeight);
-    }, [tableElement, columns]);
+    }, []);
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
@@ -61863,6 +61901,15 @@ padding-bottom: 25px;
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
+    (0, import_react90.useEffect)(() => {
+      if (activeIndex !== null) {
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("mouseup", mouseUp);
+      }
+      return () => {
+        removeListeners();
+      };
+    }, [activeIndex, mouseMove, mouseUp, removeListeners]);
     function test() {
       let index2;
       if (columns) {
@@ -61874,15 +61921,6 @@ padding-bottom: 25px;
       }
       return index2;
     }
-    (0, import_react90.useEffect)(() => {
-      if (activeIndex !== null) {
-        window.addEventListener("mousemove", mouseMove);
-        window.addEventListener("mouseup", mouseUp);
-      }
-      return () => {
-        removeListeners();
-      };
-    }, [activeIndex, mouseMove, mouseUp, removeListeners]);
     const handleCheckCheckboxes = (e2) => {
       const target = e2.target.checked;
       const newOrganisation = inspections.map((item) => {
@@ -61918,8 +61956,6 @@ padding-bottom: 25px;
       });
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
-    const handleFilterColumn = (index2) => {
-    };
     return /* @__PURE__ */ import_react90.default.createElement("div", {
       style: { position: "relative" }
     }, /* @__PURE__ */ import_react90.default.createElement("div", {
@@ -61945,7 +61981,7 @@ padding-bottom: 25px;
           type: "checkbox",
           onClick: (e2) => handleCheckCheckboxes(e2)
         }), /* @__PURE__ */ import_react90.default.createElement("span", {
-          className: "checkmark"
+          className: "checkmark-header"
         })))));
       } else if (text === "Assets") {
         return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
@@ -61960,8 +61996,7 @@ padding-bottom: 25px;
         return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
           ref,
           key: i2,
-          className: i2 === 1 ? "first" : "tableHeaders",
-          onClick: () => handleFilterColumn(i2)
+          className: i2 === 1 ? "first" : "tableHeaders"
         }, /* @__PURE__ */ import_react90.default.createElement("span", {
           style: { fontWeight: "500" }
         }, text), /* @__PURE__ */ import_react90.default.createElement("div", {
@@ -62547,7 +62582,6 @@ padding-bottom: 25px;
   font-weight: 500;
   padding: 0 24px 24px 0px;
   background-color: white;
-  border-bottom: 1px solid rgb(217,217,217);
 `;
   var Button2 = styled_components_browser_esm_default.div`
   background-color: #1890ff;
@@ -62567,6 +62601,7 @@ padding-bottom: 25px;
   padding: 0px 24px 0 24px;
   justify-content: space-between;
   background-color: white;
+  border-bottom: 1px solid rgb(217,217,217);
 `;
   var Settings2 = styled_components_browser_esm_default.div`
     background-color: white;
@@ -62736,7 +62771,7 @@ padding-bottom: 25px;
   var ArchiveIcon_default = ArchiveIcon;
 
   // src/Components/DeliverablePage/TableDeliverableContent.tsx
-  var createHeaders2 = (headers) => {
+  var createHeaders3 = (headers) => {
     return headers.map((item) => ({
       text: item,
       ref: (0, import_react100.useRef)()
@@ -62787,7 +62822,7 @@ padding-bottom: 25px;
     const [activeFilter, setActiveFilter] = (0, import_react100.useState)(false);
     const [activeFilterN, setActiveFilterN] = (0, import_react100.useState)([]);
     const tableElement = (0, import_react100.useRef)(null);
-    const columns = createHeaders2(headers);
+    const columns = createHeaders3(headers);
     (0, import_react100.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
@@ -62809,7 +62844,6 @@ padding-bottom: 25px;
           return item;
         }
       });
-      console.log("arr", arr);
       setTableDataState(arr);
     };
     const handleFilterColumn = () => {
@@ -63455,7 +63489,7 @@ padding-bottom: 25px;
 
   // src/Components/SettingsPage/SettingPageUsersTable.tsx
   var import_react106 = __toESM(require_react(), 1);
-  var createHeaders3 = (headers) => {
+  var createHeaders4 = (headers) => {
     return headers.map((item) => ({
       text: item,
       ref: (0, import_react106.useRef)()
@@ -63469,7 +63503,7 @@ padding-bottom: 25px;
     const [activeTab, setActiveTab] = (0, import_react106.useState)("Details");
     const [detailsOpen, setDetailsOpen] = (0, import_react106.useState)(false);
     const tableElement = (0, import_react106.useRef)(null);
-    const columns = createHeaders3(headers);
+    const columns = createHeaders4(headers);
     (0, import_react106.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);

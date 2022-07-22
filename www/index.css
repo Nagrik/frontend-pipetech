@@ -386,6 +386,17 @@ table tr td {
   border: 1px solid #ccc;
   cursor: pointer;
 }
+.checkmark-header {
+  position: absolute;
+  top: 10px;
+  left: 19px;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
 .container:hover input ~ .checkmark {
   background-color: #fff;
 }

@@ -18,15 +18,15 @@ import {
 import Loader from "@/Components/TableUtils/Loader";
 
 
-const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
+const createHeaders = (headers: any) => {
 
-
-    const createHeaders = (headers: any) => {
         return headers && headers.map((item: any) => ({
             text: item.title,
-            // ref: useRef()
+            ref: null
         }));
-    };
+};
+
+const TableInspectionContent = ({minCellWidth, data}: any) => {
 
 
     const [tableHeight, setTableHeight] = useState("auto");
@@ -38,27 +38,24 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
     const [downstreamId, setDownstreamId] = useState<any>(null)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
 
-    const dispatch = useDispatch<AppDispatch>();
-
 
     const inspections = useSelector(selectOrganizationsInspection)
     const inspectionHeaders = useSelector(selectInspectionHeader)
-
-
+    const dispatch = useDispatch<AppDispatch>();
     const tableElement = useRef(null);
+   const columns = createHeaders(inspectionHeaders);
 
-    const columns = createHeaders(inspectionHeaders);
 
 
     useEffect(() => {
         // @ts-ignore
-        // setTableHeight(tableElement && tableElement.current.offsetHeight);
-        // @ts-ignore
-        setTableHeight(tableElement.current && tableElement.current.offsetHeight)
-    }, [tableElement, columns]);
+        // setTableHeight(tableElement.current.offsetHeight);
+    }, []);
+
     const mouseDown = (index: any) => {
         setActiveIndex(index);
     };
+
 
     const mouseMove = useCallback(
         (e: any) => {
@@ -81,6 +78,7 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
         [activeIndex, columns, minCellWidth]
     );
 
+
     const removeListeners = useCallback(() => {
         window.removeEventListener("mousemove", mouseMove);
         window.removeEventListener("mouseup", removeListeners);
@@ -91,20 +89,6 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
         removeListeners();
     }, [setActiveIndex, removeListeners]);
 
-
-    // console.log(columns, 'columns')
-
-    function test() {
-        let index: any
-        if (columns) {
-            columns.map((item: any, i: any) => {
-                if (item.text === 'Downstream Manhole') {
-                    index = i
-                }
-            })
-        }
-        return index
-    }
 
 
     useEffect(() => {
@@ -117,6 +101,19 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
             removeListeners();
         };
     }, [activeIndex, mouseMove, mouseUp, removeListeners]);
+
+
+    function test() {
+        let index: any
+        if (columns) {
+            columns.map((item: any, i: any) => {
+                if (item.text === 'Downstream Manhole') {
+                    index = i
+                }
+            })
+        }
+        return index
+    }
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
@@ -157,16 +154,6 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
-
-    const handleFilterColumn = (index: number) => {
-
-        // const newArray = inspections.sort(function(a:any, b:any) {
-        //     return b[index] - a[index];
-        // });
-        // console.log(newArray)
-
-    }
-
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
@@ -188,7 +175,7 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                                                  fontSize: '12px'
                                                              }}>
                                                             <input type="checkbox" onClick={(e) => handleCheckCheckboxes(e)}/>
-                                                                <span className="checkmark"></span>
+                                                                <span className="checkmark-header"></span>
                                                         </label>
                                                         </span>
                                                             </th>
@@ -217,7 +204,6 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                                                 ref={ref}
                                                                 key={i}
                                                                 className={i === 1 ? 'first' : 'tableHeaders'}
-                                                                onClick={() => handleFilterColumn(i)}
                                                             >
                                                                 <span style={{fontWeight: '500'}}>{text}</span>
                                                                 <div

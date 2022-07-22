@@ -151,7 +151,6 @@ const TableDeliverableContent = ({headers, minCellWidth}: any) => {
                 return item
             }
         })
-        console.log('arr', arr)
         setTableDataState(arr)
     }
 
