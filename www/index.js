@@ -33087,6 +33087,9 @@ ${latestSubscriptionCallbackError.current.stack}
       dispatch(organizationAction.organizationResponse(response));
     } catch (e2) {
       console.log(e2);
+      dispatch(loginActions.setIsLoading(false));
+    } finally {
+      dispatch(loginActions.setIsLoading(false));
     }
   });
   var getOrganizationAssets = (organizationId, page, limit) => (_0, _1, _22) => __async(void 0, [_0, _1, _22], function* (dispatch, _2, { mainProtectedApi }) {
@@ -61263,7 +61266,6 @@ ${Select3}:hover & {
         return __spreadProps(__spreadValues({}, item), { checkbox: target });
       });
       setTableDataState(arr);
-      console.log(arr, "arr");
     };
     const handleFilterColumn = () => {
       const withoutNone = [];
@@ -61273,7 +61275,6 @@ ${Select3}:hover & {
       });
       const sorted = sortUtil(withoutNone, (item) => item.inspection, "desc" /* DESCENDING */, "number" /* Number */);
       setActiveFilter(!activeFilter);
-      console.log(sorted, "sorted");
     };
     const mouseDown = (index2) => {
       setActiveIndex(index2);
@@ -61286,7 +61287,6 @@ ${Select3}:hover & {
           return item;
         }
       });
-      console.log("arr", arr);
       setTableDataState(arr);
     };
     const events = [
@@ -61624,25 +61624,32 @@ cursor: pointer;
       onMouseEnter: HandleMouseEnter_1,
       onMouseLeave: HandleMouseLeave_1
     }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select1), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_1 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper4, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect1("All systems")
+      onClick: () => setSelect1("All systems"),
+      isActive: select1 === "All systems"
     }, "All systems"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect1("Springfield Storm")
+      onClick: () => setSelect1("Springfield Storm"),
+      isActive: select1 === "Springfield Storm"
     }, "Springfield Storm"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect1("Springfield Sanitary")
+      onClick: () => setSelect1("Springfield Sanitary"),
+      isActive: select1 === "Springfield Sanitary"
     }, "Springfield Sanitary"))), /* @__PURE__ */ import_react88.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react88.default.createElement(Select23, {
       onMouseEnter: HandleMouseEnter_2,
       onMouseLeave: HandleMouseLeave_2
     }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select2), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_2 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect2("All assets types")
+      onClick: () => setSelect2("All assets types"),
+      isActive: select2 === "All assets types"
     }, "All assets types"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect2("Mainlines")
+      onClick: () => setSelect2("Mainlines"),
+      isActive: select2 === "Mainlines"
     }, "Mainlines"))), /* @__PURE__ */ import_react88.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react88.default.createElement(Select32, {
       onMouseEnter: HandleMouseEnter_3,
       onMouseLeave: HandleMouseLeave_3
-    }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect3("All templates")
+    }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper33, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+      onClick: () => setSelect3("All templates"),
+      isActive: select3 === "All templates"
     }, "All templates"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
-      onClick: () => setSelect3("NASSCO v6 Springfield")
+      onClick: () => setSelect3("NASSCO v6 Springfield"),
+      isActive: select3 === "NASSCO v6 Springfield"
     }, "NASSCO v6 Springfield"))));
   };
   var InspectionSelects_default = InspectionSelects;
@@ -61657,6 +61664,8 @@ cursor: pointer;
   padding: 7px 12px;
   font-size: 14px;
   white-space: nowrap;
+  background-color: ${(props) => props.isActive ? "#e6f7ff" : "#fff"};
+  color: ${(props) => props.isActive ? "#0070f3" : "#000"};
   &:hover {
     background-color: whitesmoke;
   }
@@ -61666,8 +61675,8 @@ cursor: pointer;
   flex-direction: column;
   position: absolute;
   background-color: white;
-  top: 50px;
-  left: 0;
+  top: 40px;
+  left: 15px;
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
@@ -61692,7 +61701,7 @@ cursor: pointer;
   position: absolute;
   background-color: white;
   font-size: 14px;
-  top: 37px;
+  top: 24px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
@@ -61711,23 +61720,48 @@ cursor: pointer;
   transform: rotate(-27deg);
 },
 `;
+  var HoverItemWrapper33 = styled_components_browser_esm_default.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  font-size: 14px;
+  top: 24px;
+  left: -5px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+&::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 18px 9px 0;
+  border-color: transparent #fff transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: absolute;
+  top: -10px;
+  left: 75px;
+  transform: rotate(-27deg);
+},
+`;
   var Select13 = styled_components_browser_esm_default.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
 padding-bottom: 25px; 
 
 `;
   var Select23 = styled_components_browser_esm_default.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
   padding-bottom: 25px;
   position: relative;
 `;
   var Select32 = styled_components_browser_esm_default.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
   padding-bottom: 25px;
   position: relative;
@@ -61793,8 +61827,10 @@ padding-bottom: 25px;
     };
     const [tableHeight, setTableHeight] = (0, import_react90.useState)("auto");
     const [activeIndex, setActiveIndex] = (0, import_react90.useState)(null);
+    const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react90.useState)(null);
     const [activeFilter, setActiveFilter] = (0, import_react90.useState)(false);
     const [hover, setHover] = (0, import_react90.useState)(false);
+    const [downstreamId, setDownstreamId] = (0, import_react90.useState)(null);
     const [activeFilterN, setActiveFilterN] = (0, import_react90.useState)([]);
     const dispatch = useDispatch();
     const inspections = useSelector(selectOrganizationsInspection);
@@ -61827,6 +61863,17 @@ padding-bottom: 25px;
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
+    function test() {
+      let index2;
+      if (columns) {
+        columns.map((item, i2) => {
+          if (item.text === "Downstream Manhole") {
+            index2 = i2;
+          }
+        });
+      }
+      return index2;
+    }
     (0, import_react90.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
@@ -61845,6 +61892,8 @@ padding-bottom: 25px;
           return __spreadProps(__spreadValues({}, item), { checkbox: true });
         }
       });
+      const arr = newOrganisation.filter((item) => item.checkbox === true);
+      setArrayCheckboxes(arr);
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
     const handleCheckCheckbox = (e2, id) => {
@@ -61855,6 +61904,8 @@ padding-bottom: 25px;
         }
         return item;
       });
+      const arr = newOrganisation.filter((item) => item.checkbox === true);
+      setArrayCheckboxes(arr);
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
     const isHovered = (id) => {
@@ -61882,64 +61933,93 @@ padding-bottom: 25px;
       if (text === "checkbox") {
         return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
           ref,
-          key: text,
-          className: "checkbox"
-        }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
+          className: "checkbox",
+          key: i2
+        }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("label", {
+          className: "container",
+          style: {
+            fontFamily: "Verdana, sans-serif",
+            fontSize: "12px"
+          }
+        }, /* @__PURE__ */ import_react90.default.createElement("input", {
           type: "checkbox",
           onClick: (e2) => handleCheckCheckboxes(e2)
-        }))));
+        }), /* @__PURE__ */ import_react90.default.createElement("span", {
+          className: "checkmark"
+        })))));
       } else if (text === "Assets") {
         return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
           ref,
-          key: text,
-          className: "id"
+          className: "id",
+          key: i2
         }, /* @__PURE__ */ import_react90.default.createElement("span", null, "Assets"), /* @__PURE__ */ import_react90.default.createElement("div", {
-          style: { height: tableHeight },
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       } else {
         return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
-          style: { borderRight: "1px solid #ccc" },
           ref,
-          key: text,
+          key: i2,
           className: i2 === 1 ? "first" : "tableHeaders",
           onClick: () => handleFilterColumn(i2)
         }, /* @__PURE__ */ import_react90.default.createElement("span", {
           style: { fontWeight: "500" }
         }, text), /* @__PURE__ */ import_react90.default.createElement("div", {
-          style: { height: tableHeight },
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       }
     }))), /* @__PURE__ */ import_react90.default.createElement("tbody", null, inspections.map((item, i2) => {
-      return /* @__PURE__ */ import_react90.default.createElement("tr", {
-        key: item.id
-      }, /* @__PURE__ */ import_react90.default.createElement(Td2, {
+      return /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement(Td2, {
         style: { position: "sticky", left: "0px" },
         isActive: item.checkbox,
         isHovered: item.hover,
         key: i2
-      }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("input", {
+      }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("label", {
+        className: "container",
+        style: {
+          fontFamily: "Verdana, sans-serif",
+          fontSize: "12px"
+        }
+      }, /* @__PURE__ */ import_react90.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react90.default.createElement(Td2, {
+      }), /* @__PURE__ */ import_react90.default.createElement("span", {
+        className: "checkmark"
+      })))), /* @__PURE__ */ import_react90.default.createElement(Td2, {
         style: { position: "sticky", left: "55px" },
         isActive: item.checkbox,
         isHovered: item.hover,
-        key: i2
-      }, /* @__PURE__ */ import_react90.default.createElement(IdWrapper2, null, /* @__PURE__ */ import_react90.default.createElement("span", null, item.id))), item.arr.map((item2, i3) => /* @__PURE__ */ import_react90.default.createElement(Td2, {
+        onMouseEnter: () => isHovered(item.id),
+        onMouseLeave: () => isHovered(item.id)
+      }, /* @__PURE__ */ import_react90.default.createElement(IdWrapper2, null, item.arr[test() - 2], " * ", item.arr[test() - 1])), item.arr.map((item2, i3) => /* @__PURE__ */ import_react90.default.createElement(Td2, {
         isActive: item.checkbox,
         onMouseEnter: () => isHovered(item.id),
         onMouseLeave: () => isHovered(item.id),
-        isHovered: item.hover,
-        key: i3
+        key: i3,
+        isHovered: item.hover
       }, item2)));
-    }))), /* @__PURE__ */ import_react90.default.createElement(TableFooter2, null)) : /* @__PURE__ */ import_react90.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react90.default.createElement(Loader_default, null)))));
+    }))), /* @__PURE__ */ import_react90.default.createElement(TableFooter2, null, (arrayCheckboxes == null ? void 0 : arrayCheckboxes.length) > 0 && /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionWrapp, null, /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelection, null, /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionItem, null, arrayCheckboxes == null ? void 0 : arrayCheckboxes.length, " inspections selected"), /* @__PURE__ */ import_react90.default.createElement("span", {
+      style: { padding: "0px 10px" }
+    }, "|"), /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionItem, null, "Avg of Pipe Joint Length: 0 m"))))) : /* @__PURE__ */ import_react90.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react90.default.createElement(Loader_default, null)))));
   };
   var TableInspectionContent_default = TableInspectionContent;
+  var TableCheckboxSelection = styled_components_browser_esm_default.div`
+  height: 34px;
+  border: 1px solid #1890ff;
+  margin: 5px 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+`;
+  var TableCheckboxSelectionItem = styled_components_browser_esm_default.div`
+  font-size: 14px;
+  color: #1890ff;
+`;
+  var TableCheckboxSelectionWrapp = styled_components_browser_esm_default.div`
+
+`;
   var LoaderWrapp2 = styled_components_browser_esm_default.div`
   width: 100%;
   display: flex;
@@ -61948,8 +62028,8 @@ padding-bottom: 25px;
 `;
   var TableFooter2 = styled_components_browser_esm_default.div`
   background-color: #fafafa;
-  width: 100%;
-  height: 20px;
+  margin: 0px 24px;
+  padding: 10px 0;
   border: 1px solid #f0f0f0;
 `;
   var Td2 = styled_components_browser_esm_default.td`
@@ -62081,7 +62161,6 @@ padding-bottom: 25px;
       setThirdColumn(thirdColumn2);
       dispatch(setFilters(firstColumn2, secondColumn2, thirdColumn2));
     };
-    console.log(step);
     return /* @__PURE__ */ import_react93.default.createElement(import_react93.default.Fragment, null, /* @__PURE__ */ import_react93.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react93.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react93.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react93.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react93.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
     }, "\u2613")), /* @__PURE__ */ import_react93.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react93.default.createElement(ModalTabs2, {
@@ -62376,7 +62455,6 @@ padding-bottom: 25px;
       dispatch(getOrganizationInspections("1", "1", "50"));
     }, []);
     const inspections = useSelector(selectOrganizationInspections);
-    console.log(inspections, "inspections");
     const filterRef = useOnClickOutside_default(() => {
       setIsOpenFilter(false);
     });
@@ -63767,8 +63845,6 @@ padding-bottom: 25px;
       if (isValidData)
         setPopup(true);
     }, [isInvalidData, isValidData]);
-    console.log(isInvalidData, "isInvalidData");
-    console.log(isValidData, "isValidData");
     (0, import_react108.useEffect)(() => {
       let timer;
       if (popup) {

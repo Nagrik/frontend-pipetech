@@ -132,7 +132,6 @@ const ProjectsPage = () => {
             )
         });
         setTableDataState(arr)
-        console.log(arr, 'arr')
     }
 
 
@@ -144,7 +143,6 @@ const ProjectsPage = () => {
         // @ts-ignore
         const sorted = sortUtil(withoutNone!, ((item) => item.inspection), SortOrder.DESCENDING, SortType.Number);
         setActiveFilter(!activeFilter)
-        console.log(sorted, 'sorted')
     }
 
     const mouseDown = (index: any) => {
@@ -161,7 +159,6 @@ const ProjectsPage = () => {
                 return item
             }
         })
-        console.log('arr', arr)
         setTableDataState(arr)
     }
 

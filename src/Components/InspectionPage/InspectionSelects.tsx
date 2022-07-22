@@ -56,13 +56,13 @@ const InspectionSelects = () => {
                 {
                     hover_1 &&
                         <HoverItemWrapper >
-                            <HoverItem onClick={() => setSelect1('All systems')}>
+                            <HoverItem onClick={() => setSelect1('All systems')} isActive={select1 === 'All systems'}>
                                 All systems
                             </HoverItem>
-                            <HoverItem onClick={() => setSelect1('Springfield Storm')}>
+                            <HoverItem onClick={() => setSelect1('Springfield Storm')} isActive={select1 === 'Springfield Storm'}>
                                 Springfield Storm
                             </HoverItem>
-                            <HoverItem onClick={() => setSelect1('Springfield Sanitary')}>
+                            <HoverItem onClick={() => setSelect1('Springfield Sanitary')} isActive={select1 === 'Springfield Sanitary'}>
                                 Springfield Sanitary
                             </HoverItem>
                         </HoverItemWrapper>
@@ -78,16 +78,16 @@ const InspectionSelects = () => {
                     <ArrowDownIcon/>
                 </IconWrapp>
                 {
-                    hover_2 && (
+                    hover_2 &&
                         <HoverItemWrapper2 >
-                            <HoverItem onClick={() => setSelect2('All assets types')}>
+                            <HoverItem onClick={() => setSelect2('All assets types')} isActive={select2 === 'All assets types'}>
                                 All assets types
                             </HoverItem>
-                            <HoverItem onClick={() => setSelect2('Mainlines')}>
+                            <HoverItem onClick={() => setSelect2('Mainlines')} isActive={select2 === 'Mainlines'}>
                                 Mainlines
                             </HoverItem>
                         </HoverItemWrapper2>
-                    )
+
                 }
             </Select2>
 
@@ -100,16 +100,16 @@ const InspectionSelects = () => {
                     <ArrowDownIcon/>
                 </IconWrapp>
                 {
-                    hover_3 && (
-                        <HoverItemWrapper2 >
-                            <HoverItem onClick={() => setSelect3('All templates')}>
+                    hover_3 &&
+                        <HoverItemWrapper3 >
+                            <HoverItem onClick={() => setSelect3('All templates')} isActive={select3 === 'All templates'}>
                                 All templates
                             </HoverItem>
-                            <HoverItem onClick={() => setSelect3('NASSCO v6 Springfield')}>
+                            <HoverItem onClick={() => setSelect3('NASSCO v6 Springfield')} isActive={select3 === 'NASSCO v6 Springfield'}>
                                 NASSCO v6 Springfield
                             </HoverItem>
-                        </HoverItemWrapper2>
-                    )
+                        </HoverItemWrapper3>
+
                 }
             </Select3>
         </Wrapper>
@@ -126,10 +126,12 @@ const Wrapper = styled.div`
   background-color: white;
 `
 
-const HoverItem = styled.div`
+const HoverItem = styled.div<{isActive:boolean}>`
   padding: 7px 12px;
   font-size: 14px;
   white-space: nowrap;
+  background-color: ${props => props.isActive ? '#e6f7ff' : '#fff'};
+  color: ${props => props.isActive ? '#0070f3' : '#000'};
   &:hover {
     background-color: whitesmoke;
   }
@@ -139,8 +141,8 @@ const HoverItemWrapper = styled.div`
   flex-direction: column;
   position: absolute;
   background-color: white;
-  top: 50px;
-  left: 0;
+  top: 40px;
+  left: 15px;
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
@@ -166,7 +168,7 @@ const HoverItemWrapper2 = styled.div`
   position: absolute;
   background-color: white;
   font-size: 14px;
-  top: 37px;
+  top: 24px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 &::before{
@@ -186,9 +188,35 @@ const HoverItemWrapper2 = styled.div`
 },
 `
 
+const HoverItemWrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  font-size: 14px;
+  top: 24px;
+  left: -5px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+&::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 18px 9px 0;
+  border-color: transparent #fff transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: absolute;
+  top: -10px;
+  left: 75px;
+  transform: rotate(-27deg);
+},
+`
+
 const Select1 = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
 padding-bottom: 25px; 
 
@@ -196,7 +224,7 @@ padding-bottom: 25px;
 
 const Select2 = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
   padding-bottom: 25px;
   position: relative;
@@ -204,7 +232,7 @@ const Select2 = styled.div`
 
 const Select3 = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
   padding-bottom: 25px;
   position: relative;

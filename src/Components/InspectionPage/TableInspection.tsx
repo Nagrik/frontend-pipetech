@@ -28,7 +28,6 @@ const TableInspection = () => {
     }, [])
 
     const inspections = useSelector(selectOrganizationInspections)
-    console.log(inspections, 'inspections')
 //54
 
 

@@ -31,9 +31,11 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
     const [tableHeight, setTableHeight] = useState("auto");
     const [activeIndex, setActiveIndex] = useState(null);
+    const [arrayCheckboxes, setArrayCheckboxes] = useState<any | null>(null);
     // const [tableDataState, setTableDataState] = useState(tableData);
     const [activeFilter, setActiveFilter] = useState(false)
     const [hover, setHover] = useState<boolean>(false)
+    const [downstreamId, setDownstreamId] = useState<any>(null)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
 
     const dispatch = useDispatch<AppDispatch>();
@@ -41,7 +43,6 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
     const inspections = useSelector(selectOrganizationsInspection)
     const inspectionHeaders = useSelector(selectInspectionHeader)
-
 
 
     const tableElement = useRef(null);
@@ -91,6 +92,21 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
     }, [setActiveIndex, removeListeners]);
 
 
+    // console.log(columns, 'columns')
+
+    function test() {
+        let index: any
+        if (columns) {
+            columns.map((item: any, i: any) => {
+                if (item.text === 'Downstream Manhole') {
+                    index = i
+                }
+            })
+        }
+        return index
+    }
+
+
     useEffect(() => {
         if (activeIndex !== null) {
             window.addEventListener("mousemove", mouseMove);
@@ -111,6 +127,8 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                 return {...item, checkbox: true}
             }
         })
+        const arr = newOrganisation.filter((item: any) => item.checkbox === true)
+        setArrayCheckboxes(arr)
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
@@ -123,6 +141,8 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
             }
             return item
         })
+        const arr = newOrganisation.filter((item: any) => item.checkbox === true)
+        setArrayCheckboxes(arr)
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
@@ -136,9 +156,6 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
         })
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
-
-
-
 
 
     const handleFilterColumn = (index: number) => {
@@ -164,21 +181,27 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                                 if (text === 'checkbox') {
                                                     return (
                                                         <>
-                                                            <th ref={ref} key={text} className='checkbox'>
-                                                        <span><input type='checkbox'
-                                                                     onClick={(e) => handleCheckCheckboxes(e)}/></span>
+                                                            <th ref={ref} className='checkbox' key={i}>
+                                                        <span>
+                                                             <label className="container" style={{
+                                                                 fontFamily: 'Verdana, sans-serif',
+                                                                 fontSize: '12px'
+                                                             }}>
+                                                            <input type="checkbox" onClick={(e) => handleCheckCheckboxes(e)}/>
+                                                                <span className="checkmark"></span>
+                                                        </label>
+                                                        </span>
                                                             </th>
                                                         </>
                                                     )
-                                                }else if(text === 'Assets'){
+                                                } else if (text === 'Assets') {
                                                     return (
                                                         <>
-                                                            <th ref={ref} key={text} className='id' >
+                                                            <th ref={ref} className='id' key={i}>
                                                                 <span>
                                                                    Assets
                                                                 </span>
                                                                 <div
-                                                                    style={{height: tableHeight}}
                                                                     onMouseDown={() => mouseDown(i)}
                                                                     className={`resize-handle ${
                                                                         activeIndex === i ? "active" : "idle"
@@ -190,14 +213,14 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                                 } else {
                                                     return (
                                                         <>
-                                                            <th style={{borderRight: '1px solid #ccc'}}
-                                                                ref={ref} key={text}
+                                                            <th
+                                                                ref={ref}
+                                                                key={i}
                                                                 className={i === 1 ? 'first' : 'tableHeaders'}
                                                                 onClick={() => handleFilterColumn(i)}
                                                             >
                                                                 <span style={{fontWeight: '500'}}>{text}</span>
                                                                 <div
-                                                                    style={{height: tableHeight}}
                                                                     onMouseDown={() => mouseDown(i)}
                                                                     className={`resize-handle ${
                                                                         activeIndex === i ? "active" : "idle"
@@ -227,27 +250,36 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
                                     {inspections.map((item: any, i: number) => {
                                             return (
-                                                <tr key={item.id}>
+                                                <tr>
                                                     <Td style={{position: 'sticky', left: '0px'}}
                                                         isActive={item.checkbox}
-                                                        isHovered={item.hover} key={i}
+                                                        isHovered={item.hover}
+                                                        key={i}
 
                                                     >
-                                                <span>
-                                                    <input type='checkbox'
-                                                           checked={item.checkbox}
-                                                           onClick={(e) => handleCheckCheckbox(e, item.id)}/>
+                                                <span >
+                                                       <label className="container" style={{
+                                                           fontFamily: 'Verdana, sans-serif',
+                                                           fontSize: '12px'
+                                                       }}>
+                                                            <input type="checkbox" checked={item.checkbox} onClick={(e) => handleCheckCheckbox(e, item.id)}/>
+                                                                <span className="checkmark"></span>
+                                                        </label>
+                                                    {/*                                        <input type='checkbox'*/}
+                                                    {/*                                               checked={item.checkbox}*/}
+                                                    {/*                                               onClick={(e) => handleCheckCheckbox(e, item.id)}/>*/}
                                                 </span>
 
                                                     </Td>
-                                                    <Td  style={{position: 'sticky', left: '55px'}}
+                                                    <Td style={{position: 'sticky', left: '55px'}}
                                                         isActive={item.checkbox}
-                                                         isHovered={item.hover} key={i}
-
+                                                        isHovered={item.hover}
+                                                        onMouseEnter={() => isHovered(item.id)}
+                                                        onMouseLeave={() => isHovered(item.id)}
                                                     >
-                                                <IdWrapper>
-                                                    <span>{item.id}</span>
-                                                </IdWrapper>
+                                                        <IdWrapper>
+                                                            {item.arr[test() - 2]} * {item.arr[test() - 1]}
+                                                        </IdWrapper>
                                                     </Td>
 
                                                     {item.arr.map((item2: any, i: number) => (
@@ -255,7 +287,9 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                                             isActive={item.checkbox}
                                                             onMouseEnter={() => isHovered(item.id)}
                                                             onMouseLeave={() => isHovered(item.id)}
-                                                            isHovered={item.hover} key={i}>
+                                                            key={i}
+                                                            isHovered={item.hover}
+                                                        >
                                                             {item2}
                                                         </Td>
                                                     ))}
@@ -267,7 +301,24 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
                                     </tbody>
 
                                 </ResizableTableInspection>
-                                <TableFooter/>
+                                <TableFooter>
+                                    {
+                                        arrayCheckboxes?.length > 0 && (
+                                            <TableCheckboxSelectionWrapp>
+                                                <TableCheckboxSelection>
+                                                    <TableCheckboxSelectionItem>
+                                                        {arrayCheckboxes?.length} inspections selected
+                                                    </TableCheckboxSelectionItem>
+                                                    <span style={{padding: '0px 10px'}}>|</span>
+                                                    <TableCheckboxSelectionItem>
+                                                        Avg of Pipe Joint Length: 0 m
+                                                    </TableCheckboxSelectionItem>
+                                                </TableCheckboxSelection>
+                                            </TableCheckboxSelectionWrapp>
+                                        )
+                                    }
+                                </TableFooter>
+
                             </>
                         ) : <LoaderWrapp>
                             <Loader/>
@@ -281,6 +332,24 @@ const TableInspectionContent = ({headers, minCellWidth, data}: any) => {
 
 export default TableInspectionContent;
 
+const TableCheckboxSelection = styled.div`
+  height: 34px;
+  border: 1px solid #1890ff;
+  margin: 5px 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+`
+
+const TableCheckboxSelectionItem = styled.div`
+  font-size: 14px;
+  color: #1890ff;
+`
+
+const TableCheckboxSelectionWrapp = styled.div`
+
+`
+
 const LoaderWrapp = styled.div`
   width: 100%;
   display: flex;
@@ -290,8 +359,8 @@ const LoaderWrapp = styled.div`
 
 const TableFooter = styled.div`
   background-color: #fafafa;
-  width: 100%;
-  height: 20px;
+  margin: 0px 24px;
+  padding: 10px 0;
   border: 1px solid #f0f0f0;
 `
 

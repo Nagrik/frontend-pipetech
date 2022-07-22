@@ -26,8 +26,6 @@ const SettingsPageUsers = () => {
         if (isInvalidData) setPopup(true);
         if (isValidData) setPopup(true);
     }, [isInvalidData, isValidData]);
-    console.log(isInvalidData, 'isInvalidData')
-    console.log(isValidData, 'isValidData')
     useEffect(() => {
         let timer: any;
 

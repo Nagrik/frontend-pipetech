@@ -39,6 +39,9 @@ export const getUserInfo = (organizationId:string): AsyncAction => async (
         dispatch(organizationAction.organizationResponse(response))
     } catch (e) {
         console.log(e);
+        dispatch(loginActions.setIsLoading(false))
+    }finally {
+        dispatch(loginActions.setIsLoading(false))
     }
 };
 

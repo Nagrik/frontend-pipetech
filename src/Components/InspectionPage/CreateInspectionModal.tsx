@@ -40,7 +40,6 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
         setThirdColumn(thirdColumn)
         dispatch(setFilters(firstColumn, secondColumn, thirdColumn))
     }
-    console.log(step)
 
     return (
         <>
