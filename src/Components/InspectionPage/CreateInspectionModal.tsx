@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import useOnClickOutside from "@/Components/utils/hooks/useOnClickOutside";
 import {useDispatch, useSelector} from "react-redux";
@@ -7,20 +7,29 @@ import {setFilters} from "@/store/actions/inspection";
 import CreateFileIcon from "@/Components/common/icons/CreateFileIcon";
 import UploadIcon from "@/Components/common/icons/UploadIcon";
 import UploadFileIcon from "@/Components/common/icons/UploadFileIcon";
+import AddFileIcon from "@/Components/common/icons/addFileIcon";
+import AddFolder from "@/Components/common/icons/addFolder";
+import AddFileTable from "@/Components/InspectionPage/AddFileTable";
+import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIcon";
 
 const CreateInspectionModal = ({setModal, modal}: any) => {
     const [activeModalTab, setActiveModalTab] = useState<boolean>(false)
 
-    const [firstColumn, setFirstColumn] = useState<string>('Springfield Storm1');
-    const [secondColumn, setSecondColumn] = useState<string>('Mainline')
-    const [thirdColumn, setThirdColumn] = useState<string>('NASSCO v6 Springfield')
-    const [step, setStep] = useState<number>(4)
+    const [firstColumn, setFirstColumn] = useState<string>('');
+    const [secondColumn, setSecondColumn] = useState<string>('')
+    const [thirdColumn, setThirdColumn] = useState<string>('')
+    const [step, setStep] = useState<number>(1)
     const [choose, setChoose] = useState<string | null>(null)
+    const [file, setFile] = useState<string | null>(null)
 
     const dispatch = useDispatch<AppDispatch>();
 
 
     const filter_1 = useSelector(selectHeaderFilters_1);
+
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
+    const hiddenFileInputFolder = useRef<HTMLInputElement>(null);
+
 
     const modalTabsRef = useOnClickOutside(() => {
         setActiveModalTab(false);
@@ -41,10 +50,23 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
         dispatch(setFilters(firstColumn, secondColumn, thirdColumn))
     }
 
+    const onUploadChange = async (e: any) => {
+        const file = e.target.files[0];
+        const fileUrl = URL.createObjectURL(file)
+        setFile(file)
+    }
+
+    const onAddClick = () => {
+        hiddenFileInput.current!.click();
+    }
+    const onAddClickFolder = () => {
+        hiddenFileInputFolder.current!.click();
+    }
+
     return (
         <>
             <ContainerModal>
-                <ModalWrapp >
+                <ModalWrapp>
                     <ModalHeader>
                         <ModalTitle>
                             Add Inspection
@@ -53,166 +75,223 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                             ☓
                         </ModalClose>
                     </ModalHeader>
-                    <ModalBody>
-                        {
-                            step === 1 && (<ModalBodyContent>
-                                <ModalRow>
-                                    <ModalTabs ref={modalTabsRef} active={activeModalTab}
-                                               onClick={() => setActiveModalTab(true)}>
-                                        {firstColumn || 'Springfield Storm1'} / {secondColumn || 'Mainline'} / {thirdColumn || 'NASSCO v6 Springfield'}
-                                        {
-                                            activeModalTab && (
-                                                <ActiveModalWrapper>
+                    <Wrapp>
+                        <ModalBody>
 
-                                                    <ActiveModalColumn>
-                                                        <ArctiveModalColumnTitle
-                                                            active={firstColumn === 'Springfield Storm1'}
-                                                            onClick={() => chooseTab('Springfield Storm1', secondColumn, thirdColumn)}
-                                                        >
-                                                            Springfield Storm1
-                                                        </ArctiveModalColumnTitle>
-                                                        <ArctiveModalColumnTitle
-                                                            onClick={() => chooseTab('Springfield Storm2', secondColumn, thirdColumn)}
-                                                            active={firstColumn === 'Springfield Storm2'}
-                                                        >
-                                                            Springfield Storm2
-                                                        </ArctiveModalColumnTitle>
-                                                        <ArctiveModalColumnTitle
-                                                            onClick={() => chooseTab('Springfield Storm3', secondColumn, thirdColumn)}
-                                                            active={firstColumn === 'Springfield Storm3'}
-                                                        >
-                                                            Springfield Storm3
-                                                        </ArctiveModalColumnTitle>
-                                                    </ActiveModalColumn>
+                            {
+                                step === 1 && (<ModalBodyContent>
+                                    <ModalBodyDescription>
+                                        Add inspections to the following system:
+                                    </ModalBodyDescription>
+                                    <ModalRow>
+                                        <ModalTabs ref={modalTabsRef} active={activeModalTab}
+                                                   onClick={() => setActiveModalTab(true)}>
+                                            {firstColumn || 'Springfield Storm1'} / {secondColumn || 'Mainline'} / {thirdColumn || 'NASSCO v6 Springfield'}
+                                            <Arrow active={activeModalTab}>
+                                                <ArrowDownIcon/>
+                                            </Arrow>
+                                            {
+                                                activeModalTab && (
+                                                    <ActiveModalWrapper>
+
+                                                        <ActiveModalColumn>
+                                                            <ArctiveModalColumnTitle
+                                                                active={firstColumn === 'Springfield Storm1'}
+                                                                onClick={() => chooseTab('Springfield Storm1', secondColumn, thirdColumn)}
+                                                            >
+                                                                Springfield Storm1
+                                                                <ArrowWrapper>
+                                                                    <ArrowDownIcon/>
+                                                                </ArrowWrapper>
+                                                            </ArctiveModalColumnTitle>
+                                                            <ArctiveModalColumnTitle
+                                                                onClick={() => chooseTab('Springfield Storm2', secondColumn, thirdColumn)}
+                                                                active={firstColumn === 'Springfield Storm2'}
+                                                            >
+                                                                Springfield Storm2
+                                                                <ArrowWrapper>
+                                                                    <ArrowDownIcon/>
+                                                                </ArrowWrapper>
+                                                            </ArctiveModalColumnTitle>
+                                                            <ArctiveModalColumnTitle
+                                                                onClick={() => chooseTab('Springfield Storm3', secondColumn, thirdColumn)}
+                                                                active={firstColumn === 'Springfield Storm3'}
+                                                            >
+                                                                Springfield Storm3
+                                                                <ArrowWrapper>
+                                                                    <ArrowDownIcon/>
+                                                                </ArrowWrapper>
+                                                            </ArctiveModalColumnTitle>
+                                                        </ActiveModalColumn>
 
 
-                                                    <ActiveModalColumn>
-                                                        <ArctiveModalColumnTitle
-                                                            onClick={() => chooseTab(firstColumn, 'Mainline', thirdColumn)}
-                                                            active={secondColumn === 'Mainline'}
-                                                        >
-                                                            Mainline
-                                                        </ArctiveModalColumnTitle>
-                                                    </ActiveModalColumn>
-                                                    {
-                                                        secondColumn !== '' && (
-                                                            <ActiveModalColumn>
-                                                                <ArctiveModalColumnTitle
-                                                                    onClick={() => chooseTab(firstColumn, secondColumn, 'NASSCO v6 Springfield')}
-                                                                    active={thirdColumn === 'NASSCO v6 Springfield'}
-                                                                >
-                                                                    NASSCO
-                                                                </ArctiveModalColumnTitle>
-                                                            </ActiveModalColumn>
-                                                        )
+                                                        <ActiveModalColumn style={{
+                                                            borderLeft: '1px solid #f0f0f0',
+                                                            borderRight: '1px solid #f0f0f0'
+                                                        }}>
+                                                            <ArctiveModalColumnTitle
+                                                                onClick={() => chooseTab(firstColumn, 'Mainline', thirdColumn)}
+                                                                active={secondColumn === 'Mainline'}
+                                                            >
+                                                                Mainline
+                                                                <ArrowWrapper>
+                                                                    <ArrowDownIcon/>
+                                                                </ArrowWrapper>
+                                                            </ArctiveModalColumnTitle>
+                                                            <ArctiveModalColumnTitle
+                                                                onClick={() => chooseTab(firstColumn, 'Lateral', thirdColumn)}
+                                                                active={secondColumn === 'Lateral'}
+                                                            >
+                                                                Lateral
+                                                                <ArrowWrapper>
+                                                                    <ArrowDownIcon/>
+                                                                </ArrowWrapper>
+                                                            </ArctiveModalColumnTitle>
+                                                        </ActiveModalColumn>
 
-                                                    }
+                                                        <ActiveModalColumn>
+                                                            <ArctiveModalColumnTitle
+                                                                onClick={() => chooseTab(firstColumn, secondColumn, 'NASSCO v6 Springfield')}
+                                                                active={thirdColumn === 'NASSCO v6 Springfield'}
+                                                                style={{paddingRight: '15px'}}
+                                                            >
+                                                                NASSCO
+                                                            </ArctiveModalColumnTitle>
+                                                        </ActiveModalColumn>
+                                                    </ActiveModalWrapper>
+                                                )
+                                            }
+                                        </ModalTabs>
+                                    </ModalRow>
+                                </ModalBodyContent>)
+                            }
+                            {
+                                step === 2 && (
+                                    <ModalBodyContent>
+                                        <ModalBodyHeader>
+                                            <ModalBodyHeaderTitle>
+                                                Do you want to upload inspection data (and/or media)?
+                                            </ModalBodyHeaderTitle>
+                                            <ModalBodyContent2>
 
-                                                </ActiveModalWrapper>
-                                            )
-                                        }
-                                    </ModalTabs>
-                                </ModalRow>
-                            </ModalBodyContent>)
-                        }
-                        {
-                            step === 2 && (
-                                <ModalBodyContent>
-                                    <ModalBodyHeader>
-                                        <ModalBodyHeaderTitle>
-                                            Do you want to upload inspection data (and/or media)?
-                                        </ModalBodyHeaderTitle>
-                                        <ModalBodyContent2>
+                                                <UploadMedia
+                                                    active={choose === 'Upload'}
+                                                    onClick={() => setChoose('Upload')}
+                                                >
+                                                    <CreateIcon>
+                                                        <UploadFileIcon/>
+                                                    </CreateIcon>
+                                                    <CreateTitle>
+                                                        I want to upload data/media
+                                                    </CreateTitle>
+                                                    <CreateSubtitle>
+                                                        Create inspections from your uploaded data
+                                                        and/or media
+                                                    </CreateSubtitle>
+                                                </UploadMedia>
 
-                                            <UploadMedia
-                                                active={choose === 'Upload'}
-                                                onClick={() => setChoose('Upload')}
-                                            >
-                                                <CreateIcon>
-                                                    <UploadFileIcon/>
-                                                </CreateIcon>
-                                                <CreateTitle>
-                                                    I want to upload data/media
-                                                </CreateTitle>
-                                                <CreateSubtitle>
-                                                    Create inspections from your uploaded data
-                                                    and/or media
-                                                </CreateSubtitle>
-                                            </UploadMedia>
+                                                <JustCreate
+                                                    active={choose === 'Create'}
+                                                    onClick={() => setChoose('Create')}
+                                                >
+                                                    <CreateIcon>
+                                                        <CreateFileIcon/>
+                                                    </CreateIcon>
+                                                    <CreateTitle>
+                                                        I don't want to upload anything, just
+                                                        create inspections
+                                                    </CreateTitle>
+                                                    <CreateSubtitle>
+                                                        Create inspections by selecting assets
+                                                    </CreateSubtitle>
+                                                </JustCreate>
 
-                                            <JustCreate
-                                                active={choose === 'Create'}
-                                                onClick={() => setChoose('Create')}
-                                            >
-                                                <CreateIcon>
-                                                    <CreateFileIcon/>
-                                                </CreateIcon>
-                                                <CreateTitle>
-                                                    I don't want to upload anything, just
-                                                    create inspections
-                                                </CreateTitle>
-                                                <CreateSubtitle>
-                                                    Create inspections by selecting assets
-                                                </CreateSubtitle>
-                                            </JustCreate>
+                                            </ModalBodyContent2>
+                                        </ModalBodyHeader>
+                                    </ModalBodyContent>
+                                )
+                            }
+                            {
+                                step === 3 && (
+                                    <ModalBodyContent>
+                                        <ModalBodyHeader>
+                                            <div>
+                                                <ModalBodyHeaderTitle style={{display: 'flex', alignItems: 'center'}}>
+                                                    Select files or folders to import.
+                                                    <div style={{
+                                                        paddingLeft: '20px',
+                                                        display: 'flex',
+                                                        alignItems: 'center'
+                                                    }}>
+                                                        <AddFileWrapper onClick={onAddClick}>
+                                                            <ChooseFile>
+                                                                <InputHidden type="file" ref={hiddenFileInput}
+                                                                             onChange={onUploadChange} id="file"
+                                                                             name="file"/>
+                                                            </ChooseFile>
+                                                            <AddFileIcon/>
+                                                            <div style={{padding: '0px 7px'}}>
+                                                                Add File
+                                                            </div>
+                                                        </AddFileWrapper>
+                                                        <AddFolderWrapper onClick={onAddClickFolder}>
+                                                            <ChooseFile>
+                                                                <InputHidden
+                                                                    type="file"
+                                                                    ref={hiddenFileInputFolder}
+                                                                    onChange={onUploadChange}
+                                                                    id="Folder"
+                                                                    name="Folder"/>
+                                                            </ChooseFile>
+                                                            <AddFolder/>
+                                                            <div style={{padding: '0px 7px'}}>
+                                                                Add Folder
+                                                            </div>
+                                                        </AddFolderWrapper>
 
-                                        </ModalBodyContent2>
-                                    </ModalBodyHeader>
-                                </ModalBodyContent>
-                            )
-                        }
-                        {
-                            step === 3 && (
-                                <ModalBodyContent>
-                                    <ModalBodyHeader>
-                                        <ModalBodyHeaderTitle>
-                                            <span> System: </span>
-                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                    </div>
+                                                </ModalBodyHeaderTitle>
+                                            </div>
+                                            <AddFileTable file={file}/>
+                                        </ModalBodyHeader>
+                                    </ModalBodyContent>
+                                )
+                            }
+                            {
+                                step === 4 && (
+                                    <ModalBodyContent>
+                                        <ModalBodyHeader>
+                                            <ModalBodyHeaderTitle>
+                                                <span> System: </span>
+                                                <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
                                                 {firstColumn} / </span>
-                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
+                                                <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
                                                 {secondColumn} / </span>
-                                            {thirdColumn}
-                                        </ModalBodyHeaderTitle>
-                                        <ModalBodyHeaderTitle style={{paddingTop: '20px'}}>
-                                           Create inspection for the following assets:
-                                        </ModalBodyHeaderTitle>
-                                    </ModalBodyHeader>
-                                </ModalBodyContent>
-                            )
-                        }
-                        {
-                            step === 4 && (
-                                <ModalBodyContent>
-                                    <ModalBodyHeader>
-                                        <ModalBodyHeaderTitle>
-                                            <span> System: </span>
-                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
-                                                {firstColumn} / </span>
-                                            <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
-                                                {secondColumn} / </span>
-                                            {thirdColumn}
-                                        </ModalBodyHeaderTitle>
+                                                {thirdColumn}
+                                            </ModalBodyHeaderTitle>
 
-                                    </ModalBodyHeader>
-                                </ModalBodyContent>
-                            )
-                        }
-                        {
-                            step === 5 && (
-                                <ModalBodyContent>
-                                    <ModalBodyHeader>
-                                        <TextWrapper>
-                                        <Text>
-                                            0 inspection(s) are the be created.
-                                        </Text>
-                                        <Text>
-                                            No inspection(s) have names.
-                                        </Text>
-                                        </TextWrapper>
-                                    </ModalBodyHeader>
-                                </ModalBodyContent>
-                            )
-                        }
+                                        </ModalBodyHeader>
+                                    </ModalBodyContent>
+                                )
+                            }
+                            {
+                                step === 5 && (
+                                    <ModalBodyContent>
+                                        <ModalBodyHeader>
+                                            <TextWrapper>
+                                                <Text>
+                                                    0 inspection(s) are the be created.
+                                                </Text>
+                                                <Text>
+                                                    No inspection(s) have names.
+                                                </Text>
+                                            </TextWrapper>
+                                        </ModalBodyHeader>
+                                    </ModalBodyContent>
+                                )
+                            }
+
+                        </ModalBody>
                         <Buttons>
                             <ButtonSave onClick={() => {
                                 setStep(1)
@@ -224,19 +303,19 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                 {
                                     step > 1 && (
                                         <ButtonCreate
-                                            style={{marginRight: '5px',backgroundColor: 'white', color: '#000' }}
+                                            style={{marginRight: '5px', backgroundColor: 'white', color: '#000'}}
                                             onClick={() => setStep(step - 1)}>
                                             Back
                                         </ButtonCreate>
                                     )
                                 }
-                            <ButtonCreate onClick={() => setStep(step + 1)} disabled={step == 2 && !choose}>
-                                Next
-                            </ButtonCreate>
+                                <ButtonCreate onClick={() => setStep(step + 1)} disabled={step == 2 && !choose}>
+                                    Next
+                                </ButtonCreate>
 
                             </div>
                         </Buttons>
-                    </ModalBody>
+                    </Wrapp>
                 </ModalWrapp>
             </ContainerModal>
         </>
@@ -245,12 +324,59 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
 
 export default CreateInspectionModal;
 
+const Arrow = styled.div<{active:boolean}>`
+    position: absolute;
+  right: 8px;
+  top: 8px;
+  transform: ${props => props.active ? 'rotate(180deg)' : 'rotate(0deg)'};
+  
+`
+
+const ArrowWrapper = styled.div`
+  transform: rotate(270deg);
+  padding: 0px 15px;
+`
+
+const InputHidden = styled.input`
+  display: none;
+`
+
+const ChooseFile = styled.div`
+
+`
+
+const AddFolderWrapper = styled.div`
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
+
+const AddFileWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  color: #1890ff;
+  cursor: pointer;
+`
+
+const Wrapp = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 53px);
+  position: relative;
+`
+
+
+const ModalBodyDescription = styled.div`
+  padding: 0px 0px 16px 0px;
+`
+
 
 const TextWrapper = styled.div`
   padding-bottom: 50px;
 `
 const Text = styled.div`
-    font-size: 14px;
+  font-size: 14px;
   padding: 10px 0;
 `
 
@@ -274,25 +400,26 @@ const CreateSubtitle = styled.div`
 
 `
 
-const UploadMedia = styled.div<{active:boolean}>`
-  width: 50%;
+const UploadMedia = styled.div<{ active: boolean }>`
+  width: 348px;
+  height: 276px;
   min-height: 250px;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 20px 20px 10px 20px;
   cursor: pointer;
-  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc' };
+  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc'};
 `
 
-const JustCreate = styled.div<{active:boolean}>`
-  width: 50%;
-  min-height: 250px;
+const JustCreate = styled.div<{ active: boolean }>`
+  width: 348px;
+  height: 276px;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 20px 20px 10px 20px;
-  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc' };
+  border: ${({active}) => active ? '1px solid #00a8ff' : '1px solid #ccc'};
   cursor: pointer;
 
 `
@@ -304,19 +431,22 @@ const ModalBodyHeader = styled.div`
 const ModalBodyContent2 = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  justify-content: space-between;
 `
 
 const ModalBodyHeaderTitle = styled.div`
   font-size: 14px;
+  padding-bottom: 24px;
 `
 
 const ArctiveModalColumnTitle = styled.div<{ active: boolean }>`
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 14px;
+  padding: 10px 0px 10px 15px;
   cursor: pointer;
   color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: ${({active}) => active ? 'rgba(125,194,251,0.74)' : '#fff'};
 
   &:hover {
@@ -326,19 +456,24 @@ const ArctiveModalColumnTitle = styled.div<{ active: boolean }>`
 
 const Buttons = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: flex-end;
+  width: 768px;
   border-top: 1px solid #f0f0f0;
-  padding-top: 15px;
+  padding: 10px 16px;
+  position: absolute;
+  bottom: 0px;
 `
 
 
 const ButtonSave = styled.div`
   padding: 7px 22px;
-  border: 1px solid #ccc;
+  border: 1px solid #D9D9D9;
   font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  border-radius: 2px;
 
   &:hover {
     border: 1px solid #00a8ff;
@@ -348,21 +483,25 @@ const ButtonSave = styled.div`
 
 const ButtonCreate = styled.button`
   padding: 7px 22px;
-  border: 1px solid #ccc;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   color: #fff;
+  border-radius: 2px;
   font-size: 14px;
   background-color: #1890ff;
-  &:disabled{
+  border: 1px solid #D9D9D9;
+
+  &:disabled {
     background-color: #ccc;
+    border: 1px solid #ccc;
   }
 `
 
 const ModalWrapp = styled.div`
   background-color: #fff;
-  width: 70%;
-  padding: 8px 0 16px 0;
-  position: relative;
+  height: 480px;
+  width: 768px;
 `
 
 const ContainerModal = styled.div`
@@ -380,16 +519,15 @@ const ContainerModal = styled.div`
 
 const ActiveModalColumn = styled.div`
   height: 100%;
-  border-right: 1px solid #ccc;
 `
 
 const ActiveModalWrapper = styled.div`
   height: 150px;
   background-color: white;
-  border: 1px solid #e6e6e6;
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: 118px;
-  left: 24px;
+  top: 90px;
+  left: 23px;
   display: flex;
 `
 
@@ -402,7 +540,8 @@ const ModalTabs = styled.div<{ active: boolean }>`
   font-size: 14px;
   cursor: pointer;
   padding: 4px 11px;
-  color: ${({active}) => active ? '#ccc' : 'black'};
+  color: black;
+  position: relative;
 
   &:focus {
     border: 1px solid #1890ff;
@@ -501,7 +640,7 @@ const ModalTitle = styled.div`
 `
 
 const ModalHeader = styled.div`
-  padding: 16px 24px;
+  padding: 17px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;

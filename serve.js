@@ -101,6 +101,6 @@ chokidar.watch('www').on('all', (event, path) => {
     update()
 })
 
-server.listen(3000, () => {
-    console.log('Running at http://localhost:3000')
+server.listen(3001, () => {
+    console.log('Running at http://localhost:3001')
 })

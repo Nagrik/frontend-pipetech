@@ -16,6 +16,7 @@ import {
     getOrganizationInspections
 } from "@/store/actions/organization";
 import Loader from "@/Components/TableUtils/Loader";
+import Triangle from "@/Components/common/icons/Triangle";
 
 
 const createHeaders = (headers: any) => {
@@ -206,6 +207,14 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                                 className={i === 1 ? 'first' : 'tableHeaders'}
                                                             >
                                                                 <span style={{fontWeight: '500'}}>{text}</span>
+                                                                <Triangles>
+                                                                    <TriangleTop>
+                                                                        <Triangle/>
+                                                                    </TriangleTop>
+                                                                    <TriangleBottom>
+                                                                        <Triangle/>
+                                                                    </TriangleBottom>
+                                                                </Triangles>
                                                                 <div
                                                                     onMouseDown={() => mouseDown(i)}
                                                                     className={`resize-handle ${
@@ -264,7 +273,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                         onMouseLeave={() => isHovered(item.id)}
                                                     >
                                                         <IdWrapper>
-                                                            {item.arr[test() - 2]} * {item.arr[test() - 1]}
+                                                            {item.arr[test() - 2]} <span style={{padding: '0px 3px'}}>·</span> {item.arr[test() - 1]}
                                                         </IdWrapper>
                                                     </Td>
 
@@ -317,6 +326,27 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
 };
 
 export default TableInspectionContent;
+
+const Triangles = styled.div`
+
+`
+
+const TriangleTop = styled.div`
+  color: #bfbfbf;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+`
+
+const TriangleBottom = styled.div`
+  transform: rotate(180deg);
+  color: #bfbfbf;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+
+
+`
 
 const TableCheckboxSelection = styled.div`
   height: 34px;
@@ -379,6 +409,7 @@ const IdWrapper = styled.div`
   border: 1px solid #d9d9d9;
   padding: 5px 10px;
   white-space: nowrap;
+  display: flex;
 `
 
 

@@ -1032,7 +1032,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState36(initialState4) {
+          function useState37(initialState4) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState4);
           }
@@ -1040,7 +1040,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef16(initialValue) {
+          function useRef17(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
@@ -1831,8 +1831,8 @@
           exports2.useLayoutEffect = useLayoutEffect3;
           exports2.useMemo = useMemo6;
           exports2.useReducer = useReducer;
-          exports2.useRef = useRef16;
-          exports2.useState = useState36;
+          exports2.useRef = useRef17;
+          exports2.useState = useState37;
           exports2.useSyncExternalStore = useSyncExternalStore3;
           exports2.useTransition = useTransition;
           exports2.version = ReactVersion;
@@ -2957,8 +2957,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React97 = require_react();
-          var ReactSharedInternals = React97.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React105 = require_react();
+          var ReactSharedInternals = React105.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format3) {
             {
               {
@@ -2988,13 +2988,13 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState36 = React97.useState, useEffect25 = React97.useEffect, useLayoutEffect3 = React97.useLayoutEffect, useDebugValue2 = React97.useDebugValue;
+          var useState37 = React105.useState, useEffect25 = React105.useEffect, useLayoutEffect3 = React105.useLayoutEffect, useDebugValue2 = React105.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React97.startTransition !== void 0) {
+                if (React105.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -3010,7 +3010,7 @@
                 }
               }
             }
-            var _useState = useState36({
+            var _useState = useState37({
               inst: {
                 value,
                 getSnapshot
@@ -3059,7 +3059,7 @@
           var canUseDOM3 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM3;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React97.useSyncExternalStore !== void 0 ? React97.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React105.useSyncExternalStore !== void 0 ? React105.useSyncExternalStore : shim;
           exports2.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -3091,16 +3091,16 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React97 = require_react();
+          var React105 = require_react();
           var shim = require_shim();
           function is2(x2, y2) {
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef16 = React97.useRef, useEffect25 = React97.useEffect, useMemo6 = React97.useMemo, useDebugValue2 = React97.useDebugValue;
+          var useRef17 = React105.useRef, useEffect25 = React105.useEffect, useMemo6 = React105.useMemo, useDebugValue2 = React105.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
-            var instRef = useRef16(null);
+            var instRef = useRef17(null);
             var inst;
             if (instRef.current === null) {
               inst = {
@@ -3655,9 +3655,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React97 = require_react();
+          var React105 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React97.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React105.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -5058,7 +5058,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React97.Children.forEach(props.children, function(child) {
+                  React105.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13184,7 +13184,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React97.Component().refs;
+          var emptyRefsObject = new React105.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27961,7 +27961,7 @@
   });
 
   // src/index.tsx
-  var import_react113 = __toESM(require_react(), 1);
+  var import_react121 = __toESM(require_react(), 1);
 
   // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
   function _setPrototypeOf(o2, p) {
@@ -31564,7 +31564,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main.ts
   var _Main = class extends http_client_default {
     constructor() {
-      super("https://3299-188-163-108-228.ngrok.io");
+      super("https://api-dev.pipe-tech.lambda-team.club");
       this.sendEmail = (body) => this.instance.post("/super-admin/login", body);
       this.getTokens = (body) => this.instance.post("/otp/validate", body);
       this.refresh = (body) => this.instance.post("/login/refresh", body);
@@ -31601,7 +31601,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main-protected.ts
   var _MainProtected = class extends HttpClientProtected {
     constructor() {
-      super("https://3299-188-163-108-228.ngrok.io");
+      super("https://api-dev.pipe-tech.lambda-team.club");
       this.createUser = (body) => this.instance.post("/users", body);
       this.addUserToOrganization = (id, body) => this.instance.post(`/organisation/1/add-user/${id}`, body);
       this.getOrganizationInfo = () => this.instance.get(`/organisation/1`);
@@ -31738,7 +31738,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var store_default = createStore(rootReducer, enhancer);
 
   // src/App.tsx
-  var import_react112 = __toESM(require_react(), 1);
+  var import_react120 = __toESM(require_react(), 1);
 
   // src/Pages/LoginPage.tsx
   var import_react21 = __toESM(require_react(), 1);
@@ -61603,7 +61603,7 @@ cursor: pointer;
 `;
 
   // src/Pages/InspectionPage.tsx
-  var import_react95 = __toESM(require_react(), 1);
+  var import_react103 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/InspectionSelects.tsx
   var import_react88 = __toESM(require_react(), 1);
@@ -61819,10 +61819,10 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/TableInspection.tsx
-  var import_react94 = __toESM(require_react(), 1);
+  var import_react102 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/TableInspectionContent.tsx
-  var import_react90 = __toESM(require_react(), 1);
+  var import_react91 = __toESM(require_react(), 1);
 
   // src/Components/TableUtils/Loader.tsx
   var import_react89 = __toESM(require_react(), 1);
@@ -61856,6 +61856,23 @@ padding-bottom: 25px;
   }
 `;
 
+  // src/Components/common/icons/Triangle.tsx
+  var import_react90 = __toESM(require_react(), 1);
+  var Triangle = () => {
+    return /* @__PURE__ */ import_react90.default.createElement("svg", {
+      viewBox: "0 0 1024 1024",
+      focusable: "false",
+      "data-icon": "caret-up",
+      width: "11",
+      height: "11",
+      fill: "currentColor",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ import_react90.default.createElement("path", {
+      d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+    }));
+  };
+  var Triangle_default = Triangle;
+
   // src/Components/InspectionPage/TableInspectionContent.tsx
   var createHeaders2 = (headers) => {
     return headers && headers.map((item) => ({
@@ -61864,24 +61881,24 @@ padding-bottom: 25px;
     }));
   };
   var TableInspectionContent = ({ minCellWidth, data }) => {
-    const [tableHeight, setTableHeight] = (0, import_react90.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react90.useState)(null);
-    const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react90.useState)(null);
-    const [activeFilter, setActiveFilter] = (0, import_react90.useState)(false);
-    const [hover, setHover] = (0, import_react90.useState)(false);
-    const [downstreamId, setDownstreamId] = (0, import_react90.useState)(null);
-    const [activeFilterN, setActiveFilterN] = (0, import_react90.useState)([]);
+    const [tableHeight, setTableHeight] = (0, import_react91.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react91.useState)(null);
+    const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react91.useState)(null);
+    const [activeFilter, setActiveFilter] = (0, import_react91.useState)(false);
+    const [hover, setHover] = (0, import_react91.useState)(false);
+    const [downstreamId, setDownstreamId] = (0, import_react91.useState)(null);
+    const [activeFilterN, setActiveFilterN] = (0, import_react91.useState)([]);
     const inspections = useSelector(selectOrganizationsInspection);
     const inspectionHeaders = useSelector(selectInspectionHeader);
     const dispatch = useDispatch();
-    const tableElement = (0, import_react90.useRef)(null);
+    const tableElement = (0, import_react91.useRef)(null);
     const columns = createHeaders2(inspectionHeaders);
-    (0, import_react90.useEffect)(() => {
+    (0, import_react91.useEffect)(() => {
     }, []);
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react90.useCallback)((e2) => {
+    const mouseMove = (0, import_react91.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -61893,15 +61910,15 @@ padding-bottom: 25px;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react90.useCallback)(() => {
+    const removeListeners = (0, import_react91.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react90.useCallback)(() => {
+    const mouseUp = (0, import_react91.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react90.useEffect)(() => {
+    (0, import_react91.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -61956,90 +61973,110 @@ padding-bottom: 25px;
       });
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
-    return /* @__PURE__ */ import_react90.default.createElement("div", {
+    return /* @__PURE__ */ import_react91.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react91.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react90.default.createElement("div", {
+    }, /* @__PURE__ */ import_react91.default.createElement("div", {
       className: "table-wrapper"
-    }, columns ? /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement(ResizableTableInspection, {
+    }, columns ? /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement(ResizableTableInspection, {
       arr: columns,
       ref: tableElement
-    }, /* @__PURE__ */ import_react90.default.createElement("thead", null, /* @__PURE__ */ import_react90.default.createElement("tr", null, columns.map(({ ref, text }, i2) => {
+    }, /* @__PURE__ */ import_react91.default.createElement("thead", null, /* @__PURE__ */ import_react91.default.createElement("tr", null, columns.map(({ ref, text }, i2) => {
       if (text === "checkbox") {
-        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
           ref,
           className: "checkbox",
           key: i2
-        }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("label", {
+        }, /* @__PURE__ */ import_react91.default.createElement("span", null, /* @__PURE__ */ import_react91.default.createElement("label", {
           className: "container",
           style: {
             fontFamily: "Verdana, sans-serif",
             fontSize: "12px"
           }
-        }, /* @__PURE__ */ import_react90.default.createElement("input", {
+        }, /* @__PURE__ */ import_react91.default.createElement("input", {
           type: "checkbox",
           onClick: (e2) => handleCheckCheckboxes(e2)
-        }), /* @__PURE__ */ import_react90.default.createElement("span", {
+        }), /* @__PURE__ */ import_react91.default.createElement("span", {
           className: "checkmark-header"
         })))));
       } else if (text === "Assets") {
-        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
           ref,
           className: "id",
           key: i2
-        }, /* @__PURE__ */ import_react90.default.createElement("span", null, "Assets"), /* @__PURE__ */ import_react90.default.createElement("div", {
+        }, /* @__PURE__ */ import_react91.default.createElement("span", null, "Assets"), /* @__PURE__ */ import_react91.default.createElement("div", {
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       } else {
-        return /* @__PURE__ */ import_react90.default.createElement(import_react90.default.Fragment, null, /* @__PURE__ */ import_react90.default.createElement("th", {
+        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
           ref,
           key: i2,
           className: i2 === 1 ? "first" : "tableHeaders"
-        }, /* @__PURE__ */ import_react90.default.createElement("span", {
+        }, /* @__PURE__ */ import_react91.default.createElement("span", {
           style: { fontWeight: "500" }
-        }, text), /* @__PURE__ */ import_react90.default.createElement("div", {
+        }, text), /* @__PURE__ */ import_react91.default.createElement(Triangles, null, /* @__PURE__ */ import_react91.default.createElement(TriangleTop, null, /* @__PURE__ */ import_react91.default.createElement(Triangle_default, null)), /* @__PURE__ */ import_react91.default.createElement(TriangleBottom, null, /* @__PURE__ */ import_react91.default.createElement(Triangle_default, null))), /* @__PURE__ */ import_react91.default.createElement("div", {
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       }
-    }))), /* @__PURE__ */ import_react90.default.createElement("tbody", null, inspections.map((item, i2) => {
-      return /* @__PURE__ */ import_react90.default.createElement("tr", null, /* @__PURE__ */ import_react90.default.createElement(Td2, {
+    }))), /* @__PURE__ */ import_react91.default.createElement("tbody", null, inspections.map((item, i2) => {
+      return /* @__PURE__ */ import_react91.default.createElement("tr", null, /* @__PURE__ */ import_react91.default.createElement(Td2, {
         style: { position: "sticky", left: "0px" },
         isActive: item.checkbox,
         isHovered: item.hover,
         key: i2
-      }, /* @__PURE__ */ import_react90.default.createElement("span", null, /* @__PURE__ */ import_react90.default.createElement("label", {
+      }, /* @__PURE__ */ import_react91.default.createElement("span", null, /* @__PURE__ */ import_react91.default.createElement("label", {
         className: "container",
         style: {
           fontFamily: "Verdana, sans-serif",
           fontSize: "12px"
         }
-      }, /* @__PURE__ */ import_react90.default.createElement("input", {
+      }, /* @__PURE__ */ import_react91.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }), /* @__PURE__ */ import_react90.default.createElement("span", {
+      }), /* @__PURE__ */ import_react91.default.createElement("span", {
         className: "checkmark"
-      })))), /* @__PURE__ */ import_react90.default.createElement(Td2, {
+      })))), /* @__PURE__ */ import_react91.default.createElement(Td2, {
         style: { position: "sticky", left: "55px" },
         isActive: item.checkbox,
         isHovered: item.hover,
         onMouseEnter: () => isHovered(item.id),
         onMouseLeave: () => isHovered(item.id)
-      }, /* @__PURE__ */ import_react90.default.createElement(IdWrapper2, null, item.arr[test() - 2], " * ", item.arr[test() - 1])), item.arr.map((item2, i3) => /* @__PURE__ */ import_react90.default.createElement(Td2, {
+      }, /* @__PURE__ */ import_react91.default.createElement(IdWrapper2, null, item.arr[test() - 2], " ", /* @__PURE__ */ import_react91.default.createElement("span", {
+        style: { padding: "0px 3px" }
+      }, "\xB7"), " ", item.arr[test() - 1])), item.arr.map((item2, i3) => /* @__PURE__ */ import_react91.default.createElement(Td2, {
         isActive: item.checkbox,
         onMouseEnter: () => isHovered(item.id),
         onMouseLeave: () => isHovered(item.id),
         key: i3,
         isHovered: item.hover
       }, item2)));
-    }))), /* @__PURE__ */ import_react90.default.createElement(TableFooter2, null, (arrayCheckboxes == null ? void 0 : arrayCheckboxes.length) > 0 && /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionWrapp, null, /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelection, null, /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionItem, null, arrayCheckboxes == null ? void 0 : arrayCheckboxes.length, " inspections selected"), /* @__PURE__ */ import_react90.default.createElement("span", {
+    }))), /* @__PURE__ */ import_react91.default.createElement(TableFooter2, null, (arrayCheckboxes == null ? void 0 : arrayCheckboxes.length) > 0 && /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionWrapp, null, /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelection, null, /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionItem, null, arrayCheckboxes == null ? void 0 : arrayCheckboxes.length, " inspections selected"), /* @__PURE__ */ import_react91.default.createElement("span", {
       style: { padding: "0px 10px" }
-    }, "|"), /* @__PURE__ */ import_react90.default.createElement(TableCheckboxSelectionItem, null, "Avg of Pipe Joint Length: 0 m"))))) : /* @__PURE__ */ import_react90.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react90.default.createElement(Loader_default, null)))));
+    }, "|"), /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionItem, null, "Avg of Pipe Joint Length: 0 m"))))) : /* @__PURE__ */ import_react91.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react91.default.createElement(Loader_default, null)))));
   };
   var TableInspectionContent_default = TableInspectionContent;
+  var Triangles = styled_components_browser_esm_default.div`
+
+`;
+  var TriangleTop = styled_components_browser_esm_default.div`
+  color: #bfbfbf;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+`;
+  var TriangleBottom = styled_components_browser_esm_default.div`
+  transform: rotate(180deg);
+  color: #bfbfbf;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+
+
+`;
   var TableCheckboxSelection = styled_components_browser_esm_default.div`
   height: 34px;
   border: 1px solid #1890ff;
@@ -62092,6 +62129,7 @@ padding-bottom: 25px;
   border: 1px solid #d9d9d9;
   padding: 5px 10px;
   white-space: nowrap;
+  display: flex;
 `;
   var Checkboxs2 = styled_components_browser_esm_default.div`
   position: absolute;
@@ -62114,7 +62152,7 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/CreateInspectionModal.tsx
-  var import_react93 = __toESM(require_react(), 1);
+  var import_react101 = __toESM(require_react(), 1);
 
   // src/store/selectors/inspection.ts
   var selectInspection2 = (state) => state.inspectionReducer;
@@ -62136,9 +62174,9 @@ padding-bottom: 25px;
   });
 
   // src/Components/common/icons/CreateFileIcon.tsx
-  var import_react91 = __toESM(require_react(), 1);
+  var import_react92 = __toESM(require_react(), 1);
   var CreateFileIcon = () => {
-    return /* @__PURE__ */ import_react91.default.createElement("svg", {
+    return /* @__PURE__ */ import_react92.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "file-add",
@@ -62146,16 +62184,16 @@ padding-bottom: 25px;
       height: "38",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react91.default.createElement("path", {
+    }, /* @__PURE__ */ import_react92.default.createElement("path", {
       d: "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494zM544 472c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v108H372c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h108v108c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V644h108c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V472z"
     }));
   };
   var CreateFileIcon_default = CreateFileIcon;
 
   // src/Components/common/icons/UploadFileIcon.tsx
-  var import_react92 = __toESM(require_react(), 1);
+  var import_react93 = __toESM(require_react(), 1);
   var UploadFileIcon = () => {
-    return /* @__PURE__ */ import_react92.default.createElement("svg", {
+    return /* @__PURE__ */ import_react93.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "cloud-upload",
@@ -62163,31 +62201,274 @@ padding-bottom: 25px;
       height: "38",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react92.default.createElement("path", {
+    }, /* @__PURE__ */ import_react93.default.createElement("path", {
       d: "M518.3 459a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V856c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V613.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 459z"
-    }), /* @__PURE__ */ import_react92.default.createElement("path", {
+    }), /* @__PURE__ */ import_react93.default.createElement("path", {
       d: "M811.4 366.7C765.6 245.9 648.9 160 512.2 160S258.8 245.8 213 366.6C127.3 389.1 64 467.2 64 560c0 110.5 89.5 200 199.9 200H304c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8h-40.1c-33.7 0-65.4-13.4-89-37.7-23.5-24.2-36-56.8-34.9-90.6.9-26.4 9.9-51.2 26.2-72.1 16.7-21.3 40.1-36.8 66.1-43.7l37.9-9.9 13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4a245.6 245.6 0 0152.4-49.9c41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9 15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5 37.8 10C846.1 454.5 884 503.8 884 560c0 33.1-12.9 64.3-36.3 87.7a123.07 123.07 0 01-87.6 36.3H720c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h40.1C870.5 760 960 670.5 960 560c0-92.7-63.1-170.7-148.6-193.3z"
     }));
   };
   var UploadFileIcon_default = UploadFileIcon;
 
+  // src/Components/common/icons/addFileIcon.tsx
+  var import_react94 = __toESM(require_react(), 1);
+  var AddFileIcon = () => {
+    return /* @__PURE__ */ import_react94.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16",
+      fill: "none"
+    }, /* @__PURE__ */ import_react94.default.createElement("path", {
+      opacity: "0.1",
+      d: "M8.34375 5.5V2.125H3.625V13.875H12.375V6.15625H9C8.82595 6.15625 8.65903 6.08711 8.53596 5.96404C8.41289 5.84097 8.34375 5.67405 8.34375 5.5ZM10.3125 9.1875V9.9375C10.3125 10.0062 10.2562 10.0625 10.1875 10.0625H8.5V11.75C8.5 11.8188 8.44375 11.875 8.375 11.875H7.625C7.55625 11.875 7.5 11.8188 7.5 11.75V10.0625H5.8125C5.74375 10.0625 5.6875 10.0062 5.6875 9.9375V9.1875C5.6875 9.11875 5.74375 9.0625 5.8125 9.0625H7.5V7.375C7.5 7.30625 7.55625 7.25 7.625 7.25H8.375C8.44375 7.25 8.5 7.30625 8.5 7.375V9.0625H10.1875C10.2562 9.0625 10.3125 9.11875 10.3125 9.1875Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react94.default.createElement("path", {
+      d: "M13.3531 4.50938L9.99063 1.14688C9.89688 1.05313 9.77031 1 9.6375 1H3C2.72344 1 2.5 1.22344 2.5 1.5V14.5C2.5 14.7766 2.72344 15 3 15H13C13.2766 15 13.5 14.7766 13.5 14.5V4.86406C13.5 4.73125 13.4469 4.60313 13.3531 4.50938ZM9.40625 2.15313L12.3469 5.09375H9.40625V2.15313ZM12.375 13.875H3.625V2.125H8.34375V5.5C8.34375 5.67405 8.41289 5.84097 8.53596 5.96404C8.65903 6.08711 8.82595 6.15625 9 6.15625H12.375V13.875Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react94.default.createElement("path", {
+      d: "M8.5 7.375C8.5 7.30625 8.44375 7.25 8.375 7.25H7.625C7.55625 7.25 7.5 7.30625 7.5 7.375V9.0625H5.8125C5.74375 9.0625 5.6875 9.11875 5.6875 9.1875V9.9375C5.6875 10.0062 5.74375 10.0625 5.8125 10.0625H7.5V11.75C7.5 11.8187 7.55625 11.875 7.625 11.875H8.375C8.44375 11.875 8.5 11.8187 8.5 11.75V10.0625H10.1875C10.2562 10.0625 10.3125 10.0062 10.3125 9.9375V9.1875C10.3125 9.11875 10.2562 9.0625 10.1875 9.0625H8.5V7.375Z",
+      fill: "#1890FF"
+    }));
+  };
+  var addFileIcon_default = AddFileIcon;
+
+  // src/Components/common/icons/addFolder.tsx
+  var import_react95 = __toESM(require_react(), 1);
+  var AddFolder = () => {
+    return /* @__PURE__ */ import_react95.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16",
+      fill: "none"
+    }, /* @__PURE__ */ import_react95.default.createElement("path", {
+      opacity: "0.1",
+      d: "M5.82031 4H2.875V12H13.125V5.7875H7.68906L5.82031 4ZM8.4375 6.92344V8.25H9.75781C9.82188 8.25 9.875 8.29844 9.875 8.35938V9.01562C9.875 9.075 9.82188 9.125 9.75781 9.125H8.4375V10.4516C8.4375 10.5125 8.38906 10.5625 8.32812 10.5625H7.67188C7.6125 10.5625 7.5625 10.5125 7.5625 10.4516V9.125H6.24219C6.17812 9.125 6.125 9.075 6.125 9.01562V8.35938C6.125 8.29844 6.17812 8.25 6.24219 8.25H7.5625V6.92344C7.5625 6.8625 7.6125 6.8125 7.67188 6.8125H8.32812C8.38906 6.8125 8.4375 6.8625 8.4375 6.92344Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+      d: "M13.75 4.6625H8.14062L6.30781 2.90937C6.28449 2.88754 6.25382 2.87527 6.22188 2.875H2.25C1.97344 2.875 1.75 3.09844 1.75 3.375V12.625C1.75 12.9016 1.97344 13.125 2.25 13.125H13.75C14.0266 13.125 14.25 12.9016 14.25 12.625V5.1625C14.25 4.88594 14.0266 4.6625 13.75 4.6625ZM13.125 12H2.875V4H5.82031L7.68906 5.7875H13.125V12Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+      d: "M7.5625 6.92344V8.25H6.24219C6.17813 8.25 6.125 8.29844 6.125 8.35938V9.01562C6.125 9.075 6.17813 9.125 6.24219 9.125H7.5625V10.4516C7.5625 10.5125 7.6125 10.5625 7.67188 10.5625H8.32812C8.38906 10.5625 8.4375 10.5125 8.4375 10.4516V9.125H9.75781C9.82188 9.125 9.875 9.075 9.875 9.01562V8.35938C9.875 8.29844 9.82188 8.25 9.75781 8.25H8.4375V6.92344C8.4375 6.8625 8.38906 6.8125 8.32812 6.8125H7.67188C7.6125 6.8125 7.5625 6.8625 7.5625 6.92344Z",
+      fill: "#1890FF"
+    }));
+  };
+  var addFolder_default = AddFolder;
+
+  // src/Components/InspectionPage/AddFileTable.tsx
+  var import_react100 = __toESM(require_react(), 1);
+
+  // src/Components/common/icons/EmptyTableIcon.tsx
+  var import_react96 = __toESM(require_react(), 1);
+  var EmptyTableIcon = () => {
+    return /* @__PURE__ */ import_react96.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "48",
+      height: "31",
+      viewBox: "0 0 48 31",
+      fill: "none"
+    }, /* @__PURE__ */ import_react96.default.createElement("g", {
+      "clip-path": "url(#clip0_205_30559)"
+    }, /* @__PURE__ */ import_react96.default.createElement("path", {
+      d: "M24 30.7608C37.2548 30.7608 48 28.4277 48 25.5498C48 22.6718 37.2548 20.3387 24 20.3387C10.7452 20.3387 0 22.6718 0 25.5498C0 28.4277 10.7452 30.7608 24 30.7608Z",
+      fill: "#F5F5F5"
+    }), /* @__PURE__ */ import_react96.default.createElement("path", {
+      d: "M41.25 10.4825L33.6405 1.92002C33.2753 1.33638 32.742 0.983521 32.1803 0.983521H15.8198C15.258 0.983521 14.7247 1.33638 14.3595 1.91927L6.75 10.4832V17.361H41.25V10.4825Z",
+      stroke: "#D9D9D9"
+    }), /* @__PURE__ */ import_react96.default.createElement("path", {
+      d: "M31.2097 12.8431C31.2097 11.6483 31.9553 10.6619 32.88 10.6611H41.25V24.1629C41.25 25.7433 40.26 27.0387 39.0375 27.0387H8.9625C7.74 27.0387 6.75 25.7426 6.75 24.1629V10.6611H15.12C16.0447 10.6611 16.7902 11.646 16.7902 12.8408V12.8572C16.7902 14.052 17.544 15.0168 18.468 15.0168H29.532C30.456 15.0168 31.2097 14.0431 31.2097 12.8483V12.8431V12.8431Z",
+      fill: "#FAFAFA",
+      stroke: "#D9D9D9"
+    })), /* @__PURE__ */ import_react96.default.createElement("defs", null, /* @__PURE__ */ import_react96.default.createElement("clipPath", {
+      id: "clip0_205_30559"
+    }, /* @__PURE__ */ import_react96.default.createElement("rect", {
+      width: "48",
+      height: "30.5217",
+      fill: "white",
+      transform: "translate(0 0.239136)"
+    }))));
+  };
+  var EmptyTableIcon_default = EmptyTableIcon;
+
+  // src/Components/common/icons/SuccessIcon.tsx
+  var import_react97 = __toESM(require_react(), 1);
+  var SuccessIcon = () => {
+    return /* @__PURE__ */ import_react97.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16",
+      fill: "none"
+    }, /* @__PURE__ */ import_react97.default.createElement("path", {
+      d: "M8 1C4.13438 1 1 4.13438 1 8C1 11.8656 4.13438 15 8 15C11.8656 15 15 11.8656 15 8C15 4.13438 11.8656 1 8 1ZM8 13.8125C4.79063 13.8125 2.1875 11.2094 2.1875 8C2.1875 4.79063 4.79063 2.1875 8 2.1875C11.2094 2.1875 13.8125 4.79063 13.8125 8C13.8125 11.2094 11.2094 13.8125 8 13.8125Z",
+      fill: "#52C41A"
+    }), /* @__PURE__ */ import_react97.default.createElement("path", {
+      opacity: "0.1",
+      d: "M8 2.1875C4.79063 2.1875 2.1875 4.79063 2.1875 8C2.1875 11.2094 4.79063 13.8125 8 13.8125C11.2094 13.8125 13.8125 11.2094 13.8125 8C13.8125 4.79063 11.2094 2.1875 8 2.1875ZM11.0219 5.71406L7.73125 10.2766C7.68526 10.3408 7.62463 10.3931 7.55439 10.4291C7.48414 10.4652 7.40631 10.4841 7.32734 10.4841C7.24838 10.4841 7.17054 10.4652 7.1003 10.4291C7.03006 10.3931 6.96943 10.3408 6.92344 10.2766L4.97656 7.57656C4.91719 7.49375 4.97656 7.37813 5.07812 7.37813H5.81094C5.97187 7.37813 6.12187 7.45625 6.21562 7.58594L7.32812 9.12969L9.78438 5.72344C9.87813 5.59219 10.0297 5.51562 10.1891 5.51562H10.9219C11.0234 5.51562 11.0828 5.63125 11.0219 5.71406Z",
+      fill: "#52C41A"
+    }), /* @__PURE__ */ import_react97.default.createElement("path", {
+      d: "M10.9214 5.51562H10.1885C10.0292 5.51562 9.87761 5.59219 9.78386 5.72344L7.3276 9.12969L6.21509 7.58594C6.12134 7.45625 5.97134 7.37813 5.81041 7.37813H5.07759C4.97603 7.37813 4.91665 7.49375 4.97603 7.57656L6.92291 10.2766C6.9689 10.3408 7.02953 10.3931 7.09978 10.4291C7.17002 10.4652 7.24785 10.4841 7.32682 10.4841C7.40579 10.4841 7.48362 10.4652 7.55386 10.4291C7.6241 10.3931 7.68473 10.3408 7.73072 10.2766L11.0214 5.71406C11.0823 5.63125 11.0229 5.51562 10.9214 5.51562Z",
+      fill: "#52C41A"
+    }));
+  };
+  var SuccessIcon_default = SuccessIcon;
+
+  // src/Components/common/icons/DeleteIcon.tsx
+  var import_react98 = __toESM(require_react(), 1);
+  var DeleteIcon = () => {
+    return /* @__PURE__ */ import_react98.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "12",
+      height: "14",
+      viewBox: "0 0 12 14",
+      fill: "none"
+    }, /* @__PURE__ */ import_react98.default.createElement("path", {
+      d: "M11.5 3H9.5V1.75C9.5 1.19844 9.05156 0.75 8.5 0.75H3.5C2.94844 0.75 2.5 1.19844 2.5 1.75V3H0.5C0.223437 3 0 3.22344 0 3.5V4C0 4.06875 0.05625 4.125 0.125 4.125H1.06875L1.45469 12.2969C1.47969 12.8297 1.92031 13.25 2.45312 13.25H9.54688C10.0813 13.25 10.5203 12.8313 10.5453 12.2969L10.9312 4.125H11.875C11.9438 4.125 12 4.06875 12 4V3.5C12 3.22344 11.7766 3 11.5 3ZM3.625 1.875H8.375V3H3.625V1.875ZM9.42656 12.125H2.57344L2.19531 4.125H9.80469L9.42656 12.125Z",
+      fill: "#1890FF"
+    }));
+  };
+  var DeleteIcon_default = DeleteIcon;
+
+  // src/Components/common/icons/folderTableIcon.tsx
+  var import_react99 = __toESM(require_react(), 1);
+  var FolderTableIcon = () => {
+    return /* @__PURE__ */ import_react99.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "14",
+      height: "12",
+      viewBox: "0 0 14 12",
+      fill: "none"
+    }, /* @__PURE__ */ import_react99.default.createElement("path", {
+      d: "M12.75 2.6625H7.14062L5.30781 0.909375C5.28449 0.887543 5.25382 0.875274 5.22188 0.875H1.25C0.973437 0.875 0.75 1.09844 0.75 1.375V10.625C0.75 10.9016 0.973437 11.125 1.25 11.125H12.75C13.0266 11.125 13.25 10.9016 13.25 10.625V3.1625C13.25 2.88594 13.0266 2.6625 12.75 2.6625ZM12.125 10H1.875V2H4.82031L6.68906 3.7875H12.125V10Z",
+      fill: "#8C8C8C"
+    }));
+  };
+  var folderTableIcon_default = FolderTableIcon;
+
+  // src/Components/InspectionPage/AddFileTable.tsx
+  var AddFileTable = ({ file }) => {
+    const Headers = ["", "Name", "", "Details", ""];
+    const [empty, setEmpty] = (0, import_react100.useState)(false);
+    const data = [
+      {
+        id: 1,
+        type: "folder",
+        name: "Folder 1",
+        status: "OK",
+        Details: "12 record(s), 4 media file(s) found."
+      },
+      {
+        id: 2,
+        type: "xlsx",
+        name: "xsx.xlsx",
+        status: "question",
+        Details: "12 record(s), 4 media file(s) found."
+      }
+    ];
+    const name = "Lorem ipsum dolor sit.";
+    return /* @__PURE__ */ import_react100.default.createElement("div", null, /* @__PURE__ */ import_react100.default.createElement(Table2, null, /* @__PURE__ */ import_react100.default.createElement(TableHead, null, /* @__PURE__ */ import_react100.default.createElement(TableRow, null, Headers.map((header, index2) => {
+      if (header === "") {
+        return /* @__PURE__ */ import_react100.default.createElement(TableCell, {
+          key: index2,
+          style: { maxWidth: "32px", width: "100%" }
+        }, header);
+      }
+      return /* @__PURE__ */ import_react100.default.createElement(TableCell, {
+        key: index2
+      }, header);
+    }))), /* @__PURE__ */ import_react100.default.createElement(TableBody, null, empty ? /* @__PURE__ */ import_react100.default.createElement(TableRowEmpty, null, /* @__PURE__ */ import_react100.default.createElement(TableCellBodyEmpty, null, /* @__PURE__ */ import_react100.default.createElement(EmptyTableIcon_default, null), /* @__PURE__ */ import_react100.default.createElement(EmptyText2, null, "No Data. ", /* @__PURE__ */ import_react100.default.createElement("br", null), "Add files or folders first."))) : /* @__PURE__ */ import_react100.default.createElement(TableRow, null, /* @__PURE__ */ import_react100.default.createElement(TableCellBody, null, /* @__PURE__ */ import_react100.default.createElement(Icon, null, /* @__PURE__ */ import_react100.default.createElement(folderTableIcon_default, null)), /* @__PURE__ */ import_react100.default.createElement(DetailsText, null, name), /* @__PURE__ */ import_react100.default.createElement(Icon, null, /* @__PURE__ */ import_react100.default.createElement(SuccessIcon_default, null)), /* @__PURE__ */ import_react100.default.createElement(DetailsText, null, "12 record(s), 4 media file(s) found."), /* @__PURE__ */ import_react100.default.createElement(Icon, {
+      style: { cursor: "pointer" }
+    }, /* @__PURE__ */ import_react100.default.createElement(DeleteIcon_default, null)))))));
+  };
+  var AddFileTable_default = AddFileTable;
+  var Icon = styled_components_browser_esm_default.div`
+    max-width: 32px;
+  width: 100%;
+  text-align: center;
+  border-right: 1px solid #F0F0F0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #F0F0F0;
+`;
+  var DetailsText = styled_components_browser_esm_default.div`
+  max-width: 312px;
+  width: 100%;
+  padding: 0px 8px;
+`;
+  var EmptyText2 = styled_components_browser_esm_default.div`
+  font-size: 12px;
+  line-height: 20px;
+  color: #8C8C8C;
+  text-align: center;
+  padding-top: 10px;
+`;
+  var TableRowEmpty = styled_components_browser_esm_default.div`
+  padding-top: 80px;
+  border: 1px solid #f0f0f0;
+  padding-bottom: 80px;
+`;
+  var TableBody = styled_components_browser_esm_default.div`
+
+`;
+  var TableCellBody = styled_components_browser_esm_default.td`
+  padding: 0 0 !important;
+  height: 40px;
+
+`;
+  var TableCellBodyEmpty = styled_components_browser_esm_default.div`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+  var Table2 = styled_components_browser_esm_default.table`
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 2px;
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 20px;
+  overflow: hidden;
+  flex-direction: column;
+`;
+  var TableHead = styled_components_browser_esm_default.thead`
+  display: flex;
+  align-items: center;
+`;
+  var TableRow = styled_components_browser_esm_default.tr`
+
+`;
+  var TableCell = styled_components_browser_esm_default.td`
+  height: 38px;
+  background-color: #FAFAFA;
+  font-weight: 500;
+
+`;
+
   // src/Components/InspectionPage/CreateInspectionModal.tsx
   var CreateInspectionModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react93.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react93.useState)("Springfield Storm1");
-    const [secondColumn, setSecondColumn] = (0, import_react93.useState)("Mainline");
-    const [thirdColumn, setThirdColumn] = (0, import_react93.useState)("NASSCO v6 Springfield");
-    const [step, setStep] = (0, import_react93.useState)(4);
-    const [choose, setChoose] = (0, import_react93.useState)(null);
+    const [activeModalTab, setActiveModalTab] = (0, import_react101.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react101.useState)("");
+    const [secondColumn, setSecondColumn] = (0, import_react101.useState)("");
+    const [thirdColumn, setThirdColumn] = (0, import_react101.useState)("");
+    const [step, setStep] = (0, import_react101.useState)(1);
+    const [choose, setChoose] = (0, import_react101.useState)(null);
+    const [file, setFile] = (0, import_react101.useState)(null);
     const dispatch = useDispatch();
     const filter_1 = useSelector(selectHeaderFilters_1);
+    const hiddenFileInput = (0, import_react101.useRef)(null);
+    const hiddenFileInputFolder = (0, import_react101.useRef)(null);
     const modalTabsRef = useOnClickOutside_default(() => {
       setActiveModalTab(false);
     });
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    (0, import_react93.useEffect)(() => {
+    (0, import_react101.useEffect)(() => {
       dispatch(setFilters(firstColumn, secondColumn, thirdColumn));
     }, [filter_1]);
     const chooseTab = (firstColumn2, secondColumn2, thirdColumn2) => {
@@ -62196,64 +62477,148 @@ padding-bottom: 25px;
       setThirdColumn(thirdColumn2);
       dispatch(setFilters(firstColumn2, secondColumn2, thirdColumn2));
     };
-    return /* @__PURE__ */ import_react93.default.createElement(import_react93.default.Fragment, null, /* @__PURE__ */ import_react93.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react93.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react93.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react93.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react93.default.createElement(ModalClose3, {
+    const onUploadChange = (e2) => __async(void 0, null, function* () {
+      const file2 = e2.target.files[0];
+      const fileUrl = URL.createObjectURL(file2);
+      setFile(file2);
+    });
+    const onAddClick = () => {
+      hiddenFileInput.current.click();
+    };
+    const onAddClickFolder = () => {
+      hiddenFileInputFolder.current.click();
+    };
+    return /* @__PURE__ */ import_react101.default.createElement(import_react101.default.Fragment, null, /* @__PURE__ */ import_react101.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react101.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react101.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react101.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react101.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react93.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react93.default.createElement(ModalTabs2, {
+    }, "\u2613")), /* @__PURE__ */ import_react101.default.createElement(Wrapp, null, /* @__PURE__ */ import_react101.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyDescription, null, "Add inspections to the following system:"), /* @__PURE__ */ import_react101.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react101.default.createElement(ModalTabs2, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", activeModalTab && /* @__PURE__ */ import_react93.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react93.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react93.default.createElement(ArctiveModalColumnTitle2, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", /* @__PURE__ */ import_react101.default.createElement(Arrow, {
+      active: activeModalTab
+    }, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)), activeModalTab && /* @__PURE__ */ import_react101.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => chooseTab("Springfield Storm1", secondColumn, thirdColumn)
-    }, "Springfield Storm1"), /* @__PURE__ */ import_react93.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm1", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm2", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2"), /* @__PURE__ */ import_react93.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm2", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm3", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3")), /* @__PURE__ */ import_react93.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react93.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm3", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, {
+      style: {
+        borderLeft: "1px solid #f0f0f0",
+        borderRight: "1px solid #f0f0f0"
+      }
+    }, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, "Mainline", thirdColumn),
       active: secondColumn === "Mainline"
-    }, "Mainline")), secondColumn !== "" && /* @__PURE__ */ import_react93.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react93.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Mainline", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+      onClick: () => chooseTab(firstColumn, "Lateral", thirdColumn),
+      active: secondColumn === "Lateral"
+    }, "Lateral", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, secondColumn, "NASSCO v6 Springfield"),
-      active: thirdColumn === "NASSCO v6 Springfield"
-    }, "NASSCO")))))), step === 2 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeaderTitle, null, "Do you want to upload inspection data (and/or media)?"), /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react93.default.createElement(UploadMedia, {
+      active: thirdColumn === "NASSCO v6 Springfield",
+      style: { paddingRight: "15px" }
+    }, "NASSCO")))))), step === 2 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, null, "Do you want to upload inspection data (and/or media)?"), /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react101.default.createElement(UploadMedia, {
       active: choose === "Upload",
       onClick: () => setChoose("Upload")
-    }, /* @__PURE__ */ import_react93.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react93.default.createElement(UploadFileIcon_default, null)), /* @__PURE__ */ import_react93.default.createElement(CreateTitle, null, "I want to upload data/media"), /* @__PURE__ */ import_react93.default.createElement(CreateSubtitle, null, "Create inspections from your uploaded data and/or media")), /* @__PURE__ */ import_react93.default.createElement(JustCreate, {
+    }, /* @__PURE__ */ import_react101.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react101.default.createElement(UploadFileIcon_default, null)), /* @__PURE__ */ import_react101.default.createElement(CreateTitle, null, "I want to upload data/media"), /* @__PURE__ */ import_react101.default.createElement(CreateSubtitle, null, "Create inspections from your uploaded data and/or media")), /* @__PURE__ */ import_react101.default.createElement(JustCreate, {
       active: choose === "Create",
       onClick: () => setChoose("Create")
-    }, /* @__PURE__ */ import_react93.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react93.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react93.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react93.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), step === 3 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react93.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react93.default.createElement("span", {
+    }, /* @__PURE__ */ import_react101.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react101.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react101.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react101.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), step === 3 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement("div", null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, {
+      style: { display: "flex", alignItems: "center" }
+    }, "Select files or folders to import.", /* @__PURE__ */ import_react101.default.createElement("div", {
+      style: {
+        paddingLeft: "20px",
+        display: "flex",
+        alignItems: "center"
+      }
+    }, /* @__PURE__ */ import_react101.default.createElement(AddFileWrapper, {
+      onClick: onAddClick
+    }, /* @__PURE__ */ import_react101.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react101.default.createElement(InputHidden, {
+      type: "file",
+      ref: hiddenFileInput,
+      onChange: onUploadChange,
+      id: "file",
+      name: "file"
+    })), /* @__PURE__ */ import_react101.default.createElement(addFileIcon_default, null), /* @__PURE__ */ import_react101.default.createElement("div", {
+      style: { padding: "0px 7px" }
+    }, "Add File")), /* @__PURE__ */ import_react101.default.createElement(AddFolderWrapper, {
+      onClick: onAddClickFolder
+    }, /* @__PURE__ */ import_react101.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react101.default.createElement(InputHidden, {
+      type: "file",
+      ref: hiddenFileInputFolder,
+      onChange: onUploadChange,
+      id: "Folder",
+      name: "Folder"
+    })), /* @__PURE__ */ import_react101.default.createElement(addFolder_default, null), /* @__PURE__ */ import_react101.default.createElement("div", {
+      style: { padding: "0px 7px" }
+    }, "Add Folder"))))), /* @__PURE__ */ import_react101.default.createElement(AddFileTable_default, {
+      file
+    }))), step === 4 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react101.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react101.default.createElement("span", {
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, firstColumn, " / "), /* @__PURE__ */ import_react93.default.createElement("span", {
+    }, firstColumn, " / "), /* @__PURE__ */ import_react101.default.createElement("span", {
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, secondColumn, " / "), thirdColumn), /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeaderTitle, {
-      style: { paddingTop: "20px" }
-    }, "Create inspection for the following assets:"))), step === 4 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react93.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react93.default.createElement("span", {
-      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, firstColumn, " / "), /* @__PURE__ */ import_react93.default.createElement("span", {
-      style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, secondColumn, " / "), thirdColumn))), step === 5 && /* @__PURE__ */ import_react93.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react93.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react93.default.createElement(TextWrapper, null, /* @__PURE__ */ import_react93.default.createElement(Text, null, "0 inspection(s) are the be created."), /* @__PURE__ */ import_react93.default.createElement(Text, null, "No inspection(s) have names.")))), /* @__PURE__ */ import_react93.default.createElement(Buttons2, null, /* @__PURE__ */ import_react93.default.createElement(ButtonSave2, {
+    }, secondColumn, " / "), thirdColumn))), step === 5 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(TextWrapper, null, /* @__PURE__ */ import_react101.default.createElement(Text, null, "0 inspection(s) are the be created."), /* @__PURE__ */ import_react101.default.createElement(Text, null, "No inspection(s) have names."))))), /* @__PURE__ */ import_react101.default.createElement(Buttons2, null, /* @__PURE__ */ import_react101.default.createElement(ButtonSave2, {
       onClick: () => {
         setStep(1);
         setModal(false);
       }
-    }, "Cancel"), /* @__PURE__ */ import_react93.default.createElement("div", {
+    }, "Cancel"), /* @__PURE__ */ import_react101.default.createElement("div", {
       style: { display: "flex" }
-    }, step > 1 && /* @__PURE__ */ import_react93.default.createElement(ButtonCreate2, {
+    }, step > 1 && /* @__PURE__ */ import_react101.default.createElement(ButtonCreate2, {
       style: { marginRight: "5px", backgroundColor: "white", color: "#000" },
       onClick: () => setStep(step - 1)
-    }, "Back"), /* @__PURE__ */ import_react93.default.createElement(ButtonCreate2, {
+    }, "Back"), /* @__PURE__ */ import_react101.default.createElement(ButtonCreate2, {
       onClick: () => setStep(step + 1),
       disabled: step == 2 && !choose
     }, "Next")))))));
   };
   var CreateInspectionModal_default = CreateInspectionModal;
+  var Arrow = styled_components_browser_esm_default.div`
+    position: absolute;
+  right: 8px;
+  top: 8px;
+  transform: ${(props) => props.active ? "rotate(180deg)" : "rotate(0deg)"};
+  
+`;
+  var ArrowWrapper = styled_components_browser_esm_default.div`
+  transform: rotate(270deg);
+  padding: 0px 15px;
+`;
+  var InputHidden = styled_components_browser_esm_default.input`
+  display: none;
+`;
+  var ChooseFile = styled_components_browser_esm_default.div`
+
+`;
+  var AddFolderWrapper = styled_components_browser_esm_default.div`
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+  var AddFileWrapper = styled_components_browser_esm_default.div`
+  display: flex;
+  align-items: center;
+  color: #1890ff;
+  cursor: pointer;
+`;
+  var Wrapp = styled_components_browser_esm_default.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 53px);
+  position: relative;
+`;
+  var ModalBodyDescription = styled_components_browser_esm_default.div`
+  padding: 0px 0px 16px 0px;
+`;
   var TextWrapper = styled_components_browser_esm_default.div`
   padding-bottom: 50px;
 `;
   var Text = styled_components_browser_esm_default.div`
-    font-size: 14px;
+  font-size: 14px;
   padding: 10px 0;
 `;
   var CreateIcon = styled_components_browser_esm_default.div`
@@ -62274,7 +62639,8 @@ padding-bottom: 25px;
 
 `;
   var UploadMedia = styled_components_browser_esm_default.div`
-  width: 50%;
+  width: 348px;
+  height: 276px;
   min-height: 250px;
   display: flex;
   align-items: center;
@@ -62284,8 +62650,8 @@ padding-bottom: 25px;
   border: ${({ active }) => active ? "1px solid #00a8ff" : "1px solid #ccc"};
 `;
   var JustCreate = styled_components_browser_esm_default.div`
-  width: 50%;
-  min-height: 250px;
+  width: 348px;
+  height: 276px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -62300,17 +62666,20 @@ padding-bottom: 25px;
   var ModalBodyContent2 = styled_components_browser_esm_default.div`
   width: 100%;
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  justify-content: space-between;
 `;
   var ModalBodyHeaderTitle = styled_components_browser_esm_default.div`
   font-size: 14px;
+  padding-bottom: 24px;
 `;
   var ArctiveModalColumnTitle2 = styled_components_browser_esm_default.div`
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 14px;
+  padding: 10px 0px 10px 15px;
   cursor: pointer;
   color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: ${({ active }) => active ? "rgba(125,194,251,0.74)" : "#fff"};
 
   &:hover {
@@ -62319,17 +62688,22 @@ padding-bottom: 25px;
 `;
   var Buttons2 = styled_components_browser_esm_default.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: flex-end;
+  width: 768px;
   border-top: 1px solid #f0f0f0;
-  padding-top: 15px;
+  padding: 10px 16px;
+  position: absolute;
+  bottom: 0px;
 `;
   var ButtonSave2 = styled_components_browser_esm_default.div`
   padding: 7px 22px;
-  border: 1px solid #ccc;
+  border: 1px solid #D9D9D9;
   font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  border-radius: 2px;
 
   &:hover {
     border: 1px solid #00a8ff;
@@ -62338,20 +62712,24 @@ padding-bottom: 25px;
 `;
   var ButtonCreate2 = styled_components_browser_esm_default.button`
   padding: 7px 22px;
-  border: 1px solid #ccc;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   color: #fff;
+  border-radius: 2px;
   font-size: 14px;
   background-color: #1890ff;
-  &:disabled{
+  border: 1px solid #D9D9D9;
+
+  &:disabled {
     background-color: #ccc;
+    border: 1px solid #ccc;
   }
 `;
   var ModalWrapp2 = styled_components_browser_esm_default.div`
   background-color: #fff;
-  width: 70%;
-  padding: 8px 0 16px 0;
-  position: relative;
+  height: 480px;
+  width: 768px;
 `;
   var ContainerModal3 = styled_components_browser_esm_default.div`
   min-height: 100%;
@@ -62367,15 +62745,14 @@ padding-bottom: 25px;
 `;
   var ActiveModalColumn2 = styled_components_browser_esm_default.div`
   height: 100%;
-  border-right: 1px solid #ccc;
 `;
   var ActiveModalWrapper2 = styled_components_browser_esm_default.div`
   height: 150px;
   background-color: white;
-  border: 1px solid #e6e6e6;
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: 118px;
-  left: 24px;
+  top: 90px;
+  left: 23px;
   display: flex;
 `;
   var ModalTabs2 = styled_components_browser_esm_default.div`
@@ -62387,7 +62764,8 @@ padding-bottom: 25px;
   font-size: 14px;
   cursor: pointer;
   padding: 4px 11px;
-  color: ${({ active }) => active ? "#ccc" : "black"};
+  color: black;
+  position: relative;
 
   &:focus {
     border: 1px solid #1890ff;
@@ -62472,7 +62850,7 @@ padding-bottom: 25px;
   font-weight: 500;
 `;
   var ModalHeader3 = styled_components_browser_esm_default.div`
-  padding: 16px 24px;
+  padding: 17px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62481,12 +62859,12 @@ padding-bottom: 25px;
 
   // src/Components/InspectionPage/TableInspection.tsx
   var TableInspection = () => {
-    const [isOpenFilter, setIsOpenFilter] = (0, import_react94.useState)(false);
-    const [modal, setModal] = (0, import_react94.useState)(false);
-    const [isOpenSettings, setIsOpenSettings] = (0, import_react94.useState)(false);
-    const [columns, setColumns] = (0, import_react94.useState)();
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react102.useState)(false);
+    const [modal, setModal] = (0, import_react102.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react102.useState)(false);
+    const [columns, setColumns] = (0, import_react102.useState)();
     const dispatch = useDispatch();
-    (0, import_react94.useEffect)(() => {
+    (0, import_react102.useEffect)(() => {
       dispatch(getOrganizationInspections("1", "1", "50"));
     }, []);
     const inspections = useSelector(selectOrganizationInspections);
@@ -62496,37 +62874,37 @@ padding-bottom: 25px;
     const settingsRef = useOnClickOutside_default(() => {
       setIsOpenSettings(false);
     });
-    return /* @__PURE__ */ import_react94.default.createElement("div", null, /* @__PURE__ */ import_react94.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react94.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react94.default.createElement(Button2, {
+    return /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react102.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react102.default.createElement(Button2, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react94.default.createElement("span", {
+    }, /* @__PURE__ */ import_react102.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react94.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react94.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react94.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react94.default.createElement(Collection2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(Folder_default, {
+    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react102.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react102.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react102.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react102.default.createElement(Collection2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react94.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react94.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react94.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react94.default.createElement(Assets5, null, inspections && inspections.values.data.length, " Inspections")), /* @__PURE__ */ import_react94.default.createElement(RightSide3, null, /* @__PURE__ */ import_react94.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react94.default.createElement(FilterWrapper5, {
+    })), "Collection", /* @__PURE__ */ import_react102.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react102.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react102.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react102.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react102.default.createElement(Assets5, null, inspections && inspections.values.data.length, " Inspections")), /* @__PURE__ */ import_react102.default.createElement(RightSide3, null, /* @__PURE__ */ import_react102.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react102.default.createElement(FilterWrapper5, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
-    }, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react94.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react94.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react94.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react94.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react94.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react94.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react94.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react94.default.createElement(Settings2, {
+    }, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react102.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react102.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react102.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react102.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react102.default.createElement(Settings2, {
       onClick: () => {
         setTimeout(() => {
           setIsOpenSettings(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react94.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react102.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })), isOpenSettings && /* @__PURE__ */ import_react94.default.createElement(SettingsModal_default, {
+    })), isOpenSettings && /* @__PURE__ */ import_react102.default.createElement(SettingsModal_default, {
       settingsRef,
       setIsOpenSettings
-    }))), /* @__PURE__ */ import_react94.default.createElement(TableInspectionContent_default, {
+    }))), /* @__PURE__ */ import_react102.default.createElement(TableInspectionContent_default, {
       headers: inspections == null ? void 0 : inspections.columns,
       data: inspections,
       minCellWidth: 120
-    })), modal && /* @__PURE__ */ import_react94.default.createElement("div", null, /* @__PURE__ */ import_react94.default.createElement(CreateInspectionModal_default, {
+    })), modal && /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(CreateInspectionModal_default, {
       setModal,
       modal
     })));
@@ -62689,23 +63067,23 @@ padding-bottom: 25px;
 
   // src/Pages/InspectionPage.tsx
   var InspectionPage = () => {
-    return /* @__PURE__ */ import_react95.default.createElement("div", null, /* @__PURE__ */ import_react95.default.createElement(Header_default, null), /* @__PURE__ */ import_react95.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react95.default.createElement(TableInspection_default, null));
+    return /* @__PURE__ */ import_react103.default.createElement("div", null, /* @__PURE__ */ import_react103.default.createElement(Header_default, null), /* @__PURE__ */ import_react103.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react103.default.createElement(TableInspection_default, null));
   };
   var InspectionPage_default = InspectionPage;
 
   // src/Pages/DeliverablesPage.tsx
-  var import_react103 = __toESM(require_react(), 1);
+  var import_react111 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/DeliverableTable.tsx
-  var import_react101 = __toESM(require_react(), 1);
+  var import_react109 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/TableDeliverableContent.tsx
-  var import_react100 = __toESM(require_react(), 1);
+  var import_react108 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/DeliverableIcons/CopyIcon.tsx
-  var import_react96 = __toESM(require_react(), 1);
+  var import_react104 = __toESM(require_react(), 1);
   var CopyIcon = () => {
-    return /* @__PURE__ */ import_react96.default.createElement("svg", {
+    return /* @__PURE__ */ import_react104.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "copy",
@@ -62713,16 +63091,16 @@ padding-bottom: 25px;
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react96.default.createElement("path", {
+    }, /* @__PURE__ */ import_react104.default.createElement("path", {
       d: "M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
     }));
   };
   var CopyIcon_default = CopyIcon;
 
   // src/Components/common/icons/DeliverableIcons/RegenerateIcon.tsx
-  var import_react97 = __toESM(require_react(), 1);
+  var import_react105 = __toESM(require_react(), 1);
   var RegenerateIcon = () => {
-    return /* @__PURE__ */ import_react97.default.createElement("svg", {
+    return /* @__PURE__ */ import_react105.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "redo",
@@ -62730,16 +63108,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react97.default.createElement("path", {
+    }, /* @__PURE__ */ import_react105.default.createElement("path", {
       d: "M758.2 839.1C851.8 765.9 912 651.9 912 523.9 912 303 733.5 124.3 512.6 124 291.4 123.7 112 302.8 112 523.9c0 125.2 57.5 236.9 147.6 310.2 3.5 2.8 8.6 2.2 11.4-1.3l39.4-50.5c2.7-3.4 2.1-8.3-1.2-11.1-8.1-6.6-15.9-13.7-23.4-21.2a318.64 318.64 0 01-68.6-101.7C200.4 609 192 567.1 192 523.9s8.4-85.1 25.1-124.5c16.1-38.1 39.2-72.3 68.6-101.7 29.4-29.4 63.6-52.5 101.7-68.6C426.9 212.4 468.8 204 512 204s85.1 8.4 124.5 25.1c38.1 16.1 72.3 39.2 101.7 68.6 29.4 29.4 52.5 63.6 68.6 101.7 16.7 39.4 25.1 81.3 25.1 124.5s-8.4 85.1-25.1 124.5a318.64 318.64 0 01-68.6 101.7c-9.3 9.3-19.1 18-29.3 26L668.2 724a8 8 0 00-14.1 3l-39.6 162.2c-1.2 5 2.6 9.9 7.7 9.9l167 .8c6.7 0 10.5-7.7 6.3-12.9l-37.3-47.9z"
     }));
   };
   var RegenerateIcon_default = RegenerateIcon;
 
   // src/Components/common/icons/DeliverableIcons/DownloadIcon.tsx
-  var import_react98 = __toESM(require_react(), 1);
+  var import_react106 = __toESM(require_react(), 1);
   var DownloadIcon = () => {
-    return /* @__PURE__ */ import_react98.default.createElement("svg", {
+    return /* @__PURE__ */ import_react106.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "download",
@@ -62747,16 +63125,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react98.default.createElement("path", {
+    }, /* @__PURE__ */ import_react106.default.createElement("path", {
       d: "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
     }));
   };
   var DownloadIcon_default = DownloadIcon;
 
   // src/Components/common/icons/DeliverableIcons/ArchiveIcon.tsx
-  var import_react99 = __toESM(require_react(), 1);
+  var import_react107 = __toESM(require_react(), 1);
   var ArchiveIcon = () => {
-    return /* @__PURE__ */ import_react99.default.createElement("svg", {
+    return /* @__PURE__ */ import_react107.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "delete",
@@ -62764,7 +63142,7 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react99.default.createElement("path", {
+    }, /* @__PURE__ */ import_react107.default.createElement("path", {
       d: "M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
     }));
   };
@@ -62774,7 +63152,7 @@ padding-bottom: 25px;
   var createHeaders3 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react100.useRef)()
+      ref: (0, import_react108.useRef)()
     }));
   };
   var TableDeliverableContent = ({ headers, minCellWidth }) => {
@@ -62816,14 +63194,14 @@ padding-bottom: 25px;
         }
       }
     ];
-    const [tableHeight, setTableHeight] = (0, import_react100.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react100.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react100.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react100.useState)(false);
-    const [activeFilterN, setActiveFilterN] = (0, import_react100.useState)([]);
-    const tableElement = (0, import_react100.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react108.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react108.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react108.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react108.useState)(false);
+    const [activeFilterN, setActiveFilterN] = (0, import_react108.useState)([]);
+    const tableElement = (0, import_react108.useRef)(null);
     const columns = createHeaders3(headers);
-    (0, import_react100.useEffect)(() => {
+    (0, import_react108.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const mouseDown = (index2) => {
@@ -62855,72 +63233,72 @@ padding-bottom: 25px;
       const sorted = sortUtil(withoutNone, (item) => item.inspection, "desc" /* DESCENDING */, "number" /* Number */);
       setActiveFilter(!activeFilter);
     };
-    return /* @__PURE__ */ import_react100.default.createElement("div", {
+    return /* @__PURE__ */ import_react108.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react100.default.createElement("div", {
+    }, /* @__PURE__ */ import_react108.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react100.default.createElement("div", {
+    }, /* @__PURE__ */ import_react108.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react100.default.createElement("table", {
+    }, /* @__PURE__ */ import_react108.default.createElement("table", {
       className: "deliverables-table",
       ref: tableElement
-    }, /* @__PURE__ */ import_react100.default.createElement("thead", null, /* @__PURE__ */ import_react100.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react100.default.createElement(import_react100.default.Fragment, null, /* @__PURE__ */ import_react100.default.createElement("th", {
+    }, /* @__PURE__ */ import_react108.default.createElement("thead", null, /* @__PURE__ */ import_react108.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react100.default.createElement("span", null, /* @__PURE__ */ import_react100.default.createElement("input", {
+    }, /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react100.default.createElement(import_react100.default.Fragment, null, /* @__PURE__ */ import_react100.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react100.default.createElement(FilterWrapper6, {
+    }, /* @__PURE__ */ import_react108.default.createElement(FilterWrapper6, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react100.default.createElement("span", null, text), /* @__PURE__ */ import_react100.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react100.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react108.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react100.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react108.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react100.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react108.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react100.default.createElement(import_react100.default.Fragment, null, /* @__PURE__ */ import_react100.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react100.default.createElement("span", null, text), /* @__PURE__ */ import_react100.default.createElement("div", {
+    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react100.default.createElement(import_react100.default.Fragment, null, /* @__PURE__ */ import_react100.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react100.default.createElement("span", null, text), /* @__PURE__ */ import_react100.default.createElement("div", {
+    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react100.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react100.default.createElement(import_react100.default.Fragment, null, /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react108.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react100.default.createElement("input", {
+      }, /* @__PURE__ */ import_react108.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react100.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", null, /* @__PURE__ */ import_react100.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", null, /* @__PURE__ */ import_react100.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", null, /* @__PURE__ */ import_react100.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", null, /* @__PURE__ */ import_react100.default.createElement("span", {
+      }, /* @__PURE__ */ import_react108.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", {
         style: { color: "#1890FF", display: "flex", alignItems: "center", cursor: "pointer" }
-      }, /* @__PURE__ */ import_react100.default.createElement("div", {
+      }, /* @__PURE__ */ import_react108.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react100.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", null, /* @__PURE__ */ import_react100.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react100.default.createElement("tr", null, /* @__PURE__ */ import_react100.default.createElement("td", {
+      }, /* @__PURE__ */ import_react108.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
         className: "Many-Items"
-      }, /* @__PURE__ */ import_react100.default.createElement("span", null, /* @__PURE__ */ import_react100.default.createElement("div", {
+      }, /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react100.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react100.default.createElement("span", null, /* @__PURE__ */ import_react100.default.createElement("div", {
+      }, /* @__PURE__ */ import_react108.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react100.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react100.default.createElement("span", null, /* @__PURE__ */ import_react100.default.createElement("div", {
+      }, /* @__PURE__ */ import_react108.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react100.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
+      }, /* @__PURE__ */ import_react108.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
     }))))));
   };
   var TableDeliverableContent_default = TableDeliverableContent;
@@ -62956,7 +63334,7 @@ padding-bottom: 25px;
       "Downloads #",
       "Actions"
     ];
-    return /* @__PURE__ */ import_react101.default.createElement("div", null, /* @__PURE__ */ import_react101.default.createElement(TableWrapper4, null, /* @__PURE__ */ import_react101.default.createElement(TableDeliverableContent_default, {
+    return /* @__PURE__ */ import_react109.default.createElement("div", null, /* @__PURE__ */ import_react109.default.createElement(TableWrapper4, null, /* @__PURE__ */ import_react109.default.createElement(TableDeliverableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -63054,21 +63432,21 @@ padding-bottom: 25px;
 `;
 
   // src/Components/DeliverablePage/CreateDeliverableModal.tsx
-  var import_react102 = __toESM(require_react(), 1);
+  var import_react110 = __toESM(require_react(), 1);
   var CreateDeliverableModal = ({ setModal, modal }) => {
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react102.default.createElement(import_react102.default.Fragment, null, /* @__PURE__ */ import_react102.default.createElement(ContainerModal4, null, /* @__PURE__ */ import_react102.default.createElement(ModalWrapp3, {
+    return /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement(ContainerModal4, null, /* @__PURE__ */ import_react110.default.createElement(ModalWrapp3, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react102.default.createElement(ModalHeader4, null, /* @__PURE__ */ import_react102.default.createElement(ModalTitle4, null, "Create Project"), /* @__PURE__ */ import_react102.default.createElement(ModalClose4, {
+    }, /* @__PURE__ */ import_react110.default.createElement(ModalHeader4, null, /* @__PURE__ */ import_react110.default.createElement(ModalTitle4, null, "Create Project"), /* @__PURE__ */ import_react110.default.createElement(ModalClose4, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react102.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react102.default.createElement(ModalBodyContent4, null, /* @__PURE__ */ import_react102.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react102.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react102.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react102.default.createElement(Input5, {
+    }, "\u2613")), /* @__PURE__ */ import_react110.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react110.default.createElement(ModalBodyContent4, null, /* @__PURE__ */ import_react110.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react110.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react110.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react110.default.createElement(Input5, {
       type: "text",
       placeholder: "Deliverable name"
-    }))), /* @__PURE__ */ import_react102.default.createElement(Subtitle2, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react102.default.createElement(Buttons3, null, /* @__PURE__ */ import_react102.default.createElement(ButtonSave3, {
+    }))), /* @__PURE__ */ import_react110.default.createElement(Subtitle2, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react110.default.createElement(Buttons3, null, /* @__PURE__ */ import_react110.default.createElement(ButtonSave3, {
       onClick: () => setModal(false)
-    }, "Cancel"), /* @__PURE__ */ import_react102.default.createElement(ButtonCreate3, {
+    }, "Cancel"), /* @__PURE__ */ import_react110.default.createElement(ButtonCreate3, {
       disabled: true
     }, "Next"))))));
   };
@@ -63246,16 +63624,16 @@ padding-bottom: 25px;
 
   // src/Pages/DeliverablesPage.tsx
   var DeliverablesPage = () => {
-    const [modal, setModal] = (0, import_react103.useState)(false);
-    return /* @__PURE__ */ import_react103.default.createElement("div", null, /* @__PURE__ */ import_react103.default.createElement(Header_default, null), /* @__PURE__ */ import_react103.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react103.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react103.default.createElement(Button3, {
+    const [modal, setModal] = (0, import_react111.useState)(false);
+    return /* @__PURE__ */ import_react111.default.createElement("div", null, /* @__PURE__ */ import_react111.default.createElement(Header_default, null), /* @__PURE__ */ import_react111.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react111.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react111.default.createElement(Button3, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react103.default.createElement("span", {
+    }, /* @__PURE__ */ import_react111.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react103.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react103.default.createElement(CreateDeliverableModal_default, {
+    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react111.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react111.default.createElement(CreateDeliverableModal_default, {
       modal,
       setModal
     }));
@@ -63287,13 +63665,13 @@ padding-bottom: 25px;
 `;
 
   // src/Pages/ProfilePage.tsx
-  var import_react104 = __toESM(require_react(), 1);
+  var import_react112 = __toESM(require_react(), 1);
   var ProfilePage = () => {
-    const [preferences, setPreferences] = (0, import_react104.useState)(null);
-    const [preferencesOpen, setPreferencesOpen] = (0, import_react104.useState)(false);
+    const [preferences, setPreferences] = (0, import_react112.useState)(null);
+    const [preferencesOpen, setPreferencesOpen] = (0, import_react112.useState)(false);
     const user = useSelector(selectUserResponse);
     const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0);
-    const hiddenFileInput = (0, import_react104.useRef)(null);
+    const hiddenFileInput = (0, import_react112.useRef)(null);
     const onUploadChange = (e2) => __async(void 0, null, function* () {
       const file = e2.target.files[0];
       const fileUrl = URL.createObjectURL(file);
@@ -63304,32 +63682,32 @@ padding-bottom: 25px;
     const preferencesRef = useOnClickOutside_default(() => {
       setPreferencesOpen(false);
     });
-    return /* @__PURE__ */ import_react104.default.createElement("div", null, /* @__PURE__ */ import_react104.default.createElement(Header_default, null), /* @__PURE__ */ import_react104.default.createElement(ProfileHeader, null, /* @__PURE__ */ import_react104.default.createElement(ProfileHeaderTitle, null, "My Profile"), /* @__PURE__ */ import_react104.default.createElement(SaveButton, null, "Save Profile")), /* @__PURE__ */ import_react104.default.createElement(ProfileContent, null, /* @__PURE__ */ import_react104.default.createElement(ProfileContentBody, null, /* @__PURE__ */ import_react104.default.createElement(ChoosePhoto, null, /* @__PURE__ */ import_react104.default.createElement(Input6, {
+    return /* @__PURE__ */ import_react112.default.createElement("div", null, /* @__PURE__ */ import_react112.default.createElement(Header_default, null), /* @__PURE__ */ import_react112.default.createElement(ProfileHeader, null, /* @__PURE__ */ import_react112.default.createElement(ProfileHeaderTitle, null, "My Profile"), /* @__PURE__ */ import_react112.default.createElement(SaveButton, null, "Save Profile")), /* @__PURE__ */ import_react112.default.createElement(ProfileContent, null, /* @__PURE__ */ import_react112.default.createElement(ProfileContentBody, null, /* @__PURE__ */ import_react112.default.createElement(ChoosePhoto, null, /* @__PURE__ */ import_react112.default.createElement(Input6, {
       type: "file",
       ref: hiddenFileInput,
       onChange: onUploadChange,
       id: "file",
       name: "file",
       accept: "image/*"
-    })), /* @__PURE__ */ import_react104.default.createElement(Photo, {
+    })), /* @__PURE__ */ import_react112.default.createElement(Photo, {
       onClick: onAddClick
-    }, /* @__PURE__ */ import_react104.default.createElement(PhotoInitial, null, initials)), /* @__PURE__ */ import_react104.default.createElement(Right2, null, /* @__PURE__ */ import_react104.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react104.default.createElement(ContactTitle, null, "Contact Information")), /* @__PURE__ */ import_react104.default.createElement(InputRow, null, /* @__PURE__ */ import_react104.default.createElement(InputTitle, null, "First Name: \xA0"), /* @__PURE__ */ import_react104.default.createElement(InputForm, null)), /* @__PURE__ */ import_react104.default.createElement(InputRow, null, /* @__PURE__ */ import_react104.default.createElement(InputTitle, null, "Last Name: \xA0"), /* @__PURE__ */ import_react104.default.createElement(InputForm, null)), /* @__PURE__ */ import_react104.default.createElement(ContactInfo, {
+    }, /* @__PURE__ */ import_react112.default.createElement(PhotoInitial, null, initials)), /* @__PURE__ */ import_react112.default.createElement(Right2, null, /* @__PURE__ */ import_react112.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react112.default.createElement(ContactTitle, null, "Contact Information")), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "First Name: \xA0"), /* @__PURE__ */ import_react112.default.createElement(InputForm, null)), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "Last Name: \xA0"), /* @__PURE__ */ import_react112.default.createElement(InputForm, null)), /* @__PURE__ */ import_react112.default.createElement(ContactInfo, {
       style: { paddingTop: "40px" }
-    }, /* @__PURE__ */ import_react104.default.createElement(ContactTitle, null, "Preferences")), /* @__PURE__ */ import_react104.default.createElement(InputRow, null, /* @__PURE__ */ import_react104.default.createElement(InputTitle, null, "Unit Preferences: \xA0"), /* @__PURE__ */ import_react104.default.createElement(Preferenses, null, /* @__PURE__ */ import_react104.default.createElement(Preview, {
+    }, /* @__PURE__ */ import_react112.default.createElement(ContactTitle, null, "Preferences")), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "Unit Preferences: \xA0"), /* @__PURE__ */ import_react112.default.createElement(Preferenses, null, /* @__PURE__ */ import_react112.default.createElement(Preview, {
       active: preferencesOpen,
       onClick: () => {
         setTimeout(() => {
           setPreferencesOpen(true);
         }, 0.1);
       }
-    }, preferences ? preferences : "Select", /* @__PURE__ */ import_react104.default.createElement(IconWrapp8, null, /* @__PURE__ */ import_react104.default.createElement(ArrowDownIcon_default, null))), preferencesOpen && /* @__PURE__ */ import_react104.default.createElement(MenuOpen, {
+    }, preferences ? preferences : "Select", /* @__PURE__ */ import_react112.default.createElement(IconWrapp8, null, /* @__PURE__ */ import_react112.default.createElement(ArrowDownIcon_default, null))), preferencesOpen && /* @__PURE__ */ import_react112.default.createElement(MenuOpen, {
       ref: preferencesRef
-    }, /* @__PURE__ */ import_react104.default.createElement(MenuItem2, {
+    }, /* @__PURE__ */ import_react112.default.createElement(MenuItem2, {
       onClick: () => {
         setPreferencesOpen(false);
         setPreferences("Imperial");
       }
-    }, "Imperial"), /* @__PURE__ */ import_react104.default.createElement(MenuItem2, {
+    }, "Imperial"), /* @__PURE__ */ import_react112.default.createElement(MenuItem2, {
       onClick: () => {
         setPreferencesOpen(false);
         setPreferences("Metric");
@@ -63465,12 +63843,12 @@ padding-bottom: 25px;
 `;
 
   // src/Pages/SettingOrganization.tsx
-  var import_react110 = __toESM(require_react(), 1);
+  var import_react118 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/IntegrationIcon.tsx
-  var import_react105 = __toESM(require_react(), 1);
+  var import_react113 = __toESM(require_react(), 1);
   var IntegrationIcon = () => {
-    return /* @__PURE__ */ import_react105.default.createElement("svg", {
+    return /* @__PURE__ */ import_react113.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "node-index",
@@ -63478,33 +63856,33 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react105.default.createElement("defs", null, /* @__PURE__ */ import_react105.default.createElement("style", null)), /* @__PURE__ */ import_react105.default.createElement("path", {
+    }, /* @__PURE__ */ import_react113.default.createElement("defs", null, /* @__PURE__ */ import_react113.default.createElement("style", null)), /* @__PURE__ */ import_react113.default.createElement("path", {
       d: "M843.5 737.4c-12.4-75.2-79.2-129.1-155.3-125.4S550.9 676 546 752c-153.5-4.8-208-40.7-199.1-113.7 3.3-27.3 19.8-41.9 50.1-49 18.4-4.3 38.8-4.9 57.3-3.2 1.7.2 3.5.3 5.2.5 11.3 2.7 22.8 5 34.3 6.8 34.1 5.6 68.8 8.4 101.8 6.6 92.8-5 156-45.9 159.2-132.7 3.1-84.1-54.7-143.7-147.9-183.6-29.9-12.8-61.6-22.7-93.3-30.2-14.3-3.4-26.3-5.7-35.2-7.2-7.9-75.9-71.5-133.8-147.8-134.4-76.3-.6-140.9 56.1-150.1 131.9s40 146.3 114.2 163.9c74.2 17.6 149.9-23.3 175.7-95.1 9.4 1.7 18.7 3.6 28 5.8 28.2 6.6 56.4 15.4 82.4 26.6 70.7 30.2 109.3 70.1 107.5 119.9-1.6 44.6-33.6 65.2-96.2 68.6-27.5 1.5-57.6-.9-87.3-5.8-8.3-1.4-15.9-2.8-22.6-4.3-3.9-.8-6.6-1.5-7.8-1.8l-3.1-.6c-2.2-.3-5.9-.8-10.7-1.3-25-2.3-52.1-1.5-78.5 4.6-55.2 12.9-93.9 47.2-101.1 105.8-15.7 126.2 78.6 184.7 276 188.9 29.1 70.4 106.4 107.9 179.6 87 73.3-20.9 119.3-93.4 106.9-168.6zM329.1 345.2a83.3 83.3 0 11.01-166.61 83.3 83.3 0 01-.01 166.61zM695.6 845a83.3 83.3 0 11.01-166.61A83.3 83.3 0 01695.6 845z"
     }));
   };
   var IntegrationIcon_default = IntegrationIcon;
 
   // src/Components/SettingsPage/SettingsPageUsers.tsx
-  var import_react108 = __toESM(require_react(), 1);
+  var import_react116 = __toESM(require_react(), 1);
 
   // src/Components/SettingsPage/SettingPageUsersTable.tsx
-  var import_react106 = __toESM(require_react(), 1);
+  var import_react114 = __toESM(require_react(), 1);
   var createHeaders4 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react106.useRef)()
+      ref: (0, import_react114.useRef)()
     }));
   };
   var SettingsPageUsersTable = ({ minCellWidth, organizationInfo }) => {
     const headers = ["First Name", "Last Name", "Email", "Phone", "Roles", "Actions"];
-    const [tableHeight, setTableHeight] = (0, import_react106.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react106.useState)(null);
-    const [activeFilter, setActiveFilter] = (0, import_react106.useState)(false);
-    const [activeTab, setActiveTab] = (0, import_react106.useState)("Details");
-    const [detailsOpen, setDetailsOpen] = (0, import_react106.useState)(false);
-    const tableElement = (0, import_react106.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react114.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react114.useState)(null);
+    const [activeFilter, setActiveFilter] = (0, import_react114.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react114.useState)("Details");
+    const [detailsOpen, setDetailsOpen] = (0, import_react114.useState)(false);
+    const tableElement = (0, import_react114.useRef)(null);
     const columns = createHeaders4(headers);
-    (0, import_react106.useEffect)(() => {
+    (0, import_react114.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const detailsRef = useOnClickOutside_default(() => {
@@ -63513,7 +63891,7 @@ padding-bottom: 25px;
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react106.useCallback)((e2) => {
+    const mouseMove = (0, import_react114.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -63525,48 +63903,48 @@ padding-bottom: 25px;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react106.useCallback)(() => {
+    const removeListeners = (0, import_react114.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react106.useCallback)(() => {
+    const mouseUp = (0, import_react114.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    return /* @__PURE__ */ import_react106.default.createElement("div", {
+    return /* @__PURE__ */ import_react114.default.createElement("div", {
       style: { position: "relative", padding: "24px 24px " }
-    }, /* @__PURE__ */ import_react106.default.createElement("div", {
+    }, /* @__PURE__ */ import_react114.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react106.default.createElement("div", {
+    }, /* @__PURE__ */ import_react114.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react106.default.createElement("table", {
+    }, /* @__PURE__ */ import_react114.default.createElement("table", {
       className: "resizeable-table-settings",
       ref: tableElement
-    }, /* @__PURE__ */ import_react106.default.createElement("thead", null, /* @__PURE__ */ import_react106.default.createElement("tr", null, columns.map(({ ref, text }, i2) => /* @__PURE__ */ import_react106.default.createElement(import_react106.default.Fragment, null, /* @__PURE__ */ import_react106.default.createElement("th", {
+    }, /* @__PURE__ */ import_react114.default.createElement("thead", null, /* @__PURE__ */ import_react114.default.createElement("tr", null, columns.map(({ ref, text }, i2) => /* @__PURE__ */ import_react114.default.createElement(import_react114.default.Fragment, null, /* @__PURE__ */ import_react114.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react106.default.createElement("span", {
+    }, /* @__PURE__ */ import_react114.default.createElement("span", {
       style: { fontSize: "12px" }
-    }, text), /* @__PURE__ */ import_react106.default.createElement(Head, {
+    }, text), /* @__PURE__ */ import_react114.default.createElement(Head, {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2)
-    })))))), /* @__PURE__ */ import_react106.default.createElement("tbody", null, organizationInfo && organizationInfo.users ? organizationInfo.users.map((item, index2) => {
-      return /* @__PURE__ */ import_react106.default.createElement(import_react106.default.Fragment, null, /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react114.default.createElement("tbody", null, organizationInfo && organizationInfo.users ? organizationInfo.users.map((item, index2) => {
+      return /* @__PURE__ */ import_react114.default.createElement(import_react114.default.Fragment, null, /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", {
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.firstName))), /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", null, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, item.firstName))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.lastName))), /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", null, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, item.lastName))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.email))), /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", null, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, item.email))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.phone))), /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", null, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, item.phone))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.roles))), /* @__PURE__ */ import_react106.default.createElement("tr", null, /* @__PURE__ */ import_react106.default.createElement("td", null, /* @__PURE__ */ import_react106.default.createElement("span", {
+      }, item.roles))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
         style: { fontSize: "12px" }
       }, item.actions))));
-    }) : /* @__PURE__ */ import_react106.default.createElement(LoaderWrapper, null, /* @__PURE__ */ import_react106.default.createElement(Loader_default, null)))))));
+    }) : /* @__PURE__ */ import_react114.default.createElement(LoaderWrapper, null, /* @__PURE__ */ import_react114.default.createElement(Loader_default, null)))))));
   };
   var SettingPageUsersTable_default = SettingsPageUsersTable;
   var Head = styled_components_browser_esm_default.div`
@@ -63691,10 +64069,10 @@ padding-bottom: 25px;
 `;
 
   // src/Components/SettingsPage/AddUserModal.tsx
-  var import_react107 = __toESM(require_react(), 1);
+  var import_react115 = __toESM(require_react(), 1);
   var AddUserModal = ({ setModal }) => {
-    const [activeRoles, setActiveRoles] = (0, import_react107.useState)([]);
-    const [selectRolesActive, setSelectRolesActive] = (0, import_react107.useState)(false);
+    const [activeRoles, setActiveRoles] = (0, import_react115.useState)([]);
+    const [selectRolesActive, setSelectRolesActive] = (0, import_react115.useState)(false);
     const [email, setEmail] = useInput_default();
     const [phone, setPhone] = useInput_default();
     const [lastName, setLastName] = useInput_default();
@@ -63719,40 +64097,40 @@ padding-bottom: 25px;
       dispatch(createUser(email, firstName, lastName, phone, activeRoles));
       setModal(false);
     };
-    return /* @__PURE__ */ import_react107.default.createElement(ContainerModal5, null, /* @__PURE__ */ import_react107.default.createElement(ModalWrapp4, null, /* @__PURE__ */ import_react107.default.createElement(ModalWrappHeader, null, /* @__PURE__ */ import_react107.default.createElement(ModalTitle5, null, "Add User"), /* @__PURE__ */ import_react107.default.createElement(ModalClose5, {
+    return /* @__PURE__ */ import_react115.default.createElement(ContainerModal5, null, /* @__PURE__ */ import_react115.default.createElement(ModalWrapp4, null, /* @__PURE__ */ import_react115.default.createElement(ModalWrappHeader, null, /* @__PURE__ */ import_react115.default.createElement(ModalTitle5, null, "Add User"), /* @__PURE__ */ import_react115.default.createElement(ModalClose5, {
       onClick: () => {
         setModal(false);
       }
-    }, "X")), /* @__PURE__ */ import_react107.default.createElement(ModalWrappBody, null, /* @__PURE__ */ import_react107.default.createElement(ModalBody4, null, /* @__PURE__ */ import_react107.default.createElement(Row3, null, /* @__PURE__ */ import_react107.default.createElement(InputTitle2, null, "Email: \xA0"), /* @__PURE__ */ import_react107.default.createElement(Input7, {
+    }, "X")), /* @__PURE__ */ import_react115.default.createElement(ModalWrappBody, null, /* @__PURE__ */ import_react115.default.createElement(ModalBody4, null, /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Email: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
       onChange: setEmail
-    })), /* @__PURE__ */ import_react107.default.createElement(RowSelect, null, /* @__PURE__ */ import_react107.default.createElement(InputTitle2, null, "Roles: \xA0"), /* @__PURE__ */ import_react107.default.createElement(SelectWrapper, {
+    })), /* @__PURE__ */ import_react115.default.createElement(RowSelect, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Roles: \xA0"), /* @__PURE__ */ import_react115.default.createElement(SelectWrapper, {
       onClick: () => {
         setTimeout(() => {
           setSelectRolesActive(true);
         }, 0.1);
       }
     }, activeRoles.length >= 1 ? activeRoles.map((item, index2) => {
-      return item !== "" ? /* @__PURE__ */ import_react107.default.createElement(Span3, {
+      return item !== "" ? /* @__PURE__ */ import_react115.default.createElement(Span3, {
         key: index2
-      }, item, /* @__PURE__ */ import_react107.default.createElement("div", {
+      }, item, /* @__PURE__ */ import_react115.default.createElement("div", {
         style: { fontSize: "9px", paddingLeft: "5px" },
         onClick: () => handleSelectRoles(item)
       }, "X")) : null;
-    }) : ""), selectRolesActive && /* @__PURE__ */ import_react107.default.createElement(Selects, {
+    }) : ""), selectRolesActive && /* @__PURE__ */ import_react115.default.createElement(Selects, {
       ref: selectsRef
-    }, /* @__PURE__ */ import_react107.default.createElement(Select, {
+    }, /* @__PURE__ */ import_react115.default.createElement(Select, {
       onClick: () => handleSelectRoles("OWNER")
-    }, "OWNER"), /* @__PURE__ */ import_react107.default.createElement(Select, {
+    }, "OWNER"), /* @__PURE__ */ import_react115.default.createElement(Select, {
       onClick: () => handleSelectRoles("MEMBER")
-    }, "MEMBER"), /* @__PURE__ */ import_react107.default.createElement(Select, {
+    }, "MEMBER"), /* @__PURE__ */ import_react115.default.createElement(Select, {
       onClick: () => handleSelectRoles("GUEST")
-    }, "GUEST"))), /* @__PURE__ */ import_react107.default.createElement(Row3, null, /* @__PURE__ */ import_react107.default.createElement(InputTitle2, null, "First Name: \xA0"), /* @__PURE__ */ import_react107.default.createElement(Input7, {
+    }, "GUEST"))), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "First Name: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
       onChange: setFirstName
-    })), /* @__PURE__ */ import_react107.default.createElement(Row3, null, /* @__PURE__ */ import_react107.default.createElement(InputTitle2, null, "Last Name: \xA0"), /* @__PURE__ */ import_react107.default.createElement(Input7, {
+    })), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Last Name: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
       onChange: setLastName
-    })), /* @__PURE__ */ import_react107.default.createElement(Row3, null, /* @__PURE__ */ import_react107.default.createElement(InputTitle2, null, "Phone: \xA0"), /* @__PURE__ */ import_react107.default.createElement(Input7, {
+    })), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Phone: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
       onChange: setPhone
-    })))), /* @__PURE__ */ import_react107.default.createElement(Button4, {
+    })))), /* @__PURE__ */ import_react115.default.createElement(Button4, {
       onClick: handleAddUser,
       disabled: !firstName || !lastName || !phone || !email || !activeRoles
     }, "Add New User")));
@@ -63866,20 +64244,20 @@ padding-bottom: 25px;
 
   // src/Components/SettingsPage/SettingsPageUsers.tsx
   var SettingsPageUsers = () => {
-    const [modal, setModal] = (0, import_react108.useState)(false);
+    const [modal, setModal] = (0, import_react116.useState)(false);
     const dispatch = useDispatch();
     const organizationInfo = useSelector(selectOrganizationInfo);
-    const [popup, setPopup] = (0, import_react108.useState)(false);
+    const [popup, setPopup] = (0, import_react116.useState)(false);
     const isInvalidData = useSelector(selectIsInvalidData);
     const isValidData = useSelector(selectIsValidData);
     const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage);
-    (0, import_react108.useEffect)(() => {
+    (0, import_react116.useEffect)(() => {
       if (isInvalidData)
         setPopup(true);
       if (isValidData)
         setPopup(true);
     }, [isInvalidData, isValidData]);
-    (0, import_react108.useEffect)(() => {
+    (0, import_react116.useEffect)(() => {
       let timer;
       if (popup) {
         timer = setTimeout(() => {
@@ -63889,24 +64267,24 @@ padding-bottom: 25px;
       }
       return () => clearTimeout(timer);
     }, [popup]);
-    (0, import_react108.useEffect)(() => {
+    (0, import_react116.useEffect)(() => {
       dispatch(getOrganizationInfo());
     }, []);
-    return /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement(Wrapper16, null, isInvalidData && /* @__PURE__ */ import_react108.default.createElement(Popup_default, {
+    return /* @__PURE__ */ import_react116.default.createElement(import_react116.default.Fragment, null, /* @__PURE__ */ import_react116.default.createElement(Wrapper16, null, isInvalidData && /* @__PURE__ */ import_react116.default.createElement(Popup_default, {
       text: isInvalidDataMessage,
       status: "error"
-    }), isValidData && /* @__PURE__ */ import_react108.default.createElement(Popup_default, {
+    }), isValidData && /* @__PURE__ */ import_react116.default.createElement(Popup_default, {
       text: "User was created",
       status: "success"
-    }), /* @__PURE__ */ import_react108.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react108.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react108.default.createElement(HeaderButton, {
+    }), /* @__PURE__ */ import_react116.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react116.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react116.default.createElement(HeaderButton, {
       onClick: () => {
         setTimeout(() => {
           setModal(true);
         }, 0.1);
       }
-    }, "Add User")), /* @__PURE__ */ import_react108.default.createElement(SettingPageUsersTable_default, {
+    }, "Add User")), /* @__PURE__ */ import_react116.default.createElement(SettingPageUsersTable_default, {
       organizationInfo
-    }), modal && /* @__PURE__ */ import_react108.default.createElement(AddUserModal_default, {
+    }), modal && /* @__PURE__ */ import_react116.default.createElement(AddUserModal_default, {
       setModal,
       organizationInfo
     })));
@@ -63937,9 +64315,9 @@ padding-bottom: 25px;
 `;
 
   // src/Components/SettingsPage/SettingsOrganizationPage.tsx
-  var import_react109 = __toESM(require_react(), 1);
+  var import_react117 = __toESM(require_react(), 1);
   var SettingsOrganizationPage = () => {
-    return /* @__PURE__ */ import_react109.default.createElement(Wrapper17, null, /* @__PURE__ */ import_react109.default.createElement(HeaderUser2, null, /* @__PURE__ */ import_react109.default.createElement(HeaderTitle2, null, "Organization"), /* @__PURE__ */ import_react109.default.createElement(HeaderButton2, null, "Save settings")), /* @__PURE__ */ import_react109.default.createElement(LogoWrapper4, null, /* @__PURE__ */ import_react109.default.createElement(LogoTitle, null, "Logo:"), /* @__PURE__ */ import_react109.default.createElement(LogoImage, null)));
+    return /* @__PURE__ */ import_react117.default.createElement(Wrapper17, null, /* @__PURE__ */ import_react117.default.createElement(HeaderUser2, null, /* @__PURE__ */ import_react117.default.createElement(HeaderTitle2, null, "Organization"), /* @__PURE__ */ import_react117.default.createElement(HeaderButton2, null, "Save settings")), /* @__PURE__ */ import_react117.default.createElement(LogoWrapper4, null, /* @__PURE__ */ import_react117.default.createElement(LogoTitle, null, "Logo:"), /* @__PURE__ */ import_react117.default.createElement(LogoImage, null)));
   };
   var SettingsOrganizationPage_default = SettingsOrganizationPage;
   var LogoWrapper4 = styled_components_browser_esm_default.div`
@@ -63984,25 +64362,25 @@ padding-bottom: 25px;
   // src/Pages/SettingOrganization.tsx
   var SettingsOrganization = () => {
     const history2 = useHistory();
-    return /* @__PURE__ */ import_react110.default.createElement("div", null, /* @__PURE__ */ import_react110.default.createElement(Header_default, null), /* @__PURE__ */ import_react110.default.createElement(Wrapper18, null, /* @__PURE__ */ import_react110.default.createElement(LeftMenu, null, /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    return /* @__PURE__ */ import_react118.default.createElement("div", null, /* @__PURE__ */ import_react118.default.createElement(Header_default, null), /* @__PURE__ */ import_react118.default.createElement(Wrapper18, null, /* @__PURE__ */ import_react118.default.createElement(LeftMenu, null, /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-organization",
       onClick: () => history2.push("/settings-organization")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-systems",
       onClick: () => history2.push("/settings-systems")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-templates",
       onClick: () => history2.push("/settings-templates")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-users",
       onClick: () => history2.push("/settings-users")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-equipment",
       onClick: () => history2.push("/settings-equipment")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react110.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-integrations",
       onClick: () => history2.push("/settings-integrations")
-    }, /* @__PURE__ */ import_react110.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react110.default.createElement(IntegrationIcon_default, null)), "Integrations")), /* @__PURE__ */ import_react110.default.createElement(RightSide5, null, window.location.pathname === "/settings-users" && /* @__PURE__ */ import_react110.default.createElement(SettingsPageUsers_default, null), window.location.pathname === "/settings-organization" && /* @__PURE__ */ import_react110.default.createElement(SettingsOrganizationPage_default, null))), /* @__PURE__ */ import_react110.default.createElement(Footer_default, null));
+    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(IntegrationIcon_default, null)), "Integrations")), /* @__PURE__ */ import_react118.default.createElement(RightSide5, null, window.location.pathname === "/settings-users" && /* @__PURE__ */ import_react118.default.createElement(SettingsPageUsers_default, null), window.location.pathname === "/settings-organization" && /* @__PURE__ */ import_react118.default.createElement(SettingsOrganizationPage_default, null))), /* @__PURE__ */ import_react118.default.createElement(Footer_default, null));
   };
   var SettingOrganization_default = SettingsOrganization;
   var RightSide5 = styled_components_browser_esm_default.div`
@@ -64035,13 +64413,13 @@ padding-bottom: 25px;
 `;
 
   // src/Components/utils/ProtectedRouter.tsx
-  var import_react111 = __toESM(require_react(), 1);
+  var import_react119 = __toESM(require_react(), 1);
   var ProtectedRouter = (props) => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const isLoading = useSelector(selectIsLoading);
     if (isLoading)
-      return /* @__PURE__ */ import_react111.default.createElement(import_react111.default.Fragment, null);
-    return isLoggedIn ? /* @__PURE__ */ import_react111.default.createElement(Route, __spreadValues({}, props)) : /* @__PURE__ */ import_react111.default.createElement(Redirect, {
+      return /* @__PURE__ */ import_react119.default.createElement(import_react119.default.Fragment, null);
+    return isLoggedIn ? /* @__PURE__ */ import_react119.default.createElement(Route, __spreadValues({}, props)) : /* @__PURE__ */ import_react119.default.createElement(Redirect, {
       to: "/login"
     });
   };
@@ -64050,74 +64428,74 @@ padding-bottom: 25px;
   // src/App.tsx
   store_default.dispatch(getUserInfo("1"));
   function App() {
-    return /* @__PURE__ */ import_react112.default.createElement("div", null, /* @__PURE__ */ import_react112.default.createElement(Switch, null, /* @__PURE__ */ import_react112.default.createElement(Route, {
+    return /* @__PURE__ */ import_react120.default.createElement("div", null, /* @__PURE__ */ import_react120.default.createElement(Switch, null, /* @__PURE__ */ import_react120.default.createElement(Route, {
       path: "/login",
       component: LoginPage_default
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/dashboard",
       component: DashboardPage_default
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/profile",
       component: ProfilePage_default
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/assets",
       component: AssetsPage_default
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/projects-card",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/projects-list",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/projects-calendar",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/inspections",
       component: InspectionPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/deliverables",
       component: DeliverablesPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-organization",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-systems",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-templates",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-users",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-equipment",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
       path: "/settings-integrations",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react112.default.createElement(Redirect, {
+    }), /* @__PURE__ */ import_react120.default.createElement(Redirect, {
       to: "/login"
     })));
   }
   var App_default = App;
 
   // src/index.tsx
-  import_react_dom4.default.render(/* @__PURE__ */ import_react113.default.createElement(import_react113.StrictMode, null, /* @__PURE__ */ import_react113.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react113.default.createElement(Provider_default, {
+  import_react_dom4.default.render(/* @__PURE__ */ import_react121.default.createElement(import_react121.StrictMode, null, /* @__PURE__ */ import_react121.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react121.default.createElement(Provider_default, {
     store: store_default
-  }, /* @__PURE__ */ import_react113.default.createElement(ConnectedRouter, {
+  }, /* @__PURE__ */ import_react121.default.createElement(ConnectedRouter, {
     history
-  }, /* @__PURE__ */ import_react113.default.createElement(App_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react121.default.createElement(App_default, null))))), document.getElementById("root"));
 })();
 /*
 object-assign
