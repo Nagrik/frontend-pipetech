@@ -31564,7 +31564,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main.ts
   var _Main = class extends http_client_default {
     constructor() {
-      super("https://api-dev.pipe-tech.lambda-team.club");
+      super("https://3299-188-163-108-228.ngrok.io");
       this.sendEmail = (body) => this.instance.post("/super-admin/login", body);
       this.getTokens = (body) => this.instance.post("/otp/validate", body);
       this.refresh = (body) => this.instance.post("/login/refresh", body);
@@ -31601,7 +31601,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main-protected.ts
   var _MainProtected = class extends HttpClientProtected {
     constructor() {
-      super("https://api-dev.pipe-tech.lambda-team.club");
+      super("https://3299-188-163-108-228.ngrok.io");
       this.createUser = (body) => this.instance.post("/users", body);
       this.addUserToOrganization = (id, body) => this.instance.post(`/organisation/1/add-user/${id}`, body);
       this.getOrganizationInfo = () => this.instance.get(`/organisation/1`);
@@ -61887,6 +61887,7 @@ padding-bottom: 25px;
     const [activeFilter, setActiveFilter] = (0, import_react91.useState)(false);
     const [hover, setHover] = (0, import_react91.useState)(false);
     const [downstreamId, setDownstreamId] = (0, import_react91.useState)(null);
+    const [checkbox, setCheckbox] = (0, import_react91.useState)(false);
     const [activeFilterN, setActiveFilterN] = (0, import_react91.useState)([]);
     const inspections = useSelector(selectOrganizationsInspection);
     const inspectionHeaders = useSelector(selectInspectionHeader);
@@ -61940,6 +61941,7 @@ padding-bottom: 25px;
     }
     const handleCheckCheckboxes = (e2) => {
       const target = e2.target.checked;
+      setCheckbox(target);
       const newOrganisation = inspections.map((item) => {
         if (target === false) {
           return __spreadProps(__spreadValues({}, item), { checkbox: false });
@@ -61973,6 +61975,7 @@ padding-bottom: 25px;
       });
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
+    console.log(checkbox);
     return /* @__PURE__ */ import_react91.default.createElement("div", {
       style: { position: "relative" }
     }, /* @__PURE__ */ import_react91.default.createElement("div", {
@@ -61998,7 +62001,7 @@ padding-bottom: 25px;
           type: "checkbox",
           onClick: (e2) => handleCheckCheckboxes(e2)
         }), /* @__PURE__ */ import_react91.default.createElement("span", {
-          className: "checkmark-header"
+          className: "checkmark"
         })))));
       } else if (text === "Assets") {
         return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {

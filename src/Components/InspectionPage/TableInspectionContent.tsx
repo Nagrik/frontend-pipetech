@@ -37,6 +37,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
     const [activeFilter, setActiveFilter] = useState(false)
     const [hover, setHover] = useState<boolean>(false)
     const [downstreamId, setDownstreamId] = useState<any>(null)
+    const [checkbox, setCheckbox] = useState<any>(false)
     const [activeFilterN, setActiveFilterN] = useState<number[]>([])
 
 
@@ -118,6 +119,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
+        setCheckbox(target)
         const newOrganisation = inspections.map((item: any) => {
             if (target === false) {
                 return {...item, checkbox: false}
@@ -155,6 +157,8 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
+    console.log(checkbox)
+
     return (
         <div style={{position: 'relative'}}>
             <div className="container">
@@ -175,8 +179,8 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                                  fontFamily: 'Verdana, sans-serif',
                                                                  fontSize: '12px'
                                                              }}>
-                                                            <input type="checkbox" onClick={(e) => handleCheckCheckboxes(e)}/>
-                                                                <span className="checkmark-header"></span>
+                                                            <input type="checkbox"  onClick={(e) => handleCheckCheckboxes(e)} />
+                                                                <span className="checkmark"></span>
                                                         </label>
                                                         </span>
                                                             </th>
