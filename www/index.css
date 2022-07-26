@@ -280,7 +280,7 @@ h6 {
 }
 .first {
   position: sticky;
-  left: 55px;
+  left: 50px;
   z-index: 4;
   top: 0;
 }
@@ -309,7 +309,7 @@ h6 {
   position: sticky;
   top: 0;
   z-index: 4;
-  left: 55px;
+  left: 50px;
 }
 .checkboxHeader {
   position: sticky;
@@ -320,7 +320,7 @@ h6 {
 }
 .Items {
   position: sticky;
-  left: 55px;
+  left: 50px;
   z-index: 2;
 }
 table thead,
@@ -382,8 +382,8 @@ table tr td {
 }
 .checkmark {
   position: absolute;
-  top: 13px;
-  left: 19px;
+  top: 14px;
+  left: 17px;
   height: 16px;
   width: 16px;
   border-radius: 2px;
@@ -394,7 +394,7 @@ table tr td {
 .checkmark-header {
   position: absolute;
   top: 10px;
-  left: 19px;
+  left: 18px;
   height: 16px;
   width: 16px;
   border-radius: 2px;
@@ -405,7 +405,14 @@ table tr td {
 .container:hover input ~ .checkmark {
   background-color: #fff;
 }
+.container:hover input ~ .checkmark-header {
+  background-color: #fff;
+}
 .container input:checked ~ .checkmark {
+  background-color: #2196F3;
+  border: none;
+}
+.container input:checked ~ .checkmark-header {
   background-color: #2196F3;
   border: none;
 }
@@ -414,10 +421,29 @@ table tr td {
   position: absolute;
   display: none;
 }
+.checkmark-header:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
 .container input:checked ~ .checkmark:after {
   display: block;
 }
+.container input:checked ~ .checkmark-header:after {
+  display: block;
+}
 .container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0px 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.container .checkmark-header:after {
   left: 6px;
   top: 2px;
   width: 5px;

@@ -127,7 +127,7 @@ const Wrapper = styled.div`
 `
 
 const HoverItem = styled.div<{isActive:boolean}>`
-  padding: 7px 12px;
+  padding: 10px 12px;
   font-size: 14px;
   white-space: nowrap;
   background-color: ${props => props.isActive ? '#e6f7ff' : '#fff'};
@@ -145,21 +145,6 @@ const HoverItemWrapper = styled.div`
   left: 15px;
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 62px;
-  transform: rotate(-27deg);
-},
 `
 
 const HoverItemWrapper2 = styled.div`
@@ -171,21 +156,6 @@ const HoverItemWrapper2 = styled.div`
   top: 24px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 52px;
-  transform: rotate(-27deg);
-},
 `
 
 const HoverItemWrapper3 = styled.div`
@@ -197,21 +167,6 @@ const HoverItemWrapper3 = styled.div`
   top: 24px;
   left: -5px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 75px;
-  transform: rotate(-27deg);
-},
 `
 
 const Select1 = styled.div`
@@ -246,6 +201,9 @@ const Slash = styled.div`
 
 const IconWrapp = styled.div`
     padding: 0 5px;
+  display: flex;
+  align-items: center;
+    justify-content: center;
 `
 
 const SelectItem = styled.div`

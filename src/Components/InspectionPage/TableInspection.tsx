@@ -62,7 +62,7 @@ const TableInspection = () => {
                             <IconWrapper>
                                 <Folder color='#000'/>
                             </IconWrapper>
-                            Collection
+                            Collections
                             <HoverWrapper>
                                 <TextHover>
                                     Collections are like folders that store assets or inspections.
@@ -87,7 +87,7 @@ const TableInspection = () => {
                             Add to collection
                         </AddToCollection>
                         <FilterWrapper onClick={() => setIsOpenFilter(true)} ref={filterRef}>
-                            <IconWrapper>
+                            <IconWrapper style={{paddingLeft: '5px'}}>
                                 <Filter/>
                             </IconWrapper>
                             <FilterTitle>
@@ -103,11 +103,11 @@ const TableInspection = () => {
                             }
                         </FilterWrapper>
                         <ViewWrapper>
-                            <IconWrapper>
+                            <IconWrapper style={{paddingLeft: '3px'}}>
                                 <EyeIcon/>
                             </IconWrapper>
                             <View>
-                                View
+                                Views
                             </View>
                         </ViewWrapper>
                         <Settings onClick={() => {
@@ -166,8 +166,9 @@ const Collection = styled.div`
   cursor: pointer;
   background-color: #ffffff;
   border: 1px solid #ccc;
-  padding: 3px 10px;
+  padding: 4px 6px;
   font-size: 14px;
+     color: rgb(38, 38, 38);;
 
   &:hover {
     border: 1px solid #40a9ff;
@@ -246,6 +247,9 @@ const ViewWrapper = styled.div`
   align-items: center;
   background-color: #fff;
   cursor: pointer;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `
 
 const View = styled.div`
@@ -302,11 +306,11 @@ const RightSide = styled.div`
 
 const Assets = styled.div`
   font-size: 14px;
-  padding: 0px 5px;
+  padding: 0px 10px;
 `
 
 const IconWrapper = styled.div`
-  padding: 0 5px;
+  padding-right: 5px;
   display: flex;
   align-items: center;
 `

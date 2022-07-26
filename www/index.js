@@ -1044,7 +1044,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect25(create, deps) {
+          function useEffect26(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1824,7 +1824,7 @@
           exports2.useContext = useContext7;
           exports2.useDebugValue = useDebugValue2;
           exports2.useDeferredValue = useDeferredValue;
-          exports2.useEffect = useEffect25;
+          exports2.useEffect = useEffect26;
           exports2.useId = useId;
           exports2.useImperativeHandle = useImperativeHandle;
           exports2.useInsertionEffect = useInsertionEffect;
@@ -2238,7 +2238,7 @@
           this.stack = "";
         }
         PropTypeError.prototype = Error.prototype;
-        function createChainableTypeChecker(validate) {
+        function createChainableTypeChecker(validate2) {
           if (true) {
             var manualPropTypeCallCache = {};
             var manualPropTypeWarningCount = 0;
@@ -2269,7 +2269,7 @@
               }
               return null;
             } else {
-              return validate(props, propName, componentName, location, propFullName);
+              return validate2(props, propName, componentName, location, propFullName);
             }
           }
           var chainedCheckType = checkType.bind(null, false);
@@ -2277,7 +2277,7 @@
           return chainedCheckType;
         }
         function createPrimitiveTypeChecker(expectedType) {
-          function validate(props, propName, componentName, location, propFullName, secret) {
+          function validate2(props, propName, componentName, location, propFullName, secret) {
             var propValue = props[propName];
             var propType = getPropType(propValue);
             if (propType !== expectedType) {
@@ -2286,13 +2286,13 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createAnyTypeChecker() {
           return createChainableTypeChecker(emptyFunctionThatReturnsNull);
         }
         function createArrayOfTypeChecker(typeChecker) {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             if (typeof typeChecker !== "function") {
               return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
             }
@@ -2309,10 +2309,10 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createElementTypeChecker() {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
             if (!isValidElement(propValue)) {
               var propType = getPropType(propValue);
@@ -2320,10 +2320,10 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createElementTypeTypeChecker() {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
             if (!ReactIs.isValidElementType(propValue)) {
               var propType = getPropType(propValue);
@@ -2331,10 +2331,10 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createInstanceTypeChecker(expectedClass) {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             if (!(props[propName] instanceof expectedClass)) {
               var expectedClassName = expectedClass.name || ANONYMOUS;
               var actualClassName = getClassName(props[propName]);
@@ -2342,7 +2342,7 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createEnumTypeChecker(expectedValues) {
           if (!Array.isArray(expectedValues)) {
@@ -2355,7 +2355,7 @@
             }
             return emptyFunctionThatReturnsNull;
           }
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
             for (var i2 = 0; i2 < expectedValues.length; i2++) {
               if (is2(propValue, expectedValues[i2])) {
@@ -2371,10 +2371,10 @@
             });
             return new PropTypeError("Invalid " + location + " `" + propFullName + "` of value `" + String(propValue) + "` " + ("supplied to `" + componentName + "`, expected one of " + valuesString + "."));
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createObjectOfTypeChecker(typeChecker) {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             if (typeof typeChecker !== "function") {
               return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
             }
@@ -2393,7 +2393,7 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createUnionTypeChecker(arrayOfTypeCheckers) {
           if (!Array.isArray(arrayOfTypeCheckers)) {
@@ -2407,7 +2407,7 @@
               return emptyFunctionThatReturnsNull;
             }
           }
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var expectedTypes = [];
             for (var i3 = 0; i3 < arrayOfTypeCheckers.length; i3++) {
               var checker2 = arrayOfTypeCheckers[i3];
@@ -2422,22 +2422,22 @@
             var expectedTypesMessage = expectedTypes.length > 0 ? ", expected one of type [" + expectedTypes.join(", ") + "]" : "";
             return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`" + expectedTypesMessage + "."));
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createNodeChecker() {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             if (!isNode(props[propName])) {
               return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`, expected a ReactNode."));
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function invalidValidatorError(componentName, location, propFullName, key, type) {
           return new PropTypeError((componentName || "React class") + ": " + location + " type `" + propFullName + "." + key + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + type + "`.");
         }
         function createShapeTypeChecker(shapeTypes) {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
             var propType = getPropType(propValue);
             if (propType !== "object") {
@@ -2455,10 +2455,10 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function createStrictShapeTypeChecker(shapeTypes) {
-          function validate(props, propName, componentName, location, propFullName) {
+          function validate2(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
             var propType = getPropType(propValue);
             if (propType !== "object") {
@@ -2480,7 +2480,7 @@
             }
             return null;
           }
-          return createChainableTypeChecker(validate);
+          return createChainableTypeChecker(validate2);
         }
         function isNode(propValue) {
           switch (typeof propValue) {
@@ -2957,8 +2957,8 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React105 = require_react();
-          var ReactSharedInternals = React105.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var React107 = require_react();
+          var ReactSharedInternals = React107.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format3) {
             {
               {
@@ -2988,13 +2988,13 @@
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
-          var useState37 = React105.useState, useEffect25 = React105.useEffect, useLayoutEffect3 = React105.useLayoutEffect, useDebugValue2 = React105.useDebugValue;
+          var useState37 = React107.useState, useEffect26 = React107.useEffect, useLayoutEffect3 = React107.useLayoutEffect, useDebugValue2 = React107.useDebugValue;
           var didWarnOld18Alpha = false;
           var didWarnUncachedGetSnapshot = false;
           function useSyncExternalStore3(subscribe, getSnapshot, getServerSnapshot) {
             {
               if (!didWarnOld18Alpha) {
-                if (React105.startTransition !== void 0) {
+                if (React107.startTransition !== void 0) {
                   didWarnOld18Alpha = true;
                   error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
                 }
@@ -3025,7 +3025,7 @@
                 });
               }
             }, [subscribe, value, getSnapshot]);
-            useEffect25(function() {
+            useEffect26(function() {
               if (checkIfSnapshotChanged(inst)) {
                 forceUpdate({
                   inst
@@ -3059,7 +3059,7 @@
           var canUseDOM3 = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
           var isServerEnvironment = !canUseDOM3;
           var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore3;
-          var useSyncExternalStore$2 = React105.useSyncExternalStore !== void 0 ? React105.useSyncExternalStore : shim;
+          var useSyncExternalStore$2 = React107.useSyncExternalStore !== void 0 ? React107.useSyncExternalStore : shim;
           exports2.useSyncExternalStore = useSyncExternalStore$2;
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -3091,14 +3091,14 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React105 = require_react();
+          var React107 = require_react();
           var shim = require_shim();
           function is2(x2, y2) {
             return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
           }
           var objectIs2 = typeof Object.is === "function" ? Object.is : is2;
           var useSyncExternalStore3 = shim.useSyncExternalStore;
-          var useRef17 = React105.useRef, useEffect25 = React105.useEffect, useMemo6 = React105.useMemo, useDebugValue2 = React105.useDebugValue;
+          var useRef17 = React107.useRef, useEffect26 = React107.useEffect, useMemo6 = React107.useMemo, useDebugValue2 = React107.useDebugValue;
           function useSyncExternalStoreWithSelector3(subscribe, getSnapshot, getServerSnapshot, selector, isEqual5) {
             var instRef = useRef17(null);
             var inst;
@@ -3155,7 +3155,7 @@
               return [getSnapshotWithSelector, getServerSnapshotWithSelector];
             }, [getSnapshot, getServerSnapshot, selector, isEqual5]), getSelection = _useMemo[0], getServerSelection = _useMemo[1];
             var value = useSyncExternalStore3(subscribe, getSelection, getServerSelection);
-            useEffect25(function() {
+            useEffect26(function() {
               inst.hasValue = true;
               inst.value = value;
             }, [value]);
@@ -3655,9 +3655,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React105 = require_react();
+          var React107 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React105.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React107.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -5058,7 +5058,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React105.Children.forEach(props.children, function(child) {
+                  React107.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13184,7 +13184,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React105.Component().refs;
+          var emptyRefsObject = new React107.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27961,7 +27961,7 @@
   });
 
   // src/index.tsx
-  var import_react121 = __toESM(require_react(), 1);
+  var import_react123 = __toESM(require_react(), 1);
 
   // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
   function _setPrototypeOf(o2, p) {
@@ -31564,7 +31564,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main.ts
   var _Main = class extends http_client_default {
     constructor() {
-      super("https://3299-188-163-108-228.ngrok.io");
+      super("https://api-dev.pipe-tech.lambda-team.website");
       this.sendEmail = (body) => this.instance.post("/super-admin/login", body);
       this.getTokens = (body) => this.instance.post("/otp/validate", body);
       this.refresh = (body) => this.instance.post("/login/refresh", body);
@@ -31601,7 +31601,7 @@ ${latestSubscriptionCallbackError.current.stack}
   // src/api/main-protected.ts
   var _MainProtected = class extends HttpClientProtected {
     constructor() {
-      super("https://3299-188-163-108-228.ngrok.io");
+      super("https://api-dev.pipe-tech.lambda-team.website");
       this.createUser = (body) => this.instance.post("/users", body);
       this.addUserToOrganization = (id, body) => this.instance.post(`/organisation/1/add-user/${id}`, body);
       this.getOrganizationInfo = () => this.instance.get(`/organisation/1`);
@@ -31738,7 +31738,7 @@ ${latestSubscriptionCallbackError.current.stack}
   var store_default = createStore(rootReducer, enhancer);
 
   // src/App.tsx
-  var import_react120 = __toESM(require_react(), 1);
+  var import_react122 = __toESM(require_react(), 1);
 
   // src/Pages/LoginPage.tsx
   var import_react21 = __toESM(require_react(), 1);
@@ -33543,6 +33543,7 @@ ${latestSubscriptionCallbackError.current.stack}
     const dispatch = useDispatch();
     const isInvalidData = useSelector(selectIsInvalidData);
     const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage);
+    console.log(isInvalidData);
     (0, import_react21.useEffect)(() => {
       if (isInvalidData)
         setPopup(true);
@@ -33551,12 +33552,10 @@ ${latestSubscriptionCallbackError.current.stack}
       let timer;
       if (popup) {
         timer = setTimeout(() => {
-          setPopup(false);
           dispatch(invalidDataClear());
         }, 3e3);
       }
       return () => {
-        dispatch(invalidDataClear());
         clearTimeout(timer);
       };
     }, [popup]);
@@ -34687,13 +34686,13 @@ cursor: pointer;
   var DashboardPage_default = DashboardPage;
 
   // src/Pages/AssetsPage.tsx
-  var import_react67 = __toESM(require_react(), 1);
+  var import_react68 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/Table.tsx
-  var import_react65 = __toESM(require_react(), 1);
+  var import_react66 = __toESM(require_react(), 1);
 
   // src/Components/AssetsPage/TableContent.tsx
-  var import_react56 = __toESM(require_react(), 1);
+  var import_react57 = __toESM(require_react(), 1);
 
   // src/Components/utils/sortUtil.ts
   var sortUtil = (data, getKey5, sortOrder = "asc" /* ASCENDING */, sortType = "string" /* String */) => {
@@ -37948,6 +37947,22 @@ cursor: pointer;
   };
   var ArrowDownIcon_default = ArrowDownIcon;
 
+  // src/Components/common/icons/CrossIcon.tsx
+  var import_react56 = __toESM(require_react(), 1);
+  var CrossIcon = () => {
+    return /* @__PURE__ */ import_react56.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "10",
+      height: "10",
+      viewBox: "0 0 10 10",
+      fill: "none"
+    }, /* @__PURE__ */ import_react56.default.createElement("path", {
+      d: "M5.70807 5L9.29694 0.72207C9.35709 0.650977 9.30651 0.542969 9.21354 0.542969H8.12252C8.05826 0.542969 7.99674 0.57168 7.95436 0.620898L4.9944 4.14961L2.03444 0.620898C1.99342 0.57168 1.9319 0.542969 1.86627 0.542969H0.775256C0.682287 0.542969 0.631701 0.650977 0.691858 0.72207L4.28072 5L0.691858 9.27793C0.678382 9.29378 0.669737 9.31316 0.666948 9.33377C0.66416 9.35439 0.667345 9.37537 0.676126 9.39422C0.684907 9.41308 0.698915 9.42902 0.716486 9.44016C0.734058 9.45129 0.754455 9.45715 0.775256 9.45703H1.86627C1.93053 9.45703 1.99205 9.42832 2.03444 9.3791L4.9944 5.85039L7.95436 9.3791C7.99537 9.42832 8.0569 9.45703 8.12252 9.45703H9.21354C9.30651 9.45703 9.35709 9.34902 9.29694 9.27793L5.70807 5Z",
+      fill: "#8C8C8C"
+    }));
+  };
+  var CrossIcon_default = CrossIcon;
+
   // src/Components/AssetsPage/TableContent.tsx
   var createHeaders = (headers) => {
     return headers.map((item) => ({
@@ -37959,20 +37974,20 @@ cursor: pointer;
     const data = useSelector(selectOrganizationAssets);
     const organisations = useSelector(selectOrganizations);
     const dispatch = useDispatch();
-    const [id, setId] = (0, import_react56.useState)(null);
-    const [tableHeight, setTableHeight] = (0, import_react56.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react56.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react56.useState)((_a = data == null ? void 0 : data.assets) == null ? void 0 : _a.data);
-    const [activeFilter, setActiveFilter] = (0, import_react56.useState)(false);
-    const [activePage, setActivePage] = (0, import_react56.useState)(6);
-    const [activeTab, setActiveTab] = (0, import_react56.useState)("Details");
-    const [detailsOpen, setDetailsOpen] = (0, import_react56.useState)(false);
-    const [openSelect, setOpenSelect] = (0, import_react56.useState)(false);
-    const [activePaginate, setActivePaginate] = (0, import_react56.useState)(50);
+    const [id, setId] = (0, import_react57.useState)(null);
+    const [tableHeight, setTableHeight] = (0, import_react57.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react57.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react57.useState)((_a = data == null ? void 0 : data.assets) == null ? void 0 : _a.data);
+    const [activeFilter, setActiveFilter] = (0, import_react57.useState)(false);
+    const [activePage, setActivePage] = (0, import_react57.useState)(6);
+    const [activeTab, setActiveTab] = (0, import_react57.useState)("Details");
+    const [detailsOpen, setDetailsOpen] = (0, import_react57.useState)(false);
+    const [openSelect, setOpenSelect] = (0, import_react57.useState)(false);
+    const [activePaginate, setActivePaginate] = (0, import_react57.useState)(50);
     const selectRef = useOnClickOutside_default(() => {
       setOpenSelect(false);
     });
-    const tableElement = (0, import_react56.useRef)(null);
+    const tableElement = (0, import_react57.useRef)(null);
     const tableHeaders = [
       "checkbox",
       "Assets ID",
@@ -38013,7 +38028,7 @@ cursor: pointer;
       "Year Renewed"
     ];
     const columns = createHeaders(tableHeaders);
-    (0, import_react56.useEffect)(() => {
+    (0, import_react57.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const detailsRef = useOnClickOutside_default(() => {
@@ -38022,7 +38037,7 @@ cursor: pointer;
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react56.useCallback)((e2) => {
+    const mouseMove = (0, import_react57.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -38034,15 +38049,15 @@ cursor: pointer;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react56.useCallback)(() => {
+    const removeListeners = (0, import_react57.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react56.useCallback)(() => {
+    const mouseUp = (0, import_react57.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react56.useEffect)(() => {
+    (0, import_react57.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -38084,192 +38099,192 @@ cursor: pointer;
     };
     const paginateArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37];
     paginateArr.slice(5, 8).map((item) => console.log(item));
-    return /* @__PURE__ */ import_react56.default.createElement("div", {
+    return /* @__PURE__ */ import_react57.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react57.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react56.default.createElement(TableWrapper, {
+    }, /* @__PURE__ */ import_react57.default.createElement(TableWrapper, {
       className: "table-wrapper",
       style: { marginRight: "25px" }
-    }, /* @__PURE__ */ import_react56.default.createElement(ResizableTable, {
+    }, /* @__PURE__ */ import_react57.default.createElement(ResizableTable, {
       arr: paginateArr,
       className: "resizeable-table",
       ref: tableElement
-    }, /* @__PURE__ */ import_react56.default.createElement("thead", {
+    }, /* @__PURE__ */ import_react57.default.createElement("thead", {
       style: { marginLeft: 12 * paginateArr.length + "px" }
-    }, /* @__PURE__ */ import_react56.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+    }, /* @__PURE__ */ import_react57.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
       ref,
       key: i2,
       className: i2 === 0 ? "checkboxHeader" : "checkbox"
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, /* @__PURE__ */ import_react56.default.createElement("input", {
+    }, /* @__PURE__ */ import_react57.default.createElement("span", null, /* @__PURE__ */ import_react57.default.createElement("input", {
       type: "checkbox",
       style: { cursor: "pointer" },
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("th", {
+    })))) : /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("th", {
       ref,
       key: text,
       className: i2 === 1 ? "first" : "tableHeaders"
-    }, /* @__PURE__ */ import_react56.default.createElement("span", null, text), /* @__PURE__ */ import_react56.default.createElement("div", {
+    }, /* @__PURE__ */ import_react57.default.createElement("span", null, text), /* @__PURE__ */ import_react57.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react56.default.createElement("tbody", null, organisations && organisations.map((item, index2) => {
-      return /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement("tr", {
+    })))))), /* @__PURE__ */ import_react57.default.createElement("tbody", null, organisations && organisations.map((item, index2) => {
+      return /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("tr", {
         key: index2
-      }, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement(Td, {
         className: "checkbox",
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("input", {
+      }, /* @__PURE__ */ import_react57.default.createElement("input", {
         type: "checkbox",
         style: { cursor: "pointer" },
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         className: "Items",
         isActive: item.checkbox,
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react56.default.createElement(IdWrapper, null, item.systemIndexId.upstream_ap, " * ", item.systemIndexId.downstream_ap), /* @__PURE__ */ import_react56.default.createElement("span", {
+      }, /* @__PURE__ */ import_react57.default.createElement(IdWrapper, null, item.systemIndexId.upstream_ap, " * ", item.systemIndexId.downstream_ap), /* @__PURE__ */ import_react57.default.createElement("span", {
         className: "Details",
         onClick: () => {
           setTimeout(() => {
             setDetailsOpen(true);
           }, 0.1);
         }
-      }))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.inspectionCount))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.lastInspected ? format(parseISO(item.lastInspected), "dd/MM/yyyy") : null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.source.material))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.source.city))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.systemIndexId.downstream_ap))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.source.owner))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, "Circular"))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.source.street))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null, item.systemIndexId.upstream_ap))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))), /* @__PURE__ */ import_react56.default.createElement("tr", null, /* @__PURE__ */ import_react56.default.createElement(Td, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))), /* @__PURE__ */ import_react57.default.createElement("tr", null, /* @__PURE__ */ import_react57.default.createElement(Td, {
         isActive: item.checkbox
-      }, /* @__PURE__ */ import_react56.default.createElement("span", null))));
-    }))), /* @__PURE__ */ import_react56.default.createElement(TableFooter, null), /* @__PURE__ */ import_react56.default.createElement(PaginationWrapp, null, /* @__PURE__ */ import_react56.default.createElement(Pagination, null, /* @__PURE__ */ import_react56.default.createElement(PaginationIconLeft, null, /* @__PURE__ */ import_react56.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react56.default.createElement(PaginationItemsWrapp, null, /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+      }, /* @__PURE__ */ import_react57.default.createElement("span", null))));
+    }))), /* @__PURE__ */ import_react57.default.createElement(TableFooter, null), /* @__PURE__ */ import_react57.default.createElement(PaginationWrapp, null, /* @__PURE__ */ import_react57.default.createElement(Pagination, null, /* @__PURE__ */ import_react57.default.createElement(PaginationIconLeft, null, /* @__PURE__ */ import_react57.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react57.default.createElement(PaginationItemsWrapp, null, /* @__PURE__ */ import_react57.default.createElement(PaginationItem, {
       isActive: activePage === 1,
       onClick: () => setActivePage(1)
     }, paginateArr[0]), activePage < 5 && paginateArr.map((item, index2) => {
       if (index2 > 4 || index2 === 0) {
         return null;
       } else {
-        return /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+        return /* @__PURE__ */ import_react57.default.createElement(PaginationItem, {
           onClick: () => setActivePage(item),
           key: index2,
           isActive: activePage === item
         }, item);
       }
-    }), /* @__PURE__ */ import_react56.default.createElement(Dots, null, "..."), activePage >= 5 && paginateArr.slice(activePage - 2, activePage + 1).map((item, index2) => {
+    }), /* @__PURE__ */ import_react57.default.createElement(Dots, null, "..."), activePage >= 5 && paginateArr.slice(activePage - 2, activePage + 1).map((item, index2) => {
       if (item === paginateArr[paginateArr.length - 1]) {
         return;
       }
-      return /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+      return /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement(PaginationItem, {
         isActive: activePage === item,
         onClick: () => setActivePage(item)
       }, item));
-    }), /* @__PURE__ */ import_react56.default.createElement(Dots, null, "..."), /* @__PURE__ */ import_react56.default.createElement(PaginationItem, {
+    }), /* @__PURE__ */ import_react57.default.createElement(Dots, null, "..."), /* @__PURE__ */ import_react57.default.createElement(PaginationItem, {
       onClick: () => setActivePage(paginateArr[paginateArr.length - 1]),
       isActive: activePage === paginateArr[paginateArr.length - 1]
-    }, paginateArr[paginateArr.length - 1])), /* @__PURE__ */ import_react56.default.createElement(PaginationIconRight, null, /* @__PURE__ */ import_react56.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react56.default.createElement(SelectCountPage, {
+    }, paginateArr[paginateArr.length - 1])), /* @__PURE__ */ import_react57.default.createElement(PaginationIconRight, null, /* @__PURE__ */ import_react57.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react57.default.createElement(SelectCountPage, {
       onClick: () => {
         setTimeout(() => {
           setOpenSelect(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react56.default.createElement(SelectCountPageItem, null, activePaginate, " / page"), openSelect && /* @__PURE__ */ import_react56.default.createElement(SelectPopup, {
+    }, /* @__PURE__ */ import_react57.default.createElement(SelectCountPageItem, null, activePaginate, " / page"), openSelect && /* @__PURE__ */ import_react57.default.createElement(SelectPopup, {
       ref: selectRef
-    }, /* @__PURE__ */ import_react56.default.createElement(SelectPopupItem, {
+    }, /* @__PURE__ */ import_react57.default.createElement(SelectPopupItem, {
       onClick: () => {
         setActivePaginate(10);
       },
       isActive: activePaginate === 10
-    }, "10 / page"), /* @__PURE__ */ import_react56.default.createElement(SelectPopupItem, {
+    }, "10 / page"), /* @__PURE__ */ import_react57.default.createElement(SelectPopupItem, {
       onClick: () => {
         setActivePaginate(20);
       },
       isActive: activePaginate === 20
-    }, "20 / page"), /* @__PURE__ */ import_react56.default.createElement(SelectPopupItem, {
+    }, "20 / page"), /* @__PURE__ */ import_react57.default.createElement(SelectPopupItem, {
       onClick: () => {
         setActivePaginate(50);
       },
       isActive: activePaginate === 50
-    }, "50 / page"), /* @__PURE__ */ import_react56.default.createElement(SelectPopupItem, {
+    }, "50 / page"), /* @__PURE__ */ import_react57.default.createElement(SelectPopupItem, {
       onClick: () => {
         setActivePaginate(100);
       },
       isActive: activePaginate === 100
-    }, "100 / page")))), detailsOpen && /* @__PURE__ */ import_react56.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react56.default.createElement(Wrapper10, {
+    }, "100 / page")))), detailsOpen && /* @__PURE__ */ import_react57.default.createElement(DetailsModal, null, /* @__PURE__ */ import_react57.default.createElement(Wrapper10, {
       ref: detailsRef
-    }, /* @__PURE__ */ import_react56.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react56.default.createElement(Cross, {
+    }, /* @__PURE__ */ import_react57.default.createElement(DetailsHeader, null, /* @__PURE__ */ import_react57.default.createElement(Cross, {
       onClick: () => setDetailsOpen(false)
-    }, "X"), /* @__PURE__ */ import_react56.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react56.default.createElement(Tabs, null, /* @__PURE__ */ import_react56.default.createElement(Tab, null, /* @__PURE__ */ import_react56.default.createElement(Span, {
+    }, /* @__PURE__ */ import_react57.default.createElement(CrossIcon_default, null)), /* @__PURE__ */ import_react57.default.createElement(HeaderName, null, "qewrty")), /* @__PURE__ */ import_react57.default.createElement(Tabs, null, /* @__PURE__ */ import_react57.default.createElement(Tab, null, /* @__PURE__ */ import_react57.default.createElement(Span, {
       active: activeTab === "Details",
       onClick: () => setActiveTab("Details")
-    }, "Details")), /* @__PURE__ */ import_react56.default.createElement(Tab, null, /* @__PURE__ */ import_react56.default.createElement(Span, {
+    }, "Details")), /* @__PURE__ */ import_react57.default.createElement(Tab, null, /* @__PURE__ */ import_react57.default.createElement(Span, {
       active: activeTab === "Inspections",
       style: { marginLeft: "20px" },
       onClick: () => setActiveTab("Inspections")
-    }, "Inspections"))), /* @__PURE__ */ import_react56.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react56.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react56.default.createElement(Row, null, /* @__PURE__ */ import_react56.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react56.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react56.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react56.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react56.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
+    }, "Inspections"))), /* @__PURE__ */ import_react57.default.createElement(DetailsContent, null, activeTab === "Details" ? /* @__PURE__ */ import_react57.default.createElement(DetailsContentWrapper, null, /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value")), /* @__PURE__ */ import_react57.default.createElement(Row, null, /* @__PURE__ */ import_react57.default.createElement(Key, null, "Key"), /* @__PURE__ */ import_react57.default.createElement(Value, null, "Value"))) : /* @__PURE__ */ import_react57.default.createElement(InspectionTab, null, /* @__PURE__ */ import_react57.default.createElement(InspectionContent, null, /* @__PURE__ */ import_react57.default.createElement(InspectionRow, null, "Jan 4, 2018, 5:03 PM")))))))));
   };
   var TableContent_default = TableContent;
   var Dots = styled_components_browser_esm_default.div`
@@ -38495,20 +38510,20 @@ cursor: pointer;
 `;
 
   // src/Components/common/icons/AssetsPageIcons/FolderPlus.tsx
-  var import_react57 = __toESM(require_react(), 1);
+  var import_react58 = __toESM(require_react(), 1);
   var FolderPlus = () => {
-    return /* @__PURE__ */ import_react57.default.createElement("svg", {
+    return /* @__PURE__ */ import_react58.default.createElement("svg", {
       width: "18",
       height: "18",
       viewBox: "0 0 24 24",
       fill: "currentColor",
       xmlns: "http://www.w3.org/2000/svg"
-    }, /* @__PURE__ */ import_react57.default.createElement("path", {
+    }, /* @__PURE__ */ import_react58.default.createElement("path", {
       fillRule: "evenodd",
       clipRule: "evenodd",
       d: "M19.2188 10.4062H21.75C22.1648 10.4062 22.5 10.7414 22.5 11.1562C22.5 11.2523 22.4813 11.3484 22.4461 11.4375L21.8154 13H20.0969L20.5008 12H6.14766L3.72656 18H13V19.6875H2.25C1.83516 19.6875 1.5 19.3523 1.5 18.9375V5.0625C1.5 4.64766 1.83516 4.3125 2.25 4.3125H8.20781C8.25573 4.31291 8.30174 4.33132 8.33672 4.36406L11.0859 6.99375H18.4688C18.8836 6.99375 19.2188 7.32891 19.2188 7.74375V10.4062ZM7.60547 6H3.1875V15.075L4.88203 10.875C4.99688 10.5914 5.27344 10.4062 5.57812 10.4062H17.5312V8.68125H10.4086L7.60547 6Z",
       fill: "currentColor"
-    }), /* @__PURE__ */ import_react57.default.createElement("path", {
+    }), /* @__PURE__ */ import_react58.default.createElement("path", {
       d: "M22.125 16.9688H19.4062V14.25C19.4062 14.1469 19.3219 14.0625 19.2188 14.0625H18.0938C17.9906 14.0625 17.9062 14.1469 17.9062 14.25V16.9688H15.1875C15.0844 16.9688 15 17.0531 15 17.1562V18.2812C15 18.3844 15.0844 18.4688 15.1875 18.4688H17.9062V21.1875C17.9062 21.2906 17.9906 21.375 18.0938 21.375H19.2188C19.3219 21.375 19.4062 21.2906 19.4062 21.1875V18.4688H22.125C22.2281 18.4688 22.3125 18.3844 22.3125 18.2812V17.1562C22.3125 17.0531 22.2281 16.9688 22.125 16.9688Z",
       fill: "currentColor"
     }));
@@ -38516,9 +38531,9 @@ cursor: pointer;
   var FolderPlus_default = FolderPlus;
 
   // src/Components/common/icons/AssetsPageIcons/Filter.tsx
-  var import_react58 = __toESM(require_react(), 1);
+  var import_react59 = __toESM(require_react(), 1);
   var Filter = () => {
-    return /* @__PURE__ */ import_react58.default.createElement("svg", {
+    return /* @__PURE__ */ import_react59.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "filter",
@@ -38526,16 +38541,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react58.default.createElement("path", {
+    }, /* @__PURE__ */ import_react59.default.createElement("path", {
       d: "M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
     }));
   };
   var Filter_default = Filter;
 
   // src/Components/common/icons/AssetsPageIcons/EyeIcon.tsx
-  var import_react59 = __toESM(require_react(), 1);
+  var import_react60 = __toESM(require_react(), 1);
   var EyeIcon = () => {
-    return /* @__PURE__ */ import_react59.default.createElement("svg", {
+    return /* @__PURE__ */ import_react60.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye",
@@ -38543,16 +38558,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react59.default.createElement("path", {
+    }, /* @__PURE__ */ import_react60.default.createElement("path", {
       d: "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
     }));
   };
   var EyeIcon_default = EyeIcon;
 
   // src/Components/TableUtils/Filter.tsx
-  var import_react60 = __toESM(require_react(), 1);
+  var import_react61 = __toESM(require_react(), 1);
   var TableFilter = () => {
-    const [filters, setFilters2] = (0, import_react60.useState)([]);
+    const [filters, setFilters2] = (0, import_react61.useState)([]);
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const handleCheckboxs = (e2, item) => {
       if (e2.target.checked) {
@@ -38571,21 +38586,21 @@ cursor: pointer;
         checkbox.checked = false;
       });
     };
-    return /* @__PURE__ */ import_react60.default.createElement(import_react60.default.Fragment, null, /* @__PURE__ */ import_react60.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Clear, {
+    return /* @__PURE__ */ import_react61.default.createElement(import_react61.default.Fragment, null, /* @__PURE__ */ import_react61.default.createElement(ClickFilterWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterHeader, null, /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Clear, {
       onClick: handleClear,
       active: Boolean(filters.length >= 1)
-    }, "Clear")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react60.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react60.default.createElement(Apply, {
+    }, "Clear")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(FilterTitle, null, "Filters")), /* @__PURE__ */ import_react61.default.createElement(HeaderItem, null, /* @__PURE__ */ import_react61.default.createElement(Apply, {
       active: Boolean(filters.length >= 1)
-    }, "Apply"))), /* @__PURE__ */ import_react60.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react60.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react60.default.createElement(FilterInput, null), /* @__PURE__ */ import_react60.default.createElement(Cross2, {
+    }, "Apply"))), /* @__PURE__ */ import_react61.default.createElement(FilterBody, null, filters.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(FilterInputsWrapper, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputs, null, /* @__PURE__ */ import_react61.default.createElement(FilterInputTitle, null, item, " :"), /* @__PURE__ */ import_react61.default.createElement(FilterInput, null), /* @__PURE__ */ import_react61.default.createElement(Cross2, {
       onClick: () => handleDeleteFilter(item)
-    }, "\u0425")))), /* @__PURE__ */ import_react60.default.createElement(BodyItem, null, /* @__PURE__ */ import_react60.default.createElement(Left2, null, /* @__PURE__ */ import_react60.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react60.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react60.default.createElement(Rigth, null, /* @__PURE__ */ import_react60.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react60.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react60.default.createElement(HoverFilter, {
+    }, "\u0425")))), /* @__PURE__ */ import_react61.default.createElement(BodyItem, null, /* @__PURE__ */ import_react61.default.createElement(Left2, null, /* @__PURE__ */ import_react61.default.createElement(Plus, null, "+"), /* @__PURE__ */ import_react61.default.createElement(BodyTitle, null, "Add filter")), /* @__PURE__ */ import_react61.default.createElement(Rigth, null, /* @__PURE__ */ import_react61.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react61.default.createElement(HoverFilterWrapper, null, arr.map((item, index2) => /* @__PURE__ */ import_react61.default.createElement(HoverFilter, {
       key: index2
-    }, /* @__PURE__ */ import_react60.default.createElement(HoverFilterItem, {
+    }, /* @__PURE__ */ import_react61.default.createElement(HoverFilterItem, {
       onClick: (e2) => handleCheckboxs(e2, item)
-    }, /* @__PURE__ */ import_react60.default.createElement(Checkbox, null, /* @__PURE__ */ import_react60.default.createElement("input", {
+    }, /* @__PURE__ */ import_react61.default.createElement(Checkbox, null, /* @__PURE__ */ import_react61.default.createElement("input", {
       type: "checkbox",
       id: `checkbox${item}`
-    })), /* @__PURE__ */ import_react60.default.createElement(Label, {
+    })), /* @__PURE__ */ import_react61.default.createElement(Label, {
       htmlFor: `checkbox${item}`
     }, item)))))))));
   };
@@ -38747,12 +38762,12 @@ cursor: pointer;
 `;
 
   // src/Components/TableUtils/SettingsModal.tsx
-  var import_react64 = __toESM(require_react(), 1);
+  var import_react65 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/CloseEyeIcon.tsx
-  var import_react61 = __toESM(require_react(), 1);
+  var import_react62 = __toESM(require_react(), 1);
   var CloseEyeIcon = () => {
-    return /* @__PURE__ */ import_react61.default.createElement("svg", {
+    return /* @__PURE__ */ import_react62.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "eye-invisible",
@@ -38760,18 +38775,18 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react61.default.createElement("path", {
+    }, /* @__PURE__ */ import_react62.default.createElement("path", {
       d: "M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z"
-    }), /* @__PURE__ */ import_react61.default.createElement("path", {
+    }), /* @__PURE__ */ import_react62.default.createElement("path", {
       d: "M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z"
     }));
   };
   var CloseEyeIcon_default = CloseEyeIcon;
 
   // src/Components/common/icons/PinIcon.tsx
-  var import_react62 = __toESM(require_react(), 1);
+  var import_react63 = __toESM(require_react(), 1);
   var PinIcon = () => {
-    return /* @__PURE__ */ import_react62.default.createElement("svg", {
+    return /* @__PURE__ */ import_react63.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "pushpin",
@@ -38779,16 +38794,16 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react62.default.createElement("path", {
+    }, /* @__PURE__ */ import_react63.default.createElement("path", {
       d: "M878.3 392.1L631.9 145.7c-6.5-6.5-15-9.7-23.5-9.7s-17 3.2-23.5 9.7L423.8 306.9c-12.2-1.4-24.5-2-36.8-2-73.2 0-146.4 24.1-206.5 72.3a33.23 33.23 0 00-2.7 49.4l181.7 181.7-215.4 215.2a15.8 15.8 0 00-4.6 9.8l-3.4 37.2c-.9 9.4 6.6 17.4 15.9 17.4.5 0 1 0 1.5-.1l37.2-3.4c3.7-.3 7.2-2 9.8-4.6l215.4-215.4 181.7 181.7c6.5 6.5 15 9.7 23.5 9.7 9.7 0 19.3-4.2 25.9-12.4 56.3-70.3 79.7-158.3 70.2-243.4l161.1-161.1c12.9-12.8 12.9-33.8 0-46.8zM666.2 549.3l-24.5 24.5 3.8 34.4a259.92 259.92 0 01-30.4 153.9L262 408.8c12.9-7.1 26.3-13.1 40.3-17.9 27.2-9.4 55.7-14.1 84.7-14.1 9.6 0 19.3.5 28.9 1.6l34.4 3.8 24.5-24.5L608.5 224 800 415.5 666.2 549.3z"
     }));
   };
   var PinIcon_default = PinIcon;
 
   // src/Components/common/icons/SaveIcon.tsx
-  var import_react63 = __toESM(require_react(), 1);
+  var import_react64 = __toESM(require_react(), 1);
   var SaveIcon = () => {
-    return /* @__PURE__ */ import_react63.default.createElement("svg", {
+    return /* @__PURE__ */ import_react64.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "save",
@@ -38796,7 +38811,7 @@ cursor: pointer;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react63.default.createElement("path", {
+    }, /* @__PURE__ */ import_react64.default.createElement("path", {
       d: "M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184zm456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840zM512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"
     }));
   };
@@ -38828,7 +38843,7 @@ cursor: pointer;
         isPinned: false
       }
     ];
-    const [newArr, setNewArr] = (0, import_react64.useState)(arr);
+    const [newArr, setNewArr] = (0, import_react65.useState)(arr);
     const handlePinAction = (id) => {
       setNewArr(newArr.map((item) => {
         if (item.id === id) {
@@ -38861,38 +38876,38 @@ cursor: pointer;
         return item;
       }));
     };
-    return /* @__PURE__ */ import_react64.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react64.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react64.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react64.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react64.default.createElement(ModalClose, {
+    return /* @__PURE__ */ import_react65.default.createElement(ContainerModal, null, /* @__PURE__ */ import_react65.default.createElement(Wrapper11, null, /* @__PURE__ */ import_react65.default.createElement(ModalHeader, null, /* @__PURE__ */ import_react65.default.createElement(ModalTitle, null, "Column Settings"), /* @__PURE__ */ import_react65.default.createElement(ModalClose, {
       onClick: () => setIsOpenSettings(false)
-    }, "\u2613")), /* @__PURE__ */ import_react64.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react64.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react64.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
+    }, "\u2613")), /* @__PURE__ */ import_react65.default.createElement(SecondaryHeader, null, /* @__PURE__ */ import_react65.default.createElement(Subtitle, null, "Reorder elements by dragging and dropping.")), /* @__PURE__ */ import_react65.default.createElement(ColumnsHeader, null, /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
       style: { width: "50%" }
-    }, "Name"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, {
+    }, "Name"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, {
       style: { borderLeft: "1px solid #f0f0f0", borderRight: "1px solid #f0f0f0", width: "25%" }
-    }, "Action"), /* @__PURE__ */ import_react64.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react64.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react64.default.createElement(Column, {
+    }, "Action"), /* @__PURE__ */ import_react65.default.createElement(ColumnHeaderTitle, null, "Function")), /* @__PURE__ */ import_react65.default.createElement(Columns, null, newArr && newArr.map((item, index2) => /* @__PURE__ */ import_react65.default.createElement(Column, {
       key: index2
-    }, /* @__PURE__ */ import_react64.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react64.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react64.default.createElement(IconWrappPin, {
+    }, /* @__PURE__ */ import_react65.default.createElement(ColumnTitle, null, item.name), /* @__PURE__ */ import_react65.default.createElement(ColumnActions, null, /* @__PURE__ */ import_react65.default.createElement(IconWrappPin, {
       onClick: () => handlePinAction(item.id),
       active: item.isPinned
-    }, /* @__PURE__ */ import_react64.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react64.default.createElement(IconWrappEye, {
+    }, /* @__PURE__ */ import_react65.default.createElement(PinIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(IconWrappEye, {
       onClick: () => handleSeeAction(item.id),
       active: item.isChecked,
       style: { marginLeft: "10px" }
-    }, item.isChecked ? /* @__PURE__ */ import_react64.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react64.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react64.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react64.default.createElement(SelectItem, {
+    }, item.isChecked ? /* @__PURE__ */ import_react65.default.createElement(CloseEyeIcon_default, null) : /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null))), /* @__PURE__ */ import_react65.default.createElement(ColumnFunction, null, item.filter && /* @__PURE__ */ import_react65.default.createElement(SelectItem, {
       onClick: () => handleOpenSelect(item.id)
-    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemText, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemText, {
       active: item.filter.value
-    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react64.default.createElement("div", {
+    }, item.filter.value ? item.filter.value : "Select a ..."), /* @__PURE__ */ import_react65.default.createElement("div", {
       style: { padding: "0px 7px", display: "flex", alignItems: "center" }
-    }, /* @__PURE__ */ import_react64.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react64.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react65.default.createElement(ArrowDownIcon_default, null)), item.filter.checked && /* @__PURE__ */ import_react65.default.createElement(SelectItemList, null, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Sum")
-    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Sum")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Min")
-    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Min")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Max")
-    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react64.default.createElement(SelectItemListItem, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Max")), /* @__PURE__ */ import_react65.default.createElement(SelectItemListItem, {
       onClick: () => handleChangeSelectValue(item.id, "Average")
-    }, /* @__PURE__ */ import_react64.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react64.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react64.default.createElement(ModalButton, {
+    }, /* @__PURE__ */ import_react65.default.createElement(SelectItemListItemText, null, "Average")))))))), /* @__PURE__ */ import_react65.default.createElement(ModalFooter, null, /* @__PURE__ */ import_react65.default.createElement(ModalButton, {
       onClick: () => setIsOpenSettings(false)
-    }, /* @__PURE__ */ import_react64.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react64.default.createElement(SaveIcon_default, null)), "Save"))));
+    }, /* @__PURE__ */ import_react65.default.createElement(SaveIconWrapp, null, /* @__PURE__ */ import_react65.default.createElement(SaveIcon_default, null)), "Save"))));
   };
   var SettingsModal_default = SettingsModal;
   var SelectItemList = styled_components_browser_esm_default.div`
@@ -39069,8 +39084,8 @@ cursor: pointer;
 
   // src/Components/AssetsPage/Table.tsx
   var Table = () => {
-    const [isOpenFilter, setIsOpenFilter] = (0, import_react65.useState)(false);
-    const [isOpenSettings, setIsOpenSettings] = (0, import_react65.useState)(false);
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react66.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react66.useState)(false);
     const tableHeaders = [
       "checkbox",
       "Assets ID",
@@ -39116,25 +39131,25 @@ cursor: pointer;
     const settingsRef = useOnClickOutside_default(() => {
       setIsOpenSettings(false);
     });
-    return /* @__PURE__ */ import_react65.default.createElement("div", null, /* @__PURE__ */ import_react65.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react65.default.createElement(TableWrapper2, null, /* @__PURE__ */ import_react65.default.createElement(TableUtils, null, /* @__PURE__ */ import_react65.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react65.default.createElement(Collection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Folder_default, {
+    return /* @__PURE__ */ import_react66.default.createElement("div", null, /* @__PURE__ */ import_react66.default.createElement(Title2, null, "Assets"), /* @__PURE__ */ import_react66.default.createElement(TableWrapper2, null, /* @__PURE__ */ import_react66.default.createElement(TableUtils, null, /* @__PURE__ */ import_react66.default.createElement(LeftSide2, null, /* @__PURE__ */ import_react66.default.createElement(Collection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react65.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react65.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react65.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react65.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react65.default.createElement(RightSide2, null, /* @__PURE__ */ import_react65.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react65.default.createElement(FilterWrapper2, {
+    })), "Collection", /* @__PURE__ */ import_react66.default.createElement(HoverWrapper, null, /* @__PURE__ */ import_react66.default.createElement(TextHover, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react66.default.createElement(HoverItem, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react66.default.createElement(Assets3, null, "651 Assets")), /* @__PURE__ */ import_react66.default.createElement(RightSide2, null, /* @__PURE__ */ import_react66.default.createElement(AddToCollection, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react66.default.createElement(FilterWrapper2, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
-    }, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react65.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react65.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react65.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react65.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react65.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react65.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react65.default.createElement(View, null, "View")), /* @__PURE__ */ import_react65.default.createElement(Settings, {
+    }, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react66.default.createElement(FilterTitle2, null, "Filter"), /* @__PURE__ */ import_react66.default.createElement(Number2, null, "0"), isOpenFilter && /* @__PURE__ */ import_react66.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react66.default.createElement(ViewWrapper, null, /* @__PURE__ */ import_react66.default.createElement(IconWrapper3, null, /* @__PURE__ */ import_react66.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(View, null, "View")), /* @__PURE__ */ import_react66.default.createElement(Settings, {
       onClick: () => {
         setTimeout(() => {
           setIsOpenSettings(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react65.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react66.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })), isOpenSettings && /* @__PURE__ */ import_react65.default.createElement(SettingsModal_default, {
+    })), isOpenSettings && /* @__PURE__ */ import_react66.default.createElement(SettingsModal_default, {
       settingsRef,
       setIsOpenSettings
-    }))), /* @__PURE__ */ import_react65.default.createElement(TableContent_default, {
+    }))), /* @__PURE__ */ import_react66.default.createElement(TableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -39281,19 +39296,19 @@ cursor: pointer;
 `;
 
   // src/Components/AssetsPage/AssetsSelects.tsx
-  var import_react66 = __toESM(require_react(), 1);
+  var import_react67 = __toESM(require_react(), 1);
   var AssetsSelects = () => {
-    const [select1, setSelect1] = (0, import_react66.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react66.useState)("Mainlines");
-    return /* @__PURE__ */ import_react66.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react66.default.createElement(Select1, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
+    const [select1, setSelect1] = (0, import_react67.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react67.useState)("Mainlines");
+    return /* @__PURE__ */ import_react67.default.createElement(Wrapper12, null, /* @__PURE__ */ import_react67.default.createElement(Select1, null, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select1), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
+    }, "All systems"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react66.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react66.default.createElement(Select2, null, /* @__PURE__ */ import_react66.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react66.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react66.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react66.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react67.default.createElement(Slash, null, "/"), /* @__PURE__ */ import_react67.default.createElement(Select2, null, /* @__PURE__ */ import_react67.default.createElement(SelectItem2, null, select2), /* @__PURE__ */ import_react67.default.createElement(IconWrapp5, null, /* @__PURE__ */ import_react67.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react67.default.createElement(HoverItemWrapper2, null, /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react66.default.createElement(HoverItem2, {
+    }, "All assets types"), /* @__PURE__ */ import_react67.default.createElement(HoverItem2, {
       onClick: () => setSelect2("Mainlines")
     }, "Mainlines"))));
   };
@@ -39400,37 +39415,37 @@ cursor: pointer;
   // src/Pages/AssetsPage.tsx
   var AssetsPage = () => {
     const dispatch = useDispatch();
-    (0, import_react67.useEffect)(() => {
+    (0, import_react68.useEffect)(() => {
       dispatch(getOrganizationAssets("1", "1", "50"));
     }, []);
-    return /* @__PURE__ */ import_react67.default.createElement("div", null, /* @__PURE__ */ import_react67.default.createElement(Header_default, null), /* @__PURE__ */ import_react67.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react67.default.createElement(Table_default, null));
+    return /* @__PURE__ */ import_react68.default.createElement("div", null, /* @__PURE__ */ import_react68.default.createElement(Header_default, null), /* @__PURE__ */ import_react68.default.createElement(AssetsSelects_default, null), /* @__PURE__ */ import_react68.default.createElement(Table_default, null));
   };
   var AssetsPage_default = AssetsPage;
 
   // src/Pages/ProjectsPage.tsx
-  var import_react86 = __toESM(require_react(), 1);
+  var import_react87 = __toESM(require_react(), 1);
 
   // src/Components/ProjectsPage/ProjectsSelects.tsx
-  var import_react68 = __toESM(require_react(), 1);
+  var import_react69 = __toESM(require_react(), 1);
   var AssetsSelects2 = () => {
-    const [select1, setSelect1] = (0, import_react68.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react68.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react68.useState)("All Templates");
-    return /* @__PURE__ */ import_react68.default.createElement(Wrapper13, null, /* @__PURE__ */ import_react68.default.createElement(Select12, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    const [select1, setSelect1] = (0, import_react69.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react69.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react69.useState)("All Templates");
+    return /* @__PURE__ */ import_react69.default.createElement(Wrapper13, null, /* @__PURE__ */ import_react69.default.createElement(Select12, null, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select1), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper3, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("All systems")
-    }, "All systems"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, "All systems"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Storm")
-    }, "Springfield Storm"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect1("Springfield Sanitary")
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select22, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select22, null, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, null, select2), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper22, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All assets types")
-    }, "All assets types"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, "All assets types"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("Mainlines")
-    }, "Mainlines"))), /* @__PURE__ */ import_react68.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react68.default.createElement(Select3, null, /* @__PURE__ */ import_react68.default.createElement(SelectItem3, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react69.default.createElement(Slash2, null, "/"), /* @__PURE__ */ import_react69.default.createElement(Select3, null, /* @__PURE__ */ import_react69.default.createElement(SelectItem3, {
       style: { color: "black" }
-    }, select3), /* @__PURE__ */ import_react68.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react68.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react68.default.createElement(HoverItemWrapper32, null, /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, select3), /* @__PURE__ */ import_react69.default.createElement(IconWrapp6, null, /* @__PURE__ */ import_react69.default.createElement(ArrowDownIcon_default, null)), /* @__PURE__ */ import_react69.default.createElement(HoverItemWrapper32, null, /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("All Templates")
-    }, "All Templates"), /* @__PURE__ */ import_react68.default.createElement(HoverItem3, {
+    }, "All Templates"), /* @__PURE__ */ import_react69.default.createElement(HoverItem3, {
       onClick: () => setSelect2("NASSCO v6 Springfield")
     }, "NASSCO v6 Springfield"))));
   };
@@ -39565,7 +39580,7 @@ ${Select3}:hover & {
 `;
 
   // node_modules/react-chartjs-2/dist/index.js
-  var import_react69 = __toESM(require_react());
+  var import_react70 = __toESM(require_react());
 
   // node_modules/chart.js/dist/chunks/helpers.segment.js
   var requestAnimFrame = function() {
@@ -51627,8 +51642,8 @@ ${Select3}:hover & {
   }
   function ChartComponent(param, ref) {
     let { height: height2 = 150, width = 300, redraw = false, datasetIdKey, type, data, options, plugins = [], fallbackContent, updateMode, ...props } = param;
-    const canvasRef = (0, import_react69.useRef)(null);
-    const chartRef = (0, import_react69.useRef)();
+    const canvasRef = (0, import_react70.useRef)(null);
+    const chartRef = (0, import_react70.useRef)();
     const renderChart = () => {
       if (!canvasRef.current)
         return;
@@ -51647,7 +51662,7 @@ ${Select3}:hover & {
         chartRef.current = null;
       }
     };
-    (0, import_react69.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current && options) {
         setOptions(chartRef.current, options);
       }
@@ -51655,7 +51670,7 @@ ${Select3}:hover & {
       redraw,
       options
     ]);
-    (0, import_react69.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current) {
         setLabels(chartRef.current.config.data, data.labels);
       }
@@ -51663,7 +51678,7 @@ ${Select3}:hover & {
       redraw,
       data.labels
     ]);
-    (0, import_react69.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!redraw && chartRef.current && data.datasets) {
         setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
       }
@@ -51671,7 +51686,7 @@ ${Select3}:hover & {
       redraw,
       data.datasets
     ]);
-    (0, import_react69.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       if (!chartRef.current)
         return;
       if (redraw) {
@@ -51687,21 +51702,21 @@ ${Select3}:hover & {
       data.datasets,
       updateMode
     ]);
-    (0, import_react69.useEffect)(() => {
+    (0, import_react70.useEffect)(() => {
       renderChart();
       return () => destroyChart();
     }, []);
-    return /* @__PURE__ */ import_react69.default.createElement("canvas", Object.assign({
+    return /* @__PURE__ */ import_react70.default.createElement("canvas", Object.assign({
       ref: canvasRef,
       role: "img",
       height: height2,
       width
     }, props), fallbackContent);
   }
-  var Chart2 = /* @__PURE__ */ (0, import_react69.forwardRef)(ChartComponent);
+  var Chart2 = /* @__PURE__ */ (0, import_react70.forwardRef)(ChartComponent);
   function createTypedChart(type, registerables) {
     Chart.register(registerables);
-    return /* @__PURE__ */ (0, import_react69.forwardRef)((props, ref) => /* @__PURE__ */ import_react69.default.createElement(Chart2, Object.assign({}, props, {
+    return /* @__PURE__ */ (0, import_react70.forwardRef)((props, ref) => /* @__PURE__ */ import_react70.default.createElement(Chart2, Object.assign({}, props, {
       ref,
       type
     })));
@@ -51709,9 +51724,9 @@ ${Select3}:hover & {
   var Doughnut = /* @__PURE__ */ createTypedChart("doughnut", DoughnutController);
 
   // src/Components/common/icons/AssetsPageIcons/TableArrowTop.tsx
-  var import_react70 = __toESM(require_react(), 1);
+  var import_react71 = __toESM(require_react(), 1);
   var TableArrowTop = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react70.default.createElement("svg", {
+    return /* @__PURE__ */ import_react71.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "caret-up",
@@ -51719,16 +51734,16 @@ ${Select3}:hover & {
       height: "14",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react70.default.createElement("path", {
+    }, /* @__PURE__ */ import_react71.default.createElement("path", {
       d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
     }));
   };
   var TableArrowTop_default = TableArrowTop;
 
   // src/Components/common/icons/AssetsPageIcons/TableArrowBottom.tsx
-  var import_react71 = __toESM(require_react(), 1);
+  var import_react72 = __toESM(require_react(), 1);
   var TableArrowBottom = ({ color: color2 }) => {
-    return /* @__PURE__ */ import_react71.default.createElement("svg", {
+    return /* @__PURE__ */ import_react72.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "caret-down",
@@ -51736,7 +51751,7 @@ ${Select3}:hover & {
       height: "14",
       fill: color2,
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react71.default.createElement("path", {
+    }, /* @__PURE__ */ import_react72.default.createElement("path", {
       d: "M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
     }));
   };
@@ -51879,10 +51894,10 @@ ${Select3}:hover & {
   }
 
   // node_modules/react-big-calendar/dist/react-big-calendar.esm.js
-  var import_react84 = __toESM(require_react());
+  var import_react85 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/hook.js
-  var import_react72 = __toESM(require_react());
+  var import_react73 = __toESM(require_react());
 
   // node_modules/uncontrollable/lib/esm/utils.js
   var import_invariant = __toESM(require_browser());
@@ -51920,7 +51935,7 @@ ${Select3}:hover & {
   }
 
   // node_modules/uncontrollable/lib/esm/uncontrollable.js
-  var import_react73 = __toESM(require_react());
+  var import_react74 = __toESM(require_react());
 
   // node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js
   function componentWillMount() {
@@ -52091,12 +52106,12 @@ ${Select3}:hover & {
           var propValue = _this2.props[propName];
           newProps[propName] = propValue !== void 0 ? propValue : _this2.state.values[propName];
         });
-        return import_react73.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
+        return import_react74.default.createElement(Component3, _extends({}, props, newProps, this.handlers, {
           ref: innerRef || this.attachRef
         }));
       };
       return UncontrolledComponent2;
-    }(import_react73.default.Component);
+    }(import_react74.default.Component);
     polyfill(UncontrolledComponent);
     UncontrolledComponent.displayName = "Uncontrolled(" + displayName + ")";
     UncontrolledComponent.propTypes = _extends({
@@ -52110,9 +52125,9 @@ ${Select3}:hover & {
       };
     });
     var WrappedComponent = UncontrolledComponent;
-    if (import_react73.default.forwardRef) {
-      WrappedComponent = import_react73.default.forwardRef(function(props, ref) {
-        return import_react73.default.createElement(UncontrolledComponent, _extends({}, props, {
+    if (import_react74.default.forwardRef) {
+      WrappedComponent = import_react74.default.forwardRef(function(props, ref) {
+        return import_react74.default.createElement(UncontrolledComponent, _extends({}, props, {
           innerRef: ref,
           __source: {
             fileName: _jsxFileName,
@@ -52899,13 +52914,13 @@ ${Select3}:hover & {
   var addEventListener_default = addEventListener;
 
   // node_modules/@restart/hooks/esm/useEventCallback.js
-  var import_react75 = __toESM(require_react());
+  var import_react76 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useCommittedRef.js
-  var import_react74 = __toESM(require_react());
+  var import_react75 = __toESM(require_react());
   function useCommittedRef(value) {
-    var ref = (0, import_react74.useRef)(value);
-    (0, import_react74.useEffect)(function() {
+    var ref = (0, import_react75.useRef)(value);
+    (0, import_react75.useEffect)(function() {
       ref.current = value;
     }, [value]);
     return ref;
@@ -52915,31 +52930,31 @@ ${Select3}:hover & {
   // node_modules/@restart/hooks/esm/useEventCallback.js
   function useEventCallback(fn3) {
     var ref = useCommittedRef_default(fn3);
-    return (0, import_react75.useCallback)(function() {
+    return (0, import_react76.useCallback)(function() {
       return ref.current && ref.current.apply(ref, arguments);
     }, [ref]);
   }
 
   // node_modules/@restart/hooks/esm/useCallbackRef.js
-  var import_react76 = __toESM(require_react());
+  var import_react77 = __toESM(require_react());
   function useCallbackRef() {
-    return (0, import_react76.useState)(null);
+    return (0, import_react77.useState)(null);
   }
 
   // node_modules/react-overlays/esm/usePopper.js
-  var import_react79 = __toESM(require_react());
+  var import_react80 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useSafeState.js
-  var import_react78 = __toESM(require_react());
+  var import_react79 = __toESM(require_react());
 
   // node_modules/@restart/hooks/esm/useMounted.js
-  var import_react77 = __toESM(require_react());
+  var import_react78 = __toESM(require_react());
   function useMounted() {
-    var mounted = (0, import_react77.useRef)(true);
-    var isMounted = (0, import_react77.useRef)(function() {
+    var mounted = (0, import_react78.useRef)(true);
+    var isMounted = (0, import_react78.useRef)(function() {
       return mounted.current;
     });
-    (0, import_react77.useEffect)(function() {
+    (0, import_react78.useEffect)(function() {
       mounted.current = true;
       return function() {
         mounted.current = false;
@@ -52951,7 +52966,7 @@ ${Select3}:hover & {
   // node_modules/@restart/hooks/esm/useSafeState.js
   function useSafeState(state) {
     var isMounted = useMounted();
-    return [state[0], (0, import_react78.useCallback)(function(nextState) {
+    return [state[0], (0, import_react79.useCallback)(function(nextState) {
       if (!isMounted())
         return;
       return state[1](nextState);
@@ -54492,16 +54507,16 @@ ${Select3}:hover & {
   var EMPTY_MODIFIERS = [];
   function usePopper(referenceElement, popperElement, _temp) {
     var _ref3 = _temp === void 0 ? {} : _temp, _ref3$enabled = _ref3.enabled, enabled = _ref3$enabled === void 0 ? true : _ref3$enabled, _ref3$placement = _ref3.placement, placement = _ref3$placement === void 0 ? "bottom" : _ref3$placement, _ref3$strategy = _ref3.strategy, strategy = _ref3$strategy === void 0 ? "absolute" : _ref3$strategy, _ref3$modifiers = _ref3.modifiers, modifiers = _ref3$modifiers === void 0 ? EMPTY_MODIFIERS : _ref3$modifiers, config = _objectWithoutPropertiesLoose(_ref3, ["enabled", "placement", "strategy", "modifiers"]);
-    var popperInstanceRef = (0, import_react79.useRef)();
-    var update = (0, import_react79.useCallback)(function() {
+    var popperInstanceRef = (0, import_react80.useRef)();
+    var update = (0, import_react80.useCallback)(function() {
       var _popperInstanceRef$cu;
       (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
     }, []);
-    var forceUpdate = (0, import_react79.useCallback)(function() {
+    var forceUpdate = (0, import_react80.useCallback)(function() {
       var _popperInstanceRef$cu2;
       (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
     }, []);
-    var _useSafeState = useSafeState_default((0, import_react79.useState)({
+    var _useSafeState = useSafeState_default((0, import_react80.useState)({
       placement,
       update,
       forceUpdate,
@@ -54511,7 +54526,7 @@ ${Select3}:hover & {
         arrow: {}
       }
     })), popperState = _useSafeState[0], setState = _useSafeState[1];
-    var updateModifier = (0, import_react79.useMemo)(function() {
+    var updateModifier = (0, import_react80.useMemo)(function() {
       return {
         name: "updateStateModifier",
         enabled: true,
@@ -54536,7 +54551,7 @@ ${Select3}:hover & {
         }
       };
     }, [update, forceUpdate, setState]);
-    (0, import_react79.useEffect)(function() {
+    (0, import_react80.useEffect)(function() {
       if (!popperInstanceRef.current || !enabled)
         return;
       popperInstanceRef.current.setOptions({
@@ -54545,7 +54560,7 @@ ${Select3}:hover & {
         modifiers: [].concat(modifiers, [updateModifier, disabledApplyStylesModifier])
       });
     }, [strategy, placement, updateModifier, enabled]);
-    (0, import_react79.useEffect)(function() {
+    (0, import_react80.useEffect)(function() {
       if (!enabled || referenceElement == null || popperElement == null) {
         return void 0;
       }
@@ -54593,7 +54608,7 @@ ${Select3}:hover & {
   var listen_default = listen;
 
   // node_modules/react-overlays/esm/useRootClose.js
-  var import_react80 = __toESM(require_react());
+  var import_react81 = __toESM(require_react());
   var import_warning4 = __toESM(require_warning());
 
   // node_modules/react-overlays/esm/safeFindDOMNode.js
@@ -54625,9 +54640,9 @@ ${Select3}:hover & {
   };
   function useRootClose(ref, onRootClose, _temp) {
     var _ref = _temp === void 0 ? {} : _temp, disabled = _ref.disabled, _ref$clickTrigger = _ref.clickTrigger, clickTrigger = _ref$clickTrigger === void 0 ? "click" : _ref$clickTrigger;
-    var preventMouseRootCloseRef = (0, import_react80.useRef)(false);
+    var preventMouseRootCloseRef = (0, import_react81.useRef)(false);
     var onClose = onRootClose || noop5;
-    var handleMouseCapture = (0, import_react80.useCallback)(function(e2) {
+    var handleMouseCapture = (0, import_react81.useCallback)(function(e2) {
       var _e$composedPath$;
       var currentTarget = getRefTarget(ref);
       (0, import_warning4.default)(!!currentTarget, "RootClose captured a close event but does not have a ref to compare it to. useRootClose(), should be passed a ref that resolves to a DOM node");
@@ -54643,7 +54658,7 @@ ${Select3}:hover & {
         onClose(e2);
       }
     });
-    (0, import_react80.useEffect)(function() {
+    (0, import_react81.useEffect)(function() {
       if (disabled || ref == null)
         return void 0;
       var currentEvent = window.event;
@@ -54790,7 +54805,7 @@ ${Select3}:hover & {
   }
 
   // node_modules/react-overlays/esm/useWaitForDOMRef.js
-  var import_react81 = __toESM(require_react());
+  var import_react82 = __toESM(require_react());
   var resolveContainerRef = function resolveContainerRef2(ref) {
     var _ref;
     if (typeof document === "undefined")
@@ -54806,7 +54821,7 @@ ${Select3}:hover & {
     return null;
   };
   function useWaitForDOMRef(ref, onResolved) {
-    var _useState = (0, import_react81.useState)(function() {
+    var _useState = (0, import_react82.useState)(function() {
       return resolveContainerRef(ref);
     }), resolvedRef = _useState[0], setRef = _useState[1];
     if (!resolvedRef) {
@@ -54814,12 +54829,12 @@ ${Select3}:hover & {
       if (earlyRef)
         setRef(earlyRef);
     }
-    (0, import_react81.useEffect)(function() {
+    (0, import_react82.useEffect)(function() {
       if (onResolved && resolvedRef) {
         onResolved(resolvedRef);
       }
     }, [onResolved, resolvedRef]);
-    (0, import_react81.useEffect)(function() {
+    (0, import_react82.useEffect)(function() {
       var nextRef = resolveContainerRef(ref);
       if (nextRef !== resolvedRef) {
         setRef(nextRef);
@@ -54830,11 +54845,11 @@ ${Select3}:hover & {
 
   // node_modules/react-overlays/esm/Overlay.js
   var import_prop_types5 = __toESM(require_prop_types());
-  var import_react83 = __toESM(require_react());
+  var import_react84 = __toESM(require_react());
   var import_react_dom3 = __toESM(require_react_dom());
 
   // node_modules/@restart/hooks/esm/useMergedRefs.js
-  var import_react82 = __toESM(require_react());
+  var import_react83 = __toESM(require_react());
   var toFnRef = function toFnRef2(ref) {
     return !ref || typeof ref === "function" ? ref : function(value) {
       ref.current = value;
@@ -54851,21 +54866,21 @@ ${Select3}:hover & {
     };
   }
   function useMergedRefs(refA, refB) {
-    return (0, import_react82.useMemo)(function() {
+    return (0, import_react83.useMemo)(function() {
       return mergeRefs(refA, refB);
     }, [refA, refB]);
   }
   var useMergedRefs_default = useMergedRefs;
 
   // node_modules/react-overlays/esm/Overlay.js
-  var Overlay = /* @__PURE__ */ import_react83.default.forwardRef(function(props, outerRef) {
+  var Overlay = /* @__PURE__ */ import_react84.default.forwardRef(function(props, outerRef) {
     var flip2 = props.flip, offset3 = props.offset, placement = props.placement, _props$containerPaddi = props.containerPadding, containerPadding = _props$containerPaddi === void 0 ? 5 : _props$containerPaddi, _props$popperConfig = props.popperConfig, popperConfig = _props$popperConfig === void 0 ? {} : _props$popperConfig, Transition = props.transition;
     var _useCallbackRef = useCallbackRef(), rootElement = _useCallbackRef[0], attachRef = _useCallbackRef[1];
     var _useCallbackRef2 = useCallbackRef(), arrowElement = _useCallbackRef2[0], attachArrowRef = _useCallbackRef2[1];
     var mergedRef = useMergedRefs_default(attachRef, outerRef);
     var container = useWaitForDOMRef(props.container);
     var target = useWaitForDOMRef(props.target);
-    var _useState = (0, import_react83.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
+    var _useState = (0, import_react84.useState)(!props.show), exited = _useState[0], setExited = _useState[1];
     var _usePopper = usePopper_default(target, rootElement, mergeOptionsWithPopperConfig({
       placement,
       enableEvents: !!props.show,
@@ -54908,7 +54923,7 @@ ${Select3}:hover & {
     }));
     if (Transition) {
       var onExit = props.onExit, onExiting = props.onExiting, onEnter = props.onEnter, onEntering = props.onEntering, onEntered = props.onEntered;
-      child = /* @__PURE__ */ import_react83.default.createElement(Transition, {
+      child = /* @__PURE__ */ import_react84.default.createElement(Transition, {
         "in": props.show,
         appear: true,
         onExit,
@@ -57413,7 +57428,7 @@ ${Select3}:hover & {
   }
   function useClickOutside(_ref) {
     var ref = _ref.ref, callback2 = _ref.callback;
-    (0, import_react84.useEffect)(function() {
+    (0, import_react85.useEffect)(function() {
       var handleClickOutside = function handleClickOutside2(e2) {
         if (ref.current && !ref.current.contains(e2.target)) {
           callback2();
@@ -57445,10 +57460,10 @@ ${Select3}:hover & {
         var allDay = accessors.allDay(event);
         var showAsAllDay = isAllDay || allDay || localizer.diff(start2, localizer.ceil(end2, "day"), "day") > 1;
         var userProps = getters.eventProp(event, start2, end2, selected);
-        var content = /* @__PURE__ */ import_react84.default.createElement("div", {
+        var content = /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-event-content",
           title: tooltip || void 0
-        }, Event2 ? /* @__PURE__ */ import_react84.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react85.default.createElement(Event2, {
           event,
           continuesPrior: continuesPrior2,
           continuesAfter: continuesAfter2,
@@ -57458,9 +57473,9 @@ ${Select3}:hover & {
           slotStart,
           slotEnd
         }) : title);
-        return /* @__PURE__ */ import_react84.default.createElement(EventWrapper, Object.assign({}, this.props, {
+        return /* @__PURE__ */ import_react85.default.createElement(EventWrapper, Object.assign({}, this.props, {
           type: "date"
-        }), /* @__PURE__ */ import_react84.default.createElement("div", Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react85.default.createElement("div", Object.assign({}, props, {
           tabIndex: 0,
           style: _objectSpread22(_objectSpread22({}, userProps.style), style2),
           className: clsx_m_default("rbc-event", className, userProps.className, {
@@ -57482,7 +57497,7 @@ ${Select3}:hover & {
       }
     }]);
     return EventCell2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   function isSelected(event, selected) {
     if (!event || selected == null)
       return false;
@@ -57566,7 +57581,7 @@ ${Select3}:hover & {
       ref: popperRef,
       callback: show
     });
-    (0, import_react84.useLayoutEffect)(function() {
+    (0, import_react85.useLayoutEffect)(function() {
       var _getPosition = getPosition({
         target,
         offset: offset3,
@@ -57580,14 +57595,14 @@ ${Select3}:hover & {
     var style2 = {
       minWidth: width + width / 2
     };
-    return /* @__PURE__ */ import_react84.default.createElement("div", {
+    return /* @__PURE__ */ import_react85.default.createElement("div", {
       style: style2,
       className: "rbc-overlay",
       ref: popperRef
-    }, /* @__PURE__ */ import_react84.default.createElement("div", {
+    }, /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "rbc-overlay-header"
     }, localizer.format(slotStart, "dayHeaderFormat")), events.map(function(event, idx) {
-      return /* @__PURE__ */ import_react84.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react85.default.createElement(EventCell, {
         key: idx,
         type: "popup",
         localizer,
@@ -57613,8 +57628,8 @@ ${Select3}:hover & {
       });
     }));
   }
-  var Popup2 = /* @__PURE__ */ import_react84.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react84.default.createElement(Pop, Object.assign({}, props, {
+  var Popup2 = /* @__PURE__ */ import_react85.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react85.default.createElement(Pop, Object.assign({}, props, {
       popperRef: ref
     }));
   });
@@ -57641,7 +57656,7 @@ ${Select3}:hover & {
   };
   function CalOverlay(_ref) {
     var containerRef = _ref.containerRef, _ref$popupOffset = _ref.popupOffset, popupOffset = _ref$popupOffset === void 0 ? 5 : _ref$popupOffset, overlay = _ref.overlay, accessors = _ref.accessors, localizer = _ref.localizer, components = _ref.components, getters = _ref.getters, selected = _ref.selected, handleSelectEvent = _ref.handleSelectEvent, handleDoubleClickEvent = _ref.handleDoubleClickEvent, handleKeyPressEvent = _ref.handleKeyPressEvent, handleDragStart = _ref.handleDragStart, onHide2 = _ref.onHide, overlayDisplay = _ref.overlayDisplay;
-    var popperRef = (0, import_react84.useRef)(null);
+    var popperRef = (0, import_react85.useRef)(null);
     if (!overlay.position)
       return null;
     var offset3 = popupOffset;
@@ -57652,7 +57667,7 @@ ${Select3}:hover & {
       };
     }
     var position2 = overlay.position, events = overlay.events, date2 = overlay.date, end2 = overlay.end;
-    return /* @__PURE__ */ import_react84.default.createElement(Overlay_default, {
+    return /* @__PURE__ */ import_react85.default.createElement(Overlay_default, {
       rootClose: true,
       flip: true,
       show: true,
@@ -57661,7 +57676,7 @@ ${Select3}:hover & {
       target: overlay.target
     }, function(_ref2) {
       var props = _ref2.props;
-      return /* @__PURE__ */ import_react84.default.createElement(Popup2, Object.assign({}, props, {
+      return /* @__PURE__ */ import_react85.default.createElement(Popup2, Object.assign({}, props, {
         containerRef,
         ref: popperRef,
         target: overlay.target,
@@ -57683,8 +57698,8 @@ ${Select3}:hover & {
       }));
     });
   }
-  var PopOverlay = /* @__PURE__ */ import_react84.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react84.default.createElement(CalOverlay, Object.assign({}, props, {
+  var PopOverlay = /* @__PURE__ */ import_react85.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react85.default.createElement(CalOverlay, Object.assign({}, props, {
       containerRef: ref
     }));
   });
@@ -58103,7 +58118,7 @@ ${Select3}:hover & {
       _this.state = {
         selecting: false
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react84.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react85.createRef)();
       return _this;
     }
     _createClass2(BackgroundCells2, [{
@@ -58130,17 +58145,17 @@ ${Select3}:hover & {
         var _this$props = this.props, range3 = _this$props.range, getNow2 = _this$props.getNow, getters = _this$props.getters, currentDate = _this$props.date, Wrapper19 = _this$props.components.dateCellWrapper, localizer = _this$props.localizer;
         var _this$state = this.state, selecting = _this$state.selecting, startIdx = _this$state.startIdx, endIdx = _this$state.endIdx;
         var current = getNow2();
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row-bg",
           ref: this.containerRef
         }, range3.map(function(date2, index2) {
           var selected = selecting && index2 >= startIdx && index2 <= endIdx;
           var _getters$dayProp = getters.dayProp(date2), className = _getters$dayProp.className, style2 = _getters$dayProp.style;
-          return /* @__PURE__ */ import_react84.default.createElement(Wrapper19, {
+          return /* @__PURE__ */ import_react85.default.createElement(Wrapper19, {
             key: index2,
             value: date2,
             range: range3
-          }, /* @__PURE__ */ import_react84.default.createElement("div", {
+          }, /* @__PURE__ */ import_react85.default.createElement("div", {
             style: style2,
             className: clsx_m_default("rbc-day-bg", className, selected && "rbc-selected-cell", localizer.isSameDate(date2, current) && "rbc-today", currentDate && localizer.neq(currentDate, date2, "month") && "rbc-off-range-bg")
           }));
@@ -58243,7 +58258,7 @@ ${Select3}:hover & {
       }
     }]);
     return BackgroundCells2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   var EventRowMixin = {
     propTypes: {
       slotMetrics: import_prop_types6.default.object.isRequired,
@@ -58267,7 +58282,7 @@ ${Select3}:hover & {
       var accessors = props.accessors, getters = props.getters, onSelect = props.onSelect, onDoubleClick = props.onDoubleClick, onKeyPress = props.onKeyPress, localizer = props.localizer, slotMetrics = props.slotMetrics, components = props.components, resizable = props.resizable;
       var continuesPrior2 = slotMetrics.continuesPrior(event);
       var continuesAfter2 = slotMetrics.continuesAfter(event);
-      return /* @__PURE__ */ import_react84.default.createElement(EventCell, {
+      return /* @__PURE__ */ import_react85.default.createElement(EventCell, {
         event,
         getters,
         localizer,
@@ -58287,7 +58302,7 @@ ${Select3}:hover & {
     renderSpan: function renderSpan(slots, len, key) {
       var content = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : " ";
       var per = Math.abs(len) / slots * 100 + "%";
-      return /* @__PURE__ */ import_react84.default.createElement("div", {
+      return /* @__PURE__ */ import_react85.default.createElement("div", {
         key,
         className: "rbc-row-segment",
         style: {
@@ -58311,7 +58326,7 @@ ${Select3}:hover & {
         var _this = this;
         var _this$props = this.props, segments = _this$props.segments, slots = _this$props.slotMetrics.slots, className = _this$props.className;
         var lastEnd = 1;
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default(className, "rbc-row")
         }, segments.reduce(function(row, _ref, li) {
           var event = _ref.event, left2 = _ref.left, right2 = _ref.right, span = _ref.span;
@@ -58327,7 +58342,7 @@ ${Select3}:hover & {
       }
     }]);
     return EventRow2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   EventRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   function endOfRange(_ref) {
     var dateRange = _ref.dateRange, _ref$unit = _ref.unit, unit = _ref$unit === void 0 ? "day" : _ref$unit, localizer = _ref.localizer;
@@ -58463,7 +58478,7 @@ ${Select3}:hover & {
             lastEnd = current = current + 1;
           }
         }
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row"
         }, row);
       }
@@ -58482,7 +58497,7 @@ ${Select3}:hover & {
         var _this = this;
         var localizer = this.props.localizer;
         var count = eventsInSlot(segments, slot);
-        return count ? /* @__PURE__ */ import_react84.default.createElement("button", {
+        return count ? /* @__PURE__ */ import_react85.default.createElement("button", {
           type: "button",
           key: "sm_" + slot,
           className: clsx_m_default("rbc-button-link", "rbc-show-more"),
@@ -58500,11 +58515,11 @@ ${Select3}:hover & {
       }
     }]);
     return EventEndingRow2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   EventEndingRow.defaultProps = _objectSpread22({}, EventRowMixin.defaultProps);
   var ScrollableWeekWrapper = function ScrollableWeekWrapper2(_ref) {
     var children = _ref.children;
-    return /* @__PURE__ */ import_react84.default.createElement("div", {
+    return /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "rbc-row-content-scroll-container"
     }, children);
   };
@@ -58603,28 +58618,28 @@ ${Select3}:hover & {
       };
       _this.renderDummy = function() {
         var _this$props4 = _this.props, className = _this$props4.className, range3 = _this$props4.range, renderHeader = _this$props4.renderHeader, showAllEvents = _this$props4.showAllEvents;
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className,
           ref: _this.containerRef
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable")
-        }, renderHeader && /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row",
           ref: _this.headingRowRef
-        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, range3.map(_this.renderHeadingCell)), /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row",
           ref: _this.eventRowRef
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row-segment"
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-event"
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-event-content"
         }, "\xA0"))))));
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react84.createRef)();
-      _this.headingRowRef = /* @__PURE__ */ (0, import_react84.createRef)();
-      _this.eventRowRef = /* @__PURE__ */ (0, import_react84.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react85.createRef)();
+      _this.headingRowRef = /* @__PURE__ */ (0, import_react85.createRef)();
+      _this.eventRowRef = /* @__PURE__ */ (0, import_react85.createRef)();
       _this.slotMetrics = getSlotMetrics$1();
       return _this;
     }
@@ -58660,11 +58675,11 @@ ${Select3}:hover & {
           slotMetrics: metrics,
           resizable
         };
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className,
           role: "rowgroup",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react84.default.createElement(BackgroundCells, {
+        }, /* @__PURE__ */ import_react85.default.createElement(BackgroundCells, {
           localizer,
           date: date2,
           getNow: getNow2,
@@ -58679,34 +58694,34 @@ ${Select3}:hover & {
           components,
           longPressThreshold,
           resourceId
-        }), /* @__PURE__ */ import_react84.default.createElement("div", {
+        }), /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default("rbc-row-content", showAllEvents && "rbc-row-content-scrollable"),
           role: "row"
-        }, renderHeader && /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, renderHeader && /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row ",
           ref: this.headingRowRef
-        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react84.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react84.default.createElement(WeekWrapper, Object.assign({
+        }, range3.map(this.renderHeadingCell)), /* @__PURE__ */ import_react85.default.createElement(ScrollableWeekComponent, null, /* @__PURE__ */ import_react85.default.createElement(WeekWrapper, Object.assign({
           isAllDay
         }, eventRowProps), levels.map(function(segs, idx) {
-          return /* @__PURE__ */ import_react84.default.createElement(EventRow, Object.assign({
+          return /* @__PURE__ */ import_react85.default.createElement(EventRow, Object.assign({
             key: idx,
             segments: segs
           }, eventRowProps));
-        }), !!extra.length && /* @__PURE__ */ import_react84.default.createElement(EventEndingRow, Object.assign({
+        }), !!extra.length && /* @__PURE__ */ import_react85.default.createElement(EventEndingRow, Object.assign({
           segments: extra,
           onShowMore: this.handleShowMore
         }, eventRowProps))))));
       }
     }]);
     return DateContentRow2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   DateContentRow.defaultProps = {
     minRows: 0,
     maxRows: Infinity
   };
   var Header2 = function Header3(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react84.default.createElement("span", {
+    return /* @__PURE__ */ import_react85.default.createElement("span", {
       role: "columnheader",
       "aria-sort": "none"
     }, label);
@@ -58714,9 +58729,9 @@ ${Select3}:hover & {
   var DateHeader = function DateHeader2(_ref) {
     var label = _ref.label, drilldownView = _ref.drilldownView, onDrillDown = _ref.onDrillDown;
     if (!drilldownView) {
-      return /* @__PURE__ */ import_react84.default.createElement("span", null, label);
+      return /* @__PURE__ */ import_react85.default.createElement("span", null, label);
     }
-    return /* @__PURE__ */ import_react84.default.createElement("button", {
+    return /* @__PURE__ */ import_react85.default.createElement("button", {
       type: "button",
       className: "rbc-button-link",
       onClick: onDrillDown,
@@ -58749,7 +58764,7 @@ ${Select3}:hover & {
         weeksEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react84.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react85.default.createElement(DateContentRow, {
           key: weekIdx,
           ref: weekIdx === 0 ? _this.slotRowRef : void 0,
           container: _this.getContainer,
@@ -58786,10 +58801,10 @@ ${Select3}:hover & {
         var drilldownView = getDrilldownView(date2);
         var label = localizer.format(date2, "dateFormat");
         var DateHeaderComponent = _this.props.components.dateHeader || DateHeader;
-        return /* @__PURE__ */ import_react84.default.createElement("div", Object.assign({}, props, {
+        return /* @__PURE__ */ import_react85.default.createElement("div", Object.assign({}, props, {
           className: clsx_m_default(className, isOffRange && "rbc-off-range", isCurrent && "rbc-current"),
           role: "cell"
-        }), /* @__PURE__ */ import_react84.default.createElement(DateHeaderComponent, {
+        }), /* @__PURE__ */ import_react85.default.createElement(DateHeaderComponent, {
           label,
           date: date2,
           drilldownView,
@@ -58860,8 +58875,8 @@ ${Select3}:hover & {
         needLimitMeasure: true,
         date: null
       };
-      _this.containerRef = /* @__PURE__ */ (0, import_react84.createRef)();
-      _this.slotRowRef = /* @__PURE__ */ (0, import_react84.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react85.createRef)();
+      _this.slotRowRef = /* @__PURE__ */ (0, import_react85.createRef)();
       _this._bgRows = [];
       _this._pendingSelection = [];
       return _this;
@@ -58900,12 +58915,12 @@ ${Select3}:hover & {
       value: function render() {
         var _this$props4 = this.props, date2 = _this$props4.date, localizer = _this$props4.localizer, className = _this$props4.className, month2 = localizer.visibleDays(date2, localizer), weeks = chunk_default(month2, 7);
         this._weekCount = weeks.length;
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default("rbc-month-view", className),
           role: "table",
           "aria-label": "Month View",
           ref: this.containerRef
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-row rbc-month-header",
           role: "row"
         }, this.renderHeaders(weeks[0])), weeks.map(this.renderWeek), this.props.popup && this.renderOverlay());
@@ -58918,10 +58933,10 @@ ${Select3}:hover & {
         var last2 = row[row.length - 1];
         var HeaderComponent = components.header || Header2;
         return localizer.range(first, last2, "day").map(function(day2, idx) {
-          return /* @__PURE__ */ import_react84.default.createElement("div", {
+          return /* @__PURE__ */ import_react85.default.createElement("div", {
             key: "header_" + idx,
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react84.default.createElement(HeaderComponent, {
+          }, /* @__PURE__ */ import_react85.default.createElement(HeaderComponent, {
             date: day2,
             localizer,
             label: localizer.format(day2, "weekdayFormat")
@@ -58939,7 +58954,7 @@ ${Select3}:hover & {
             overlay: null
           });
         };
-        return /* @__PURE__ */ import_react84.default.createElement(PopOverlay, {
+        return /* @__PURE__ */ import_react85.default.createElement(PopOverlay, {
           overlay,
           accessors,
           localizer,
@@ -59002,7 +59017,7 @@ ${Select3}:hover & {
       }
     }]);
     return MonthView2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   MonthView.range = function(date2, _ref3) {
     var localizer = _ref3.localizer;
     var start2 = localizer.firstVisibleDay(date2, localizer);
@@ -59387,22 +59402,22 @@ ${Select3}:hover & {
         _this$props$component = _this$props$component === void 0 ? {} : _this$props$component;
         var _this$props$component2 = _this$props$component.timeSlotWrapper, Wrapper19 = _this$props$component2 === void 0 ? NoopWrapper : _this$props$component2;
         var groupProps = getters ? getters.slotGroupProp() : {};
-        return /* @__PURE__ */ import_react84.default.createElement("div", Object.assign({
+        return /* @__PURE__ */ import_react85.default.createElement("div", Object.assign({
           className: "rbc-timeslot-group"
         }, groupProps), group.map(function(value, idx) {
           var slotProps = getters ? getters.slotProp(value, resource) : {};
-          return /* @__PURE__ */ import_react84.default.createElement(Wrapper19, {
+          return /* @__PURE__ */ import_react85.default.createElement(Wrapper19, {
             key: idx,
             value,
             resource
-          }, /* @__PURE__ */ import_react84.default.createElement("div", Object.assign({}, slotProps, {
+          }, /* @__PURE__ */ import_react85.default.createElement("div", Object.assign({}, slotProps, {
             className: clsx_m_default("rbc-time-slot", slotProps.className)
           }), renderSlot && renderSlot(value, idx)));
         }));
       }
     }]);
     return TimeSlotGroup2;
-  }(import_react84.Component);
+  }(import_react85.Component);
   function stringifyPercent(v2) {
     return typeof v2 === "string" ? v2 : v2 + "%";
   }
@@ -59414,13 +59429,13 @@ ${Select3}:hover & {
     var start2 = accessors.start(event);
     var userProps = getters.eventProp(event, start2, end2, selected);
     var height2 = style2.height, top2 = style2.top, width = style2.width, xOffset = style2.xOffset;
-    var inner = [/* @__PURE__ */ import_react84.default.createElement("div", {
+    var inner = [/* @__PURE__ */ import_react85.default.createElement("div", {
       key: "1",
       className: "rbc-event-label"
-    }, label), /* @__PURE__ */ import_react84.default.createElement("div", {
+    }, label), /* @__PURE__ */ import_react85.default.createElement("div", {
       key: "2",
       className: "rbc-event-content"
-    }, Event2 ? /* @__PURE__ */ import_react84.default.createElement(Event2, {
+    }, Event2 ? /* @__PURE__ */ import_react85.default.createElement(Event2, {
       event,
       title
     }) : title)];
@@ -59433,9 +59448,9 @@ ${Select3}:hover & {
       width: stringifyPercent(width),
       height: stringifyPercent(height2)
     }, rtl ? "right" : "left", stringifyPercent(xOffset)));
-    return /* @__PURE__ */ import_react84.default.createElement(EventWrapper, Object.assign({
+    return /* @__PURE__ */ import_react85.default.createElement(EventWrapper, Object.assign({
       type: "time"
-    }, props), /* @__PURE__ */ import_react84.default.createElement("div", {
+    }, props), /* @__PURE__ */ import_react85.default.createElement("div", {
       onClick,
       onDoubleClick,
       style: eventStyle,
@@ -59450,14 +59465,14 @@ ${Select3}:hover & {
   }
   var DayColumnWrapper = function DayColumnWrapper2(_ref) {
     var children = _ref.children, className = _ref.className, style2 = _ref.style, innerRef = _ref.innerRef;
-    return /* @__PURE__ */ import_react84.default.createElement("div", {
+    return /* @__PURE__ */ import_react85.default.createElement("div", {
       className,
       style: style2,
       ref: innerRef
     }, children);
   };
-  var DayColumnWrapper$1 = /* @__PURE__ */ import_react84.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react84.default.createElement(DayColumnWrapper, Object.assign({}, props, {
+  var DayColumnWrapper$1 = /* @__PURE__ */ import_react85.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react85.default.createElement(DayColumnWrapper, Object.assign({}, props, {
       innerRef: ref
     }));
   });
@@ -59511,7 +59526,7 @@ ${Select3}:hover & {
             }, format3);
           var continuesPrior2 = startsBeforeDay || slotMetrics.startsBefore(start2);
           var continuesAfter2 = startsAfterDay || slotMetrics.startsAfter(end2);
-          return /* @__PURE__ */ import_react84.default.createElement(TimeGridEvent, {
+          return /* @__PURE__ */ import_react85.default.createElement(TimeGridEvent, {
             style: style2,
             event,
             label,
@@ -59668,7 +59683,7 @@ ${Select3}:hover & {
         notify(_this.props.onKeyPressEvent, args);
       };
       _this.slotMetrics = getSlotMetrics(_this.props);
-      _this.containerRef = /* @__PURE__ */ (0, import_react84.createRef)();
+      _this.containerRef = /* @__PURE__ */ (0, import_react85.createRef)();
       return _this;
     }
     _createClass2(DayColumn2, [{
@@ -59756,41 +59771,41 @@ ${Select3}:hover & {
         };
         var _dayProp = dayProp(max3), className = _dayProp.className, style2 = _dayProp.style;
         var DayColumnWrapperComponent = components.dayColumnWrapper || DayColumnWrapper$1;
-        return /* @__PURE__ */ import_react84.default.createElement(DayColumnWrapperComponent, {
+        return /* @__PURE__ */ import_react85.default.createElement(DayColumnWrapperComponent, {
           ref: this.containerRef,
           date: date2,
           style: style2,
           className: clsx_m_default(className, "rbc-day-slot", "rbc-time-column", isNow && "rbc-now", isNow && "rbc-today", selecting && "rbc-slot-selecting"),
           slotMetrics
         }, slotMetrics.groups.map(function(grp, idx) {
-          return /* @__PURE__ */ import_react84.default.createElement(TimeSlotGroup, {
+          return /* @__PURE__ */ import_react85.default.createElement(TimeSlotGroup, {
             key: idx,
             group: grp,
             resource,
             getters,
             components
           });
-        }), /* @__PURE__ */ import_react84.default.createElement(EventContainer, {
+        }), /* @__PURE__ */ import_react85.default.createElement(EventContainer, {
           localizer,
           resource,
           accessors,
           getters,
           components,
           slotMetrics
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default("rbc-events-container", rtl && "rtl")
         }, this.renderEvents({
           events: this.props.backgroundEvents,
           isBackgroundEvent: true
         }), this.renderEvents({
           events: this.props.events
-        }))), selecting && /* @__PURE__ */ import_react84.default.createElement("div", {
+        }))), selecting && /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-slot-selection",
           style: {
             top: top2,
             height: height2
           }
-        }, /* @__PURE__ */ import_react84.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("span", null, localizer.format(selectDates, "selectRangeFormat"))), isNow && this.intervalTriggered && /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-current-time-indicator",
           style: {
             top: "".concat(this.state.timeIndicatorPosition, "%")
@@ -59799,7 +59814,7 @@ ${Select3}:hover & {
       }
     }]);
     return DayColumn2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   DayColumn.defaultProps = {
     dragThroughEvents: true,
     timeslots: 2
@@ -59819,21 +59834,21 @@ ${Select3}:hover & {
   }
   var TimeGutter = function TimeGutter2(_ref2) {
     var min3 = _ref2.min, max3 = _ref2.max, timeslots = _ref2.timeslots, step = _ref2.step, localizer = _ref2.localizer, getNow2 = _ref2.getNow, resource = _ref2.resource, components = _ref2.components, getters = _ref2.getters, gutterRef = _ref2.gutterRef;
-    var _useMemo = (0, import_react84.useMemo)(function() {
+    var _useMemo = (0, import_react85.useMemo)(function() {
       return adjustForDST({
         min: min3,
         max: max3,
         localizer
       });
     }, [min3 === null || min3 === void 0 ? void 0 : min3.toISOString(), max3 === null || max3 === void 0 ? void 0 : max3.toISOString(), localizer]), start2 = _useMemo.start, end2 = _useMemo.end;
-    var _useState = (0, import_react84.useState)(getSlotMetrics({
+    var _useState = (0, import_react85.useState)(getSlotMetrics({
       min: start2,
       max: end2,
       timeslots,
       step,
       localizer
     })), _useState2 = _slicedToArray2(_useState, 2), slotMetrics = _useState2[0], setSlotMetrics = _useState2[1];
-    (0, import_react84.useEffect)(function() {
+    (0, import_react85.useEffect)(function() {
       if (slotMetrics) {
         setSlotMetrics(slotMetrics.update({
           min: start2,
@@ -59844,19 +59859,19 @@ ${Select3}:hover & {
         }));
       }
     }, [start2 === null || start2 === void 0 ? void 0 : start2.toISOString(), end2 === null || end2 === void 0 ? void 0 : end2.toISOString(), timeslots, step]);
-    var renderSlot = (0, import_react84.useCallback)(function(value, idx) {
+    var renderSlot = (0, import_react85.useCallback)(function(value, idx) {
       if (idx)
         return null;
       var isNow = slotMetrics.dateIsInGroup(getNow2(), idx);
-      return /* @__PURE__ */ import_react84.default.createElement("span", {
+      return /* @__PURE__ */ import_react85.default.createElement("span", {
         className: clsx_m_default("rbc-label", isNow && "rbc-now")
       }, localizer.format(value, "timeGutterFormat"));
     }, [slotMetrics, localizer, getNow2]);
-    return /* @__PURE__ */ import_react84.default.createElement("div", {
+    return /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "rbc-time-gutter rbc-time-column",
       ref: gutterRef
     }, slotMetrics.groups.map(function(grp, idx) {
-      return /* @__PURE__ */ import_react84.default.createElement(TimeSlotGroup, {
+      return /* @__PURE__ */ import_react85.default.createElement(TimeSlotGroup, {
         key: idx,
         group: grp,
         resource,
@@ -59866,14 +59881,14 @@ ${Select3}:hover & {
       });
     }));
   };
-  var TimeGutter$1 = /* @__PURE__ */ import_react84.default.forwardRef(function(props, ref) {
-    return /* @__PURE__ */ import_react84.default.createElement(TimeGutter, Object.assign({
+  var TimeGutter$1 = /* @__PURE__ */ import_react85.default.forwardRef(function(props, ref) {
+    return /* @__PURE__ */ import_react85.default.createElement(TimeGutter, Object.assign({
       gutterRef: ref
     }, props));
   });
   var ResourceHeader = function ResourceHeader2(_ref) {
     var label = _ref.label;
-    return /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, label);
+    return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, label);
   };
   var TimeGridHeader = /* @__PURE__ */ function(_React$Component) {
     _inherits2(TimeGridHeader2, _React$Component);
@@ -59895,7 +59910,7 @@ ${Select3}:hover & {
         var eventsToDisplay = resource ? events.filter(function(event) {
           return accessors.resource(event) === resourceId;
         }) : events;
-        return /* @__PURE__ */ import_react84.default.createElement(DateContentRow, {
+        return /* @__PURE__ */ import_react85.default.createElement(DateContentRow, {
           isAllDay: true,
           rtl,
           getNow: getNow2,
@@ -59930,22 +59945,22 @@ ${Select3}:hover & {
           var drilldownView = getDrilldownView(date2);
           var label = localizer.format(date2, "dayFormat");
           var _dayProp = dayProp(date2), className = _dayProp.className, style2 = _dayProp.style;
-          var header = /* @__PURE__ */ import_react84.default.createElement(HeaderComponent, {
+          var header = /* @__PURE__ */ import_react85.default.createElement(HeaderComponent, {
             date: date2,
             label,
             localizer
           });
-          return /* @__PURE__ */ import_react84.default.createElement("div", {
+          return /* @__PURE__ */ import_react85.default.createElement("div", {
             key: i2,
             style: style2,
             className: clsx_m_default("rbc-header", className, localizer.isSameDate(date2, today) && "rbc-today")
-          }, drilldownView ? /* @__PURE__ */ import_react84.default.createElement("button", {
+          }, drilldownView ? /* @__PURE__ */ import_react85.default.createElement("button", {
             type: "button",
             className: "rbc-button-link",
             onClick: function onClick(e2) {
               return _this2.handleHeaderClick(date2, drilldownView, e2);
             }
-          }, header) : /* @__PURE__ */ import_react84.default.createElement("span", null, header));
+          }, header) : /* @__PURE__ */ import_react85.default.createElement("span", null, header));
         });
       }
     }, {
@@ -59958,34 +59973,34 @@ ${Select3}:hover & {
           style2[rtl ? "marginLeft" : "marginRight"] = "".concat(scrollbarSize(), "px");
         }
         var groupedEvents = resources.groupEvents(events);
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           style: style2,
           ref: scrollRef,
           className: clsx_m_default("rbc-time-header", isOverflowing && "rbc-overflowing")
-        }, /* @__PURE__ */ import_react84.default.createElement("div", {
+        }, /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-label rbc-time-header-gutter",
           style: {
             width,
             minWidth: width,
             maxWidth: width
           }
-        }, TimeGutterHeader && /* @__PURE__ */ import_react84.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
+        }, TimeGutterHeader && /* @__PURE__ */ import_react85.default.createElement(TimeGutterHeader, null)), resources.map(function(_ref, idx) {
           var _ref2 = _slicedToArray2(_ref, 2), id = _ref2[0], resource = _ref2[1];
-          return /* @__PURE__ */ import_react84.default.createElement("div", {
+          return /* @__PURE__ */ import_react85.default.createElement("div", {
             className: "rbc-time-header-content",
             key: id || idx
-          }, resource && /* @__PURE__ */ import_react84.default.createElement("div", {
+          }, resource && /* @__PURE__ */ import_react85.default.createElement("div", {
             className: "rbc-row rbc-row-resource",
             key: "resource_".concat(idx)
-          }, /* @__PURE__ */ import_react84.default.createElement("div", {
+          }, /* @__PURE__ */ import_react85.default.createElement("div", {
             className: "rbc-header"
-          }, /* @__PURE__ */ import_react84.default.createElement(ResourceHeaderComponent, {
+          }, /* @__PURE__ */ import_react85.default.createElement(ResourceHeaderComponent, {
             index: idx,
             label: accessors.resourceTitle(resource),
             resource
-          }))), /* @__PURE__ */ import_react84.default.createElement("div", {
+          }))), /* @__PURE__ */ import_react85.default.createElement("div", {
             className: "rbc-row rbc-time-header-cell".concat(range3.length <= 1 ? " rbc-time-header-cell-single-day" : "")
-          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react84.default.createElement(DateContentRow, {
+          }, _this3.renderHeaderCells(range3)), /* @__PURE__ */ import_react85.default.createElement(DateContentRow, {
             isAllDay: true,
             rtl,
             getNow: getNow2,
@@ -60011,7 +60026,7 @@ ${Select3}:hover & {
       }
     }]);
     return TimeGridHeader2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   var NONE = {};
   function Resources(resources, accessors) {
     return {
@@ -60095,10 +60110,10 @@ ${Select3}:hover & {
         gutterWidth: void 0,
         isOverflowing: null
       };
-      _this.scrollRef = /* @__PURE__ */ import_react84.default.createRef();
-      _this.contentRef = /* @__PURE__ */ import_react84.default.createRef();
+      _this.scrollRef = /* @__PURE__ */ import_react85.default.createRef();
+      _this.contentRef = /* @__PURE__ */ import_react85.default.createRef();
       _this._scrollRatio = null;
-      _this.gutterRef = /* @__PURE__ */ (0, import_react84.createRef)();
+      _this.gutterRef = /* @__PURE__ */ (0, import_react85.createRef)();
       return _this;
     }
     _createClass2(TimeGrid2, [{
@@ -60148,7 +60163,7 @@ ${Select3}:hover & {
             var daysBackgroundEvents = (groupedBackgroundEvents.get(id) || []).filter(function(event) {
               return localizer.inRange(date2, accessors.start(event), accessors.end(event), "day");
             });
-            return /* @__PURE__ */ import_react84.default.createElement(DayColumn, Object.assign({}, _this2.props, {
+            return /* @__PURE__ */ import_react85.default.createElement(DayColumn, Object.assign({}, _this2.props, {
               localizer,
               min: localizer.merge(date2, min3),
               max: localizer.merge(date2, max3),
@@ -60190,9 +60205,9 @@ ${Select3}:hover & {
         allDayEvents.sort(function(a2, b2) {
           return sortEvents(a2, b2, accessors, localizer);
         });
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: clsx_m_default("rbc-time-view", resources && "rbc-time-view-resources")
-        }, /* @__PURE__ */ import_react84.default.createElement(TimeGridHeader, {
+        }, /* @__PURE__ */ import_react85.default.createElement(TimeGridHeader, {
           range: range3,
           events: allDayEvents,
           width,
@@ -60215,11 +60230,11 @@ ${Select3}:hover & {
           onDrillDown: this.props.onDrillDown,
           getDrilldownView: this.props.getDrilldownView,
           resizable
-        }), /* @__PURE__ */ import_react84.default.createElement("div", {
+        }), /* @__PURE__ */ import_react85.default.createElement("div", {
           ref: this.contentRef,
           className: "rbc-time-content",
           onScroll: this.handleScroll
-        }, /* @__PURE__ */ import_react84.default.createElement(TimeGutter$1, {
+        }, /* @__PURE__ */ import_react85.default.createElement(TimeGutter$1, {
           date: start2,
           ref: this.gutterRef,
           localizer,
@@ -60276,7 +60291,7 @@ ${Select3}:hover & {
       }
     }]);
     return TimeGrid2;
-  }(import_react84.Component);
+  }(import_react85.Component);
   TimeGrid.defaultProps = {
     step: 30,
     timeslots: 2
@@ -60296,7 +60311,7 @@ ${Select3}:hover & {
         var range3 = Day2.range(date2, {
           localizer
         });
-        return /* @__PURE__ */ import_react84.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react85.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 10,
           localizer,
@@ -60308,7 +60323,7 @@ ${Select3}:hover & {
       }
     }]);
     return Day2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   Day.range = function(date2, _ref) {
     var localizer = _ref.localizer;
     return [localizer.startOf(date2, "day")];
@@ -60341,7 +60356,7 @@ ${Select3}:hover & {
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$3);
         var range3 = Week2.range(date2, this.props);
-        return /* @__PURE__ */ import_react84.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react85.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -60353,7 +60368,7 @@ ${Select3}:hover & {
       }
     }]);
     return Week2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   Week.defaultProps = TimeGrid.defaultProps;
   Week.navigate = function(date2, action, _ref) {
     var localizer = _ref.localizer;
@@ -60401,7 +60416,7 @@ ${Select3}:hover & {
       value: function render() {
         var _this$props = this.props, date2 = _this$props.date, localizer = _this$props.localizer, _this$props$min = _this$props.min, min3 = _this$props$min === void 0 ? localizer.startOf(new Date(), "day") : _this$props$min, _this$props$max = _this$props.max, max3 = _this$props$max === void 0 ? localizer.endOf(new Date(), "day") : _this$props$max, _this$props$scrollToT = _this$props.scrollToTime, scrollToTime = _this$props$scrollToT === void 0 ? localizer.startOf(new Date(), "day") : _this$props$scrollToT, _this$props$enableAut = _this$props.enableAutoScroll, enableAutoScroll = _this$props$enableAut === void 0 ? true : _this$props$enableAut, props = _objectWithoutProperties(_this$props, _excluded$2);
         var range3 = workWeekRange(date2, this.props);
-        return /* @__PURE__ */ import_react84.default.createElement(TimeGrid, Object.assign({}, props, {
+        return /* @__PURE__ */ import_react85.default.createElement(TimeGrid, Object.assign({}, props, {
           range: range3,
           eventOffset: 15,
           localizer,
@@ -60413,7 +60428,7 @@ ${Select3}:hover & {
       }
     }]);
     return WorkWeek2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   WorkWeek.defaultProps = TimeGrid.defaultProps;
   WorkWeek.range = workWeekRange;
   WorkWeek.navigate = Week.navigate;
@@ -60429,12 +60444,12 @@ ${Select3}:hover & {
   };
   function Agenda(_ref) {
     var accessors = _ref.accessors, components = _ref.components, date2 = _ref.date, events = _ref.events, getters = _ref.getters, length = _ref.length, localizer = _ref.localizer, onDoubleClickEvent = _ref.onDoubleClickEvent, onSelectEvent = _ref.onSelectEvent, selected = _ref.selected;
-    var headerRef = (0, import_react84.useRef)(null);
-    var dateColRef = (0, import_react84.useRef)(null);
-    var timeColRef = (0, import_react84.useRef)(null);
-    var contentRef = (0, import_react84.useRef)(null);
-    var tbodyRef = (0, import_react84.useRef)(null);
-    (0, import_react84.useEffect)(function() {
+    var headerRef = (0, import_react85.useRef)(null);
+    var dateColRef = (0, import_react85.useRef)(null);
+    var timeColRef = (0, import_react85.useRef)(null);
+    var contentRef = (0, import_react85.useRef)(null);
+    var tbodyRef = (0, import_react85.useRef)(null);
+    (0, import_react85.useEffect)(function() {
       _adjustHeader();
     });
     var renderDay = function renderDay2(day2, events2, dayKey) {
@@ -60448,20 +60463,20 @@ ${Select3}:hover & {
         var start2 = accessors.start(event);
         var userProps = getters.eventProp(event, start2, end3, isSelected(event, selected));
         var dateLabel = idx === 0 && localizer.format(day2, "agendaDateFormat");
-        var first = idx === 0 ? /* @__PURE__ */ import_react84.default.createElement("td", {
+        var first = idx === 0 ? /* @__PURE__ */ import_react85.default.createElement("td", {
           rowSpan: events2.length,
           className: "rbc-agenda-date-cell"
-        }, AgendaDate ? /* @__PURE__ */ import_react84.default.createElement(AgendaDate, {
+        }, AgendaDate ? /* @__PURE__ */ import_react85.default.createElement(AgendaDate, {
           day: day2,
           label: dateLabel
         }) : dateLabel) : false;
-        return /* @__PURE__ */ import_react84.default.createElement("tr", {
+        return /* @__PURE__ */ import_react85.default.createElement("tr", {
           key: dayKey + "_" + idx,
           className: userProps.className,
           style: userProps.style
-        }, first, /* @__PURE__ */ import_react84.default.createElement("td", {
+        }, first, /* @__PURE__ */ import_react85.default.createElement("td", {
           className: "rbc-agenda-time-cell"
-        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react84.default.createElement("td", {
+        }, timeRangeLabel(day2, event)), /* @__PURE__ */ import_react85.default.createElement("td", {
           className: "rbc-agenda-event-cell",
           onClick: function onClick(e2) {
             return onSelectEvent && onSelectEvent(event, e2);
@@ -60469,7 +60484,7 @@ ${Select3}:hover & {
           onDoubleClick: function onDoubleClick(e2) {
             return onDoubleClickEvent && onDoubleClickEvent(event, e2);
           }
-        }, Event2 ? /* @__PURE__ */ import_react84.default.createElement(Event2, {
+        }, Event2 ? /* @__PURE__ */ import_react85.default.createElement(Event2, {
           event,
           title
         }) : title));
@@ -60497,9 +60512,9 @@ ${Select3}:hover & {
         labelClass = "rbc-continues-prior";
       if (localizer.lt(day2, end3, "day"))
         labelClass += " rbc-continues-after";
-      return /* @__PURE__ */ import_react84.default.createElement("span", {
+      return /* @__PURE__ */ import_react85.default.createElement("span", {
         className: labelClass.trim()
-      }, TimeComponent ? /* @__PURE__ */ import_react84.default.createElement(TimeComponent, {
+      }, TimeComponent ? /* @__PURE__ */ import_react85.default.createElement(TimeComponent, {
         event,
         day: day2,
         label
@@ -60536,29 +60551,29 @@ ${Select3}:hover & {
     events.sort(function(a2, b2) {
       return +accessors.start(a2) - +accessors.start(b2);
     });
-    return /* @__PURE__ */ import_react84.default.createElement("div", {
+    return /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "rbc-agenda-view"
-    }, events.length !== 0 ? /* @__PURE__ */ import_react84.default.createElement(import_react84.default.Fragment, null, /* @__PURE__ */ import_react84.default.createElement("table", {
+    }, events.length !== 0 ? /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement("table", {
       ref: headerRef,
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react84.default.createElement("thead", null, /* @__PURE__ */ import_react84.default.createElement("tr", null, /* @__PURE__ */ import_react84.default.createElement("th", {
+    }, /* @__PURE__ */ import_react85.default.createElement("thead", null, /* @__PURE__ */ import_react85.default.createElement("tr", null, /* @__PURE__ */ import_react85.default.createElement("th", {
       className: "rbc-header",
       ref: dateColRef
-    }, messages2.date), /* @__PURE__ */ import_react84.default.createElement("th", {
+    }, messages2.date), /* @__PURE__ */ import_react85.default.createElement("th", {
       className: "rbc-header",
       ref: timeColRef
-    }, messages2.time), /* @__PURE__ */ import_react84.default.createElement("th", {
+    }, messages2.time), /* @__PURE__ */ import_react85.default.createElement("th", {
       className: "rbc-header"
-    }, messages2.event)))), /* @__PURE__ */ import_react84.default.createElement("div", {
+    }, messages2.event)))), /* @__PURE__ */ import_react85.default.createElement("div", {
       className: "rbc-agenda-content",
       ref: contentRef
-    }, /* @__PURE__ */ import_react84.default.createElement("table", {
+    }, /* @__PURE__ */ import_react85.default.createElement("table", {
       className: "rbc-agenda-table"
-    }, /* @__PURE__ */ import_react84.default.createElement("tbody", {
+    }, /* @__PURE__ */ import_react85.default.createElement("tbody", {
       ref: tbodyRef
     }, range3.map(function(day2, idx) {
       return renderDay(day2, events, idx);
-    }))))) : /* @__PURE__ */ import_react84.default.createElement("span", {
+    }))))) : /* @__PURE__ */ import_react85.default.createElement("span", {
       className: "rbc-agenda-empty"
     }, messages2.noEventsInRange));
   }
@@ -60632,22 +60647,22 @@ ${Select3}:hover & {
       key: "render",
       value: function render() {
         var _this$props = this.props, messages2 = _this$props.localizer.messages, label = _this$props.label;
-        return /* @__PURE__ */ import_react84.default.createElement("div", {
+        return /* @__PURE__ */ import_react85.default.createElement("div", {
           className: "rbc-toolbar"
-        }, /* @__PURE__ */ import_react84.default.createElement("span", {
+        }, /* @__PURE__ */ import_react85.default.createElement("span", {
           className: "rbc-btn-group"
-        }, /* @__PURE__ */ import_react84.default.createElement("button", {
+        }, /* @__PURE__ */ import_react85.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.TODAY)
-        }, messages2.today), /* @__PURE__ */ import_react84.default.createElement("button", {
+        }, messages2.today), /* @__PURE__ */ import_react85.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.PREVIOUS)
-        }, messages2.previous), /* @__PURE__ */ import_react84.default.createElement("button", {
+        }, messages2.previous), /* @__PURE__ */ import_react85.default.createElement("button", {
           type: "button",
           onClick: this.navigate.bind(null, navigate.NEXT)
-        }, messages2.next)), /* @__PURE__ */ import_react84.default.createElement("span", {
+        }, messages2.next)), /* @__PURE__ */ import_react85.default.createElement("span", {
           className: "rbc-toolbar-label"
-        }, label), /* @__PURE__ */ import_react84.default.createElement("span", {
+        }, label), /* @__PURE__ */ import_react85.default.createElement("span", {
           className: "rbc-btn-group"
         }, this.viewNamesGroup(messages2)));
       }
@@ -60659,7 +60674,7 @@ ${Select3}:hover & {
         var view = this.props.view;
         if (viewNames2.length > 1) {
           return viewNames2.map(function(name) {
-            return /* @__PURE__ */ import_react84.default.createElement("button", {
+            return /* @__PURE__ */ import_react85.default.createElement("button", {
               type: "button",
               key: name,
               className: clsx_m_default({
@@ -60672,7 +60687,7 @@ ${Select3}:hover & {
       }
     }]);
     return Toolbar2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   function accessor(data, field) {
     var value = null;
     if (typeof field === "function")
@@ -60819,10 +60834,10 @@ ${Select3}:hover & {
           localizer,
           length
         });
-        return /* @__PURE__ */ import_react84.default.createElement("div", Object.assign({}, elementProps, {
+        return /* @__PURE__ */ import_react85.default.createElement("div", Object.assign({}, elementProps, {
           className: clsx_m_default(className, "rbc-calendar", props.rtl && "rbc-rtl"),
           style: style2
-        }), toolbar && /* @__PURE__ */ import_react84.default.createElement(CalToolbar, {
+        }), toolbar && /* @__PURE__ */ import_react85.default.createElement(CalToolbar, {
           date: current,
           view,
           views: viewNames2,
@@ -60830,7 +60845,7 @@ ${Select3}:hover & {
           onView: this.handleViewChange,
           onNavigate: this.handleNavigate,
           localizer
-        }), /* @__PURE__ */ import_react84.default.createElement(View4, Object.assign({}, props, {
+        }), /* @__PURE__ */ import_react85.default.createElement(View4, Object.assign({}, props, {
           events,
           backgroundEvents,
           date: current,
@@ -60907,7 +60922,7 @@ ${Select3}:hover & {
       }
     }]);
     return Calendar2;
-  }(import_react84.default.Component);
+  }(import_react85.default.Component);
   Calendar.defaultProps = {
     events: [],
     backgroundEvents: [],
@@ -60994,57 +61009,57 @@ ${Select3}:hover & {
   };
 
   // src/Components/ProjectsPage/CreateProjectModal.tsx
-  var import_react85 = __toESM(require_react(), 1);
+  var import_react86 = __toESM(require_react(), 1);
   var CreateProjectModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react85.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react85.useState)();
-    const [secondColumn, setSecondColumn] = (0, import_react85.useState)();
-    const [thirdColumn, setThirdColumn] = (0, import_react85.useState)();
+    const [activeModalTab, setActiveModalTab] = (0, import_react86.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react86.useState)();
+    const [secondColumn, setSecondColumn] = (0, import_react86.useState)();
+    const [thirdColumn, setThirdColumn] = (0, import_react86.useState)();
     const modalTabsRef = useOnClickOutside_default(() => {
       setActiveModalTab(false);
     });
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react85.default.createElement(import_react85.default.Fragment, null, /* @__PURE__ */ import_react85.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react85.default.createElement(ModalWrapp, {
+    return /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement(ContainerModal2, null, /* @__PURE__ */ import_react86.default.createElement(ModalWrapp, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react85.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react85.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react85.default.createElement(ModalClose2, {
+    }, /* @__PURE__ */ import_react86.default.createElement(ModalHeader2, null, /* @__PURE__ */ import_react86.default.createElement(ModalTitle2, null, "Create Project"), /* @__PURE__ */ import_react86.default.createElement(ModalClose2, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react85.default.createElement(ModalBody, null, /* @__PURE__ */ import_react85.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react85.default.createElement(ModalRow, null, /* @__PURE__ */ import_react85.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react85.default.createElement(ModalInput, null, /* @__PURE__ */ import_react85.default.createElement(Input3, {
+    }, "\u2613")), /* @__PURE__ */ import_react86.default.createElement(ModalBody, null, /* @__PURE__ */ import_react86.default.createElement(ModalBodyContent, null, /* @__PURE__ */ import_react86.default.createElement(ModalRow, null, /* @__PURE__ */ import_react86.default.createElement(ModalRowTitle, null, "Name: \xA0"), /* @__PURE__ */ import_react86.default.createElement(ModalInput, null, /* @__PURE__ */ import_react86.default.createElement(Input3, {
       type: "text",
       placeholder: "Add Project Name"
-    }))), /* @__PURE__ */ import_react85.default.createElement(ModalRow, null, /* @__PURE__ */ import_react85.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react85.default.createElement(ModalInput, null, /* @__PURE__ */ import_react85.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react85.default.createElement(InputDate, {
+    }))), /* @__PURE__ */ import_react86.default.createElement(ModalRow, null, /* @__PURE__ */ import_react86.default.createElement(ModalRowTitle, null, "Timeline: \xA0"), /* @__PURE__ */ import_react86.default.createElement(ModalInput, null, /* @__PURE__ */ import_react86.default.createElement(InputsWrapp, null, /* @__PURE__ */ import_react86.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "Start Date",
       onBlur: (e2) => e2.target.type = "text"
-    }), /* @__PURE__ */ import_react85.default.createElement(InputDate, {
+    }), /* @__PURE__ */ import_react86.default.createElement(InputDate, {
       type: "text",
       onFocus: (e2) => e2.target.type = "date",
       placeholder: "End Date",
       onBlur: (e2) => e2.target.type = "text"
-    })))), /* @__PURE__ */ import_react85.default.createElement(ModalRow, null, /* @__PURE__ */ import_react85.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react85.default.createElement(ModalTabs, {
+    })))), /* @__PURE__ */ import_react86.default.createElement(ModalRow, null, /* @__PURE__ */ import_react86.default.createElement(ModalTabTitle, null, "Template: \xA0"), /* @__PURE__ */ import_react86.default.createElement(ModalTabs, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react85.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react85.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react85.default.createElement(ArctiveModalColumnTitle, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "Nassco", activeModalTab && /* @__PURE__ */ import_react86.default.createElement(ActiveModalWrapper, null, /* @__PURE__ */ import_react86.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react86.default.createElement(ArctiveModalColumnTitle, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => setFirstColumn("Springfield Storm1")
-    }, "Springfield Storm1"), /* @__PURE__ */ import_react85.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm1"), /* @__PURE__ */ import_react86.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm2"),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2"), /* @__PURE__ */ import_react85.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm2"), /* @__PURE__ */ import_react86.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setFirstColumn("Springfield Storm3"),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3")), /* @__PURE__ */ import_react85.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react85.default.createElement(ArctiveModalColumnTitle, {
+    }, "Springfield Storm3")), /* @__PURE__ */ import_react86.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react86.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setSecondColumn("Mainline"),
       active: secondColumn === "Mainline"
-    }, "Mainline")), /* @__PURE__ */ import_react85.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react85.default.createElement(ArctiveModalColumnTitle, {
+    }, "Mainline")), /* @__PURE__ */ import_react86.default.createElement(ActiveModalColumn, null, /* @__PURE__ */ import_react86.default.createElement(ArctiveModalColumnTitle, {
       onClick: () => setThirdColumn("NASSCO"),
       active: thirdColumn === "NASSCO"
-    }, "NASSCO"))))), /* @__PURE__ */ import_react85.default.createElement(ModalRow, null, /* @__PURE__ */ import_react85.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react85.default.createElement(ModalInput, null, /* @__PURE__ */ import_react85.default.createElement(Input3, {
+    }, "NASSCO"))))), /* @__PURE__ */ import_react86.default.createElement(ModalRow, null, /* @__PURE__ */ import_react86.default.createElement(ModalRowTitle, null, "Naming: \xA0"), /* @__PURE__ */ import_react86.default.createElement(ModalInput, null, /* @__PURE__ */ import_react86.default.createElement(Input3, {
       type: "text"
-    })))), /* @__PURE__ */ import_react85.default.createElement(Buttons, null, /* @__PURE__ */ import_react85.default.createElement(ButtonSave, null, "Cancel"), /* @__PURE__ */ import_react85.default.createElement(ButtonCreate, null, "Create Project"))))));
+    })))), /* @__PURE__ */ import_react86.default.createElement(Buttons, null, /* @__PURE__ */ import_react86.default.createElement(ButtonSave, null, "Cancel"), /* @__PURE__ */ import_react86.default.createElement(ButtonCreate, null, "Create Project"))))));
   };
   var CreateProjectModal_default = CreateProjectModal;
   var ArctiveModalColumnTitle = styled_components_browser_esm_default.div`
@@ -61254,18 +61269,18 @@ ${Select3}:hover & {
         inspection: 32134
       }
     ];
-    const [activeTab, setActiveTab] = (0, import_react86.useState)(window.location.pathname.split("-")[1]);
-    const [tableHeight, setTableHeight] = (0, import_react86.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react86.useState)(null);
-    const [modal, setModal] = (0, import_react86.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react87.useState)(window.location.pathname.split("-")[1]);
+    const [tableHeight, setTableHeight] = (0, import_react87.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react87.useState)(null);
+    const [modal, setModal] = (0, import_react87.useState)(false);
     const history2 = useHistory();
-    const tableElement = (0, import_react86.useRef)(null);
-    const [tableDataState, setTableDataState] = (0, import_react86.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react86.useState)(false);
+    const tableElement = (0, import_react87.useRef)(null);
+    const [tableDataState, setTableDataState] = (0, import_react87.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react87.useState)(false);
     const createHeaders5 = (headers) => {
       return headers.map((item) => ({
         text: item,
-        ref: (0, import_react86.useRef)()
+        ref: (0, import_react87.useRef)()
       }));
     };
     const tableHeaders = [
@@ -61383,103 +61398,103 @@ ${Select3}:hover & {
         up_down_ind: "Y"
       }
     ];
-    return /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("div", null, /* @__PURE__ */ import_react86.default.createElement(Header_default, null), /* @__PURE__ */ import_react86.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react86.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react86.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react86.default.createElement(Button, {
+    return /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("div", null, /* @__PURE__ */ import_react87.default.createElement(Header_default, null), /* @__PURE__ */ import_react87.default.createElement(ProjectsSelects_default, null), /* @__PURE__ */ import_react87.default.createElement(TitleWrapperContent, null, /* @__PURE__ */ import_react87.default.createElement(Title3, null, "Projects"), /* @__PURE__ */ import_react87.default.createElement(Button, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react86.default.createElement("span", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react86.default.createElement(Tabs2, null, /* @__PURE__ */ import_react86.default.createElement(Tab2, {
+    }, "+"), " ", " ", " Create Project")), /* @__PURE__ */ import_react87.default.createElement(Tabs2, null, /* @__PURE__ */ import_react87.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("card");
         history2.push("/projects-card");
       }
-    }, /* @__PURE__ */ import_react86.default.createElement("span", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", {
       className: activeTab === "card" ? "Active" : "UnActive"
-    }, "Cards")), /* @__PURE__ */ import_react86.default.createElement(Tab2, {
+    }, "Cards")), /* @__PURE__ */ import_react87.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("list");
         history2.push("/projects-list");
       }
-    }, /* @__PURE__ */ import_react86.default.createElement("span", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", {
       className: activeTab === "list" ? "Active" : "UnActive"
-    }, "List")), /* @__PURE__ */ import_react86.default.createElement(Tab2, {
+    }, "List")), /* @__PURE__ */ import_react87.default.createElement(Tab2, {
       onClick: () => {
         setActiveTab("calendar");
         history2.push("/projects-calendar");
       }
-    }, /* @__PURE__ */ import_react86.default.createElement("span", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", {
       className: activeTab === "calendar" ? "Active" : "UnActive"
-    }, "Calendar"))), /* @__PURE__ */ import_react86.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react86.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react86.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react86.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react86.default.createElement(Donut, null, /* @__PURE__ */ import_react86.default.createElement(Doughnut, {
+    }, "Calendar"))), /* @__PURE__ */ import_react87.default.createElement(ProjectCount, null, "1 Project"), activeTab === "card" && /* @__PURE__ */ import_react87.default.createElement(ProjectsWrapper, null, /* @__PURE__ */ import_react87.default.createElement(ProjectsHeader, null, "Springfield I&I"), /* @__PURE__ */ import_react87.default.createElement(ProjectsContent, null, /* @__PURE__ */ import_react87.default.createElement(Donut, null, /* @__PURE__ */ import_react87.default.createElement(Doughnut, {
       data
-    })), /* @__PURE__ */ import_react86.default.createElement(Wrap, null, /* @__PURE__ */ import_react86.default.createElement(Test, null, /* @__PURE__ */ import_react86.default.createElement(Assets4, null, /* @__PURE__ */ import_react86.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react86.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react86.default.createElement(Assigned, null, /* @__PURE__ */ import_react86.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react86.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react86.default.createElement(Distanse, null, /* @__PURE__ */ import_react86.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react86.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react86.default.createElement("div", null, /* @__PURE__ */ import_react86.default.createElement("div", {
+    })), /* @__PURE__ */ import_react87.default.createElement(Wrap, null, /* @__PURE__ */ import_react87.default.createElement(Test, null, /* @__PURE__ */ import_react87.default.createElement(Assets4, null, /* @__PURE__ */ import_react87.default.createElement(ContentTitleAssets, null, "Assets"), /* @__PURE__ */ import_react87.default.createElement(Number3, null, "1")), /* @__PURE__ */ import_react87.default.createElement(Assigned, null, /* @__PURE__ */ import_react87.default.createElement(ContentTitleAssets, null, "Assigned"), /* @__PURE__ */ import_react87.default.createElement(Number3, null, "0"))), /* @__PURE__ */ import_react87.default.createElement(Distanse, null, /* @__PURE__ */ import_react87.default.createElement(ContentTitleAssets, null, "Total Distance Remaining"), /* @__PURE__ */ import_react87.default.createElement(Number3, null, "0"))))), activeTab === "list" && /* @__PURE__ */ import_react87.default.createElement("div", null, /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react86.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react86.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react86.default.createElement("table", {
+    }, /* @__PURE__ */ import_react87.default.createElement("table", {
       className: "resizeable-table-project",
       ref: tableElement
-    }, /* @__PURE__ */ import_react86.default.createElement("thead", null, /* @__PURE__ */ import_react86.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("th", {
+    }, /* @__PURE__ */ import_react87.default.createElement("thead", null, /* @__PURE__ */ import_react87.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react86.default.createElement("span", null, /* @__PURE__ */ import_react86.default.createElement("input", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, /* @__PURE__ */ import_react87.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react86.default.createElement(FilterWrapper3, {
+    }, /* @__PURE__ */ import_react87.default.createElement(FilterWrapper3, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react86.default.createElement("span", null, text), /* @__PURE__ */ import_react86.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react86.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement(IconWrapper4, null, /* @__PURE__ */ import_react87.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react86.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react87.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react86.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react86.default.createElement("span", null, text), /* @__PURE__ */ import_react86.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react86.default.createElement("span", null, text), /* @__PURE__ */ import_react86.default.createElement("div", {
+    }, /* @__PURE__ */ import_react87.default.createElement("span", null, text), /* @__PURE__ */ import_react87.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react86.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react86.default.createElement(import_react86.default.Fragment, null, /* @__PURE__ */ import_react86.default.createElement("tr", null, /* @__PURE__ */ import_react86.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react87.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react87.default.createElement(import_react87.default.Fragment, null, /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react86.default.createElement("input", {
+      }, /* @__PURE__ */ import_react87.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react86.default.createElement("tr", null, /* @__PURE__ */ import_react86.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react86.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react86.default.createElement("tr", null, /* @__PURE__ */ import_react86.default.createElement("td", {
+      }, /* @__PURE__ */ import_react87.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react86.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react86.default.createElement("tr", null, /* @__PURE__ */ import_react86.default.createElement("td", {
+      }, /* @__PURE__ */ import_react87.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react86.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react86.default.createElement("tr", null, /* @__PURE__ */ import_react86.default.createElement("td", {
+      }, /* @__PURE__ */ import_react87.default.createElement("span", null, item.AssetsId))), /* @__PURE__ */ import_react87.default.createElement("tr", null, /* @__PURE__ */ import_react87.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react86.default.createElement("span", null, item.AssetsId))));
-    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react86.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react86.default.createElement(Calendar$1, {
+      }, /* @__PURE__ */ import_react87.default.createElement("span", null, item.AssetsId))));
+    }))))))), activeTab === "calendar" && /* @__PURE__ */ import_react87.default.createElement(CalendarWrapp, null, /* @__PURE__ */ import_react87.default.createElement(Calendar$1, {
       localizer,
       events,
       views: ["month"],
       defaultDate: new Date(2022, 7, 8)
-    })), modal && /* @__PURE__ */ import_react86.default.createElement("div", null, /* @__PURE__ */ import_react86.default.createElement(CreateProjectModal_default, {
+    })), modal && /* @__PURE__ */ import_react87.default.createElement("div", null, /* @__PURE__ */ import_react87.default.createElement(CreateProjectModal_default, {
       setModal,
       modal
     }))));
@@ -61603,19 +61618,19 @@ cursor: pointer;
 `;
 
   // src/Pages/InspectionPage.tsx
-  var import_react103 = __toESM(require_react(), 1);
+  var import_react105 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/InspectionSelects.tsx
-  var import_react88 = __toESM(require_react(), 1);
+  var import_react89 = __toESM(require_react(), 1);
 
   // src/Components/utils/hooks/UseHover.tsx
-  var import_react87 = __toESM(require_react(), 1);
+  var import_react88 = __toESM(require_react(), 1);
   function useHover() {
-    const [value, setValue] = (0, import_react87.useState)(false);
-    const ref = (0, import_react87.useRef)(null);
+    const [value, setValue] = (0, import_react88.useState)(false);
+    const ref = (0, import_react88.useRef)(null);
     const handleMouseOver = () => setValue(true);
     const handleMouseOut = () => setValue(false);
-    (0, import_react87.useEffect)(() => {
+    (0, import_react88.useEffect)(() => {
       const node = ref.current;
       if (node) {
         node.addEventListener("mouseover", handleMouseOver);
@@ -61631,15 +61646,15 @@ cursor: pointer;
 
   // src/Components/InspectionPage/InspectionSelects.tsx
   var InspectionSelects = () => {
-    const [select1, setSelect1] = (0, import_react88.useState)("Springfield Storm");
-    const [select2, setSelect2] = (0, import_react88.useState)("Mainlines");
-    const [select3, setSelect3] = (0, import_react88.useState)("NASSCO v6 Springfield");
+    const [select1, setSelect1] = (0, import_react89.useState)("Springfield Storm");
+    const [select2, setSelect2] = (0, import_react89.useState)("Mainlines");
+    const [select3, setSelect3] = (0, import_react89.useState)("NASSCO v6 Springfield");
     const [hoverRef, isHovered] = useHover();
     const [hoverRef2, isHovered2] = useHover();
     const [hoverRef3, isHovered3] = useHover();
-    const [hover_1, setHover_1] = (0, import_react88.useState)(false);
-    const [hover_2, setHover_2] = (0, import_react88.useState)(false);
-    const [hover_3, setHover_3] = (0, import_react88.useState)(false);
+    const [hover_1, setHover_1] = (0, import_react89.useState)(false);
+    const [hover_2, setHover_2] = (0, import_react89.useState)(false);
+    const [hover_3, setHover_3] = (0, import_react89.useState)(false);
     const HandleMouseEnter_1 = () => {
       setHover_1(true);
     };
@@ -61658,34 +61673,34 @@ cursor: pointer;
     const HandleMouseLeave_3 = () => {
       setHover_3(false);
     };
-    return /* @__PURE__ */ import_react88.default.createElement(Wrapper14, null, /* @__PURE__ */ import_react88.default.createElement(Select13, {
+    return /* @__PURE__ */ import_react89.default.createElement(Wrapper14, null, /* @__PURE__ */ import_react89.default.createElement(Select13, {
       onMouseEnter: HandleMouseEnter_1,
       onMouseLeave: HandleMouseLeave_1
-    }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select1), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_1 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper4, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react89.default.createElement(SelectItem4, null, select1), /* @__PURE__ */ import_react89.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react89.default.createElement(ArrowDownIcon_default, null)), hover_1 && /* @__PURE__ */ import_react89.default.createElement(HoverItemWrapper4, null, /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect1("All systems"),
       isActive: select1 === "All systems"
-    }, "All systems"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, "All systems"), /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect1("Springfield Storm"),
       isActive: select1 === "Springfield Storm"
-    }, "Springfield Storm"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, "Springfield Storm"), /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect1("Springfield Sanitary"),
       isActive: select1 === "Springfield Sanitary"
-    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react88.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react88.default.createElement(Select23, {
+    }, "Springfield Sanitary"))), /* @__PURE__ */ import_react89.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react89.default.createElement(Select23, {
       onMouseEnter: HandleMouseEnter_2,
       onMouseLeave: HandleMouseLeave_2
-    }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select2), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_2 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react89.default.createElement(SelectItem4, null, select2), /* @__PURE__ */ import_react89.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react89.default.createElement(ArrowDownIcon_default, null)), hover_2 && /* @__PURE__ */ import_react89.default.createElement(HoverItemWrapper23, null, /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect2("All assets types"),
       isActive: select2 === "All assets types"
-    }, "All assets types"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, "All assets types"), /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect2("Mainlines"),
       isActive: select2 === "Mainlines"
-    }, "Mainlines"))), /* @__PURE__ */ import_react88.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react88.default.createElement(Select32, {
+    }, "Mainlines"))), /* @__PURE__ */ import_react89.default.createElement(Slash3, null, "/"), /* @__PURE__ */ import_react89.default.createElement(Select32, {
       onMouseEnter: HandleMouseEnter_3,
       onMouseLeave: HandleMouseLeave_3
-    }, /* @__PURE__ */ import_react88.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react88.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react88.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react88.default.createElement(HoverItemWrapper33, null, /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, /* @__PURE__ */ import_react89.default.createElement(SelectItem4, null, select3), /* @__PURE__ */ import_react89.default.createElement(IconWrapp7, null, /* @__PURE__ */ import_react89.default.createElement(ArrowDownIcon_default, null)), hover_3 && /* @__PURE__ */ import_react89.default.createElement(HoverItemWrapper33, null, /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect3("All templates"),
       isActive: select3 === "All templates"
-    }, "All templates"), /* @__PURE__ */ import_react88.default.createElement(HoverItem4, {
+    }, "All templates"), /* @__PURE__ */ import_react89.default.createElement(HoverItem4, {
       onClick: () => setSelect3("NASSCO v6 Springfield"),
       isActive: select3 === "NASSCO v6 Springfield"
     }, "NASSCO v6 Springfield"))));
@@ -61699,7 +61714,7 @@ cursor: pointer;
   background-color: white;
 `;
   var HoverItem4 = styled_components_browser_esm_default.div`
-  padding: 7px 12px;
+  padding: 10px 12px;
   font-size: 14px;
   white-space: nowrap;
   background-color: ${(props) => props.isActive ? "#e6f7ff" : "#fff"};
@@ -61717,21 +61732,6 @@ cursor: pointer;
   left: 15px;
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 62px;
-  transform: rotate(-27deg);
-},
 `;
   var HoverItemWrapper23 = styled_components_browser_esm_default.div`
   display: flex;
@@ -61742,21 +61742,6 @@ cursor: pointer;
   top: 24px;
   left: -21px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 52px;
-  transform: rotate(-27deg);
-},
 `;
   var HoverItemWrapper33 = styled_components_browser_esm_default.div`
   display: flex;
@@ -61767,21 +61752,6 @@ cursor: pointer;
   top: 24px;
   left: -5px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-&::before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 18px 9px 0;
-  border-color: transparent #fff transparent transparent;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  position: absolute;
-  top: -10px;
-  left: 75px;
-  transform: rotate(-27deg);
-},
 `;
   var Select13 = styled_components_browser_esm_default.div`
   display: flex;
@@ -61811,6 +61781,9 @@ padding-bottom: 25px;
 `;
   var IconWrapp7 = styled_components_browser_esm_default.div`
     padding: 0 5px;
+  display: flex;
+  align-items: center;
+    justify-content: center;
 `;
   var SelectItem4 = styled_components_browser_esm_default.div`
   font-size: 14px;
@@ -61819,15 +61792,15 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/TableInspection.tsx
-  var import_react102 = __toESM(require_react(), 1);
+  var import_react104 = __toESM(require_react(), 1);
 
   // src/Components/InspectionPage/TableInspectionContent.tsx
-  var import_react91 = __toESM(require_react(), 1);
+  var import_react92 = __toESM(require_react(), 1);
 
   // src/Components/TableUtils/Loader.tsx
-  var import_react89 = __toESM(require_react(), 1);
+  var import_react90 = __toESM(require_react(), 1);
   var Loader = () => {
-    return /* @__PURE__ */ import_react89.default.createElement(LoaderWrapp, null);
+    return /* @__PURE__ */ import_react90.default.createElement(LoaderWrapp, null);
   };
   var Loader_default = Loader;
   var rotate2 = Ue`
@@ -61857,9 +61830,9 @@ padding-bottom: 25px;
 `;
 
   // src/Components/common/icons/Triangle.tsx
-  var import_react90 = __toESM(require_react(), 1);
+  var import_react91 = __toESM(require_react(), 1);
   var Triangle = () => {
-    return /* @__PURE__ */ import_react90.default.createElement("svg", {
+    return /* @__PURE__ */ import_react91.default.createElement("svg", {
       viewBox: "0 0 1024 1024",
       focusable: "false",
       "data-icon": "caret-up",
@@ -61867,7 +61840,7 @@ padding-bottom: 25px;
       height: "11",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react90.default.createElement("path", {
+    }, /* @__PURE__ */ import_react91.default.createElement("path", {
       d: "M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
     }));
   };
@@ -61881,25 +61854,25 @@ padding-bottom: 25px;
     }));
   };
   var TableInspectionContent = ({ minCellWidth, data }) => {
-    const [tableHeight, setTableHeight] = (0, import_react91.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react91.useState)(null);
-    const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react91.useState)(null);
-    const [activeFilter, setActiveFilter] = (0, import_react91.useState)(false);
-    const [hover, setHover] = (0, import_react91.useState)(false);
-    const [downstreamId, setDownstreamId] = (0, import_react91.useState)(null);
-    const [checkbox, setCheckbox] = (0, import_react91.useState)(false);
-    const [activeFilterN, setActiveFilterN] = (0, import_react91.useState)([]);
+    const [tableHeight, setTableHeight] = (0, import_react92.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react92.useState)(null);
+    const [arrayCheckboxes, setArrayCheckboxes] = (0, import_react92.useState)(null);
+    const [activeFilter, setActiveFilter] = (0, import_react92.useState)(false);
+    const [hover, setHover] = (0, import_react92.useState)(false);
+    const [downstreamId, setDownstreamId] = (0, import_react92.useState)(null);
+    const [checkbox, setCheckbox] = (0, import_react92.useState)(false);
+    const [activeFilterN, setActiveFilterN] = (0, import_react92.useState)([]);
     const inspections = useSelector(selectOrganizationsInspection);
     const inspectionHeaders = useSelector(selectInspectionHeader);
     const dispatch = useDispatch();
-    const tableElement = (0, import_react91.useRef)(null);
+    const tableElement = (0, import_react92.useRef)(null);
     const columns = createHeaders2(inspectionHeaders);
-    (0, import_react91.useEffect)(() => {
+    (0, import_react92.useEffect)(() => {
     }, []);
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react91.useCallback)((e2) => {
+    const mouseMove = (0, import_react92.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -61911,15 +61884,15 @@ padding-bottom: 25px;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react91.useCallback)(() => {
+    const removeListeners = (0, import_react92.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react91.useCallback)(() => {
+    const mouseUp = (0, import_react92.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    (0, import_react91.useEffect)(() => {
+    (0, import_react92.useEffect)(() => {
       if (activeIndex !== null) {
         window.addEventListener("mousemove", mouseMove);
         window.addEventListener("mouseup", mouseUp);
@@ -61976,90 +61949,92 @@ padding-bottom: 25px;
       dispatch(changeOrganisationInspectionArray(newOrganisation));
     };
     console.log(checkbox);
-    return /* @__PURE__ */ import_react91.default.createElement("div", {
+    return /* @__PURE__ */ import_react92.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react91.default.createElement("div", {
+    }, /* @__PURE__ */ import_react92.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react91.default.createElement("div", {
+    }, /* @__PURE__ */ import_react92.default.createElement("div", {
       className: "table-wrapper"
-    }, columns ? /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement(ResizableTableInspection, {
+    }, columns ? /* @__PURE__ */ import_react92.default.createElement(import_react92.default.Fragment, null, /* @__PURE__ */ import_react92.default.createElement(ResizableTableInspection, {
       arr: columns,
       ref: tableElement
-    }, /* @__PURE__ */ import_react91.default.createElement("thead", null, /* @__PURE__ */ import_react91.default.createElement("tr", null, columns.map(({ ref, text }, i2) => {
+    }, /* @__PURE__ */ import_react92.default.createElement("thead", null, /* @__PURE__ */ import_react92.default.createElement("tr", null, columns.map(({ ref, text }, i2) => {
       if (text === "checkbox") {
-        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
+        return /* @__PURE__ */ import_react92.default.createElement(import_react92.default.Fragment, null, /* @__PURE__ */ import_react92.default.createElement("th", {
           ref,
           className: "checkbox",
           key: i2
-        }, /* @__PURE__ */ import_react91.default.createElement("span", null, /* @__PURE__ */ import_react91.default.createElement("label", {
+        }, /* @__PURE__ */ import_react92.default.createElement("span", null, /* @__PURE__ */ import_react92.default.createElement("label", {
           className: "container",
           style: {
             fontFamily: "Verdana, sans-serif",
             fontSize: "12px"
           }
-        }, /* @__PURE__ */ import_react91.default.createElement("input", {
+        }, /* @__PURE__ */ import_react92.default.createElement("input", {
           type: "checkbox",
           onClick: (e2) => handleCheckCheckboxes(e2)
-        }), /* @__PURE__ */ import_react91.default.createElement("span", {
-          className: "checkmark"
+        }), /* @__PURE__ */ import_react92.default.createElement("span", {
+          className: "checkmark-header"
         })))));
       } else if (text === "Assets") {
-        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
+        return /* @__PURE__ */ import_react92.default.createElement(import_react92.default.Fragment, null, /* @__PURE__ */ import_react92.default.createElement("th", {
           ref,
           className: "id",
           key: i2
-        }, /* @__PURE__ */ import_react91.default.createElement("span", null, "Assets"), /* @__PURE__ */ import_react91.default.createElement("div", {
+        }, /* @__PURE__ */ import_react92.default.createElement("span", {
+          style: { fontWeight: "500" }
+        }, "Assets"), /* @__PURE__ */ import_react92.default.createElement("div", {
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       } else {
-        return /* @__PURE__ */ import_react91.default.createElement(import_react91.default.Fragment, null, /* @__PURE__ */ import_react91.default.createElement("th", {
+        return /* @__PURE__ */ import_react92.default.createElement(import_react92.default.Fragment, null, /* @__PURE__ */ import_react92.default.createElement("th", {
           ref,
           key: i2,
           className: i2 === 1 ? "first" : "tableHeaders"
-        }, /* @__PURE__ */ import_react91.default.createElement("span", {
+        }, /* @__PURE__ */ import_react92.default.createElement("span", {
           style: { fontWeight: "500" }
-        }, text), /* @__PURE__ */ import_react91.default.createElement(Triangles, null, /* @__PURE__ */ import_react91.default.createElement(TriangleTop, null, /* @__PURE__ */ import_react91.default.createElement(Triangle_default, null)), /* @__PURE__ */ import_react91.default.createElement(TriangleBottom, null, /* @__PURE__ */ import_react91.default.createElement(Triangle_default, null))), /* @__PURE__ */ import_react91.default.createElement("div", {
+        }, text), /* @__PURE__ */ import_react92.default.createElement(Triangles, null, /* @__PURE__ */ import_react92.default.createElement(TriangleTop, null, /* @__PURE__ */ import_react92.default.createElement(Triangle_default, null)), /* @__PURE__ */ import_react92.default.createElement(TriangleBottom, null, /* @__PURE__ */ import_react92.default.createElement(Triangle_default, null))), /* @__PURE__ */ import_react92.default.createElement("div", {
           onMouseDown: () => mouseDown(i2),
           className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
         })));
       }
-    }))), /* @__PURE__ */ import_react91.default.createElement("tbody", null, inspections.map((item, i2) => {
-      return /* @__PURE__ */ import_react91.default.createElement("tr", null, /* @__PURE__ */ import_react91.default.createElement(Td2, {
+    }))), /* @__PURE__ */ import_react92.default.createElement("tbody", null, inspections.map((item, i2) => {
+      return /* @__PURE__ */ import_react92.default.createElement("tr", null, /* @__PURE__ */ import_react92.default.createElement(Td2, {
         style: { position: "sticky", left: "0px" },
         isActive: item.checkbox,
         isHovered: item.hover,
         key: i2
-      }, /* @__PURE__ */ import_react91.default.createElement("span", null, /* @__PURE__ */ import_react91.default.createElement("label", {
+      }, /* @__PURE__ */ import_react92.default.createElement("span", null, /* @__PURE__ */ import_react92.default.createElement("label", {
         className: "container",
         style: {
           fontFamily: "Verdana, sans-serif",
           fontSize: "12px"
         }
-      }, /* @__PURE__ */ import_react91.default.createElement("input", {
+      }, /* @__PURE__ */ import_react92.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }), /* @__PURE__ */ import_react91.default.createElement("span", {
+      }), /* @__PURE__ */ import_react92.default.createElement("span", {
         className: "checkmark"
-      })))), /* @__PURE__ */ import_react91.default.createElement(Td2, {
-        style: { position: "sticky", left: "55px" },
+      })))), /* @__PURE__ */ import_react92.default.createElement(Td2, {
+        style: { position: "sticky", left: "50px" },
         isActive: item.checkbox,
         isHovered: item.hover,
         onMouseEnter: () => isHovered(item.id),
         onMouseLeave: () => isHovered(item.id)
-      }, /* @__PURE__ */ import_react91.default.createElement(IdWrapper2, null, item.arr[test() - 2], " ", /* @__PURE__ */ import_react91.default.createElement("span", {
+      }, /* @__PURE__ */ import_react92.default.createElement(IdWrapper2, null, item.arr[test() - 2], " ", /* @__PURE__ */ import_react92.default.createElement("span", {
         style: { padding: "0px 3px" }
-      }, "\xB7"), " ", item.arr[test() - 1])), item.arr.map((item2, i3) => /* @__PURE__ */ import_react91.default.createElement(Td2, {
+      }, "\xB7"), " ", item.arr[test() - 1])), item.arr.map((item2, i3) => /* @__PURE__ */ import_react92.default.createElement(Td2, {
         isActive: item.checkbox,
         onMouseEnter: () => isHovered(item.id),
         onMouseLeave: () => isHovered(item.id),
         key: i3,
         isHovered: item.hover
       }, item2)));
-    }))), /* @__PURE__ */ import_react91.default.createElement(TableFooter2, null, (arrayCheckboxes == null ? void 0 : arrayCheckboxes.length) > 0 && /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionWrapp, null, /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelection, null, /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionItem, null, arrayCheckboxes == null ? void 0 : arrayCheckboxes.length, " inspections selected"), /* @__PURE__ */ import_react91.default.createElement("span", {
+    }))), /* @__PURE__ */ import_react92.default.createElement(TableFooter2, null, (arrayCheckboxes == null ? void 0 : arrayCheckboxes.length) > 0 && /* @__PURE__ */ import_react92.default.createElement(TableCheckboxSelectionWrapp, null, /* @__PURE__ */ import_react92.default.createElement(TableCheckboxSelection, null, /* @__PURE__ */ import_react92.default.createElement(TableCheckboxSelectionItem, null, arrayCheckboxes == null ? void 0 : arrayCheckboxes.length, " inspections selected"), /* @__PURE__ */ import_react92.default.createElement("span", {
       style: { padding: "0px 10px" }
-    }, "|"), /* @__PURE__ */ import_react91.default.createElement(TableCheckboxSelectionItem, null, "Avg of Pipe Joint Length: 0 m"))))) : /* @__PURE__ */ import_react91.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react91.default.createElement(Loader_default, null)))));
+    }, "|"), /* @__PURE__ */ import_react92.default.createElement(TableCheckboxSelectionItem, null, "Avg of Pipe Joint Length: 0 m"))))) : /* @__PURE__ */ import_react92.default.createElement(LoaderWrapp2, null, /* @__PURE__ */ import_react92.default.createElement(Loader_default, null)))));
   };
   var TableInspectionContent_default = TableInspectionContent;
   var Triangles = styled_components_browser_esm_default.div`
@@ -62112,7 +62087,8 @@ padding-bottom: 25px;
   width: 100%;
   background-color: ${({ isActive, isHovered }) => isActive ? "#e6f7ff" : isHovered ? "#fafafa" : "white"};
   position: ${({ isSticky }) => isSticky ? "sticky" : "unset"};
-  left: 55px;
+  left: 50px;
+  transition: background-color 0.3s;
 `;
   var ResizableTableInspection = styled_components_browser_esm_default.table`
   display: grid;
@@ -62124,7 +62100,7 @@ padding-bottom: 25px;
   margin-right: 24px;
   margin-left: 24px;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: ${({ arr }) => arr.map((item, index2) => index2 === 0 ? "minmax(55px, 0.1fr)" : index2 === 1 ? "minmax(200px, 1fr)" : "minmax(155px, 1fr)").join(" ")};
+  grid-template-columns: ${({ arr }) => arr.map((item, index2) => index2 === 0 ? "minmax(50px, 0.1fr)" : index2 === 1 ? "minmax(200px, 1fr)" : "minmax(155px, 1fr)").join(" ")};
 
 `;
   var IdWrapper2 = styled_components_browser_esm_default.div`
@@ -62133,6 +62109,7 @@ padding-bottom: 25px;
   padding: 5px 10px;
   white-space: nowrap;
   display: flex;
+  font-weight: 500;
 `;
   var Checkboxs2 = styled_components_browser_esm_default.div`
   position: absolute;
@@ -62155,7 +62132,7 @@ padding-bottom: 25px;
 `;
 
   // src/Components/InspectionPage/CreateInspectionModal.tsx
-  var import_react101 = __toESM(require_react(), 1);
+  var import_react103 = __toESM(require_react(), 1);
 
   // src/store/selectors/inspection.ts
   var selectInspection2 = (state) => state.inspectionReducer;
@@ -62177,9 +62154,9 @@ padding-bottom: 25px;
   });
 
   // src/Components/common/icons/CreateFileIcon.tsx
-  var import_react92 = __toESM(require_react(), 1);
+  var import_react93 = __toESM(require_react(), 1);
   var CreateFileIcon = () => {
-    return /* @__PURE__ */ import_react92.default.createElement("svg", {
+    return /* @__PURE__ */ import_react93.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "file-add",
@@ -62187,16 +62164,16 @@ padding-bottom: 25px;
       height: "38",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react92.default.createElement("path", {
+    }, /* @__PURE__ */ import_react93.default.createElement("path", {
       d: "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494zM544 472c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v108H372c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h108v108c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V644h108c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V472z"
     }));
   };
   var CreateFileIcon_default = CreateFileIcon;
 
   // src/Components/common/icons/UploadFileIcon.tsx
-  var import_react93 = __toESM(require_react(), 1);
+  var import_react94 = __toESM(require_react(), 1);
   var UploadFileIcon = () => {
-    return /* @__PURE__ */ import_react93.default.createElement("svg", {
+    return /* @__PURE__ */ import_react94.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "cloud-upload",
@@ -62204,40 +62181,17 @@ padding-bottom: 25px;
       height: "38",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react93.default.createElement("path", {
+    }, /* @__PURE__ */ import_react94.default.createElement("path", {
       d: "M518.3 459a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V856c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V613.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 459z"
-    }), /* @__PURE__ */ import_react93.default.createElement("path", {
+    }), /* @__PURE__ */ import_react94.default.createElement("path", {
       d: "M811.4 366.7C765.6 245.9 648.9 160 512.2 160S258.8 245.8 213 366.6C127.3 389.1 64 467.2 64 560c0 110.5 89.5 200 199.9 200H304c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8h-40.1c-33.7 0-65.4-13.4-89-37.7-23.5-24.2-36-56.8-34.9-90.6.9-26.4 9.9-51.2 26.2-72.1 16.7-21.3 40.1-36.8 66.1-43.7l37.9-9.9 13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4a245.6 245.6 0 0152.4-49.9c41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9 15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5 37.8 10C846.1 454.5 884 503.8 884 560c0 33.1-12.9 64.3-36.3 87.7a123.07 123.07 0 01-87.6 36.3H720c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h40.1C870.5 760 960 670.5 960 560c0-92.7-63.1-170.7-148.6-193.3z"
     }));
   };
   var UploadFileIcon_default = UploadFileIcon;
 
   // src/Components/common/icons/addFileIcon.tsx
-  var import_react94 = __toESM(require_react(), 1);
-  var AddFileIcon = () => {
-    return /* @__PURE__ */ import_react94.default.createElement("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "16",
-      height: "16",
-      viewBox: "0 0 16 16",
-      fill: "none"
-    }, /* @__PURE__ */ import_react94.default.createElement("path", {
-      opacity: "0.1",
-      d: "M8.34375 5.5V2.125H3.625V13.875H12.375V6.15625H9C8.82595 6.15625 8.65903 6.08711 8.53596 5.96404C8.41289 5.84097 8.34375 5.67405 8.34375 5.5ZM10.3125 9.1875V9.9375C10.3125 10.0062 10.2562 10.0625 10.1875 10.0625H8.5V11.75C8.5 11.8188 8.44375 11.875 8.375 11.875H7.625C7.55625 11.875 7.5 11.8188 7.5 11.75V10.0625H5.8125C5.74375 10.0625 5.6875 10.0062 5.6875 9.9375V9.1875C5.6875 9.11875 5.74375 9.0625 5.8125 9.0625H7.5V7.375C7.5 7.30625 7.55625 7.25 7.625 7.25H8.375C8.44375 7.25 8.5 7.30625 8.5 7.375V9.0625H10.1875C10.2562 9.0625 10.3125 9.11875 10.3125 9.1875Z",
-      fill: "#1890FF"
-    }), /* @__PURE__ */ import_react94.default.createElement("path", {
-      d: "M13.3531 4.50938L9.99063 1.14688C9.89688 1.05313 9.77031 1 9.6375 1H3C2.72344 1 2.5 1.22344 2.5 1.5V14.5C2.5 14.7766 2.72344 15 3 15H13C13.2766 15 13.5 14.7766 13.5 14.5V4.86406C13.5 4.73125 13.4469 4.60313 13.3531 4.50938ZM9.40625 2.15313L12.3469 5.09375H9.40625V2.15313ZM12.375 13.875H3.625V2.125H8.34375V5.5C8.34375 5.67405 8.41289 5.84097 8.53596 5.96404C8.65903 6.08711 8.82595 6.15625 9 6.15625H12.375V13.875Z",
-      fill: "#1890FF"
-    }), /* @__PURE__ */ import_react94.default.createElement("path", {
-      d: "M8.5 7.375C8.5 7.30625 8.44375 7.25 8.375 7.25H7.625C7.55625 7.25 7.5 7.30625 7.5 7.375V9.0625H5.8125C5.74375 9.0625 5.6875 9.11875 5.6875 9.1875V9.9375C5.6875 10.0062 5.74375 10.0625 5.8125 10.0625H7.5V11.75C7.5 11.8187 7.55625 11.875 7.625 11.875H8.375C8.44375 11.875 8.5 11.8187 8.5 11.75V10.0625H10.1875C10.2562 10.0625 10.3125 10.0062 10.3125 9.9375V9.1875C10.3125 9.11875 10.2562 9.0625 10.1875 9.0625H8.5V7.375Z",
-      fill: "#1890FF"
-    }));
-  };
-  var addFileIcon_default = AddFileIcon;
-
-  // src/Components/common/icons/addFolder.tsx
   var import_react95 = __toESM(require_react(), 1);
-  var AddFolder = () => {
+  var AddFileIcon = () => {
     return /* @__PURE__ */ import_react95.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "16",
@@ -62246,12 +62200,35 @@ padding-bottom: 25px;
       fill: "none"
     }, /* @__PURE__ */ import_react95.default.createElement("path", {
       opacity: "0.1",
+      d: "M8.34375 5.5V2.125H3.625V13.875H12.375V6.15625H9C8.82595 6.15625 8.65903 6.08711 8.53596 5.96404C8.41289 5.84097 8.34375 5.67405 8.34375 5.5ZM10.3125 9.1875V9.9375C10.3125 10.0062 10.2562 10.0625 10.1875 10.0625H8.5V11.75C8.5 11.8188 8.44375 11.875 8.375 11.875H7.625C7.55625 11.875 7.5 11.8188 7.5 11.75V10.0625H5.8125C5.74375 10.0625 5.6875 10.0062 5.6875 9.9375V9.1875C5.6875 9.11875 5.74375 9.0625 5.8125 9.0625H7.5V7.375C7.5 7.30625 7.55625 7.25 7.625 7.25H8.375C8.44375 7.25 8.5 7.30625 8.5 7.375V9.0625H10.1875C10.2562 9.0625 10.3125 9.11875 10.3125 9.1875Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+      d: "M13.3531 4.50938L9.99063 1.14688C9.89688 1.05313 9.77031 1 9.6375 1H3C2.72344 1 2.5 1.22344 2.5 1.5V14.5C2.5 14.7766 2.72344 15 3 15H13C13.2766 15 13.5 14.7766 13.5 14.5V4.86406C13.5 4.73125 13.4469 4.60313 13.3531 4.50938ZM9.40625 2.15313L12.3469 5.09375H9.40625V2.15313ZM12.375 13.875H3.625V2.125H8.34375V5.5C8.34375 5.67405 8.41289 5.84097 8.53596 5.96404C8.65903 6.08711 8.82595 6.15625 9 6.15625H12.375V13.875Z",
+      fill: "#1890FF"
+    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+      d: "M8.5 7.375C8.5 7.30625 8.44375 7.25 8.375 7.25H7.625C7.55625 7.25 7.5 7.30625 7.5 7.375V9.0625H5.8125C5.74375 9.0625 5.6875 9.11875 5.6875 9.1875V9.9375C5.6875 10.0062 5.74375 10.0625 5.8125 10.0625H7.5V11.75C7.5 11.8187 7.55625 11.875 7.625 11.875H8.375C8.44375 11.875 8.5 11.8187 8.5 11.75V10.0625H10.1875C10.2562 10.0625 10.3125 10.0062 10.3125 9.9375V9.1875C10.3125 9.11875 10.2562 9.0625 10.1875 9.0625H8.5V7.375Z",
+      fill: "#1890FF"
+    }));
+  };
+  var addFileIcon_default = AddFileIcon;
+
+  // src/Components/common/icons/addFolder.tsx
+  var import_react96 = __toESM(require_react(), 1);
+  var AddFolder = () => {
+    return /* @__PURE__ */ import_react96.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16",
+      fill: "none"
+    }, /* @__PURE__ */ import_react96.default.createElement("path", {
+      opacity: "0.1",
       d: "M5.82031 4H2.875V12H13.125V5.7875H7.68906L5.82031 4ZM8.4375 6.92344V8.25H9.75781C9.82188 8.25 9.875 8.29844 9.875 8.35938V9.01562C9.875 9.075 9.82188 9.125 9.75781 9.125H8.4375V10.4516C8.4375 10.5125 8.38906 10.5625 8.32812 10.5625H7.67188C7.6125 10.5625 7.5625 10.5125 7.5625 10.4516V9.125H6.24219C6.17812 9.125 6.125 9.075 6.125 9.01562V8.35938C6.125 8.29844 6.17812 8.25 6.24219 8.25H7.5625V6.92344C7.5625 6.8625 7.6125 6.8125 7.67188 6.8125H8.32812C8.38906 6.8125 8.4375 6.8625 8.4375 6.92344Z",
       fill: "#1890FF"
-    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+    }), /* @__PURE__ */ import_react96.default.createElement("path", {
       d: "M13.75 4.6625H8.14062L6.30781 2.90937C6.28449 2.88754 6.25382 2.87527 6.22188 2.875H2.25C1.97344 2.875 1.75 3.09844 1.75 3.375V12.625C1.75 12.9016 1.97344 13.125 2.25 13.125H13.75C14.0266 13.125 14.25 12.9016 14.25 12.625V5.1625C14.25 4.88594 14.0266 4.6625 13.75 4.6625ZM13.125 12H2.875V4H5.82031L7.68906 5.7875H13.125V12Z",
       fill: "#1890FF"
-    }), /* @__PURE__ */ import_react95.default.createElement("path", {
+    }), /* @__PURE__ */ import_react96.default.createElement("path", {
       d: "M7.5625 6.92344V8.25H6.24219C6.17813 8.25 6.125 8.29844 6.125 8.35938V9.01562C6.125 9.075 6.17813 9.125 6.24219 9.125H7.5625V10.4516C7.5625 10.5125 7.6125 10.5625 7.67188 10.5625H8.32812C8.38906 10.5625 8.4375 10.5125 8.4375 10.4516V9.125H9.75781C9.82188 9.125 9.875 9.075 9.875 9.01562V8.35938C9.875 8.29844 9.82188 8.25 9.75781 8.25H8.4375V6.92344C8.4375 6.8625 8.38906 6.8125 8.32812 6.8125H7.67188C7.6125 6.8125 7.5625 6.8625 7.5625 6.92344Z",
       fill: "#1890FF"
     }));
@@ -62259,32 +62236,32 @@ padding-bottom: 25px;
   var addFolder_default = AddFolder;
 
   // src/Components/InspectionPage/AddFileTable.tsx
-  var import_react100 = __toESM(require_react(), 1);
+  var import_react102 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/EmptyTableIcon.tsx
-  var import_react96 = __toESM(require_react(), 1);
+  var import_react97 = __toESM(require_react(), 1);
   var EmptyTableIcon = () => {
-    return /* @__PURE__ */ import_react96.default.createElement("svg", {
+    return /* @__PURE__ */ import_react97.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "48",
       height: "31",
       viewBox: "0 0 48 31",
       fill: "none"
-    }, /* @__PURE__ */ import_react96.default.createElement("g", {
+    }, /* @__PURE__ */ import_react97.default.createElement("g", {
       "clip-path": "url(#clip0_205_30559)"
-    }, /* @__PURE__ */ import_react96.default.createElement("path", {
+    }, /* @__PURE__ */ import_react97.default.createElement("path", {
       d: "M24 30.7608C37.2548 30.7608 48 28.4277 48 25.5498C48 22.6718 37.2548 20.3387 24 20.3387C10.7452 20.3387 0 22.6718 0 25.5498C0 28.4277 10.7452 30.7608 24 30.7608Z",
       fill: "#F5F5F5"
-    }), /* @__PURE__ */ import_react96.default.createElement("path", {
+    }), /* @__PURE__ */ import_react97.default.createElement("path", {
       d: "M41.25 10.4825L33.6405 1.92002C33.2753 1.33638 32.742 0.983521 32.1803 0.983521H15.8198C15.258 0.983521 14.7247 1.33638 14.3595 1.91927L6.75 10.4832V17.361H41.25V10.4825Z",
       stroke: "#D9D9D9"
-    }), /* @__PURE__ */ import_react96.default.createElement("path", {
+    }), /* @__PURE__ */ import_react97.default.createElement("path", {
       d: "M31.2097 12.8431C31.2097 11.6483 31.9553 10.6619 32.88 10.6611H41.25V24.1629C41.25 25.7433 40.26 27.0387 39.0375 27.0387H8.9625C7.74 27.0387 6.75 25.7426 6.75 24.1629V10.6611H15.12C16.0447 10.6611 16.7902 11.646 16.7902 12.8408V12.8572C16.7902 14.052 17.544 15.0168 18.468 15.0168H29.532C30.456 15.0168 31.2097 14.0431 31.2097 12.8483V12.8431V12.8431Z",
       fill: "#FAFAFA",
       stroke: "#D9D9D9"
-    })), /* @__PURE__ */ import_react96.default.createElement("defs", null, /* @__PURE__ */ import_react96.default.createElement("clipPath", {
+    })), /* @__PURE__ */ import_react97.default.createElement("defs", null, /* @__PURE__ */ import_react97.default.createElement("clipPath", {
       id: "clip0_205_30559"
-    }, /* @__PURE__ */ import_react96.default.createElement("rect", {
+    }, /* @__PURE__ */ import_react97.default.createElement("rect", {
       width: "48",
       height: "30.5217",
       fill: "white",
@@ -62294,22 +62271,22 @@ padding-bottom: 25px;
   var EmptyTableIcon_default = EmptyTableIcon;
 
   // src/Components/common/icons/SuccessIcon.tsx
-  var import_react97 = __toESM(require_react(), 1);
+  var import_react98 = __toESM(require_react(), 1);
   var SuccessIcon = () => {
-    return /* @__PURE__ */ import_react97.default.createElement("svg", {
+    return /* @__PURE__ */ import_react98.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "16",
       height: "16",
       viewBox: "0 0 16 16",
       fill: "none"
-    }, /* @__PURE__ */ import_react97.default.createElement("path", {
+    }, /* @__PURE__ */ import_react98.default.createElement("path", {
       d: "M8 1C4.13438 1 1 4.13438 1 8C1 11.8656 4.13438 15 8 15C11.8656 15 15 11.8656 15 8C15 4.13438 11.8656 1 8 1ZM8 13.8125C4.79063 13.8125 2.1875 11.2094 2.1875 8C2.1875 4.79063 4.79063 2.1875 8 2.1875C11.2094 2.1875 13.8125 4.79063 13.8125 8C13.8125 11.2094 11.2094 13.8125 8 13.8125Z",
       fill: "#52C41A"
-    }), /* @__PURE__ */ import_react97.default.createElement("path", {
+    }), /* @__PURE__ */ import_react98.default.createElement("path", {
       opacity: "0.1",
       d: "M8 2.1875C4.79063 2.1875 2.1875 4.79063 2.1875 8C2.1875 11.2094 4.79063 13.8125 8 13.8125C11.2094 13.8125 13.8125 11.2094 13.8125 8C13.8125 4.79063 11.2094 2.1875 8 2.1875ZM11.0219 5.71406L7.73125 10.2766C7.68526 10.3408 7.62463 10.3931 7.55439 10.4291C7.48414 10.4652 7.40631 10.4841 7.32734 10.4841C7.24838 10.4841 7.17054 10.4652 7.1003 10.4291C7.03006 10.3931 6.96943 10.3408 6.92344 10.2766L4.97656 7.57656C4.91719 7.49375 4.97656 7.37813 5.07812 7.37813H5.81094C5.97187 7.37813 6.12187 7.45625 6.21562 7.58594L7.32812 9.12969L9.78438 5.72344C9.87813 5.59219 10.0297 5.51562 10.1891 5.51562H10.9219C11.0234 5.51562 11.0828 5.63125 11.0219 5.71406Z",
       fill: "#52C41A"
-    }), /* @__PURE__ */ import_react97.default.createElement("path", {
+    }), /* @__PURE__ */ import_react98.default.createElement("path", {
       d: "M10.9214 5.51562H10.1885C10.0292 5.51562 9.87761 5.59219 9.78386 5.72344L7.3276 9.12969L6.21509 7.58594C6.12134 7.45625 5.97134 7.37813 5.81041 7.37813H5.07759C4.97603 7.37813 4.91665 7.49375 4.97603 7.57656L6.92291 10.2766C6.9689 10.3408 7.02953 10.3931 7.09978 10.4291C7.17002 10.4652 7.24785 10.4841 7.32682 10.4841C7.40579 10.4841 7.48362 10.4652 7.55386 10.4291C7.6241 10.3931 7.68473 10.3408 7.73072 10.2766L11.0214 5.71406C11.0823 5.63125 11.0229 5.51562 10.9214 5.51562Z",
       fill: "#52C41A"
     }));
@@ -62317,15 +62294,15 @@ padding-bottom: 25px;
   var SuccessIcon_default = SuccessIcon;
 
   // src/Components/common/icons/DeleteIcon.tsx
-  var import_react98 = __toESM(require_react(), 1);
+  var import_react99 = __toESM(require_react(), 1);
   var DeleteIcon = () => {
-    return /* @__PURE__ */ import_react98.default.createElement("svg", {
+    return /* @__PURE__ */ import_react99.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "12",
       height: "14",
       viewBox: "0 0 12 14",
       fill: "none"
-    }, /* @__PURE__ */ import_react98.default.createElement("path", {
+    }, /* @__PURE__ */ import_react99.default.createElement("path", {
       d: "M11.5 3H9.5V1.75C9.5 1.19844 9.05156 0.75 8.5 0.75H3.5C2.94844 0.75 2.5 1.19844 2.5 1.75V3H0.5C0.223437 3 0 3.22344 0 3.5V4C0 4.06875 0.05625 4.125 0.125 4.125H1.06875L1.45469 12.2969C1.47969 12.8297 1.92031 13.25 2.45312 13.25H9.54688C10.0813 13.25 10.5203 12.8313 10.5453 12.2969L10.9312 4.125H11.875C11.9438 4.125 12 4.06875 12 4V3.5C12 3.22344 11.7766 3 11.5 3ZM3.625 1.875H8.375V3H3.625V1.875ZM9.42656 12.125H2.57344L2.19531 4.125H9.80469L9.42656 12.125Z",
       fill: "#1890FF"
     }));
@@ -62333,59 +62310,81 @@ padding-bottom: 25px;
   var DeleteIcon_default = DeleteIcon;
 
   // src/Components/common/icons/folderTableIcon.tsx
-  var import_react99 = __toESM(require_react(), 1);
+  var import_react100 = __toESM(require_react(), 1);
   var FolderTableIcon = () => {
-    return /* @__PURE__ */ import_react99.default.createElement("svg", {
+    return /* @__PURE__ */ import_react100.default.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: "14",
       height: "12",
       viewBox: "0 0 14 12",
       fill: "none"
-    }, /* @__PURE__ */ import_react99.default.createElement("path", {
+    }, /* @__PURE__ */ import_react100.default.createElement("path", {
       d: "M12.75 2.6625H7.14062L5.30781 0.909375C5.28449 0.887543 5.25382 0.875274 5.22188 0.875H1.25C0.973437 0.875 0.75 1.09844 0.75 1.375V10.625C0.75 10.9016 0.973437 11.125 1.25 11.125H12.75C13.0266 11.125 13.25 10.9016 13.25 10.625V3.1625C13.25 2.88594 13.0266 2.6625 12.75 2.6625ZM12.125 10H1.875V2H4.82031L6.68906 3.7875H12.125V10Z",
       fill: "#8C8C8C"
     }));
   };
   var folderTableIcon_default = FolderTableIcon;
 
+  // src/Components/common/icons/FileTableIcon.tsx
+  var import_react101 = __toESM(require_react(), 1);
+  var FileTableIcon = () => {
+    return /* @__PURE__ */ import_react101.default.createElement("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 16 16",
+      fill: "none"
+    }, /* @__PURE__ */ import_react101.default.createElement("path", {
+      d: "M13.3531 4.50938L9.99063 1.14688C9.89688 1.05313 9.77031 1 9.6375 1H3C2.72344 1 2.5 1.22344 2.5 1.5V14.5C2.5 14.7766 2.72344 15 3 15H13C13.2766 15 13.5 14.7766 13.5 14.5V4.86406C13.5 4.73125 13.4469 4.60313 13.3531 4.50938ZM12.3469 5.09375H9.40625V2.15313L12.3469 5.09375ZM12.375 13.875H3.625V2.125H8.34375V5.5C8.34375 5.67405 8.41289 5.84097 8.53596 5.96404C8.65903 6.08711 8.82595 6.15625 9 6.15625H12.375V13.875ZM7.875 9.65625H5C4.93125 9.65625 4.875 9.7125 4.875 9.78125V10.5312C4.875 10.6 4.93125 10.6562 5 10.6562H7.875C7.94375 10.6562 8 10.6 8 10.5312V9.78125C8 9.7125 7.94375 9.65625 7.875 9.65625ZM4.875 7.65625V8.40625C4.875 8.475 4.93125 8.53125 5 8.53125H11C11.0688 8.53125 11.125 8.475 11.125 8.40625V7.65625C11.125 7.5875 11.0688 7.53125 11 7.53125H5C4.93125 7.53125 4.875 7.5875 4.875 7.65625Z",
+      fill: "#8C8C8C"
+    }));
+  };
+  var FileTableIcon_default = FileTableIcon;
+
   // src/Components/InspectionPage/AddFileTable.tsx
-  var AddFileTable = ({ file }) => {
+  var AddFileTable = ({ files, folderFiles }) => {
     const Headers = ["", "Name", "", "Details", ""];
-    const [empty, setEmpty] = (0, import_react100.useState)(false);
-    const data = [
-      {
-        id: 1,
-        type: "folder",
-        name: "Folder 1",
-        status: "OK",
-        Details: "12 record(s), 4 media file(s) found."
-      },
-      {
-        id: 2,
-        type: "xlsx",
-        name: "xsx.xlsx",
-        status: "question",
-        Details: "12 record(s), 4 media file(s) found."
-      }
-    ];
-    const name = "Lorem ipsum dolor sit.";
-    return /* @__PURE__ */ import_react100.default.createElement("div", null, /* @__PURE__ */ import_react100.default.createElement(Table2, null, /* @__PURE__ */ import_react100.default.createElement(TableHead, null, /* @__PURE__ */ import_react100.default.createElement(TableRow, null, Headers.map((header, index2) => {
+    const [folderFilesList, setFolderFilesList] = (0, import_react102.useState)(folderFiles);
+    const [fileList, setFileList] = (0, import_react102.useState)(files);
+    const handleDeleteFolder = (id) => {
+      const newFolderFiles = folderFilesList.filter((item) => item.id !== id);
+      setFolderFilesList(newFolderFiles);
+    };
+    const handleDeleteFile = (id) => {
+      const newFiles = fileList.filter((item) => item.id !== id);
+      setFileList(newFiles);
+      console.log(newFiles);
+    };
+    (0, import_react102.useEffect)(() => {
+      setFolderFilesList(folderFiles);
+      setFileList(files);
+    }, [folderFiles, files]);
+    return /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(Table2, null, /* @__PURE__ */ import_react102.default.createElement(TableHead, null, /* @__PURE__ */ import_react102.default.createElement(TableRow, null, Headers.map((header, index2) => {
       if (header === "") {
-        return /* @__PURE__ */ import_react100.default.createElement(TableCell, {
+        return /* @__PURE__ */ import_react102.default.createElement(TableCell, {
           key: index2,
           style: { maxWidth: "32px", width: "100%" }
         }, header);
       }
-      return /* @__PURE__ */ import_react100.default.createElement(TableCell, {
+      return /* @__PURE__ */ import_react102.default.createElement(TableCell, {
         key: index2
       }, header);
-    }))), /* @__PURE__ */ import_react100.default.createElement(TableBody, null, empty ? /* @__PURE__ */ import_react100.default.createElement(TableRowEmpty, null, /* @__PURE__ */ import_react100.default.createElement(TableCellBodyEmpty, null, /* @__PURE__ */ import_react100.default.createElement(EmptyTableIcon_default, null), /* @__PURE__ */ import_react100.default.createElement(EmptyText2, null, "No Data. ", /* @__PURE__ */ import_react100.default.createElement("br", null), "Add files or folders first."))) : /* @__PURE__ */ import_react100.default.createElement(TableRow, null, /* @__PURE__ */ import_react100.default.createElement(TableCellBody, null, /* @__PURE__ */ import_react100.default.createElement(Icon, null, /* @__PURE__ */ import_react100.default.createElement(folderTableIcon_default, null)), /* @__PURE__ */ import_react100.default.createElement(DetailsText, null, name), /* @__PURE__ */ import_react100.default.createElement(Icon, null, /* @__PURE__ */ import_react100.default.createElement(SuccessIcon_default, null)), /* @__PURE__ */ import_react100.default.createElement(DetailsText, null, "12 record(s), 4 media file(s) found."), /* @__PURE__ */ import_react100.default.createElement(Icon, {
-      style: { cursor: "pointer" }
-    }, /* @__PURE__ */ import_react100.default.createElement(DeleteIcon_default, null)))))));
+    }))), /* @__PURE__ */ import_react102.default.createElement(TableBody, null, folderFilesList.length === 0 && files.length === 0 ? /* @__PURE__ */ import_react102.default.createElement(TableRowEmpty, null, /* @__PURE__ */ import_react102.default.createElement(TableCellBodyEmpty, null, /* @__PURE__ */ import_react102.default.createElement(EmptyTableIcon_default, null), /* @__PURE__ */ import_react102.default.createElement(EmptyText2, null, "No Data. ", /* @__PURE__ */ import_react102.default.createElement("br", null), "Add files or folders first."))) : null, folderFilesList.length > 0 ? folderFilesList.map((file, index2) => {
+      let size2 = Object.keys(file).length - 2;
+      return /* @__PURE__ */ import_react102.default.createElement(TableRow, null, /* @__PURE__ */ import_react102.default.createElement(TableCellBody, null, /* @__PURE__ */ import_react102.default.createElement(Icon, null, /* @__PURE__ */ import_react102.default.createElement(folderTableIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(DetailsText, null, file.folderName), /* @__PURE__ */ import_react102.default.createElement(Icon, null, /* @__PURE__ */ import_react102.default.createElement(SuccessIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(DetailsText, null, size2, " record(s) found."), /* @__PURE__ */ import_react102.default.createElement(Icon, {
+        style: { cursor: "pointer" },
+        onClick: () => handleDeleteFolder(file.id)
+      }, /* @__PURE__ */ import_react102.default.createElement(DeleteIcon_default, null))));
+    }) : null, fileList.length > 0 && fileList.map((file) => /* @__PURE__ */ import_react102.default.createElement(TableRow, null, /* @__PURE__ */ import_react102.default.createElement(TableCellBody, null, /* @__PURE__ */ import_react102.default.createElement(Icon, null, /* @__PURE__ */ import_react102.default.createElement(FileTableIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(DetailsText, null, file.file.name), /* @__PURE__ */ import_react102.default.createElement(Icon, null, /* @__PURE__ */ import_react102.default.createElement(SuccessIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(DetailsText, null, "1 record(s) found."), /* @__PURE__ */ import_react102.default.createElement(Icon, {
+      style: { cursor: "pointer" },
+      onClick: () => handleDeleteFile(file.id)
+    }, /* @__PURE__ */ import_react102.default.createElement(DeleteIcon_default, null))))))));
   };
   var AddFileTable_default = AddFileTable;
+  var FolderName = styled_components_browser_esm_default.div``;
+  var FolderDetails = styled_components_browser_esm_default.div``;
   var Icon = styled_components_browser_esm_default.div`
-    max-width: 32px;
+  max-width: 32px;
   width: 100%;
   text-align: center;
   border-right: 1px solid #F0F0F0;
@@ -62452,26 +62451,83 @@ padding-bottom: 25px;
 
 `;
 
+  // node_modules/uuid/dist/esm-browser/rng.js
+  var getRandomValues;
+  var rnds8 = new Uint8Array(16);
+  function rng() {
+    if (!getRandomValues) {
+      getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== "undefined" && typeof msCrypto.getRandomValues === "function" && msCrypto.getRandomValues.bind(msCrypto);
+      if (!getRandomValues) {
+        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+      }
+    }
+    return getRandomValues(rnds8);
+  }
+
+  // node_modules/uuid/dist/esm-browser/regex.js
+  var regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+
+  // node_modules/uuid/dist/esm-browser/validate.js
+  function validate(uuid) {
+    return typeof uuid === "string" && regex_default.test(uuid);
+  }
+  var validate_default = validate;
+
+  // node_modules/uuid/dist/esm-browser/stringify.js
+  var byteToHex = [];
+  for (i2 = 0; i2 < 256; ++i2) {
+    byteToHex.push((i2 + 256).toString(16).substr(1));
+  }
+  var i2;
+  function stringify(arr) {
+    var offset3 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
+    var uuid = (byteToHex[arr[offset3 + 0]] + byteToHex[arr[offset3 + 1]] + byteToHex[arr[offset3 + 2]] + byteToHex[arr[offset3 + 3]] + "-" + byteToHex[arr[offset3 + 4]] + byteToHex[arr[offset3 + 5]] + "-" + byteToHex[arr[offset3 + 6]] + byteToHex[arr[offset3 + 7]] + "-" + byteToHex[arr[offset3 + 8]] + byteToHex[arr[offset3 + 9]] + "-" + byteToHex[arr[offset3 + 10]] + byteToHex[arr[offset3 + 11]] + byteToHex[arr[offset3 + 12]] + byteToHex[arr[offset3 + 13]] + byteToHex[arr[offset3 + 14]] + byteToHex[arr[offset3 + 15]]).toLowerCase();
+    if (!validate_default(uuid)) {
+      throw TypeError("Stringified UUID is invalid");
+    }
+    return uuid;
+  }
+  var stringify_default = stringify;
+
+  // node_modules/uuid/dist/esm-browser/v4.js
+  function v4(options, buf, offset3) {
+    options = options || {};
+    var rnds = options.random || (options.rng || rng)();
+    rnds[6] = rnds[6] & 15 | 64;
+    rnds[8] = rnds[8] & 63 | 128;
+    if (buf) {
+      offset3 = offset3 || 0;
+      for (var i2 = 0; i2 < 16; ++i2) {
+        buf[offset3 + i2] = rnds[i2];
+      }
+      return buf;
+    }
+    return stringify_default(rnds);
+  }
+  var v4_default = v4;
+
   // src/Components/InspectionPage/CreateInspectionModal.tsx
   var CreateInspectionModal = ({ setModal, modal }) => {
-    const [activeModalTab, setActiveModalTab] = (0, import_react101.useState)(false);
-    const [firstColumn, setFirstColumn] = (0, import_react101.useState)("");
-    const [secondColumn, setSecondColumn] = (0, import_react101.useState)("");
-    const [thirdColumn, setThirdColumn] = (0, import_react101.useState)("");
-    const [step, setStep] = (0, import_react101.useState)(1);
-    const [choose, setChoose] = (0, import_react101.useState)(null);
-    const [file, setFile] = (0, import_react101.useState)(null);
+    const [activeModalTab, setActiveModalTab] = (0, import_react103.useState)(false);
+    const [firstColumn, setFirstColumn] = (0, import_react103.useState)("");
+    const [secondColumn, setSecondColumn] = (0, import_react103.useState)("");
+    const [thirdColumn, setThirdColumn] = (0, import_react103.useState)("");
+    const [step, setStep] = (0, import_react103.useState)(1);
+    const [choose, setChoose] = (0, import_react103.useState)(null);
+    const [files, setFiles] = (0, import_react103.useState)([]);
+    const [folderFiles, setFolderFiles] = (0, import_react103.useState)([]);
+    const [folderName, setFolderName] = (0, import_react103.useState)("");
     const dispatch = useDispatch();
     const filter_1 = useSelector(selectHeaderFilters_1);
-    const hiddenFileInput = (0, import_react101.useRef)(null);
-    const hiddenFileInputFolder = (0, import_react101.useRef)(null);
+    const hiddenFileInput = (0, import_react103.useRef)(null);
+    const hiddenFileInputFolder = (0, import_react103.useRef)(null);
     const modalTabsRef = useOnClickOutside_default(() => {
       setActiveModalTab(false);
     });
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    (0, import_react101.useEffect)(() => {
+    (0, import_react103.useEffect)(() => {
       dispatch(setFilters(firstColumn, secondColumn, thirdColumn));
     }, [filter_1]);
     const chooseTab = (firstColumn2, secondColumn2, thirdColumn2) => {
@@ -62481,99 +62537,106 @@ padding-bottom: 25px;
       dispatch(setFilters(firstColumn2, secondColumn2, thirdColumn2));
     };
     const onUploadChange = (e2) => __async(void 0, null, function* () {
-      const file2 = e2.target.files[0];
-      const fileUrl = URL.createObjectURL(file2);
-      setFile(file2);
+      const file = e2.target.files[0];
+      const fileUrl = URL.createObjectURL(file);
+      setFiles([...files, { file, id: v4_default() }]);
+    });
+    const onUploadChangeFolder = (e2) => __async(void 0, null, function* () {
+      const folder = e2.target.files;
+      const folerArr = Array.from(folder);
+      setFolderFiles([...folderFiles, __spreadProps(__spreadValues({}, folerArr), { id: v4_default(), folderName: folder[0].webkitRelativePath.split("/")[0] })]);
     });
     const onAddClick = () => {
       hiddenFileInput.current.click();
     };
     const onAddClickFolder = () => {
       hiddenFileInputFolder.current.click();
+      hiddenFileInputFolder.current.webkitdirectory = true;
     };
-    return /* @__PURE__ */ import_react101.default.createElement(import_react101.default.Fragment, null, /* @__PURE__ */ import_react101.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react101.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react101.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react101.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react101.default.createElement(ModalClose3, {
+    const otherAtt = { directory: "", webkitdirectory: "" };
+    return /* @__PURE__ */ import_react103.default.createElement(import_react103.default.Fragment, null, /* @__PURE__ */ import_react103.default.createElement(ContainerModal3, null, /* @__PURE__ */ import_react103.default.createElement(ModalWrapp2, null, /* @__PURE__ */ import_react103.default.createElement(ModalHeader3, null, /* @__PURE__ */ import_react103.default.createElement(ModalTitle3, null, "Add Inspection"), /* @__PURE__ */ import_react103.default.createElement(ModalClose3, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react101.default.createElement(Wrapp, null, /* @__PURE__ */ import_react101.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyDescription, null, "Add inspections to the following system:"), /* @__PURE__ */ import_react101.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react101.default.createElement(ModalTabs2, {
+    }, /* @__PURE__ */ import_react103.default.createElement(CrossIcon_default, null))), /* @__PURE__ */ import_react103.default.createElement(Wrapp, null, /* @__PURE__ */ import_react103.default.createElement(ModalBody2, null, step === 1 && /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyDescription, null, "Add inspections to the following system:"), /* @__PURE__ */ import_react103.default.createElement(ModalRow2, null, /* @__PURE__ */ import_react103.default.createElement(ModalTabs2, {
       ref: modalTabsRef,
       active: activeModalTab,
       onClick: () => setActiveModalTab(true)
-    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", /* @__PURE__ */ import_react101.default.createElement(Arrow, {
+    }, firstColumn || "Springfield Storm1", " / ", secondColumn || "Mainline", " / ", thirdColumn || "NASSCO v6 Springfield", /* @__PURE__ */ import_react103.default.createElement(Arrow, {
       active: activeModalTab
-    }, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)), activeModalTab && /* @__PURE__ */ import_react101.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null)), activeModalTab && /* @__PURE__ */ import_react103.default.createElement(ActiveModalWrapper2, null, /* @__PURE__ */ import_react103.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       active: firstColumn === "Springfield Storm1",
       onClick: () => chooseTab("Springfield Storm1", secondColumn, thirdColumn)
-    }, "Springfield Storm1", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm1", /* @__PURE__ */ import_react103.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm2", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm2"
-    }, "Springfield Storm2", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Springfield Storm2", /* @__PURE__ */ import_react103.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab("Springfield Storm3", secondColumn, thirdColumn),
       active: firstColumn === "Springfield Storm3"
-    }, "Springfield Storm3", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, {
+    }, "Springfield Storm3", /* @__PURE__ */ import_react103.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react103.default.createElement(ActiveModalColumn2, {
       style: {
         borderLeft: "1px solid #f0f0f0",
         borderRight: "1px solid #f0f0f0"
       }
-    }, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, "Mainline", thirdColumn),
       active: secondColumn === "Mainline"
-    }, "Mainline", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Mainline", /* @__PURE__ */ import_react103.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null))), /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, "Lateral", thirdColumn),
       active: secondColumn === "Lateral"
-    }, "Lateral", /* @__PURE__ */ import_react101.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react101.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react101.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react101.default.createElement(ArctiveModalColumnTitle2, {
+    }, "Lateral", /* @__PURE__ */ import_react103.default.createElement(ArrowWrapper, null, /* @__PURE__ */ import_react103.default.createElement(ArrowDownIcon_default, null)))), /* @__PURE__ */ import_react103.default.createElement(ActiveModalColumn2, null, /* @__PURE__ */ import_react103.default.createElement(ArctiveModalColumnTitle2, {
       onClick: () => chooseTab(firstColumn, secondColumn, "NASSCO v6 Springfield"),
       active: thirdColumn === "NASSCO v6 Springfield",
       style: { paddingRight: "15px" }
-    }, "NASSCO")))))), step === 2 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, null, "Do you want to upload inspection data (and/or media)?"), /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react101.default.createElement(UploadMedia, {
+    }, "NASSCO")))))), step === 2 && /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeaderTitle, null, "Do you want to upload inspection data (and/or media)?"), /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent2, null, /* @__PURE__ */ import_react103.default.createElement(UploadMedia, {
       active: choose === "Upload",
       onClick: () => setChoose("Upload")
-    }, /* @__PURE__ */ import_react101.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react101.default.createElement(UploadFileIcon_default, null)), /* @__PURE__ */ import_react101.default.createElement(CreateTitle, null, "I want to upload data/media"), /* @__PURE__ */ import_react101.default.createElement(CreateSubtitle, null, "Create inspections from your uploaded data and/or media")), /* @__PURE__ */ import_react101.default.createElement(JustCreate, {
+    }, /* @__PURE__ */ import_react103.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react103.default.createElement(UploadFileIcon_default, null)), /* @__PURE__ */ import_react103.default.createElement(CreateTitle, null, "I want to upload data/media"), /* @__PURE__ */ import_react103.default.createElement(CreateSubtitle, null, "Create inspections from your uploaded data and/or media")), /* @__PURE__ */ import_react103.default.createElement(JustCreate, {
       active: choose === "Create",
       onClick: () => setChoose("Create")
-    }, /* @__PURE__ */ import_react101.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react101.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react101.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react101.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), step === 3 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement("div", null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, {
+    }, /* @__PURE__ */ import_react103.default.createElement(CreateIcon, null, /* @__PURE__ */ import_react103.default.createElement(CreateFileIcon_default, null)), /* @__PURE__ */ import_react103.default.createElement(CreateTitle, null, "I don't want to upload anything, just create inspections"), /* @__PURE__ */ import_react103.default.createElement(CreateSubtitle, null, "Create inspections by selecting assets"))))), step === 3 && /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react103.default.createElement("div", null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeaderTitle, {
       style: { display: "flex", alignItems: "center" }
-    }, "Select files or folders to import.", /* @__PURE__ */ import_react101.default.createElement("div", {
+    }, "Select files or folders to import.", /* @__PURE__ */ import_react103.default.createElement("div", {
       style: {
         paddingLeft: "20px",
         display: "flex",
         alignItems: "center"
       }
-    }, /* @__PURE__ */ import_react101.default.createElement(AddFileWrapper, {
+    }, /* @__PURE__ */ import_react103.default.createElement(AddFileWrapper, {
       onClick: onAddClick
-    }, /* @__PURE__ */ import_react101.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react101.default.createElement(InputHidden, {
+    }, /* @__PURE__ */ import_react103.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react103.default.createElement(InputHidden, {
       type: "file",
       ref: hiddenFileInput,
       onChange: onUploadChange,
       id: "file",
       name: "file"
-    })), /* @__PURE__ */ import_react101.default.createElement(addFileIcon_default, null), /* @__PURE__ */ import_react101.default.createElement("div", {
+    })), /* @__PURE__ */ import_react103.default.createElement(addFileIcon_default, null), /* @__PURE__ */ import_react103.default.createElement("div", {
       style: { padding: "0px 7px" }
-    }, "Add File")), /* @__PURE__ */ import_react101.default.createElement(AddFolderWrapper, {
+    }, "Add File")), /* @__PURE__ */ import_react103.default.createElement(AddFolderWrapper, {
       onClick: onAddClickFolder
-    }, /* @__PURE__ */ import_react101.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react101.default.createElement(InputHidden, {
+    }, /* @__PURE__ */ import_react103.default.createElement(ChooseFile, null, /* @__PURE__ */ import_react103.default.createElement(InputHidden, {
       type: "file",
       ref: hiddenFileInputFolder,
-      onChange: onUploadChange,
-      id: "Folder",
-      name: "Folder"
-    })), /* @__PURE__ */ import_react101.default.createElement(addFolder_default, null), /* @__PURE__ */ import_react101.default.createElement("div", {
+      onChange: onUploadChangeFolder,
+      webkitdirectory: "true"
+    })), /* @__PURE__ */ import_react103.default.createElement(addFolder_default, null), /* @__PURE__ */ import_react103.default.createElement("div", {
       style: { padding: "0px 7px" }
-    }, "Add Folder"))))), /* @__PURE__ */ import_react101.default.createElement(AddFileTable_default, {
-      file
-    }))), step === 4 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react101.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react101.default.createElement("span", {
+    }, "Add Folder"))))), /* @__PURE__ */ import_react103.default.createElement(AddFileTable_default, {
+      files,
+      folderFiles
+    }))), step === 4 && /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeaderTitle, null, /* @__PURE__ */ import_react103.default.createElement("span", null, " System: "), /* @__PURE__ */ import_react103.default.createElement("span", {
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, firstColumn, " / "), /* @__PURE__ */ import_react101.default.createElement("span", {
+    }, firstColumn, " / "), /* @__PURE__ */ import_react103.default.createElement("span", {
       style: { color: "rgba(0, 0, 0, 0.45)", fontSize: "14px" }
-    }, secondColumn, " / "), thirdColumn))), step === 5 && /* @__PURE__ */ import_react101.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react101.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react101.default.createElement(TextWrapper, null, /* @__PURE__ */ import_react101.default.createElement(Text, null, "0 inspection(s) are the be created."), /* @__PURE__ */ import_react101.default.createElement(Text, null, "No inspection(s) have names."))))), /* @__PURE__ */ import_react101.default.createElement(Buttons2, null, /* @__PURE__ */ import_react101.default.createElement(ButtonSave2, {
+    }, secondColumn, " / "), thirdColumn))), step === 5 && /* @__PURE__ */ import_react103.default.createElement(ModalBodyContent3, null, /* @__PURE__ */ import_react103.default.createElement(ModalBodyHeader, null, /* @__PURE__ */ import_react103.default.createElement(TextWrapper, null, /* @__PURE__ */ import_react103.default.createElement(Text, null, "0 inspection(s) are the be created."), /* @__PURE__ */ import_react103.default.createElement(Text, null, "No inspection(s) have names."))))), /* @__PURE__ */ import_react103.default.createElement(Buttons2, null, /* @__PURE__ */ import_react103.default.createElement(ButtonSave2, {
       onClick: () => {
         setStep(1);
         setModal(false);
       }
-    }, "Cancel"), /* @__PURE__ */ import_react101.default.createElement("div", {
+    }, "Cancel"), /* @__PURE__ */ import_react103.default.createElement("div", {
       style: { display: "flex" }
-    }, step > 1 && /* @__PURE__ */ import_react101.default.createElement(ButtonCreate2, {
+    }, step > 1 && /* @__PURE__ */ import_react103.default.createElement(ButtonCreate2, {
       style: { marginRight: "5px", backgroundColor: "white", color: "#000" },
       onClick: () => setStep(step - 1)
-    }, "Back"), /* @__PURE__ */ import_react101.default.createElement(ButtonCreate2, {
+    }, "Back"), /* @__PURE__ */ import_react103.default.createElement(ButtonCreate2, {
       onClick: () => setStep(step + 1),
       disabled: step == 2 && !choose
     }, "Next")))))));
@@ -62582,7 +62645,7 @@ padding-bottom: 25px;
   var Arrow = styled_components_browser_esm_default.div`
     position: absolute;
   right: 8px;
-  top: 8px;
+  top: ${({ active }) => active ? "8px" : "9px"};
   transform: ${(props) => props.active ? "rotate(180deg)" : "rotate(0deg)"};
   
 `;
@@ -62754,8 +62817,8 @@ padding-bottom: 25px;
   background-color: white;
   box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: 90px;
-  left: 23px;
+  top: 35px;
+  left: 0px;
   display: flex;
 `;
   var ModalTabs2 = styled_components_browser_esm_default.div`
@@ -62862,12 +62925,12 @@ padding-bottom: 25px;
 
   // src/Components/InspectionPage/TableInspection.tsx
   var TableInspection = () => {
-    const [isOpenFilter, setIsOpenFilter] = (0, import_react102.useState)(false);
-    const [modal, setModal] = (0, import_react102.useState)(false);
-    const [isOpenSettings, setIsOpenSettings] = (0, import_react102.useState)(false);
-    const [columns, setColumns] = (0, import_react102.useState)();
+    const [isOpenFilter, setIsOpenFilter] = (0, import_react104.useState)(false);
+    const [modal, setModal] = (0, import_react104.useState)(false);
+    const [isOpenSettings, setIsOpenSettings] = (0, import_react104.useState)(false);
+    const [columns, setColumns] = (0, import_react104.useState)();
     const dispatch = useDispatch();
-    (0, import_react102.useEffect)(() => {
+    (0, import_react104.useEffect)(() => {
       dispatch(getOrganizationInspections("1", "1", "50"));
     }, []);
     const inspections = useSelector(selectOrganizationInspections);
@@ -62877,37 +62940,41 @@ padding-bottom: 25px;
     const settingsRef = useOnClickOutside_default(() => {
       setIsOpenSettings(false);
     });
-    return /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react102.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react102.default.createElement(Button2, {
+    return /* @__PURE__ */ import_react104.default.createElement("div", null, /* @__PURE__ */ import_react104.default.createElement(TitleWrapperContent2, null, /* @__PURE__ */ import_react104.default.createElement(Title4, null, "Inspections"), /* @__PURE__ */ import_react104.default.createElement(Button2, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react102.default.createElement("span", {
+    }, /* @__PURE__ */ import_react104.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react102.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react102.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react102.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react102.default.createElement(Collection2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(Folder_default, {
+    }, "+"), " ", " ", " Add Inspection")), /* @__PURE__ */ import_react104.default.createElement(TableWrapper3, null, /* @__PURE__ */ import_react104.default.createElement(TableUtils2, null, /* @__PURE__ */ import_react104.default.createElement(LeftSide3, null, /* @__PURE__ */ import_react104.default.createElement(Collection2, null, /* @__PURE__ */ import_react104.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react104.default.createElement(Folder_default, {
       color: "#000"
-    })), "Collection", /* @__PURE__ */ import_react102.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react102.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react102.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react102.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react102.default.createElement(Assets5, null, inspections && inspections.values.data.length, " Inspections")), /* @__PURE__ */ import_react102.default.createElement(RightSide3, null, /* @__PURE__ */ import_react102.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react102.default.createElement(FilterWrapper5, {
+    })), "Collections", /* @__PURE__ */ import_react104.default.createElement(HoverWrapper2, null, /* @__PURE__ */ import_react104.default.createElement(TextHover2, null, "Collections are like folders that store assets or inspections."), /* @__PURE__ */ import_react104.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"), /* @__PURE__ */ import_react104.default.createElement(HoverItem5, null, "12-19-O0+32-23-F0"))), /* @__PURE__ */ import_react104.default.createElement(Assets5, null, inspections && inspections.values.data.length, " Inspections")), /* @__PURE__ */ import_react104.default.createElement(RightSide3, null, /* @__PURE__ */ import_react104.default.createElement(AddToCollection2, null, /* @__PURE__ */ import_react104.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react104.default.createElement(FolderPlus_default, null)), "Add to collection"), /* @__PURE__ */ import_react104.default.createElement(FilterWrapper5, {
       onClick: () => setIsOpenFilter(true),
       ref: filterRef
-    }, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react102.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react102.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react102.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react102.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react102.default.createElement(IconWrapper6, null, /* @__PURE__ */ import_react102.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react102.default.createElement(View2, null, "View")), /* @__PURE__ */ import_react102.default.createElement(Settings2, {
+    }, /* @__PURE__ */ import_react104.default.createElement(IconWrapper6, {
+      style: { paddingLeft: "5px" }
+    }, /* @__PURE__ */ import_react104.default.createElement(Filter_default, null)), /* @__PURE__ */ import_react104.default.createElement(FilterTitle3, null, "Filter"), /* @__PURE__ */ import_react104.default.createElement(Number4, null, "0"), isOpenFilter && /* @__PURE__ */ import_react104.default.createElement(Filter_default2, null)), /* @__PURE__ */ import_react104.default.createElement(ViewWrapper2, null, /* @__PURE__ */ import_react104.default.createElement(IconWrapper6, {
+      style: { paddingLeft: "3px" }
+    }, /* @__PURE__ */ import_react104.default.createElement(EyeIcon_default, null)), /* @__PURE__ */ import_react104.default.createElement(View2, null, "Views")), /* @__PURE__ */ import_react104.default.createElement(Settings2, {
       onClick: () => {
         setTimeout(() => {
           setIsOpenSettings(true);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react102.default.createElement(SettingsIcon_default, {
+    }, /* @__PURE__ */ import_react104.default.createElement(SettingsIcon_default, {
       color: "#000",
       width: 14,
       height: 14
-    })), isOpenSettings && /* @__PURE__ */ import_react102.default.createElement(SettingsModal_default, {
+    })), isOpenSettings && /* @__PURE__ */ import_react104.default.createElement(SettingsModal_default, {
       settingsRef,
       setIsOpenSettings
-    }))), /* @__PURE__ */ import_react102.default.createElement(TableInspectionContent_default, {
+    }))), /* @__PURE__ */ import_react104.default.createElement(TableInspectionContent_default, {
       headers: inspections == null ? void 0 : inspections.columns,
       data: inspections,
       minCellWidth: 120
-    })), modal && /* @__PURE__ */ import_react102.default.createElement("div", null, /* @__PURE__ */ import_react102.default.createElement(CreateInspectionModal_default, {
+    })), modal && /* @__PURE__ */ import_react104.default.createElement("div", null, /* @__PURE__ */ import_react104.default.createElement(CreateInspectionModal_default, {
       setModal,
       modal
     })));
@@ -62930,8 +62997,9 @@ padding-bottom: 25px;
   cursor: pointer;
   background-color: #ffffff;
   border: 1px solid #ccc;
-  padding: 3px 10px;
+  padding: 4px 6px;
   font-size: 14px;
+     color: rgb(38, 38, 38);;
 
   &:hover {
     border: 1px solid #40a9ff;
@@ -63002,6 +63070,9 @@ padding-bottom: 25px;
   align-items: center;
   background-color: #fff;
   cursor: pointer;
+  &:hover {
+    border: 1px solid #40a9ff;
+  }
 `;
   var View2 = styled_components_browser_esm_default.div`
     font-size: 14px;
@@ -63050,10 +63121,10 @@ padding-bottom: 25px;
 `;
   var Assets5 = styled_components_browser_esm_default.div`
   font-size: 14px;
-  padding: 0px 5px;
+  padding: 0px 10px;
 `;
   var IconWrapper6 = styled_components_browser_esm_default.div`
-  padding: 0 5px;
+  padding-right: 5px;
   display: flex;
   align-items: center;
 `;
@@ -63070,23 +63141,23 @@ padding-bottom: 25px;
 
   // src/Pages/InspectionPage.tsx
   var InspectionPage = () => {
-    return /* @__PURE__ */ import_react103.default.createElement("div", null, /* @__PURE__ */ import_react103.default.createElement(Header_default, null), /* @__PURE__ */ import_react103.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react103.default.createElement(TableInspection_default, null));
+    return /* @__PURE__ */ import_react105.default.createElement("div", null, /* @__PURE__ */ import_react105.default.createElement(Header_default, null), /* @__PURE__ */ import_react105.default.createElement(InspectionSelects_default, null), /* @__PURE__ */ import_react105.default.createElement(TableInspection_default, null));
   };
   var InspectionPage_default = InspectionPage;
 
   // src/Pages/DeliverablesPage.tsx
-  var import_react111 = __toESM(require_react(), 1);
+  var import_react113 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/DeliverableTable.tsx
-  var import_react109 = __toESM(require_react(), 1);
+  var import_react111 = __toESM(require_react(), 1);
 
   // src/Components/DeliverablePage/TableDeliverableContent.tsx
-  var import_react108 = __toESM(require_react(), 1);
+  var import_react110 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/DeliverableIcons/CopyIcon.tsx
-  var import_react104 = __toESM(require_react(), 1);
+  var import_react106 = __toESM(require_react(), 1);
   var CopyIcon = () => {
-    return /* @__PURE__ */ import_react104.default.createElement("svg", {
+    return /* @__PURE__ */ import_react106.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "copy",
@@ -63094,16 +63165,16 @@ padding-bottom: 25px;
       height: "14",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react104.default.createElement("path", {
+    }, /* @__PURE__ */ import_react106.default.createElement("path", {
       d: "M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
     }));
   };
   var CopyIcon_default = CopyIcon;
 
   // src/Components/common/icons/DeliverableIcons/RegenerateIcon.tsx
-  var import_react105 = __toESM(require_react(), 1);
+  var import_react107 = __toESM(require_react(), 1);
   var RegenerateIcon = () => {
-    return /* @__PURE__ */ import_react105.default.createElement("svg", {
+    return /* @__PURE__ */ import_react107.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "redo",
@@ -63111,16 +63182,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react105.default.createElement("path", {
+    }, /* @__PURE__ */ import_react107.default.createElement("path", {
       d: "M758.2 839.1C851.8 765.9 912 651.9 912 523.9 912 303 733.5 124.3 512.6 124 291.4 123.7 112 302.8 112 523.9c0 125.2 57.5 236.9 147.6 310.2 3.5 2.8 8.6 2.2 11.4-1.3l39.4-50.5c2.7-3.4 2.1-8.3-1.2-11.1-8.1-6.6-15.9-13.7-23.4-21.2a318.64 318.64 0 01-68.6-101.7C200.4 609 192 567.1 192 523.9s8.4-85.1 25.1-124.5c16.1-38.1 39.2-72.3 68.6-101.7 29.4-29.4 63.6-52.5 101.7-68.6C426.9 212.4 468.8 204 512 204s85.1 8.4 124.5 25.1c38.1 16.1 72.3 39.2 101.7 68.6 29.4 29.4 52.5 63.6 68.6 101.7 16.7 39.4 25.1 81.3 25.1 124.5s-8.4 85.1-25.1 124.5a318.64 318.64 0 01-68.6 101.7c-9.3 9.3-19.1 18-29.3 26L668.2 724a8 8 0 00-14.1 3l-39.6 162.2c-1.2 5 2.6 9.9 7.7 9.9l167 .8c6.7 0 10.5-7.7 6.3-12.9l-37.3-47.9z"
     }));
   };
   var RegenerateIcon_default = RegenerateIcon;
 
   // src/Components/common/icons/DeliverableIcons/DownloadIcon.tsx
-  var import_react106 = __toESM(require_react(), 1);
+  var import_react108 = __toESM(require_react(), 1);
   var DownloadIcon = () => {
-    return /* @__PURE__ */ import_react106.default.createElement("svg", {
+    return /* @__PURE__ */ import_react108.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "download",
@@ -63128,16 +63199,16 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react106.default.createElement("path", {
+    }, /* @__PURE__ */ import_react108.default.createElement("path", {
       d: "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
     }));
   };
   var DownloadIcon_default = DownloadIcon;
 
   // src/Components/common/icons/DeliverableIcons/ArchiveIcon.tsx
-  var import_react107 = __toESM(require_react(), 1);
+  var import_react109 = __toESM(require_react(), 1);
   var ArchiveIcon = () => {
-    return /* @__PURE__ */ import_react107.default.createElement("svg", {
+    return /* @__PURE__ */ import_react109.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "delete",
@@ -63145,7 +63216,7 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react107.default.createElement("path", {
+    }, /* @__PURE__ */ import_react109.default.createElement("path", {
       d: "M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
     }));
   };
@@ -63155,7 +63226,7 @@ padding-bottom: 25px;
   var createHeaders3 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react108.useRef)()
+      ref: (0, import_react110.useRef)()
     }));
   };
   var TableDeliverableContent = ({ headers, minCellWidth }) => {
@@ -63197,14 +63268,14 @@ padding-bottom: 25px;
         }
       }
     ];
-    const [tableHeight, setTableHeight] = (0, import_react108.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react108.useState)(null);
-    const [tableDataState, setTableDataState] = (0, import_react108.useState)(tableData);
-    const [activeFilter, setActiveFilter] = (0, import_react108.useState)(false);
-    const [activeFilterN, setActiveFilterN] = (0, import_react108.useState)([]);
-    const tableElement = (0, import_react108.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react110.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react110.useState)(null);
+    const [tableDataState, setTableDataState] = (0, import_react110.useState)(tableData);
+    const [activeFilter, setActiveFilter] = (0, import_react110.useState)(false);
+    const [activeFilterN, setActiveFilterN] = (0, import_react110.useState)([]);
+    const tableElement = (0, import_react110.useRef)(null);
     const columns = createHeaders3(headers);
-    (0, import_react108.useEffect)(() => {
+    (0, import_react110.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const mouseDown = (index2) => {
@@ -63236,72 +63307,72 @@ padding-bottom: 25px;
       const sorted = sortUtil(withoutNone, (item) => item.inspection, "desc" /* DESCENDING */, "number" /* Number */);
       setActiveFilter(!activeFilter);
     };
-    return /* @__PURE__ */ import_react108.default.createElement("div", {
+    return /* @__PURE__ */ import_react110.default.createElement("div", {
       style: { position: "relative" }
-    }, /* @__PURE__ */ import_react108.default.createElement("div", {
+    }, /* @__PURE__ */ import_react110.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react108.default.createElement("div", {
+    }, /* @__PURE__ */ import_react110.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react108.default.createElement("table", {
+    }, /* @__PURE__ */ import_react110.default.createElement("table", {
       className: "deliverables-table",
       ref: tableElement
-    }, /* @__PURE__ */ import_react108.default.createElement("thead", null, /* @__PURE__ */ import_react108.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
+    }, /* @__PURE__ */ import_react110.default.createElement("thead", null, /* @__PURE__ */ import_react110.default.createElement("tr", null, columns.map(({ ref, text }, i2) => text === "checkbox" ? /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement("th", {
       ref,
       key: text,
       className: "checkbox"
-    }, /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("input", {
+    }, /* @__PURE__ */ import_react110.default.createElement("span", null, /* @__PURE__ */ import_react110.default.createElement("input", {
       type: "checkbox",
       onClick: (e2) => handleCheckCheckboxes(e2)
-    })))) : text === "Amount" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
+    })))) : text === "Amount" ? /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react108.default.createElement(FilterWrapper6, {
+    }, /* @__PURE__ */ import_react110.default.createElement(FilterWrapper6, {
       onClick: handleFilterColumn
-    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react108.default.createElement(TableArrowTop_default, {
+    }, /* @__PURE__ */ import_react110.default.createElement("span", null, text), /* @__PURE__ */ import_react110.default.createElement(IconWrapper7, null, /* @__PURE__ */ import_react110.default.createElement(TableArrowTop_default, {
       color: activeFilter ? "#276FB2" : "#ccc"
-    }), /* @__PURE__ */ import_react108.default.createElement(TableArrowBottom_default, {
+    }), /* @__PURE__ */ import_react110.default.createElement(TableArrowBottom_default, {
       color: !activeFilter ? "#276FB2" : "#ccc"
-    }))), /* @__PURE__ */ import_react108.default.createElement("div", {
+    }))), /* @__PURE__ */ import_react110.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : text === "Items" ? /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
+    }))) : text === "Items" ? /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement("th", {
       ref,
       key: text,
       className: "Items"
-    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement("div", {
+    }, /* @__PURE__ */ import_react110.default.createElement("span", null, text), /* @__PURE__ */ import_react110.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    }))) : /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("th", {
+    }))) : /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react108.default.createElement("span", null, text), /* @__PURE__ */ import_react108.default.createElement("div", {
+    }, /* @__PURE__ */ import_react110.default.createElement("span", null, text), /* @__PURE__ */ import_react110.default.createElement("div", {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2),
       className: `resize-handle ${activeIndex === i2 ? "active" : "idle"}`
-    })))))), /* @__PURE__ */ import_react108.default.createElement("tbody", null, tableDataState.map((item) => {
-      return /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react110.default.createElement("tbody", null, tableDataState.map((item) => {
+      return /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", {
         className: "checkbox"
-      }, /* @__PURE__ */ import_react108.default.createElement("input", {
+      }, /* @__PURE__ */ import_react110.default.createElement("input", {
         type: "checkbox",
         checked: item.checkbox,
         onClick: (e2) => handleCheckCheckbox(e2, item.id)
-      }))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
+      }))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", {
         className: "Items"
-      }, /* @__PURE__ */ import_react108.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", {
+      }, /* @__PURE__ */ import_react110.default.createElement("span", null, item.name))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", null, /* @__PURE__ */ import_react110.default.createElement("span", null, item.project))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", null, /* @__PURE__ */ import_react110.default.createElement("span", null, item.inspection))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", null, /* @__PURE__ */ import_react110.default.createElement("span", null, item.create_on))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", null, /* @__PURE__ */ import_react110.default.createElement("span", {
         style: { color: "#1890FF", display: "flex", alignItems: "center", cursor: "pointer" }
-      }, /* @__PURE__ */ import_react108.default.createElement("div", {
+      }, /* @__PURE__ */ import_react110.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react108.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", null, /* @__PURE__ */ import_react108.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react108.default.createElement("tr", null, /* @__PURE__ */ import_react108.default.createElement("td", {
+      }, /* @__PURE__ */ import_react110.default.createElement(CopyIcon_default, null)), item.share))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", null, /* @__PURE__ */ import_react110.default.createElement("span", null, item.downloads.value))), /* @__PURE__ */ import_react110.default.createElement("tr", null, /* @__PURE__ */ import_react110.default.createElement("td", {
         className: "Many-Items"
-      }, /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
+      }, /* @__PURE__ */ import_react110.default.createElement("span", null, /* @__PURE__ */ import_react110.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react108.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
+      }, /* @__PURE__ */ import_react110.default.createElement(RegenerateIcon_default, null)), item.actions.generate), /* @__PURE__ */ import_react110.default.createElement("span", null, /* @__PURE__ */ import_react110.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react108.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react108.default.createElement("span", null, /* @__PURE__ */ import_react108.default.createElement("div", {
+      }, /* @__PURE__ */ import_react110.default.createElement(DownloadIcon_default, null)), item.actions.download), /* @__PURE__ */ import_react110.default.createElement("span", null, /* @__PURE__ */ import_react110.default.createElement("div", {
         style: { padding: "0px 7px" }
-      }, /* @__PURE__ */ import_react108.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
+      }, /* @__PURE__ */ import_react110.default.createElement(ArchiveIcon_default, null)), item.actions.archive))));
     }))))));
   };
   var TableDeliverableContent_default = TableDeliverableContent;
@@ -63337,7 +63408,7 @@ padding-bottom: 25px;
       "Downloads #",
       "Actions"
     ];
-    return /* @__PURE__ */ import_react109.default.createElement("div", null, /* @__PURE__ */ import_react109.default.createElement(TableWrapper4, null, /* @__PURE__ */ import_react109.default.createElement(TableDeliverableContent_default, {
+    return /* @__PURE__ */ import_react111.default.createElement("div", null, /* @__PURE__ */ import_react111.default.createElement(TableWrapper4, null, /* @__PURE__ */ import_react111.default.createElement(TableDeliverableContent_default, {
       headers: tableHeaders,
       minCellWidth: 120
     })));
@@ -63435,21 +63506,21 @@ padding-bottom: 25px;
 `;
 
   // src/Components/DeliverablePage/CreateDeliverableModal.tsx
-  var import_react110 = __toESM(require_react(), 1);
+  var import_react112 = __toESM(require_react(), 1);
   var CreateDeliverableModal = ({ setModal, modal }) => {
     const modalRef = useOnClickOutside_default(() => {
       setModal(false);
     });
-    return /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement(ContainerModal4, null, /* @__PURE__ */ import_react110.default.createElement(ModalWrapp3, {
+    return /* @__PURE__ */ import_react112.default.createElement(import_react112.default.Fragment, null, /* @__PURE__ */ import_react112.default.createElement(ContainerModal4, null, /* @__PURE__ */ import_react112.default.createElement(ModalWrapp3, {
       ref: modalRef
-    }, /* @__PURE__ */ import_react110.default.createElement(ModalHeader4, null, /* @__PURE__ */ import_react110.default.createElement(ModalTitle4, null, "Create Project"), /* @__PURE__ */ import_react110.default.createElement(ModalClose4, {
+    }, /* @__PURE__ */ import_react112.default.createElement(ModalHeader4, null, /* @__PURE__ */ import_react112.default.createElement(ModalTitle4, null, "Create Project"), /* @__PURE__ */ import_react112.default.createElement(ModalClose4, {
       onClick: () => setModal(false)
-    }, "\u2613")), /* @__PURE__ */ import_react110.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react110.default.createElement(ModalBodyContent4, null, /* @__PURE__ */ import_react110.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react110.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react110.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react110.default.createElement(Input5, {
+    }, "\u2613")), /* @__PURE__ */ import_react112.default.createElement(ModalBody3, null, /* @__PURE__ */ import_react112.default.createElement(ModalBodyContent4, null, /* @__PURE__ */ import_react112.default.createElement(ModalRow3, null, /* @__PURE__ */ import_react112.default.createElement(ModalRowTitle3, null, "Name: \xA0"), /* @__PURE__ */ import_react112.default.createElement(ModalInput3, null, /* @__PURE__ */ import_react112.default.createElement(Input5, {
       type: "text",
       placeholder: "Deliverable name"
-    }))), /* @__PURE__ */ import_react110.default.createElement(Subtitle2, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react110.default.createElement(Buttons3, null, /* @__PURE__ */ import_react110.default.createElement(ButtonSave3, {
+    }))), /* @__PURE__ */ import_react112.default.createElement(Subtitle2, null, "Inspections are pre-selected, please proceed to the next step.")), /* @__PURE__ */ import_react112.default.createElement(Buttons3, null, /* @__PURE__ */ import_react112.default.createElement(ButtonSave3, {
       onClick: () => setModal(false)
-    }, "Cancel"), /* @__PURE__ */ import_react110.default.createElement(ButtonCreate3, {
+    }, "Cancel"), /* @__PURE__ */ import_react112.default.createElement(ButtonCreate3, {
       disabled: true
     }, "Next"))))));
   };
@@ -63627,16 +63698,16 @@ padding-bottom: 25px;
 
   // src/Pages/DeliverablesPage.tsx
   var DeliverablesPage = () => {
-    const [modal, setModal] = (0, import_react111.useState)(false);
-    return /* @__PURE__ */ import_react111.default.createElement("div", null, /* @__PURE__ */ import_react111.default.createElement(Header_default, null), /* @__PURE__ */ import_react111.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react111.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react111.default.createElement(Button3, {
+    const [modal, setModal] = (0, import_react113.useState)(false);
+    return /* @__PURE__ */ import_react113.default.createElement("div", null, /* @__PURE__ */ import_react113.default.createElement(Header_default, null), /* @__PURE__ */ import_react113.default.createElement(TitleWrapperContent3, null, /* @__PURE__ */ import_react113.default.createElement(Title6, null, "Deliverables"), /* @__PURE__ */ import_react113.default.createElement(Button3, {
       onClick: () => {
         setTimeout(() => {
           setModal(!modal);
         }, 0.1);
       }
-    }, /* @__PURE__ */ import_react111.default.createElement("span", {
+    }, /* @__PURE__ */ import_react113.default.createElement("span", {
       style: { fontSize: "20px", paddingBottom: "3px", paddingRight: "10px" }
-    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react111.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react111.default.createElement(CreateDeliverableModal_default, {
+    }, "+"), " ", " Create Deliverables")), /* @__PURE__ */ import_react113.default.createElement(DeliverableTable_default, null), modal && /* @__PURE__ */ import_react113.default.createElement(CreateDeliverableModal_default, {
       modal,
       setModal
     }));
@@ -63668,13 +63739,13 @@ padding-bottom: 25px;
 `;
 
   // src/Pages/ProfilePage.tsx
-  var import_react112 = __toESM(require_react(), 1);
+  var import_react114 = __toESM(require_react(), 1);
   var ProfilePage = () => {
-    const [preferences, setPreferences] = (0, import_react112.useState)(null);
-    const [preferencesOpen, setPreferencesOpen] = (0, import_react112.useState)(false);
+    const [preferences, setPreferences] = (0, import_react114.useState)(null);
+    const [preferencesOpen, setPreferencesOpen] = (0, import_react114.useState)(false);
     const user = useSelector(selectUserResponse);
     const initials = user && user.firstName.charAt(0) + user.lastName.charAt(0);
-    const hiddenFileInput = (0, import_react112.useRef)(null);
+    const hiddenFileInput = (0, import_react114.useRef)(null);
     const onUploadChange = (e2) => __async(void 0, null, function* () {
       const file = e2.target.files[0];
       const fileUrl = URL.createObjectURL(file);
@@ -63685,32 +63756,32 @@ padding-bottom: 25px;
     const preferencesRef = useOnClickOutside_default(() => {
       setPreferencesOpen(false);
     });
-    return /* @__PURE__ */ import_react112.default.createElement("div", null, /* @__PURE__ */ import_react112.default.createElement(Header_default, null), /* @__PURE__ */ import_react112.default.createElement(ProfileHeader, null, /* @__PURE__ */ import_react112.default.createElement(ProfileHeaderTitle, null, "My Profile"), /* @__PURE__ */ import_react112.default.createElement(SaveButton, null, "Save Profile")), /* @__PURE__ */ import_react112.default.createElement(ProfileContent, null, /* @__PURE__ */ import_react112.default.createElement(ProfileContentBody, null, /* @__PURE__ */ import_react112.default.createElement(ChoosePhoto, null, /* @__PURE__ */ import_react112.default.createElement(Input6, {
+    return /* @__PURE__ */ import_react114.default.createElement("div", null, /* @__PURE__ */ import_react114.default.createElement(Header_default, null), /* @__PURE__ */ import_react114.default.createElement(ProfileHeader, null, /* @__PURE__ */ import_react114.default.createElement(ProfileHeaderTitle, null, "My Profile"), /* @__PURE__ */ import_react114.default.createElement(SaveButton, null, "Save Profile")), /* @__PURE__ */ import_react114.default.createElement(ProfileContent, null, /* @__PURE__ */ import_react114.default.createElement(ProfileContentBody, null, /* @__PURE__ */ import_react114.default.createElement(ChoosePhoto, null, /* @__PURE__ */ import_react114.default.createElement(Input6, {
       type: "file",
       ref: hiddenFileInput,
       onChange: onUploadChange,
       id: "file",
       name: "file",
       accept: "image/*"
-    })), /* @__PURE__ */ import_react112.default.createElement(Photo, {
+    })), /* @__PURE__ */ import_react114.default.createElement(Photo, {
       onClick: onAddClick
-    }, /* @__PURE__ */ import_react112.default.createElement(PhotoInitial, null, initials)), /* @__PURE__ */ import_react112.default.createElement(Right2, null, /* @__PURE__ */ import_react112.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react112.default.createElement(ContactTitle, null, "Contact Information")), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "First Name: \xA0"), /* @__PURE__ */ import_react112.default.createElement(InputForm, null)), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "Last Name: \xA0"), /* @__PURE__ */ import_react112.default.createElement(InputForm, null)), /* @__PURE__ */ import_react112.default.createElement(ContactInfo, {
+    }, /* @__PURE__ */ import_react114.default.createElement(PhotoInitial, null, initials)), /* @__PURE__ */ import_react114.default.createElement(Right2, null, /* @__PURE__ */ import_react114.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react114.default.createElement(ContactTitle, null, "Contact Information")), /* @__PURE__ */ import_react114.default.createElement(InputRow, null, /* @__PURE__ */ import_react114.default.createElement(InputTitle, null, "First Name: \xA0"), /* @__PURE__ */ import_react114.default.createElement(InputForm, null)), /* @__PURE__ */ import_react114.default.createElement(InputRow, null, /* @__PURE__ */ import_react114.default.createElement(InputTitle, null, "Last Name: \xA0"), /* @__PURE__ */ import_react114.default.createElement(InputForm, null)), /* @__PURE__ */ import_react114.default.createElement(ContactInfo, {
       style: { paddingTop: "40px" }
-    }, /* @__PURE__ */ import_react112.default.createElement(ContactTitle, null, "Preferences")), /* @__PURE__ */ import_react112.default.createElement(InputRow, null, /* @__PURE__ */ import_react112.default.createElement(InputTitle, null, "Unit Preferences: \xA0"), /* @__PURE__ */ import_react112.default.createElement(Preferenses, null, /* @__PURE__ */ import_react112.default.createElement(Preview, {
+    }, /* @__PURE__ */ import_react114.default.createElement(ContactTitle, null, "Preferences")), /* @__PURE__ */ import_react114.default.createElement(InputRow, null, /* @__PURE__ */ import_react114.default.createElement(InputTitle, null, "Unit Preferences: \xA0"), /* @__PURE__ */ import_react114.default.createElement(Preferenses, null, /* @__PURE__ */ import_react114.default.createElement(Preview, {
       active: preferencesOpen,
       onClick: () => {
         setTimeout(() => {
           setPreferencesOpen(true);
         }, 0.1);
       }
-    }, preferences ? preferences : "Select", /* @__PURE__ */ import_react112.default.createElement(IconWrapp8, null, /* @__PURE__ */ import_react112.default.createElement(ArrowDownIcon_default, null))), preferencesOpen && /* @__PURE__ */ import_react112.default.createElement(MenuOpen, {
+    }, preferences ? preferences : "Select", /* @__PURE__ */ import_react114.default.createElement(IconWrapp8, null, /* @__PURE__ */ import_react114.default.createElement(ArrowDownIcon_default, null))), preferencesOpen && /* @__PURE__ */ import_react114.default.createElement(MenuOpen, {
       ref: preferencesRef
-    }, /* @__PURE__ */ import_react112.default.createElement(MenuItem2, {
+    }, /* @__PURE__ */ import_react114.default.createElement(MenuItem2, {
       onClick: () => {
         setPreferencesOpen(false);
         setPreferences("Imperial");
       }
-    }, "Imperial"), /* @__PURE__ */ import_react112.default.createElement(MenuItem2, {
+    }, "Imperial"), /* @__PURE__ */ import_react114.default.createElement(MenuItem2, {
       onClick: () => {
         setPreferencesOpen(false);
         setPreferences("Metric");
@@ -63846,12 +63917,12 @@ padding-bottom: 25px;
 `;
 
   // src/Pages/SettingOrganization.tsx
-  var import_react118 = __toESM(require_react(), 1);
+  var import_react120 = __toESM(require_react(), 1);
 
   // src/Components/common/icons/IntegrationIcon.tsx
-  var import_react113 = __toESM(require_react(), 1);
+  var import_react115 = __toESM(require_react(), 1);
   var IntegrationIcon = () => {
-    return /* @__PURE__ */ import_react113.default.createElement("svg", {
+    return /* @__PURE__ */ import_react115.default.createElement("svg", {
       viewBox: "64 64 896 896",
       focusable: "false",
       "data-icon": "node-index",
@@ -63859,33 +63930,33 @@ padding-bottom: 25px;
       height: "1em",
       fill: "currentColor",
       "aria-hidden": "true"
-    }, /* @__PURE__ */ import_react113.default.createElement("defs", null, /* @__PURE__ */ import_react113.default.createElement("style", null)), /* @__PURE__ */ import_react113.default.createElement("path", {
+    }, /* @__PURE__ */ import_react115.default.createElement("defs", null, /* @__PURE__ */ import_react115.default.createElement("style", null)), /* @__PURE__ */ import_react115.default.createElement("path", {
       d: "M843.5 737.4c-12.4-75.2-79.2-129.1-155.3-125.4S550.9 676 546 752c-153.5-4.8-208-40.7-199.1-113.7 3.3-27.3 19.8-41.9 50.1-49 18.4-4.3 38.8-4.9 57.3-3.2 1.7.2 3.5.3 5.2.5 11.3 2.7 22.8 5 34.3 6.8 34.1 5.6 68.8 8.4 101.8 6.6 92.8-5 156-45.9 159.2-132.7 3.1-84.1-54.7-143.7-147.9-183.6-29.9-12.8-61.6-22.7-93.3-30.2-14.3-3.4-26.3-5.7-35.2-7.2-7.9-75.9-71.5-133.8-147.8-134.4-76.3-.6-140.9 56.1-150.1 131.9s40 146.3 114.2 163.9c74.2 17.6 149.9-23.3 175.7-95.1 9.4 1.7 18.7 3.6 28 5.8 28.2 6.6 56.4 15.4 82.4 26.6 70.7 30.2 109.3 70.1 107.5 119.9-1.6 44.6-33.6 65.2-96.2 68.6-27.5 1.5-57.6-.9-87.3-5.8-8.3-1.4-15.9-2.8-22.6-4.3-3.9-.8-6.6-1.5-7.8-1.8l-3.1-.6c-2.2-.3-5.9-.8-10.7-1.3-25-2.3-52.1-1.5-78.5 4.6-55.2 12.9-93.9 47.2-101.1 105.8-15.7 126.2 78.6 184.7 276 188.9 29.1 70.4 106.4 107.9 179.6 87 73.3-20.9 119.3-93.4 106.9-168.6zM329.1 345.2a83.3 83.3 0 11.01-166.61 83.3 83.3 0 01-.01 166.61zM695.6 845a83.3 83.3 0 11.01-166.61A83.3 83.3 0 01695.6 845z"
     }));
   };
   var IntegrationIcon_default = IntegrationIcon;
 
   // src/Components/SettingsPage/SettingsPageUsers.tsx
-  var import_react116 = __toESM(require_react(), 1);
+  var import_react118 = __toESM(require_react(), 1);
 
   // src/Components/SettingsPage/SettingPageUsersTable.tsx
-  var import_react114 = __toESM(require_react(), 1);
+  var import_react116 = __toESM(require_react(), 1);
   var createHeaders4 = (headers) => {
     return headers.map((item) => ({
       text: item,
-      ref: (0, import_react114.useRef)()
+      ref: (0, import_react116.useRef)()
     }));
   };
   var SettingsPageUsersTable = ({ minCellWidth, organizationInfo }) => {
     const headers = ["First Name", "Last Name", "Email", "Phone", "Roles", "Actions"];
-    const [tableHeight, setTableHeight] = (0, import_react114.useState)("auto");
-    const [activeIndex, setActiveIndex] = (0, import_react114.useState)(null);
-    const [activeFilter, setActiveFilter] = (0, import_react114.useState)(false);
-    const [activeTab, setActiveTab] = (0, import_react114.useState)("Details");
-    const [detailsOpen, setDetailsOpen] = (0, import_react114.useState)(false);
-    const tableElement = (0, import_react114.useRef)(null);
+    const [tableHeight, setTableHeight] = (0, import_react116.useState)("auto");
+    const [activeIndex, setActiveIndex] = (0, import_react116.useState)(null);
+    const [activeFilter, setActiveFilter] = (0, import_react116.useState)(false);
+    const [activeTab, setActiveTab] = (0, import_react116.useState)("Details");
+    const [detailsOpen, setDetailsOpen] = (0, import_react116.useState)(false);
+    const tableElement = (0, import_react116.useRef)(null);
     const columns = createHeaders4(headers);
-    (0, import_react114.useEffect)(() => {
+    (0, import_react116.useEffect)(() => {
       setTableHeight(tableElement.current.offsetHeight);
     }, []);
     const detailsRef = useOnClickOutside_default(() => {
@@ -63894,7 +63965,7 @@ padding-bottom: 25px;
     const mouseDown = (index2) => {
       setActiveIndex(index2);
     };
-    const mouseMove = (0, import_react114.useCallback)((e2) => {
+    const mouseMove = (0, import_react116.useCallback)((e2) => {
       const gridColumns = columns.map((col, i2) => {
         if (i2 === activeIndex) {
           const width = e2.clientX - col.ref.current.offsetLeft;
@@ -63906,48 +63977,48 @@ padding-bottom: 25px;
       });
       tableElement.current.style.gridTemplateColumns = `${gridColumns.join(" ")}`;
     }, [activeIndex, columns, minCellWidth]);
-    const removeListeners = (0, import_react114.useCallback)(() => {
+    const removeListeners = (0, import_react116.useCallback)(() => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseup", removeListeners);
     }, [mouseMove]);
-    const mouseUp = (0, import_react114.useCallback)(() => {
+    const mouseUp = (0, import_react116.useCallback)(() => {
       setActiveIndex(null);
       removeListeners();
     }, [setActiveIndex, removeListeners]);
-    return /* @__PURE__ */ import_react114.default.createElement("div", {
+    return /* @__PURE__ */ import_react116.default.createElement("div", {
       style: { position: "relative", padding: "24px 24px " }
-    }, /* @__PURE__ */ import_react114.default.createElement("div", {
+    }, /* @__PURE__ */ import_react116.default.createElement("div", {
       className: "container"
-    }, /* @__PURE__ */ import_react114.default.createElement("div", {
+    }, /* @__PURE__ */ import_react116.default.createElement("div", {
       className: "table-wrapper"
-    }, /* @__PURE__ */ import_react114.default.createElement("table", {
+    }, /* @__PURE__ */ import_react116.default.createElement("table", {
       className: "resizeable-table-settings",
       ref: tableElement
-    }, /* @__PURE__ */ import_react114.default.createElement("thead", null, /* @__PURE__ */ import_react114.default.createElement("tr", null, columns.map(({ ref, text }, i2) => /* @__PURE__ */ import_react114.default.createElement(import_react114.default.Fragment, null, /* @__PURE__ */ import_react114.default.createElement("th", {
+    }, /* @__PURE__ */ import_react116.default.createElement("thead", null, /* @__PURE__ */ import_react116.default.createElement("tr", null, columns.map(({ ref, text }, i2) => /* @__PURE__ */ import_react116.default.createElement(import_react116.default.Fragment, null, /* @__PURE__ */ import_react116.default.createElement("th", {
       ref,
       key: text
-    }, /* @__PURE__ */ import_react114.default.createElement("span", {
+    }, /* @__PURE__ */ import_react116.default.createElement("span", {
       style: { fontSize: "12px" }
-    }, text), /* @__PURE__ */ import_react114.default.createElement(Head, {
+    }, text), /* @__PURE__ */ import_react116.default.createElement(Head, {
       style: { height: tableHeight },
       onMouseDown: () => mouseDown(i2)
-    })))))), /* @__PURE__ */ import_react114.default.createElement("tbody", null, organizationInfo && organizationInfo.users ? organizationInfo.users.map((item, index2) => {
-      return /* @__PURE__ */ import_react114.default.createElement(import_react114.default.Fragment, null, /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", {
+    })))))), /* @__PURE__ */ import_react116.default.createElement("tbody", null, organizationInfo && organizationInfo.users ? organizationInfo.users.map((item, index2) => {
+      return /* @__PURE__ */ import_react116.default.createElement(import_react116.default.Fragment, null, /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", {
         style: { display: "flex", justifyContent: "space-between" }
-      }, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.firstName))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, item.firstName))), /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", null, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.lastName))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, item.lastName))), /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", null, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.email))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, item.email))), /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", null, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.phone))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, item.phone))), /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", null, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
-      }, item.roles))), /* @__PURE__ */ import_react114.default.createElement("tr", null, /* @__PURE__ */ import_react114.default.createElement("td", null, /* @__PURE__ */ import_react114.default.createElement("span", {
+      }, item.roles))), /* @__PURE__ */ import_react116.default.createElement("tr", null, /* @__PURE__ */ import_react116.default.createElement("td", null, /* @__PURE__ */ import_react116.default.createElement("span", {
         style: { fontSize: "12px" }
       }, item.actions))));
-    }) : /* @__PURE__ */ import_react114.default.createElement(LoaderWrapper, null, /* @__PURE__ */ import_react114.default.createElement(Loader_default, null)))))));
+    }) : /* @__PURE__ */ import_react116.default.createElement(LoaderWrapper, null, /* @__PURE__ */ import_react116.default.createElement(Loader_default, null)))))));
   };
   var SettingPageUsersTable_default = SettingsPageUsersTable;
   var Head = styled_components_browser_esm_default.div`
@@ -64072,10 +64143,10 @@ padding-bottom: 25px;
 `;
 
   // src/Components/SettingsPage/AddUserModal.tsx
-  var import_react115 = __toESM(require_react(), 1);
+  var import_react117 = __toESM(require_react(), 1);
   var AddUserModal = ({ setModal }) => {
-    const [activeRoles, setActiveRoles] = (0, import_react115.useState)([]);
-    const [selectRolesActive, setSelectRolesActive] = (0, import_react115.useState)(false);
+    const [activeRoles, setActiveRoles] = (0, import_react117.useState)([]);
+    const [selectRolesActive, setSelectRolesActive] = (0, import_react117.useState)(false);
     const [email, setEmail] = useInput_default();
     const [phone, setPhone] = useInput_default();
     const [lastName, setLastName] = useInput_default();
@@ -64100,40 +64171,40 @@ padding-bottom: 25px;
       dispatch(createUser(email, firstName, lastName, phone, activeRoles));
       setModal(false);
     };
-    return /* @__PURE__ */ import_react115.default.createElement(ContainerModal5, null, /* @__PURE__ */ import_react115.default.createElement(ModalWrapp4, null, /* @__PURE__ */ import_react115.default.createElement(ModalWrappHeader, null, /* @__PURE__ */ import_react115.default.createElement(ModalTitle5, null, "Add User"), /* @__PURE__ */ import_react115.default.createElement(ModalClose5, {
+    return /* @__PURE__ */ import_react117.default.createElement(ContainerModal5, null, /* @__PURE__ */ import_react117.default.createElement(ModalWrapp4, null, /* @__PURE__ */ import_react117.default.createElement(ModalWrappHeader, null, /* @__PURE__ */ import_react117.default.createElement(ModalTitle5, null, "Add User"), /* @__PURE__ */ import_react117.default.createElement(ModalClose5, {
       onClick: () => {
         setModal(false);
       }
-    }, "X")), /* @__PURE__ */ import_react115.default.createElement(ModalWrappBody, null, /* @__PURE__ */ import_react115.default.createElement(ModalBody4, null, /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Email: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
+    }, /* @__PURE__ */ import_react117.default.createElement(CrossIcon_default, null))), /* @__PURE__ */ import_react117.default.createElement(ModalWrappBody, null, /* @__PURE__ */ import_react117.default.createElement(ModalBody4, null, /* @__PURE__ */ import_react117.default.createElement(Row3, null, /* @__PURE__ */ import_react117.default.createElement(InputTitle2, null, "Email: \xA0"), /* @__PURE__ */ import_react117.default.createElement(Input7, {
       onChange: setEmail
-    })), /* @__PURE__ */ import_react115.default.createElement(RowSelect, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Roles: \xA0"), /* @__PURE__ */ import_react115.default.createElement(SelectWrapper, {
+    })), /* @__PURE__ */ import_react117.default.createElement(RowSelect, null, /* @__PURE__ */ import_react117.default.createElement(InputTitle2, null, "Roles: \xA0"), /* @__PURE__ */ import_react117.default.createElement(SelectWrapper, {
       onClick: () => {
         setTimeout(() => {
           setSelectRolesActive(true);
         }, 0.1);
       }
     }, activeRoles.length >= 1 ? activeRoles.map((item, index2) => {
-      return item !== "" ? /* @__PURE__ */ import_react115.default.createElement(Span3, {
+      return item !== "" ? /* @__PURE__ */ import_react117.default.createElement(Span3, {
         key: index2
-      }, item, /* @__PURE__ */ import_react115.default.createElement("div", {
+      }, item, /* @__PURE__ */ import_react117.default.createElement("div", {
         style: { fontSize: "9px", paddingLeft: "5px" },
         onClick: () => handleSelectRoles(item)
-      }, "X")) : null;
-    }) : ""), selectRolesActive && /* @__PURE__ */ import_react115.default.createElement(Selects, {
+      }, /* @__PURE__ */ import_react117.default.createElement(CrossIcon_default, null))) : null;
+    }) : ""), selectRolesActive && /* @__PURE__ */ import_react117.default.createElement(Selects, {
       ref: selectsRef
-    }, /* @__PURE__ */ import_react115.default.createElement(Select, {
+    }, /* @__PURE__ */ import_react117.default.createElement(Select, {
       onClick: () => handleSelectRoles("OWNER")
-    }, "OWNER"), /* @__PURE__ */ import_react115.default.createElement(Select, {
+    }, "OWNER"), /* @__PURE__ */ import_react117.default.createElement(Select, {
       onClick: () => handleSelectRoles("MEMBER")
-    }, "MEMBER"), /* @__PURE__ */ import_react115.default.createElement(Select, {
+    }, "MEMBER"), /* @__PURE__ */ import_react117.default.createElement(Select, {
       onClick: () => handleSelectRoles("GUEST")
-    }, "GUEST"))), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "First Name: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
+    }, "GUEST"))), /* @__PURE__ */ import_react117.default.createElement(Row3, null, /* @__PURE__ */ import_react117.default.createElement(InputTitle2, null, "First Name: \xA0"), /* @__PURE__ */ import_react117.default.createElement(Input7, {
       onChange: setFirstName
-    })), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Last Name: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
+    })), /* @__PURE__ */ import_react117.default.createElement(Row3, null, /* @__PURE__ */ import_react117.default.createElement(InputTitle2, null, "Last Name: \xA0"), /* @__PURE__ */ import_react117.default.createElement(Input7, {
       onChange: setLastName
-    })), /* @__PURE__ */ import_react115.default.createElement(Row3, null, /* @__PURE__ */ import_react115.default.createElement(InputTitle2, null, "Phone: \xA0"), /* @__PURE__ */ import_react115.default.createElement(Input7, {
+    })), /* @__PURE__ */ import_react117.default.createElement(Row3, null, /* @__PURE__ */ import_react117.default.createElement(InputTitle2, null, "Phone: \xA0"), /* @__PURE__ */ import_react117.default.createElement(Input7, {
       onChange: setPhone
-    })))), /* @__PURE__ */ import_react115.default.createElement(Button4, {
+    })))), /* @__PURE__ */ import_react117.default.createElement(Button4, {
       onClick: handleAddUser,
       disabled: !firstName || !lastName || !phone || !email || !activeRoles
     }, "Add New User")));
@@ -64247,20 +64318,20 @@ padding-bottom: 25px;
 
   // src/Components/SettingsPage/SettingsPageUsers.tsx
   var SettingsPageUsers = () => {
-    const [modal, setModal] = (0, import_react116.useState)(false);
+    const [modal, setModal] = (0, import_react118.useState)(false);
     const dispatch = useDispatch();
     const organizationInfo = useSelector(selectOrganizationInfo);
-    const [popup, setPopup] = (0, import_react116.useState)(false);
+    const [popup, setPopup] = (0, import_react118.useState)(false);
     const isInvalidData = useSelector(selectIsInvalidData);
     const isValidData = useSelector(selectIsValidData);
     const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage);
-    (0, import_react116.useEffect)(() => {
+    (0, import_react118.useEffect)(() => {
       if (isInvalidData)
         setPopup(true);
       if (isValidData)
         setPopup(true);
     }, [isInvalidData, isValidData]);
-    (0, import_react116.useEffect)(() => {
+    (0, import_react118.useEffect)(() => {
       let timer;
       if (popup) {
         timer = setTimeout(() => {
@@ -64270,24 +64341,24 @@ padding-bottom: 25px;
       }
       return () => clearTimeout(timer);
     }, [popup]);
-    (0, import_react116.useEffect)(() => {
+    (0, import_react118.useEffect)(() => {
       dispatch(getOrganizationInfo());
     }, []);
-    return /* @__PURE__ */ import_react116.default.createElement(import_react116.default.Fragment, null, /* @__PURE__ */ import_react116.default.createElement(Wrapper16, null, isInvalidData && /* @__PURE__ */ import_react116.default.createElement(Popup_default, {
+    return /* @__PURE__ */ import_react118.default.createElement(import_react118.default.Fragment, null, /* @__PURE__ */ import_react118.default.createElement(Wrapper16, null, isInvalidData && /* @__PURE__ */ import_react118.default.createElement(Popup_default, {
       text: isInvalidDataMessage,
       status: "error"
-    }), isValidData && /* @__PURE__ */ import_react116.default.createElement(Popup_default, {
+    }), isValidData && /* @__PURE__ */ import_react118.default.createElement(Popup_default, {
       text: "User was created",
       status: "success"
-    }), /* @__PURE__ */ import_react116.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react116.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react116.default.createElement(HeaderButton, {
+    }), /* @__PURE__ */ import_react118.default.createElement(HeaderUser, null, /* @__PURE__ */ import_react118.default.createElement(HeaderTitle, null, "Users"), /* @__PURE__ */ import_react118.default.createElement(HeaderButton, {
       onClick: () => {
         setTimeout(() => {
           setModal(true);
         }, 0.1);
       }
-    }, "Add User")), /* @__PURE__ */ import_react116.default.createElement(SettingPageUsersTable_default, {
+    }, "Add User")), /* @__PURE__ */ import_react118.default.createElement(SettingPageUsersTable_default, {
       organizationInfo
-    }), modal && /* @__PURE__ */ import_react116.default.createElement(AddUserModal_default, {
+    }), modal && /* @__PURE__ */ import_react118.default.createElement(AddUserModal_default, {
       setModal,
       organizationInfo
     })));
@@ -64318,9 +64389,9 @@ padding-bottom: 25px;
 `;
 
   // src/Components/SettingsPage/SettingsOrganizationPage.tsx
-  var import_react117 = __toESM(require_react(), 1);
+  var import_react119 = __toESM(require_react(), 1);
   var SettingsOrganizationPage = () => {
-    return /* @__PURE__ */ import_react117.default.createElement(Wrapper17, null, /* @__PURE__ */ import_react117.default.createElement(HeaderUser2, null, /* @__PURE__ */ import_react117.default.createElement(HeaderTitle2, null, "Organization"), /* @__PURE__ */ import_react117.default.createElement(HeaderButton2, null, "Save settings")), /* @__PURE__ */ import_react117.default.createElement(LogoWrapper4, null, /* @__PURE__ */ import_react117.default.createElement(LogoTitle, null, "Logo:"), /* @__PURE__ */ import_react117.default.createElement(LogoImage, null)));
+    return /* @__PURE__ */ import_react119.default.createElement(Wrapper17, null, /* @__PURE__ */ import_react119.default.createElement(HeaderUser2, null, /* @__PURE__ */ import_react119.default.createElement(HeaderTitle2, null, "Organization"), /* @__PURE__ */ import_react119.default.createElement(HeaderButton2, null, "Save settings")), /* @__PURE__ */ import_react119.default.createElement(LogoWrapper4, null, /* @__PURE__ */ import_react119.default.createElement(LogoTitle, null, "Logo:"), /* @__PURE__ */ import_react119.default.createElement(LogoImage, null)));
   };
   var SettingsOrganizationPage_default = SettingsOrganizationPage;
   var LogoWrapper4 = styled_components_browser_esm_default.div`
@@ -64365,25 +64436,25 @@ padding-bottom: 25px;
   // src/Pages/SettingOrganization.tsx
   var SettingsOrganization = () => {
     const history2 = useHistory();
-    return /* @__PURE__ */ import_react118.default.createElement("div", null, /* @__PURE__ */ import_react118.default.createElement(Header_default, null), /* @__PURE__ */ import_react118.default.createElement(Wrapper18, null, /* @__PURE__ */ import_react118.default.createElement(LeftMenu, null, /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    return /* @__PURE__ */ import_react120.default.createElement("div", null, /* @__PURE__ */ import_react120.default.createElement(Header_default, null), /* @__PURE__ */ import_react120.default.createElement(Wrapper18, null, /* @__PURE__ */ import_react120.default.createElement(LeftMenu, null, /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-organization",
       onClick: () => history2.push("/settings-organization")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(OrganizationIcon_default, null)), "Organization"), /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-systems",
       onClick: () => history2.push("/settings-systems")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(SystemsIcon_default, null)), "Systems"), /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-templates",
       onClick: () => history2.push("/settings-templates")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(TemplatesIcon_default, null)), "Templates"), /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-users",
       onClick: () => history2.push("/settings-users")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(UsersIcon_default, null)), "Users"), /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-equipment",
       onClick: () => history2.push("/settings-equipment")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react118.default.createElement(MenuItem3, {
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(EquipmentIcon_default, null)), "Equipment"), /* @__PURE__ */ import_react120.default.createElement(MenuItem3, {
       active: window.location.pathname === "/settings-integrations",
       onClick: () => history2.push("/settings-integrations")
-    }, /* @__PURE__ */ import_react118.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react118.default.createElement(IntegrationIcon_default, null)), "Integrations")), /* @__PURE__ */ import_react118.default.createElement(RightSide5, null, window.location.pathname === "/settings-users" && /* @__PURE__ */ import_react118.default.createElement(SettingsPageUsers_default, null), window.location.pathname === "/settings-organization" && /* @__PURE__ */ import_react118.default.createElement(SettingsOrganizationPage_default, null))), /* @__PURE__ */ import_react118.default.createElement(Footer_default, null));
+    }, /* @__PURE__ */ import_react120.default.createElement(IconWrapper10, null, /* @__PURE__ */ import_react120.default.createElement(IntegrationIcon_default, null)), "Integrations")), /* @__PURE__ */ import_react120.default.createElement(RightSide5, null, window.location.pathname === "/settings-users" && /* @__PURE__ */ import_react120.default.createElement(SettingsPageUsers_default, null), window.location.pathname === "/settings-organization" && /* @__PURE__ */ import_react120.default.createElement(SettingsOrganizationPage_default, null))), /* @__PURE__ */ import_react120.default.createElement(Footer_default, null));
   };
   var SettingOrganization_default = SettingsOrganization;
   var RightSide5 = styled_components_browser_esm_default.div`
@@ -64416,13 +64487,13 @@ padding-bottom: 25px;
 `;
 
   // src/Components/utils/ProtectedRouter.tsx
-  var import_react119 = __toESM(require_react(), 1);
+  var import_react121 = __toESM(require_react(), 1);
   var ProtectedRouter = (props) => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const isLoading = useSelector(selectIsLoading);
     if (isLoading)
-      return /* @__PURE__ */ import_react119.default.createElement(import_react119.default.Fragment, null);
-    return isLoggedIn ? /* @__PURE__ */ import_react119.default.createElement(Route, __spreadValues({}, props)) : /* @__PURE__ */ import_react119.default.createElement(Redirect, {
+      return /* @__PURE__ */ import_react121.default.createElement(import_react121.default.Fragment, null);
+    return isLoggedIn ? /* @__PURE__ */ import_react121.default.createElement(Route, __spreadValues({}, props)) : /* @__PURE__ */ import_react121.default.createElement(Redirect, {
       to: "/login"
     });
   };
@@ -64431,74 +64502,74 @@ padding-bottom: 25px;
   // src/App.tsx
   store_default.dispatch(getUserInfo("1"));
   function App() {
-    return /* @__PURE__ */ import_react120.default.createElement("div", null, /* @__PURE__ */ import_react120.default.createElement(Switch, null, /* @__PURE__ */ import_react120.default.createElement(Route, {
+    return /* @__PURE__ */ import_react122.default.createElement("div", null, /* @__PURE__ */ import_react122.default.createElement(Switch, null, /* @__PURE__ */ import_react122.default.createElement(Route, {
       path: "/login",
       component: LoginPage_default
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/dashboard",
       component: DashboardPage_default
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/profile",
       component: ProfilePage_default
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/assets",
       component: AssetsPage_default
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/projects-card",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/projects-list",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/projects-calendar",
       component: ProjectsPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/inspections",
       component: InspectionPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/deliverables",
       component: DeliverablesPage_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-organization",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-systems",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-templates",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-users",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-equipment",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(ProtectedRouter_default, {
+    }), /* @__PURE__ */ import_react122.default.createElement(ProtectedRouter_default, {
       path: "/settings-integrations",
       component: SettingOrganization_default,
       exact: true
-    }), /* @__PURE__ */ import_react120.default.createElement(Redirect, {
+    }), /* @__PURE__ */ import_react122.default.createElement(Redirect, {
       to: "/login"
     })));
   }
   var App_default = App;
 
   // src/index.tsx
-  import_react_dom4.default.render(/* @__PURE__ */ import_react121.default.createElement(import_react121.StrictMode, null, /* @__PURE__ */ import_react121.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react121.default.createElement(Provider_default, {
+  import_react_dom4.default.render(/* @__PURE__ */ import_react123.default.createElement(import_react123.StrictMode, null, /* @__PURE__ */ import_react123.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react123.default.createElement(Provider_default, {
     store: store_default
-  }, /* @__PURE__ */ import_react121.default.createElement(ConnectedRouter, {
+  }, /* @__PURE__ */ import_react123.default.createElement(ConnectedRouter, {
     history
-  }, /* @__PURE__ */ import_react121.default.createElement(App_default, null))))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react123.default.createElement(App_default, null))))), document.getElementById("root"));
 })();
 /*
 object-assign

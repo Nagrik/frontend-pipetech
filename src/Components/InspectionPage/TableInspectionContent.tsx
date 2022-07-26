@@ -180,7 +180,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                                  fontSize: '12px'
                                                              }}>
                                                             <input type="checkbox"  onClick={(e) => handleCheckCheckboxes(e)} />
-                                                                <span className="checkmark"></span>
+                                                                <span className="checkmark-header"></span>
                                                         </label>
                                                         </span>
                                                             </th>
@@ -190,7 +190,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                     return (
                                                         <>
                                                             <th ref={ref} className='id' key={i}>
-                                                                <span>
+                                                                <span style={{fontWeight: '500'}}>
                                                                    Assets
                                                                 </span>
                                                                 <div
@@ -270,7 +270,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                 </span>
 
                                                     </Td>
-                                                    <Td style={{position: 'sticky', left: '55px'}}
+                                                    <Td style={{position: 'sticky', left: '50px'}}
                                                         isActive={item.checkbox}
                                                         isHovered={item.hover}
                                                         onMouseEnter={() => isHovered(item.id)}
@@ -390,7 +390,8 @@ const Td = styled.td<{ isActive: boolean, isHovered?: boolean, isSticky?: boolea
   width: 100%;
   background-color: ${({isActive, isHovered}) => isActive ? '#e6f7ff' : isHovered ? '#fafafa' : 'white'};
   position: ${({isSticky}) => isSticky ? 'sticky' : 'unset'};
-  left: 55px;
+  left: 50px;
+  transition: background-color 0.3s;
 `
 
 const ResizableTableInspection = styled.table<{ arr: any }>`
@@ -403,7 +404,7 @@ const ResizableTableInspection = styled.table<{ arr: any }>`
   margin-right: 24px;
   margin-left: 24px;
   grid-auto-columns: calc(25% - 30px);
-  grid-template-columns: ${({arr}: any) => arr.map((item: any, index: number) => index === 0 ? 'minmax(55px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
+  grid-template-columns: ${({arr}: any) => arr.map((item: any, index: number) => index === 0 ? 'minmax(50px, 0.1fr)' : index === 1 ? 'minmax(200px, 1fr)' : 'minmax(155px, 1fr)').join(' ')};
 
 `
 
@@ -414,6 +415,7 @@ const IdWrapper = styled.div`
   padding: 5px 10px;
   white-space: nowrap;
   display: flex;
+  font-weight: 500;
 `
 
 

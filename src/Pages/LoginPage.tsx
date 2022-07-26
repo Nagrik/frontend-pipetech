@@ -14,7 +14,7 @@ const LoginPage = () => {
     const isInvalidData = useSelector(selectIsInvalidData)
     const isInvalidDataMessage = useSelector(selectIsInvalidDataMessage)
 
-
+    console.log(isInvalidData)
     useEffect(() => {
         if (isInvalidData) setPopup(true);
     }, [isInvalidData]);
@@ -24,13 +24,13 @@ const LoginPage = () => {
 
         if (popup) {
             timer = setTimeout(() => {
-                setPopup(false);
+                // setPopup(false);
                 dispatch(invalidDataClear());
             }, 3000);
         }
 
         return () => {
-            dispatch(invalidDataClear())
+            // dispatch(invalidDataClear())
             clearTimeout(timer)
         };
     }, [popup]);

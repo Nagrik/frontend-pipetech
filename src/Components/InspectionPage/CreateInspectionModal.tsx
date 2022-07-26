@@ -11,6 +11,9 @@ import AddFileIcon from "@/Components/common/icons/addFileIcon";
 import AddFolder from "@/Components/common/icons/addFolder";
 import AddFileTable from "@/Components/InspectionPage/AddFileTable";
 import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIcon";
+import { v4 as uuidv4 } from 'uuid';
+import CrossIcon from "@/Components/common/icons/CrossIcon";
+
 
 const CreateInspectionModal = ({setModal, modal}: any) => {
     const [activeModalTab, setActiveModalTab] = useState<boolean>(false)
@@ -20,7 +23,9 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     const [thirdColumn, setThirdColumn] = useState<string>('')
     const [step, setStep] = useState<number>(1)
     const [choose, setChoose] = useState<string | null>(null)
-    const [file, setFile] = useState<string | null>(null)
+    const [files, setFiles] = useState<string[] | null>([])
+    const [folderFiles, setFolderFiles] = useState<string[] | null>([])
+    const [folderName, setFolderName] = useState<string>('')
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -53,7 +58,14 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     const onUploadChange = async (e: any) => {
         const file = e.target.files[0];
         const fileUrl = URL.createObjectURL(file)
-        setFile(file)
+        // @ts-ignore
+        setFiles([...files, {file, id: uuidv4()}])
+    }
+
+    const onUploadChangeFolder = async (e: any) => {
+        const folder = e.target.files
+        const folerArr = Array.from(folder)
+        setFolderFiles([...folderFiles, {...folerArr, id: uuidv4(), folderName: folder[0].webkitRelativePath.split('/')[0] }])
     }
 
     const onAddClick = () => {
@@ -61,8 +73,9 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
     }
     const onAddClickFolder = () => {
         hiddenFileInputFolder.current!.click();
+        hiddenFileInputFolder.current!.webkitdirectory = true;
     }
-
+    const otherAtt = { directory: "", webkitdirectory: "" }
     return (
         <>
             <ContainerModal>
@@ -72,7 +85,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                             Add Inspection
                         </ModalTitle>
                         <ModalClose onClick={() => setModal(false)}>
-                            ☓
+                            <CrossIcon/>
                         </ModalClose>
                     </ModalHeader>
                     <Wrapp>
@@ -239,9 +252,10 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                                                 <InputHidden
                                                                     type="file"
                                                                     ref={hiddenFileInputFolder}
-                                                                    onChange={onUploadChange}
-                                                                    id="Folder"
-                                                                    name="Folder"/>
+                                                                    onChange={onUploadChangeFolder}
+                                                                    /*@ts-ignore*/
+                                                                    webkitdirectory="true"
+                                                                    />
                                                             </ChooseFile>
                                                             <AddFolder/>
                                                             <div style={{padding: '0px 7px'}}>
@@ -252,7 +266,7 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                                     </div>
                                                 </ModalBodyHeaderTitle>
                                             </div>
-                                            <AddFileTable file={file}/>
+                                            <AddFileTable files={files} folderFiles={folderFiles} />
                                         </ModalBodyHeader>
                                     </ModalBodyContent>
                                 )
@@ -327,7 +341,7 @@ export default CreateInspectionModal;
 const Arrow = styled.div<{active:boolean}>`
     position: absolute;
   right: 8px;
-  top: 8px;
+  top: ${({active}) => active ? '8px' : '9px'};
   transform: ${props => props.active ? 'rotate(180deg)' : 'rotate(0deg)'};
   
 `
@@ -526,8 +540,8 @@ const ActiveModalWrapper = styled.div`
   background-color: white;
   box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: 90px;
-  left: 23px;
+  top: 35px;
+  left: 0px;
   display: flex;
 `
 

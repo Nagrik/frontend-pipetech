@@ -5,6 +5,7 @@ import useInput from "@/Components/utils/hooks/useInput";
 import {addUserToOrganization, createUser} from "@/store/actions/login";
 import {useDispatch, useSelector} from "react-redux";
 import {selectUserResponse} from "@/store/selectors/auth";
+import CrossIcon from "@/Components/common/icons/CrossIcon";
 
 const AddUserModal = ({setModal}: any) => {
     const [activeRoles, setActiveRoles] = useState<string[]>([])
@@ -48,7 +49,7 @@ const AddUserModal = ({setModal}: any) => {
                     <ModalClose onClick={() => {
                         setModal(false);
                     }}>
-                        X
+                        <CrossIcon/>
                     </ModalClose>
                 </ModalWrappHeader>
                 <ModalWrappBody>
@@ -76,7 +77,7 @@ const AddUserModal = ({setModal}: any) => {
                                                     <Span key={index}>
                                                         {item}
                                                         <div style={{fontSize: '9px', paddingLeft: '5px'}} onClick={() => handleSelectRoles(item)}>
-                                                            X
+                                                            <CrossIcon/>
                                                         </div>
                                                     </Span>
                                                 ) : null

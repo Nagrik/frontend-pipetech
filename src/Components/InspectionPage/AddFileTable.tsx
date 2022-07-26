@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import EmptyTableIcon from "@/Components/common/icons/EmptyTableIcon";
 import AddFileIcon from "@/Components/common/icons/addFileIcon";
@@ -6,28 +6,29 @@ import SuccessIcon from "@/Components/common/icons/SuccessIcon";
 import DeleteIcon from "@/Components/common/icons/DeleteIcon";
 import Folder from "@/Components/common/icons/Folder";
 import FolderTableIcon from "@/Components/common/icons/folderTableIcon";
+import FileTableIcon from "@/Components/common/icons/FileTableIcon";
 
-const AddFileTable = ({file}: any) => {
+const AddFileTable = ({files, folderFiles}: any) => {
     const Headers = ['', 'Name', '', 'Details', '']
-    const [empty, setEmpty] = useState(false)
 
-    const data = [
-        {
-            id: 1,
-            type: 'folder',
-            name: 'Folder 1',
-            status: 'OK',
-            Details: '12 record(s), 4 media file(s) found.'
-        },
-        {
-            id: 2,
-            type: 'xlsx',
-            name: 'xsx.xlsx',
-            status: 'question',
-            Details: '12 record(s), 4 media file(s) found.'
-        },
-    ]
-    const name = 'Lorem ipsum dolor sit.'
+    const [folderFilesList, setFolderFilesList] = useState(folderFiles)
+    const [fileList, setFileList] = useState(files)
+
+    const handleDeleteFolder = (id: number) => {
+        //delete item from id in folderFiles
+        const newFolderFiles = folderFilesList.filter((item: any) => item.id !== id)
+        setFolderFilesList(newFolderFiles)
+    }
+    const handleDeleteFile = (id: number) => {
+        //delete item from id in files
+        const newFiles = fileList.filter((item: any) => item.id !== id)
+        setFileList(newFiles)
+        console.log(newFiles)
+    }
+    useEffect(() => {
+        setFolderFilesList(folderFiles)
+        setFileList(files)
+    }, [folderFiles, files])
     return (
         <div>
             <Table>
@@ -47,39 +48,73 @@ const AddFileTable = ({file}: any) => {
                 </TableHead>
                 <TableBody>
                     {
-                        empty ? (
-                                <TableRowEmpty>
-                                    <TableCellBodyEmpty>
-                                        <EmptyTableIcon/>
-                                        <EmptyText>
-                                            No Data. <br/>
-                                            Add files or folders first.
-                                        </EmptyText>
-                                    </TableCellBodyEmpty>
-                                </TableRowEmpty>
-                            ) :
-                            (
+                        folderFilesList.length === 0 && files.length === 0 ? (
+                            <TableRowEmpty>
+                                <TableCellBodyEmpty>
+                                    <EmptyTableIcon/>
+                                    <EmptyText>
+                                        No Data. <br/>
+                                        Add files or folders first.
+                                    </EmptyText>
+                                </TableCellBodyEmpty>
+                            </TableRowEmpty>
+                        ) : null
+                    }
+                    {
+                        folderFilesList.length > 0 ? (
+                            folderFilesList.map((file: any, index: number) => {
+                                let size = Object.keys(file).length - 2;
+                                return (
+                                    <TableRow>
+                                        <TableCellBody>
+                                            <Icon>
+                                                <FolderTableIcon/>
+                                            </Icon>
+                                            <DetailsText>
+                                                {file.folderName}
+                                            </DetailsText>
+                                            <Icon>
+                                                <SuccessIcon/>
+                                            </Icon>
+                                            <DetailsText>
+                                                {size} record(s) found.
+                                            </DetailsText>
+                                            <Icon style={{cursor: 'pointer'}} onClick={() => handleDeleteFolder(file.id)}>
+                                                <DeleteIcon/>
+                                            </Icon>
+                                        </TableCellBody>
+                                    </TableRow>
+                                )
+                            })
+
+                        ) : null
+                    }
+                    {
+                        fileList.length > 0 && (
+                            fileList.map((file: any) => (
                                 <TableRow>
                                     <TableCellBody>
                                         <Icon>
-                                          <FolderTableIcon/>
+                                            <FileTableIcon/>
                                         </Icon>
                                         <DetailsText>
-                                            {name}
+                                            {file.file.name}
                                         </DetailsText>
                                         <Icon>
                                             <SuccessIcon/>
                                         </Icon>
                                         <DetailsText>
-                                            12 record(s), 4 media file(s) found.
+                                            1 record(s) found.
                                         </DetailsText>
-                                        <Icon style={{cursor: 'pointer'}}>
+                                        <Icon style={{cursor: 'pointer'}} onClick={() => handleDeleteFile(file.id)}>
                                             <DeleteIcon/>
                                         </Icon>
                                     </TableCellBody>
                                 </TableRow>
                             )
+                        ))
                     }
+
                 </TableBody>
             </Table>
         </div>
@@ -88,8 +123,12 @@ const AddFileTable = ({file}: any) => {
 
 export default AddFileTable;
 
+const FolderName = styled.div``;
+
+const FolderDetails = styled.div``;
+
 const Icon = styled.div`
-    max-width: 32px;
+  max-width: 32px;
   width: 100%;
   text-align: center;
   border-right: 1px solid #F0F0F0;
@@ -99,6 +138,7 @@ const Icon = styled.div`
   justify-content: center;
   border-left: 1px solid #F0F0F0;
 `
+
 
 const DetailsText = styled.div`
   max-width: 312px;

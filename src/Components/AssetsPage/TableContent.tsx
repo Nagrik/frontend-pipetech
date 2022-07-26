@@ -11,6 +11,7 @@ import format from "date-fns/format";
 import {parseISO} from "date-fns";
 import {changeOrganisationArray} from "@/store/actions/organization";
 import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIcon";
+import CrossIcon from "@/Components/common/icons/CrossIcon";
 
 
 const createHeaders = (headers: any) => {
@@ -641,7 +642,7 @@ const TableContent = ({headers, minCellWidth}: any) => {
                                 <Wrapper ref={detailsRef}>
                                     <DetailsHeader>
                                         <Cross onClick={() => setDetailsOpen(false)}>
-                                            X
+                                            <CrossIcon/>
                                         </Cross>
                                         <HeaderName>
                                             qewrty
