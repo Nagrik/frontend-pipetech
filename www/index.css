@@ -388,7 +388,7 @@ table tr td {
   width: 16px;
   border-radius: 2px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #d9d9d9;
   cursor: pointer;
 }
 .checkmark-header {
@@ -399,7 +399,7 @@ table tr td {
   width: 16px;
   border-radius: 2px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #d9d9d9;
   cursor: pointer;
 }
 .container:hover input ~ .checkmark {
@@ -415,6 +415,14 @@ table tr td {
 .container input:checked ~ .checkmark-header {
   background-color: #2196F3;
   border: none;
+}
+.container input:hover ~ .checkmark {
+  border: 1px solid #2196F3;
+  transition: border-color 0.3s ease-in-out;
+}
+.container input:hover ~ .checkmark-header {
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #2196F3;
 }
 .checkmark:after {
   content: "";

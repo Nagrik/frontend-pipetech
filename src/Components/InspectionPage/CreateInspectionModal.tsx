@@ -13,19 +13,21 @@ import AddFileTable from "@/Components/InspectionPage/AddFileTable";
 import ArrowDownIcon from "@/Components/common/icons/AssetsPageIcons/ArrowDownIcon";
 import { v4 as uuidv4 } from 'uuid';
 import CrossIcon from "@/Components/common/icons/CrossIcon";
+import TableInputsInspection from "@/Components/InspectionPage/TableInputsInspection";
 
 
 const CreateInspectionModal = ({setModal, modal}: any) => {
     const [activeModalTab, setActiveModalTab] = useState<boolean>(false)
 
-    const [firstColumn, setFirstColumn] = useState<string>('');
-    const [secondColumn, setSecondColumn] = useState<string>('')
-    const [thirdColumn, setThirdColumn] = useState<string>('')
+    const [firstColumn, setFirstColumn] = useState<string>('Springfield Storm1');
+    const [secondColumn, setSecondColumn] = useState<string>('Mainline')
+    const [thirdColumn, setThirdColumn] = useState<string>('NASSCO v6 Springfield')
     const [step, setStep] = useState<number>(1)
     const [choose, setChoose] = useState<string | null>(null)
     const [files, setFiles] = useState<string[] | null>([])
     const [folderFiles, setFolderFiles] = useState<string[] | null>([])
     const [folderName, setFolderName] = useState<string>('')
+    const [finished, setFinished] = useState<boolean | null>(null)
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -75,7 +77,10 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
         hiddenFileInputFolder.current!.click();
         hiddenFileInputFolder.current!.webkitdirectory = true;
     }
-    const otherAtt = { directory: "", webkitdirectory: "" }
+    const handleImport = () => {
+        console.log('13')
+    }
+
     return (
         <>
             <ContainerModal>
@@ -276,15 +281,17 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                     <ModalBodyContent>
                                         <ModalBodyHeader>
                                             <ModalBodyHeaderTitle>
-                                                <span> System: </span>
+                                                <span style={{paddingRight: '5px'}}> System: </span>
                                                 <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
-                                                {firstColumn} / </span>
+                                                    {firstColumn} <span style={{padding: '0px 7px 0px 5px'}}>/</span>
+                                                </span>
                                                 <span style={{color: 'rgba(0, 0, 0, 0.45)', fontSize: '14px'}}>
-                                                {secondColumn} / </span>
+                                                    {secondColumn} <span style={{padding: '0px 7px 0px 5px'}}>/</span>
+                                                </span>
                                                 {thirdColumn}
                                             </ModalBodyHeaderTitle>
-
                                         </ModalBodyHeader>
+                                        <TableInputsInspection/>
                                     </ModalBodyContent>
                                 )
                             }
@@ -304,7 +311,30 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                     </ModalBodyContent>
                                 )
                             }
-
+                            {
+                                step === 6 && (
+                                    <ModalBodyContent>
+                                        <ModalBodyHeader>
+                                            <TextWrapperFinished>
+                                                <Text>
+                                                    For all 1 inspection(s)...
+                                                </Text>
+                                            </TextWrapperFinished>
+                                            <MarkWrapper>
+                                                Mark as:
+                                                <MarkButtons>
+                                                    <MarkButton
+                                                        isActive={finished === true}
+                                                        onClick={() => setFinished(true)}>Finished</MarkButton>
+                                                    <MarkButton
+                                                        isActive={finished === false}
+                                                        onClick={() => setFinished(false)}>Not finished</MarkButton>
+                                                </MarkButtons>
+                                            </MarkWrapper>
+                                        </ModalBodyHeader>
+                                    </ModalBodyContent>
+                                )
+                            }
                         </ModalBody>
                         <Buttons>
                             <ButtonSave onClick={() => {
@@ -323,8 +353,10 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
                                         </ButtonCreate>
                                     )
                                 }
-                                <ButtonCreate onClick={() => setStep(step + 1)} disabled={step == 2 && !choose}>
-                                    Next
+                                <ButtonCreate onClick={() => {
+                                    step < 6 ? setStep(step + 1) : handleImport()
+                                }} disabled={step == 2 && !choose}>
+                                    {step < 6 ? 'Next' : 'Import'}
                                 </ButtonCreate>
 
                             </div>
@@ -337,6 +369,38 @@ const CreateInspectionModal = ({setModal, modal}: any) => {
 };
 
 export default CreateInspectionModal;
+
+const TextWrapperFinished = styled.div`
+  padding-bottom: 10px;
+`
+
+const MarkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const MarkButtons = styled.div`
+    display: flex;
+  align-items: center;
+  padding-left: 10px;
+`
+
+const MarkButton = styled.div<{isActive:boolean}>`
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: ${props => props.isActive ? '#fff' : '#000'};
+  justify-content: center;
+  background-color: ${props => props.isActive ? '#1890ff' : '#fff'};
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  padding: 10px 15px;
+  white-space: nowrap;
+  transition: color 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    &:hover {
+        color: ${props => props.isActive ? '#fff' : '#1890ff'};
+    }
+`
 
 const Arrow = styled.div<{active:boolean}>`
     position: absolute;
@@ -486,7 +550,7 @@ const ButtonSave = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 6px;
   border-radius: 2px;
 
   &:hover {
@@ -640,7 +704,7 @@ const ModalBody = styled.div`
 `
 
 const ModalBodyContent = styled.div`
-
+  color: rgba(0, 0, 0, 0.85);
 `
 
 const ModalClose = styled.div`

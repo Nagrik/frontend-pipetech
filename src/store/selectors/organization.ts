@@ -35,3 +35,8 @@ export const selectInspectionHeader: Selector<State, any | null> = createSelecto
     selectInspection,
     ({ inspectionsHeaders }) => inspectionsHeaders,
 );
+
+export const selectInspectionModalHeader: Selector<State, any | null> = createSelector(
+    selectInspection,
+    ({ inspectionModalHeaders }) => inspectionModalHeaders,
+);

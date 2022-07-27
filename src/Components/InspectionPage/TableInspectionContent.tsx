@@ -21,10 +21,10 @@ import Triangle from "@/Components/common/icons/Triangle";
 
 const createHeaders = (headers: any) => {
 
-        return headers && headers.map((item: any) => ({
-            text: item.title,
-            ref: null
-        }));
+    return headers && headers.map((item: any) => ({
+        text: item.title,
+        ref: null
+    }));
 };
 
 const TableInspectionContent = ({minCellWidth, data}: any) => {
@@ -45,8 +45,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
     const inspectionHeaders = useSelector(selectInspectionHeader)
     const dispatch = useDispatch<AppDispatch>();
     const tableElement = useRef(null);
-   const columns = createHeaders(inspectionHeaders);
-
+    const columns = createHeaders(inspectionHeaders);
 
 
     useEffect(() => {
@@ -92,7 +91,6 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
     }, [setActiveIndex, removeListeners]);
 
 
-
     useEffect(() => {
         if (activeIndex !== null) {
             window.addEventListener("mousemove", mouseMove);
@@ -105,7 +103,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
     }, [activeIndex, mouseMove, mouseUp, removeListeners]);
 
 
-    function test() {
+    function calculateAssetId() {
         let index: any
         if (columns) {
             columns.map((item: any, i: any) => {
@@ -116,6 +114,35 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
         }
         return index
     }
+
+    function filterColumn(columnName: string) {
+        //filter column acceding to the selected value
+        let index: any
+        const arrSorted: any[] = []
+        if (columns) {
+            columns.map((item: any, i: any) => {
+                if (item.text === columnName) {
+                    index = i
+                }
+            })
+            inspections.map((item: any, i: any) => {
+                arrSorted.push(item.arr[index - 2])
+            })
+            const newArr = arrSorted.sort((a, b) => b - a)
+            const newArr2 = inspections.map((item: any, q: any) => {
+                return {...item, arr: item.arr.map((arrItem: any, i: any) => {
+                    if (i === 2) {
+                        return newArr[q]
+                    }
+                    return arrItem
+                    })}
+            })
+            dispatch(changeOrganisationInspectionArray(newArr2))
+        }
+
+        return index
+    }
+
 
     const handleCheckCheckboxes = (e: any) => {
         const target = e.target.checked
@@ -157,7 +184,6 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
         dispatch(changeOrganisationInspectionArray(newOrganisation))
     }
 
-    console.log(checkbox)
 
     return (
         <div style={{position: 'relative'}}>
@@ -179,7 +205,8 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                                  fontFamily: 'Verdana, sans-serif',
                                                                  fontSize: '12px'
                                                              }}>
-                                                            <input type="checkbox"  onClick={(e) => handleCheckCheckboxes(e)} />
+                                                            <input type="checkbox"
+                                                                   onClick={(e) => handleCheckCheckboxes(e)}/>
                                                                 <span className="checkmark-header"></span>
                                                         </label>
                                                         </span>
@@ -209,6 +236,7 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                                 ref={ref}
                                                                 key={i}
                                                                 className={i === 1 ? 'first' : 'tableHeaders'}
+                                                                onClick={() => filterColumn(text)}
                                                             >
                                                                 <span style={{fontWeight: '500'}}>{text}</span>
                                                                 <Triangles>
@@ -249,39 +277,42 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
 
                                     {inspections.map((item: any, i: number) => {
                                             return (
-                                                <tr>
+
+                                                <>
+                                                    <Tr>
                                                     <Td style={{position: 'sticky', left: '0px'}}
-                                                        isActive={item.checkbox}
-                                                        isHovered={item.hover}
-                                                        key={i}
+                                                      isActive={item.checkbox}
+                                                      isHovered={item.hover}
+                                                      key={i}
 
-                                                    >
-                                                <span >
-                                                       <label className="container" style={{
-                                                           fontFamily: 'Verdana, sans-serif',
-                                                           fontSize: '12px'
-                                                       }}>
-                                                            <input type="checkbox" checked={item.checkbox} onClick={(e) => handleCheckCheckbox(e, item.id)}/>
-                                                                <span className="checkmark"></span>
+                                                >
+                                                    <span>
+                                                        <label className="container" style={{
+                                                            fontFamily: 'Verdana, sans-serif',
+                                                            fontSize: '12px'
+                                                        }}>
+                                                            <input type="checkbox" checked={item.checkbox}
+                                                                   onClick={(e) => handleCheckCheckbox(e, item.id)}/>
+                                                            <span className="checkmark"></span>
                                                         </label>
-                                                    {/*                                        <input type='checkbox'*/}
-                                                    {/*                                               checked={item.checkbox}*/}
-                                                    {/*                                               onClick={(e) => handleCheckCheckbox(e, item.id)}/>*/}
-                                                </span>
-
-                                                    </Td>
+                                                    </span>
+                                                </Td>
+                                                    </Tr>
+                                                    <Tr>
                                                     <Td style={{position: 'sticky', left: '50px'}}
-                                                        isActive={item.checkbox}
-                                                        isHovered={item.hover}
-                                                        onMouseEnter={() => isHovered(item.id)}
-                                                        onMouseLeave={() => isHovered(item.id)}
-                                                    >
-                                                        <IdWrapper>
-                                                            {item.arr[test() - 2]} <span style={{padding: '0px 3px'}}>·</span> {item.arr[test() - 1]}
-                                                        </IdWrapper>
-                                                    </Td>
-
+                                                         isActive={item.checkbox}
+                                                         isHovered={item.hover}
+                                                         onMouseEnter={() => isHovered(item.id)}
+                                                         onMouseLeave={() => isHovered(item.id)}
+                                                >
+                                                    <IdWrapper>
+                                                        {item.arr[calculateAssetId() - 2]} <span
+                                                        style={{padding: '0px 3px'}}>·</span> {item.arr[calculateAssetId() - 1]}
+                                                    </IdWrapper>
+                                                </Td>
+                                                    </Tr>
                                                     {item.arr.map((item2: any, i: number) => (
+                                                        <Tr >
                                                         <Td
                                                             isActive={item.checkbox}
                                                             onMouseEnter={() => isHovered(item.id)}
@@ -291,9 +322,10 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
                                                         >
                                                             {item2}
                                                         </Td>
+                                                        </Tr>
                                                     ))}
-                                                </tr>
-                                            )
+                                                </>
+                                        )
                                         }
                                     )}
 
@@ -330,6 +362,14 @@ const TableInspectionContent = ({minCellWidth, data}: any) => {
 };
 
 export default TableInspectionContent;
+
+
+
+const Tr = styled.tr`
+    &:hover{
+      background-color: #f5f5f5;
+    }
+`
 
 const Triangles = styled.div`
 

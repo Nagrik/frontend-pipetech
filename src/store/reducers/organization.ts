@@ -12,6 +12,7 @@ export interface LoginState {
     organizationsInspections: any | null
     organizationsInspection: any | null
     inspectionsHeaders: any | null
+    inspectionModalHeaders: any | null
 }
 
 const initialState: LoginState = {
@@ -20,7 +21,8 @@ const initialState: LoginState = {
     organizations: null,
     organizationsInspection: null,
     organizationsInspections: null,
-    inspectionsHeaders: null
+    inspectionsHeaders: null,
+    inspectionModalHeaders: null,
 };
 
 export class OrganizationReducer extends ImmerReducer<LoginState> {
@@ -43,6 +45,8 @@ export class OrganizationReducer extends ImmerReducer<LoginState> {
         });
         const newArray = [...organizationInspections!.columns]
         this.draftState.inspectionsHeaders = [{title: 'checkbox'},{title: 'Assets'},...newArray ];
+        this.draftState.inspectionModalHeaders = [{title: 'Data File Name'},
+            {title: 'Record Count'},{title: 'Media File Name'}, {title:'Asset ID'}, ...newArray ];
     }
 
     setOrganizations(organizations: any | null) {
